@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import type { Performance } from "./types/performances";
 import Performances from "./components/Performances";
+import Header from "./components/Header";
 
 function App() {
 
@@ -25,10 +26,10 @@ function App() {
   if (!data) return <div>データが見つかりません。</div>;
 
   return (
-    <>
-      <h1>Ultradonguri</h1>
+    <main>
+      <Header />
       <Performances items={data} />
-    </>
+    </main>
   );
 }
 
