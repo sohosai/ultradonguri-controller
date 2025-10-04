@@ -3,3 +3,17 @@ body{
   margin: 0;
   background: #2E3238;
 }
+
+.content{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.performances{
+  flex: 0 0 auto;
+}
+
+.musics{
+  flex: 1 1 auto;
+}

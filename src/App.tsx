@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import type { Performance } from "./types/performances";
 import Performances from "./components/Performances";
+import Musics from "./components/Musics";
 import Header from "./components/Header";
 
 function App() {
 
   const [data, setData] = useState<Performance[] | null>(null);
+  const [selected, setSelected] = useState<Performance | null>(null);
 
   useEffect(() => {
     // データフェッチはバックエンドが出来たら変更する
@@ -28,7 +30,14 @@ function App() {
   return (
     <main>
       <Header />
-      <Performances items={data} />
+      <div className="content">
+        <div className="performances">
+          <Performances items={data} onSelect={setSelected} />
+        </div>
+        <div className="musics">
+          {selected && <Musics items={selected.musics} />}
+        </div>
+      </div>
     </main>
   );
 }
