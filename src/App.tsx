@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import type { Performance } from "./types/performances";
+import Performances from "./components/Performances";
 
 function App() {
-  type Music = {
-    id: string;
-    title: string;
-    artist: string;
-    should_be_muted: boolean;
-    intro: string;
-  };
-
-  type Performance = {
-    id: string;
-    title: string;
-    performer: string;
-    description: string;
-    starts_at: string;
-    ends_at: string;
-    musics: Music[];
-  };
 
   const [data, setData] = useState<Performance[] | null>(null);
 
@@ -42,21 +27,7 @@ function App() {
   return (
     <>
       <h1>Ultradonguri</h1>
-      <h2>パフォーマンス一覧</h2>
-      <ul>
-        {data.map((p) => (
-          <li key={p.id}>
-            <div>{p.title}</div>
-            <ul>
-              {p.musics.map((m) => (
-                <li key={m.id}>
-                  {m.title}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
+      <Performances items={data} />
     </>
   );
 }
