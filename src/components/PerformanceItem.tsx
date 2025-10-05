@@ -1,5 +1,5 @@
 import type { Performance } from "../types/performances";
-import styles from "./Performance.module.css";
+import styles from "./PerformanceItem.module.css";
 
 type Props = {
   performance: Performance;

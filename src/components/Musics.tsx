@@ -1,6 +1,6 @@
 import type { Music } from "../types/performances";
 import MusicItem from "./MusicItem";
-import styles from "./Performances.module.css";
+import styles from "./Musics.module.css";
 
 type Props = {
   items: Music[];
@@ -8,7 +8,7 @@ type Props = {
 
 export default function Music({ items }: Props) {
   return (
-    <ul className={styles.performances}>
+    <ul className={styles.musics}>
       {items.map((m) => (
         <li><MusicItem key={m.id} music={m} /></li>
       ))}

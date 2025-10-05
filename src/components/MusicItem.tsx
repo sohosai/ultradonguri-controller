@@ -1,5 +1,5 @@
 import type { Music } from "../types/performances";
-import styles from "./Performance.module.css";
+import styles from "./MusicItem.module.css";
 
 type Props = {
   music: Music;
@@ -7,7 +7,7 @@ type Props = {
 
 export default function MusicItem({ music }: Props) {
   return (
-    <div className={styles.performance}>
+    <div className={styles.music}>
       <div className={styles.title}>{music.title}</div>
     </div>
   );
