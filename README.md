@@ -15,7 +15,7 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
    - `git clone https://github.com/sohosai/ultradonguri-controller.git`
 2. 依存関係のインストール
    - `npm install`
-1. 開発サーバ起動
+3. 開発サーバ起動
    - `npm run dev`
    - ターミナルに表示される URL にアクセス
 
