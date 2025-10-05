@@ -5,6 +5,7 @@
   color: var(--color-white);
   cursor: pointer;
   background: var(--color-surface);
+  border: 2px solid transparent;
   border-radius: 10px;
 }
 
@@ -15,3 +16,10 @@
   text-align: center;
 }
 
+.playing {
+  background: var(--color-red);
+}
+
+.queued {
+  border-color: var(--color-green);
+}
