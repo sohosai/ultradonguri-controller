@@ -1,4 +1,4 @@
-.performances{
+.performances {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -6,6 +6,6 @@
   list-style: none;
 }
 
-.performances li:hover{
+.performances li:hover {
   cursor: pointer;
 }

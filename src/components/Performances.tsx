@@ -1,6 +1,7 @@
-import type { Performance } from "../types/performances";
 import PerformanceItem from "./PerformanceItem";
 import styles from "./Performances.module.css";
+
+import type { Performance } from "../types/performances";
 
 type Props = {
   items: Performance[];

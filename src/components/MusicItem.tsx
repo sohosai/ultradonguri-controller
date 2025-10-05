@@ -1,5 +1,6 @@
-import type { Music } from "../types/performances";
 import styles from "./MusicItem.module.css";
+
+import type { Music } from "../types/performances";
 
 type Props = {
   music: Music;

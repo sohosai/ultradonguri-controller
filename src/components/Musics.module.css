@@ -1,4 +1,4 @@
-.musics{
+.musics {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -6,6 +6,6 @@
   list-style: none;
 }
 
-.musics li:hover{
+.musics li:hover {
   cursor: pointer;
 }

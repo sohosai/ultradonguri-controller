@@ -1,14 +1,14 @@
-.music{
+.music {
   width: 350px;
   height: 40px;
   padding: 15px 20px;
   color: #fff;
   cursor: pointer;
-  background: #494F58;
+  background: #494f58;
   border-radius: 10px;
 }
 
-.title{
+.title {
   font-size: 18px;
   font-weight: bold;
   line-height: 40px;

@@ -1,19 +1,19 @@
-.performance{
+.performance {
   width: 300px;
   height: 65px;
   padding: 15px 20px;
   color: #fff;
   cursor: pointer;
-  background: #494F58;
+  background: #494f58;
   border-radius: 10px;
 }
 
-.time{
+.time {
   font-size: 14px;
   line-height: 22px;
 }
 
-.title{
+.title {
   font-size: 18px;
   font-weight: bold;
   line-height: calc(65px - 22px);

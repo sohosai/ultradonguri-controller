@@ -1,9 +1,9 @@
-.header{
+.header {
   width: 100%;
   height: 60px;
 }
 
-.list{
+.list {
   display: flex;
   align-items: center;
   padding: 0;

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
-import type { Performance } from "./types/performances";
-import Performances from "./components/Performances";
-import Musics from "./components/Musics";
 import Header from "./components/Header";
+import Musics from "./components/Musics";
+import Performances from "./components/Performances";
+
+import type { Performance } from "./types/performances";
 
 function App() {
-
   const [data, setData] = useState<Performance[] | null>(null);
   const [selected, setSelected] = useState<Performance | null>(null);
 
@@ -19,7 +20,7 @@ function App() {
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         const json = (await res.json()) as Performance[];
         setData(json);
-      }catch(e){
+      } catch (e) {
         console.error(e);
         setData([]);
       }
@@ -34,9 +35,7 @@ function App() {
         <div className="performances">
           <Performances items={data} onSelect={setSelected} />
         </div>
-        <div className="musics">
-          {selected && <Musics items={selected.musics} />}
-        </div>
+        <div className="musics">{selected && <Musics items={selected.musics} />}</div>
       </div>
     </main>
   );

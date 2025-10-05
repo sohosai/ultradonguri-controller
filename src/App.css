@@ -1,19 +1,19 @@
-body{
+body {
   padding: 0;
   margin: 0;
-  background: #2E3238;
+  background: #2e3238;
 }
 
-.content{
+.content {
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
-.performances{
+.performances {
   flex: 0 0 auto;
 }
 
-.musics{
+.musics {
   flex: 1 1 auto;
 }
