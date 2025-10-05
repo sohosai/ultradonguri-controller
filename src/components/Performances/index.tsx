@@ -1,4 +1,5 @@
 import PerformanceItem from "../PerformanceItem";
+
 import styles from "./index.module.css";
 
 import type { Performance } from "../../types/performances";
@@ -19,4 +20,3 @@ export default function Performances({ items, onSelect }: Props) {
     </ul>
   );
 }
-

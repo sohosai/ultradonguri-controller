@@ -1,4 +1,5 @@
 import MusicItem from "../MusicItem";
+
 import styles from "./index.module.css";
 
 import type { Music } from "../../types/performances";
@@ -18,4 +19,3 @@ export default function Music({ items }: Props) {
     </ul>
   );
 }
-

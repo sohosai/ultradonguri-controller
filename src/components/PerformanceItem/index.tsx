@@ -21,4 +21,3 @@ export default function PerformanceItem({ performance, onSelect }: Props) {
     </div>
   );
 }
-
