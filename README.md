@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# ultradonguri-controller
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite で構築されたコントローラ用フロントエンドです。開発環境の整備手順、コンポーネントの分け方、スタイル（色変数の必須利用）についての指針をまとめます。
 
-Currently, two official plugins are available:
+## 必要環境
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js
+- npm
 
-## React Compiler
+Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等で切り替えてください。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## セットアップ
 
-## Expanding the ESLint configuration
+1. リポジトリのクローン
+   - `git clone https://github.com/sohosai/ultradonguri-controller.git`
+2. 依存関係のインストール
+   - `npm install`
+1. 開発サーバ起動
+   - `npm run dev`
+   - ターミナルに表示される URL にアクセス
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 開発コマンド
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- Lint（ESLint）実行: `npm run eslint:check`
+- Lint（ESLint 自動修正）: `npm run eslint`
+- Stylelint 実行: `npm run stylelint:check`
+- Stylelint 自動修正: `npm run stylelint`
+- Prettier フォーマット: `npm run format`
+- フォーマット検査: `npm run format:check`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ディレクトリ構成とコンポーネント分割
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- コンポーネントは以下の規則で配置します
+  - ディレクトリ: `src/components/ComponentName/`
+  - エントリ: `src/components/ComponentName/index.tsx`
+  - スタイル（必要に応じて）: `src/components/ComponentName/index.module.css`
+
+例: `Header` コンポーネント
+
+```
+src/
+  components/
+    Header/
+      index.tsx
+      index.module.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+TypeScript の型・ユーティリティは用途に応じ `src/types` 配下へ配置します。
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## スタイル指針（色変数は必須）
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- カラーは必ず CSS 変数を使用します（直書きのカラーコード・名前色は禁止）。
+- 定義ファイル: `src/styles/colors.css`
+  - 例: `--color-bg`, `--color-surface`, `--color-white`, `--color-red`, `--color-green`, `--color-gray` など
+- フォント系は `src/styles/typography.css` を参照します。
+
+使用例（CSS Modules）
+
+```css
+/* src/components/Example/index.module.css */
+.root {
+  background-color: var(--color-bg);
+  color: var(--color-white);
+}
 ```
+
+```tsx
+// src/components/Example/index.tsx
+import styles from "./index.module.css";
+
+export const Example = () => {
+  return <div className={styles.root}>Example</div>;
+};
+```
+
+新しい色が必要な場合は、`src/styles/colors.css` にトークンを追加し、名称は `--color-*` のケバブケースで統一してください。  
+必要な変数は基本的にすでに設定済みです。
+
+推奨事項
+
+- CSS Modules（`*.module.css`）の利用
+- クラス名は用途ベースでシンプルに（例: `root`, `title`, `actions`）
+
+## コーディング規約/静的解析
+
+- ESLint/TypeScript による型・品質チェックを適用
+- import 並び順や未使用 import は ESLint ルールで検出・修正
+- Prettier によるコード整形を適用
+- CSS は Stylelint を適用
+
+PR を作成する前に以下の実行を推奨します:
+
+```
+npm run eslint && npm run stylelint && npm run format
+```
+
+## 備考
+
+- 開発時は `src/App.tsx` と `src/components/**` を中心に編集します。
+- モックデータは `public/mock.json` を参照できます。
