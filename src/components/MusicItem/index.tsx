@@ -1,6 +1,6 @@
-import styles from "./MusicItem.module.css";
+import styles from "./index.module.css";
 
-import type { Music } from "../types/performances";
+import type { Music } from "../../types/performances";
 
 type Props = {
   music: Music;
@@ -13,3 +13,4 @@ export default function MusicItem({ music }: Props) {
     </div>
   );
 }
+

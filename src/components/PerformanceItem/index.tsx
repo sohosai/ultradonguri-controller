@@ -1,6 +1,6 @@
-import styles from "./PerformanceItem.module.css";
+import styles from "./index.module.css";
 
-import type { Performance } from "../types/performances";
+import type { Performance } from "../../types/performances";
 
 type Props = {
   performance: Performance;
@@ -21,3 +21,4 @@ export default function PerformanceItem({ performance, onSelect }: Props) {
     </div>
   );
 }
+
