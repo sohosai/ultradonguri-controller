@@ -1,5 +1,5 @@
 .performance {
-  width: 300px;
+  width: 100%;
   height: calc(65px + 30px);
   padding: 15px 20px;
   color: var(--color-white);

@@ -5,8 +5,9 @@ import Header from "./components/Header";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
 
-
 import type { Performance } from "./types/performances";
+import Menu from "./components/Menu";
+import Buttons from "./components/Buttons";
 
 function App() {
   const [data, setData] = useState<Performance[] | null>(null);
@@ -35,12 +36,12 @@ function App() {
       <main>
         <div className={styles.row}>
           <div className={styles.rowLeft}>
-            <div className={styles.performances}>
-              <Performances items={data} onSelect={setSelected} />
-            </div>
+            <Performances items={data} onSelect={setSelected} />
+            <Menu />
           </div>
           <div className={styles.rowRight}>
-            <div className={styles.music}>{selected && <Musics items={selected.musics} />}</div>
+            <div className={styles.musics}>{selected && <Musics items={selected.musics} />}</div>
+            <Buttons />
           </div>
         </div>
       </main>
