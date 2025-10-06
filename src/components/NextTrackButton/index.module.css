@@ -1,0 +1,5 @@
+.nextTrackButton {
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-green);
+}

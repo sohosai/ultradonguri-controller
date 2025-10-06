@@ -1,0 +1,24 @@
+.music {
+  width: 100%;
+  padding: 15px 20px;
+  color: var(--color-white);
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+
+.playing {
+  background: var(--color-red);
+}
+
+.queued {
+  border-color: var(--color-green);
+}
