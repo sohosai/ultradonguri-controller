@@ -1,6 +1,6 @@
 [
   {
-    "id": "d2a3e5c1-4b6f-47f7-bd8e-0e1cbe7f2c11",
+    "id": "3f9a6c2c-7c2d-4b0b-9c0b-2a6a8b5f22d1",
     "title": "Evening Jazz Session",
     "performer": "Blue Note Quartet",
     "description": "しっとりとしたジャズセッションで夜を彩ります。",
@@ -8,93 +8,65 @@
     "ends_at": "19:30",
     "musics": [
       {
-        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "id": "a4e1b2c3-9f6d-4f1b-8c2e-3b5f6a7c8d91",
         "title": "Autumn Leaves",
         "artist": "Joseph Kosma",
         "should_be_muted": false,
         "intro": "The falling leaves drift by the window..."
       },
       {
-        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+        "id": "b5f2c3d4-0a7e-4a2c-9d3f-4c6a7b8c9d02",
         "title": "Take Five",
         "artist": "Dave Brubeck",
-        "should_be_muted": false,
-        "intro": "Won't you stop and take a little time..."
+        "should_be_muted": true,
+        "intro": "Instrumental 5/4 groove opens the tune."
       },
       {
-        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+        "id": "c6a3d4e5-1b8f-4b3d-8e40-5d7b8c9d0e13",
         "title": "So What",
         "artist": "Miles Davis",
-        "should_be_muted": true,
-        "intro": "Instrumental bass line opening..."
+        "should_be_muted": false,
+        "intro": "Bass call-and-response sets the modal mood."
       },
       {
-        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
-        "title": "Round Midnight",
+        "id": "d7b4e5f6-2c90-4c4e-9f51-6e8c9d0e1f24",
+        "title": "’Round Midnight",
         "artist": "Thelonious Monk",
-        "should_be_muted": false,
-        "intro": "It begins to tell 'round midnight..."
+        "should_be_muted": true,
+        "intro": "It begins to tell ’round midnight..."
       },
       {
-        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        "title": "Autumn Leaves",
-        "artist": "Joseph Kosma",
+        "id": "e8c5f607-3da1-4d5f-a062-7f9d0e1f2035",
+        "title": "My Favorite Things",
+        "artist": "John Coltrane",
         "should_be_muted": false,
-        "intro": "The falling leaves drift by the window..."
+        "intro": "Soprano sax spins a waltzing motif."
       },
       {
-        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
-        "title": "Take Five",
-        "artist": "Dave Brubeck",
-        "should_be_muted": false,
-        "intro": "Won't you stop and take a little time..."
-      },
-      {
-        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
-        "title": "So What",
+        "id": "f9d60718-4eb2-4650-b173-80a01f203146",
+        "title": "All Blues",
         "artist": "Miles Davis",
         "should_be_muted": true,
-        "intro": "Instrumental bass line opening..."
+        "intro": "A lilting 6/8 vamp ushers in the head."
       },
       {
-        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
-        "title": "Round Midnight",
-        "artist": "Thelonious Monk",
+        "id": "0ae71829-5fc3-4761-c284-91b12f314257",
+        "title": "Blue in Green",
+        "artist": "Bill Evans / Miles Davis",
         "should_be_muted": false,
-        "intro": "It begins to tell 'round midnight..."
+        "intro": "Hushed piano chords paint a misty hue."
       },
       {
-        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        "title": "Autumn Leaves",
-        "artist": "Joseph Kosma",
-        "should_be_muted": false,
-        "intro": "The falling leaves drift by the window..."
-      },
-      {
-        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
-        "title": "Take Five",
-        "artist": "Dave Brubeck",
-        "should_be_muted": false,
-        "intro": "Won't you stop and take a little time..."
-      },
-      {
-        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
-        "title": "So What",
-        "artist": "Miles Davis",
+        "id": "1bf8293a-60d4-4872-d395-a2c23f425368",
+        "title": "Footprints",
+        "artist": "Wayne Shorter",
         "should_be_muted": true,
-        "intro": "Instrumental bass line opening..."
-      },
-      {
-        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
-        "title": "Round Midnight",
-        "artist": "Thelonious Monk",
-        "should_be_muted": false,
-        "intro": "It begins to tell 'round midnight..."
+        "intro": "A slow 6/8 groove traces the steps."
       }
     ]
   },
   {
-    "id": "f3b7e9a2-1c34-4e67-8a9b-d6c55d3e8911",
+    "id": "4a0b7d3e-8d4f-4958-a1f9-6f2d8e7c1b22",
     "title": "Rock Night",
     "performer": "The Wild Guitars",
     "description": "熱狂的なロックナイト！",
@@ -102,37 +74,65 @@
     "ends_at": "22:00",
     "musics": [
       {
-        "id": "e5f6a7b8-c9d0-1234-ef01-567890123456",
+        "id": "2c0a3b4c-71e5-4a6f-9b07-3de41a526a10",
         "title": "Highway Star",
         "artist": "Deep Purple",
         "should_be_muted": false,
         "intro": "Nobody gonna take my car..."
       },
       {
-        "id": "f6a7b8c9-d0e1-2345-f012-678901234567",
+        "id": "3d1b4c5d-82f6-4b70-ac18-4ef52b637b21",
         "title": "Smoke on the Water",
         "artist": "Deep Purple",
         "should_be_muted": true,
         "intro": "We all came out to Montreux..."
       },
       {
-        "id": "a7b8c9d0-e1f2-3456-0123-789012345678",
-        "title": "Back in Black",
+        "id": "4e2c5d6e-93a7-4c81-bd29-5f063c748c32",
+        "title": "Back In Black",
         "artist": "AC/DC",
         "should_be_muted": false,
         "intro": "Back in black, I hit the sack..."
       },
       {
-        "id": "b8c9d0e1-f2a3-4567-1234-890123456789",
+        "id": "5f3d6e7f-a4b8-4d92-ce3a-60174d859d43",
         "title": "Bohemian Rhapsody",
         "artist": "Queen",
+        "should_be_muted": true,
+        "intro": "Is this the real life? Is this just fantasy?"
+      },
+      {
+        "id": "604e7f80-b5c9-4ea3-df4b-71285e96ae54",
+        "title": "Sweet Child O’ Mine",
+        "artist": "Guns N’ Roses",
         "should_be_muted": false,
-        "intro": "Is this the real life? Is this just fantasy..."
+        "intro": "She's got a smile that it seems to me..."
+      },
+      {
+        "id": "715f8091-c6da-4fb4-e05c-82396fa7bf65",
+        "title": "Hotel California",
+        "artist": "Eagles",
+        "should_be_muted": true,
+        "intro": "On a dark desert highway, cool wind in my hair"
+      },
+      {
+        "id": "826091a2-d7eb-40c5-f16d-934a70b8c076",
+        "title": "Stairway to Heaven",
+        "artist": "Led Zeppelin",
+        "should_be_muted": false,
+        "intro": "There's a lady who's sure..."
+      },
+      {
+        "id": "9371a2b3-e8fc-41d6-027e-a45b81c9d187",
+        "title": "Born to Run",
+        "artist": "Bruce Springsteen",
+        "should_be_muted": true,
+        "intro": "In the day we sweat it out on the streets..."
       }
     ]
   },
   {
-    "id": "a84c0f22-82b2-487b-92b7-d5d6c8c92433",
+    "id": "5b1c8e4f-9e50-4a6a-b2c0-7a3e9f8d2c33",
     "title": "Classical Morning",
     "performer": "Tsukuba Philharmonic",
     "description": "朝にぴったりのクラシックコンサート。",
@@ -140,37 +140,65 @@
     "ends_at": "11:00",
     "musics": [
       {
-        "id": "c9d0e1f2-a3b4-5678-2345-901234567890",
-        "title": "Symphony No.5",
-        "artist": "Beethoven",
+        "id": "a78192b3-0c1d-4e2f-a345-56b78c90d1e2",
+        "title": "Symphony No.5 (I)",
+        "artist": "Ludwig van Beethoven",
         "should_be_muted": true,
-        "intro": "Da-da-da-dum..."
+        "intro": "Fate motif: short-short-short-long."
       },
       {
-        "id": "d0e1f2a3-b4c5-6789-3456-012345678901",
-        "title": "Eine kleine Nachtmusik",
-        "artist": "Mozart",
+        "id": "b892a3c4-1d2e-4f30-b456-67c89da1e2f3",
+        "title": "Eine kleine Nachtmusik (I)",
+        "artist": "W. A. Mozart",
         "should_be_muted": false,
-        "intro": "Instrumental opening strings..."
+        "intro": "Brisk strings launch a joyful serenade."
       },
       {
-        "id": "e1f2a3b4-c5d6-7890-4567-123456789012",
-        "title": "Swan Lake",
-        "artist": "Tchaikovsky",
-        "should_be_muted": false,
-        "intro": "Delicate instrumental intro..."
+        "id": "c9a3b4d5-2e3f-4041-c567-78d9aeb2f304",
+        "title": "Swan Lake Theme",
+        "artist": "Pyotr Ilyich Tchaikovsky",
+        "should_be_muted": true,
+        "intro": "Haunting oboe over shimmering strings."
       },
       {
-        "id": "f2a3b4c5-d6e7-8901-5678-234567890123",
+        "id": "dab4c5e6-3f40-4152-d678-89eabfc30415",
         "title": "Canon in D",
-        "artist": "Pachelbel",
+        "artist": "Johann Pachelbel",
         "should_be_muted": false,
-        "intro": "Soft flowing string chords..."
+        "intro": "Layered strings weave a gentle canon."
+      },
+      {
+        "id": "eac5d6f7-4051-4263-e789-9fbcd0d41526",
+        "title": "Clair de Lune",
+        "artist": "Claude Debussy",
+        "should_be_muted": true,
+        "intro": "Soft piano arpeggios under moonlit hush."
+      },
+      {
+        "id": "fbd6e708-5162-4374-f89a-a0cde1e52637",
+        "title": "Air on the G String",
+        "artist": "J. S. Bach",
+        "should_be_muted": false,
+        "intro": "Serene melody floats above steady bass."
+      },
+      {
+        "id": "0ce7f819-6273-4485-09ab-b1def2f63748",
+        "title": "The Four Seasons: Spring (I)",
+        "artist": "Antonio Vivaldi",
+        "should_be_muted": true,
+        "intro": "Violins burst with birdsong-like figures."
+      },
+      {
+        "id": "1df8092a-7384-4596-1abc-c2ef03f74859",
+        "title": "Symphony No.9 (Largo)",
+        "artist": "Antonín Dvořák",
+        "should_be_muted": false,
+        "intro": "English horn sings a homesick hymn."
       }
     ]
   },
   {
-    "id": "c47f77b1-72f8-4de4-9b13-772fdd07c91e",
+    "id": "6c2d9f50-af61-4b7b-83d1-8b4f0a9c3d44",
     "title": "Pop Vibes",
     "performer": "Shiny Beats",
     "description": "最新のポップソングを届けます！",
@@ -178,37 +206,65 @@
     "ends_at": "16:30",
     "musics": [
       {
-        "id": "a3b4c5d6-e7f8-9012-6789-345678901234",
+        "id": "20e91a3b-8495-46a7-2bcd-d3f01408596a",
         "title": "Shape of You",
         "artist": "Ed Sheeran",
         "should_be_muted": true,
-        "intro": "The club isn't the best place..."
+        "intro": "The club isn't the best place to find a lover"
       },
       {
-        "id": "b4c5d6e7-f8a9-0123-7890-456789012345",
+        "id": "31fa2b4c-95a6-47b8-3cde-e40125196a7b",
         "title": "Blinding Lights",
         "artist": "The Weeknd",
         "should_be_muted": false,
-        "intro": "I've been tryna call..."
+        "intro": "I said, ooh, I'm blinded by the lights"
       },
       {
-        "id": "c5d6e7f8-a9b0-1234-8901-567890123456",
-        "title": "Bad Guy",
+        "id": "420b3c5d-a6b7-48c9-4def-f512362a7b8c",
+        "title": "bad guy",
         "artist": "Billie Eilish",
-        "should_be_muted": false,
-        "intro": "White shirt now red, my bloody nose..."
+        "should_be_muted": true,
+        "intro": "So you're a tough guy, like it really rough guy"
       },
       {
-        "id": "d6e7f8a9-b0c1-2345-9012-678901234567",
+        "id": "531c4d6e-b7c8-49da-5ef0-0623473b8c9d",
         "title": "Levitating",
         "artist": "Dua Lipa",
         "should_be_muted": false,
         "intro": "If you wanna run away with me..."
+      },
+      {
+        "id": "642d5e7f-c8d9-4aeb-6f01-1734584c9dae",
+        "title": "Uptown Funk",
+        "artist": "Mark Ronson feat. Bruno Mars",
+        "should_be_muted": true,
+        "intro": "This hit, that ice cold, Michelle Pfeiffer..."
+      },
+      {
+        "id": "753e6f80-d9ea-4bfc-7012-2845695d0ebf",
+        "title": "Rolling in the Deep",
+        "artist": "Adele",
+        "should_be_muted": false,
+        "intro": "There's a fire starting in my heart"
+      },
+      {
+        "id": "864f8091-eafb-4c0d-8123-39567a6e1fc0",
+        "title": "Shake It Off",
+        "artist": "Taylor Swift",
+        "should_be_muted": true,
+        "intro": "I stay out too late, got nothing in my brain"
+      },
+      {
+        "id": "975091a2-fb0c-4d1e-9234-4a678b7f20d1",
+        "title": "Happy",
+        "artist": "Pharrell Williams",
+        "should_be_muted": false,
+        "intro": "It might seem crazy what I'm 'bout to say"
       }
     ]
   },
   {
-    "id": "ee9b63c2-4d9f-4a82-bd16-37258b3c92d5",
+    "id": "7d3eaf61-b072-4c8c-94e2-9c501bad4e55",
     "title": "Anime Song Night",
     "performer": "Otaku Band",
     "description": "アニソン好き必見の夜。",
@@ -216,222 +272,390 @@
     "ends_at": "21:00",
     "musics": [
       {
-        "id": "e7f8a9b0-c1d2-3456-0123-789012345678",
+        "id": "a96012b3-0c45-4d67-a890-51f2c3d4e5f6",
         "title": "紅蓮華",
         "artist": "LiSA",
         "should_be_muted": false,
-        "intro": "強くなれる理由を知った..."
+        "intro": "強くなれる理由を知った"
       },
       {
-        "id": "f8a9b0c1-d2e3-4567-1234-890123456789",
+        "id": "b07123c4-1d56-4e78-b901-62f3d4e5f607",
         "title": "残酷な天使のテーゼ",
         "artist": "高橋洋子",
-        "should_be_muted": false,
-        "intro": "残酷な天使のように..."
+        "should_be_muted": true,
+        "intro": "残酷な天使のように少年よ神話になれ"
       },
       {
-        "id": "a9b0c1d2-e3f4-5678-2345-901234567890",
+        "id": "c18234d5-2e67-4f89-ca12-73f4e5f60718",
         "title": "only my railgun",
         "artist": "fripSide",
-        "should_be_muted": true,
-        "intro": "放て！心に刻んだ夢を..."
+        "should_be_muted": false,
+        "intro": "放て！心に刻んだ夢を"
       },
       {
-        "id": "b0c1d2e3-f4a5-6789-3456-012345678901",
+        "id": "d29345e6-3f78-409a-db23-84f506071829",
         "title": "君の知らない物語",
         "artist": "supercell",
-        "should_be_muted": false,
-        "intro": "いつもどおりのある日のこと..."
-      }
-    ]
-  },
-  {
-    "id": "d2a3e5c1-4b6f-47f7-bd8e-0e1cbe7f2c11",
-    "title": "Evening Jazz Session",
-    "performer": "Blue Note Quartet",
-    "description": "しっとりとしたジャズセッションで夜を彩ります。",
-    "starts_at": "18:00",
-    "ends_at": "19:30",
-    "musics": [
-      {
-        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-        "title": "Autumn Leaves",
-        "artist": "Joseph Kosma",
-        "should_be_muted": false,
-        "intro": "The falling leaves drift by the window..."
-      },
-      {
-        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
-        "title": "Take Five",
-        "artist": "Dave Brubeck",
-        "should_be_muted": false,
-        "intro": "Won't you stop and take a little time..."
-      },
-      {
-        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
-        "title": "So What",
-        "artist": "Miles Davis",
         "should_be_muted": true,
-        "intro": "Instrumental bass line opening..."
+        "intro": "いつもどおりのある日のこと"
       },
       {
-        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
-        "title": "Round Midnight",
-        "artist": "Thelonious Monk",
+        "id": "e30456f7-4089-41ab-ec34-95f61718293a",
+        "title": "crossing field",
+        "artist": "LiSA",
         "should_be_muted": false,
-        "intro": "It begins to tell 'round midnight..."
-      }
-    ]
-  },
-  {
-    "id": "f3b7e9a2-1c34-4e67-8a9b-d6c55d3e8911",
-    "title": "Rock Night",
-    "performer": "The Wild Guitars",
-    "description": "熱狂的なロックナイト！",
-    "starts_at": "20:00",
-    "ends_at": "22:00",
-    "musics": [
-      {
-        "id": "e5f6a7b8-c9d0-1234-ef01-567890123456",
-        "title": "Highway Star",
-        "artist": "Deep Purple",
-        "should_be_muted": false,
-        "intro": "Nobody gonna take my car..."
+        "intro": "この手は君を守るために"
       },
       {
-        "id": "f6a7b8c9-d0e1-2345-f012-678901234567",
-        "title": "Smoke on the Water",
-        "artist": "Deep Purple",
+        "id": "f4156708-519a-42bc-fd45-a60718293a4b",
+        "title": "unravel",
+        "artist": "TK from 凛として時雨",
         "should_be_muted": true,
-        "intro": "We all came out to Montreux..."
+        "intro": "教えて 教えて 僕は"
       },
       {
-        "id": "a7b8c9d0-e1f2-3456-0123-789012345678",
-        "title": "Back in Black",
-        "artist": "AC/DC",
+        "id": "06267819-62ab-43cd-0e56-b718293a4b5c",
+        "title": "again",
+        "artist": "YUI",
         "should_be_muted": false,
-        "intro": "Back in black, I hit the sack..."
+        "intro": "夢の続き 追いかけていたはずなのに"
       },
       {
-        "id": "b8c9d0e1-f2a3-4567-1234-890123456789",
-        "title": "Bohemian Rhapsody",
-        "artist": "Queen",
-        "should_be_muted": false,
-        "intro": "Is this the real life? Is this just fantasy..."
-      }
-    ]
-  },
-  {
-    "id": "a84c0f22-82b2-487b-92b7-d5d6c8c92433",
-    "title": "Classical Morning",
-    "performer": "Tsukuba Philharmonic",
-    "description": "朝にぴったりのクラシックコンサート。",
-    "starts_at": "09:00",
-    "ends_at": "11:00",
-    "musics": [
-      {
-        "id": "c9d0e1f2-a3b4-5678-2345-901234567890",
-        "title": "Symphony No.5",
-        "artist": "Beethoven",
+        "id": "1737892a-73bc-44de-1f67-c8293a4b5c6d",
+        "title": "青春コンプレックス",
+        "artist": "結束バンド",
         "should_be_muted": true,
-        "intro": "Da-da-da-dum..."
-      },
-      {
-        "id": "d0e1f2a3-b4c5-6789-3456-012345678901",
-        "title": "Eine kleine Nachtmusik",
-        "artist": "Mozart",
-        "should_be_muted": false,
-        "intro": "Instrumental opening strings..."
-      },
-      {
-        "id": "e1f2a3b4-c5d6-7890-4567-123456789012",
-        "title": "Swan Lake",
-        "artist": "Tchaikovsky",
-        "should_be_muted": false,
-        "intro": "Delicate instrumental intro..."
-      },
-      {
-        "id": "f2a3b4c5-d6e7-8901-5678-234567890123",
-        "title": "Canon in D",
-        "artist": "Pachelbel",
-        "should_be_muted": false,
-        "intro": "Soft flowing string chords..."
+        "intro": "生きづらい毎日を歌う"
       }
     ]
   },
   {
-    "id": "c47f77b1-72f8-4de4-9b13-772fdd07c91e",
-    "title": "Pop Vibes",
-    "performer": "Shiny Beats",
-    "description": "最新のポップソングを届けます！",
-    "starts_at": "15:00",
-    "ends_at": "16:30",
+    "id": "8e4fbc72-c183-4d0a-a5f3-ad621cbe5f66",
+    "title": "Lo-Fi Chillout",
+    "performer": "Midnight Producers",
+    "description": "勉強や作業にぴったりのチルセット。",
+    "starts_at": "13:00",
+    "ends_at": "14:30",
     "musics": [
       {
-        "id": "a3b4c5d6-e7f8-9012-6789-345678901234",
-        "title": "Shape of You",
+        "id": "28489a3b-84cd-4e1f-9076-df1a2b3c4d5e",
+        "title": "Aruarian Dance",
+        "artist": "Nujabes",
+        "should_be_muted": false,
+        "intro": "Warm Rhodes chords and mellow beats."
+      },
+      {
+        "id": "3959ab4c-95de-4f20-a187-e01b2c3d4e5f",
+        "title": "Luv(sic) Pt3",
+        "artist": "Nujabes feat. Shing02",
+        "should_be_muted": true,
+        "intro": "It’s funny how the music put time in perspective"
+      },
+      {
+        "id": "4a6abc5d-a6ef-4021-b298-f12c3d4e5f60",
+        "title": "Kiara",
+        "artist": "Bonobo",
+        "should_be_muted": false,
+        "intro": "Eastern strings over downtempo pulse."
+      },
+      {
+        "id": "5b7bcd6e-b700-4132-c3a9-023d4e5f6071",
+        "title": "Awake",
+        "artist": "Tycho",
+        "should_be_muted": true,
+        "intro": "Guitars and synths bloom into daylight."
+      },
+      {
+        "id": "6c8cde7f-c811-4243-d4ba-134e5f607182",
+        "title": "both of us",
+        "artist": "idealism",
+        "should_be_muted": false,
+        "intro": "Soft piano loops over gentle vinyl crackle."
+      },
+      {
+        "id": "7d9def80-d922-4354-e5cb-245f60718293",
+        "title": "affection",
+        "artist": "Jinsang",
+        "should_be_muted": true,
+        "intro": "Dusty chords glide with laid-back drums."
+      },
+      {
+        "id": "8eaf0091-ea33-4465-f6dc-3560718293a4",
+        "title": "forest glade",
+        "artist": "eevee",
+        "should_be_muted": false,
+        "intro": "Subtle keys and rustling ambience."
+      },
+      {
+        "id": "9fb011a2-fb44-4576-07ed-46718293a4b5",
+        "title": "Workinonit",
+        "artist": "J Dilla",
+        "should_be_muted": true,
+        "intro": "Chopped samples snap over swaggering drums."
+      }
+    ]
+  },
+  {
+    "id": "9f50cd83-d294-4e1b-b6f4-be732dcf6077",
+    "title": "EDM Festival",
+    "performer": "Pulse Riders",
+    "description": "フロアを揺らすエレクトロセット。",
+    "starts_at": "22:00",
+    "ends_at": "23:59",
+    "musics": [
+      {
+        "id": "a0c122b3-0e55-468c-a908-58f2c3d4e5f6",
+        "title": "Levels",
+        "artist": "Avicii",
+        "should_be_muted": false,
+        "intro": "Oh, sometimes I get a good feeling"
+      },
+      {
+        "id": "b1d233c4-1f66-479d-ba19-69f3d4e5f607",
+        "title": "Clarity",
+        "artist": "Zedd feat. Foxes",
+        "should_be_muted": true,
+        "intro": "If our love is tragedy, why are you my remedy?"
+      },
+      {
+        "id": "c2e344d5-2077-48ae-cb2a-7a04e5f60718",
+        "title": "Animals",
+        "artist": "Martin Garrix",
+        "should_be_muted": false,
+        "intro": "Minimal lead roars into the drop."
+      },
+      {
+        "id": "d3f455e6-3188-49bf-dc3b-8b15f6071829",
+        "title": "Don't You Worry Child",
+        "artist": "Swedish House Mafia",
+        "should_be_muted": true,
+        "intro": "Don't you worry, don't you worry, child"
+      },
+      {
+        "id": "e40666f7-4299-4ad0-ed4c-9c26f718293a",
+        "title": "Titanium",
+        "artist": "David Guetta feat. Sia",
+        "should_be_muted": false,
+        "intro": "You shout it out, but I can't hear a word you say"
+      },
+      {
+        "id": "f5177708-53aa-4be1-fe5d-ad37f8293a4b",
+        "title": "Summer",
+        "artist": "Calvin Harris",
+        "should_be_muted": true,
+        "intro": "When I met you in the summer"
+      },
+      {
+        "id": "06228819-64bb-4cf2-0f6e-be48a93a4b5c",
+        "title": "Firestone",
+        "artist": "Kygo feat. Conrad Sewell",
+        "should_be_muted": false,
+        "intro": "I'm a flame, you're a fire"
+      },
+      {
+        "id": "1733992a-75cc-4d03-106f-cf59b04b5c6d",
+        "title": "Bangarang",
+        "artist": "Skrillex",
+        "should_be_muted": true,
+        "intro": "Shout to all my lost boys!"
+      }
+    ]
+  },
+  {
+    "id": "a061de94-e3a5-4f2c-87a5-cf843edf7188",
+    "title": "Acoustic Afternoon",
+    "performer": "Sunny Strings",
+    "description": "心地よいアコースティックライブ。",
+    "starts_at": "12:00",
+    "ends_at": "13:30",
+    "musics": [
+      {
+        "id": "2841ef05-86de-4b8a-9102-1a2b3c4d5e6f",
+        "title": "Photograph",
         "artist": "Ed Sheeran",
         "should_be_muted": true,
-        "intro": "The club isn't the best place..."
+        "intro": "Loving can hurt, loving can hurt sometimes"
       },
       {
-        "id": "b4c5d6e7-f8a9-0123-7890-456789012345",
-        "title": "Blinding Lights",
-        "artist": "The Weeknd",
+        "id": "39520016-97ef-4c9b-a213-2b3c4d5e6f70",
+        "title": "I'm Yours",
+        "artist": "Jason Mraz",
         "should_be_muted": false,
-        "intro": "I've been tryna call..."
+        "intro": "Well, you done done me and you bet I felt it"
       },
       {
-        "id": "c5d6e7f8-a9b0-1234-8901-567890123456",
-        "title": "Bad Guy",
-        "artist": "Billie Eilish",
-        "should_be_muted": false,
-        "intro": "White shirt now red, my bloody nose..."
+        "id": "4a633127-a800-4dac-b324-3c4d5e6f7081",
+        "title": "Blackbird",
+        "artist": "The Beatles",
+        "should_be_muted": true,
+        "intro": "Blackbird singing in the dead of night"
       },
       {
-        "id": "d6e7f8a9-b0c1-2345-9012-678901234567",
-        "title": "Levitating",
-        "artist": "Dua Lipa",
+        "id": "5b744238-b911-4ebd-c435-4d5e6f708192",
+        "title": "Scarborough Fair",
+        "artist": "Simon & Garfunkel",
         "should_be_muted": false,
-        "intro": "If you wanna run away with me..."
+        "intro": "Are you going to Scarborough Fair?"
+      },
+      {
+        "id": "6c855349-ca22-4fce-d546-5e6f708192a3",
+        "title": "Better Together",
+        "artist": "Jack Johnson",
+        "should_be_muted": true,
+        "intro": "There's no combination of words I could put on the back of a postcard"
+      },
+      {
+        "id": "7d96645a-db33-40df-e657-6f708192a3b4",
+        "title": "Don't Know Why",
+        "artist": "Norah Jones",
+        "should_be_muted": false,
+        "intro": "I waited 'til I saw the sun"
+      },
+      {
+        "id": "8ea7756b-ec44-41f0-f768-708192a3b4c5",
+        "title": "Fast Car",
+        "artist": "Tracy Chapman",
+        "should_be_muted": true,
+        "intro": "You got a fast car, I want a ticket to anywhere"
+      },
+      {
+        "id": "9fb8867c-fd55-4201-0879-8192a3b4c5d6",
+        "title": "Gravity",
+        "artist": "John Mayer",
+        "should_be_muted": false,
+        "intro": "Gravity is working against me"
       }
     ]
   },
   {
-    "id": "ee9b63c2-4d9f-4a82-bd16-37258b3c92d5",
-    "title": "Anime Song Night",
-    "performer": "Otaku Band",
-    "description": "アニソン好き必見の夜。",
-    "starts_at": "19:00",
-    "ends_at": "21:00",
+    "id": "b172ef05-f4b6-4a1d-9be7-d0a45fe08299",
+    "title": "Hip-Hop Cypher",
+    "performer": "Tsukuba Rhymes",
+    "description": "熱いサイファーとビート。",
+    "starts_at": "17:00",
+    "ends_at": "18:30",
     "musics": [
       {
-        "id": "e7f8a9b0-c1d2-3456-0123-789012345678",
-        "title": "紅蓮華",
-        "artist": "LiSA",
+        "id": "a9c011b2-0c34-4d56-a978-12f3c4d5e6f7",
+        "title": "Lose Yourself",
+        "artist": "Eminem",
         "should_be_muted": false,
-        "intro": "強くなれる理由を知った..."
+        "intro": "Look, if you had one shot, or one opportunity"
       },
       {
-        "id": "f8a9b0c1-d2e3-4567-1234-890123456789",
-        "title": "残酷な天使のテーゼ",
-        "artist": "高橋洋子",
-        "should_be_muted": false,
-        "intro": "残酷な天使のように..."
-      },
-      {
-        "id": "a9b0c1d2-e3f4-5678-2345-901234567890",
-        "title": "only my railgun",
-        "artist": "fripSide",
+        "id": "bac122c3-1d45-4e67-ba89-23f4d5e6f708",
+        "title": "HUMBLE.",
+        "artist": "Kendrick Lamar",
         "should_be_muted": true,
-        "intro": "放て！心に刻んだ夢を..."
+        "intro": "Sit down, be humble"
       },
       {
-        "id": "b0c1d2e3-f4a5-6789-3456-012345678901",
-        "title": "君の知らない物語",
-        "artist": "supercell",
+        "id": "cbd233d4-2e56-4f78-cb9a-34f5e6f70819",
+        "title": "Juicy",
+        "artist": "The Notorious B.I.G.",
         "should_be_muted": false,
-        "intro": "いつもどおりのある日のこと..."
+        "intro": "It was all a dream"
+      },
+      {
+        "id": "dce344e5-3f67-4099-dcab-45f60708192a",
+        "title": "Changes",
+        "artist": "2Pac",
+        "should_be_muted": true,
+        "intro": "Come on, come on, I see no changes"
+      },
+      {
+        "id": "edf455f6-4078-41aa-edbc-560708192a3b",
+        "title": "99 Problems",
+        "artist": "JAY-Z",
+        "should_be_muted": false,
+        "intro": "If you're having girl problems I feel bad for you, son"
+      },
+      {
+        "id": "fe056607-5189-42bb-fecd-6708192a3b4c",
+        "title": "God's Plan",
+        "artist": "Drake",
+        "should_be_muted": true,
+        "intro": "I been movin' calm, don't start no trouble with me"
+      },
+      {
+        "id": "0f166718-629a-43cc-0fed-78092a3b4c5d",
+        "title": "Stronger",
+        "artist": "Kanye West",
+        "should_be_muted": false,
+        "intro": "N-now th-that that don't kill me"
+      },
+      {
+        "id": "10277829-73ab-44dd-10fe-890a3b4c5d6e",
+        "title": "Work It",
+        "artist": "Missy Elliott",
+        "should_be_muted": true,
+        "intro": "Is it worth it? Let me work it"
+      }
+    ]
+  },
+  {
+    "id": "c283f016-05c7-4a2e-8fd1-e1b46ff193aa",
+    "title": "World Music Journey",
+    "performer": "Globe Ensemble",
+    "description": "世界の音楽を旅するステージ。",
+    "starts_at": "11:30",
+    "ends_at": "12:45",
+    "musics": [
+      {
+        "id": "2138893a-84bc-4e0f-9076-0f1a2b3c4d5e",
+        "title": "Chan Chan",
+        "artist": "Buena Vista Social Club",
+        "should_be_muted": true,
+        "intro": "De Alto Cedro voy para Marcané"
+      },
+      {
+        "id": "32499a4b-95cd-4f10-a187-10b2c3d4e5f6",
+        "title": "Bamboléo",
+        "artist": "Gipsy Kings",
+        "should_be_muted": false,
+        "intro": "Bamboléo, bambolea..."
+      },
+      {
+        "id": "435aab5c-a6de-4021-b298-21c3d4e5f607",
+        "title": "Sastanàqqàm",
+        "artist": "Tinariwen",
+        "should_be_muted": true,
+        "intro": "Desert guitars drone in hypnotic cycles."
+      },
+      {
+        "id": "546bbc6d-b7ef-4132-c3a9-32d4e5f60718",
+        "title": "Raga Jog (Alaap)",
+        "artist": "Ravi Shankar",
+        "should_be_muted": false,
+        "intro": "Sitar explores the raga’s twilight mood."
+      },
+      {
+        "id": "657ccd7e-c800-4243-d4ba-43e5f6071829",
+        "title": "7 Seconds",
+        "artist": "Youssou N'Dour & Neneh Cherry",
+        "should_be_muted": true,
+        "intro": "Boul ma s'en boul ma s'enoul..."
+      },
+      {
+        "id": "768dde8f-d911-4354-e5cb-54f718293a4b",
+        "title": "Water No Get Enemy",
+        "artist": "Fela Kuti",
+        "should_be_muted": false,
+        "intro": "Horn riffs ride a deep Afrobeat groove."
+      },
+      {
+        "id": "879eef90-ea22-4465-f6dc-65f8293a4b5c",
+        "title": "Homeless",
+        "artist": "Ladysmith Black Mambazo",
+        "should_be_muted": true,
+        "intro": "A cappella textures shimmer and sway."
+      },
+      {
+        "id": "98af00a1-fb33-4576-07ed-76093a4b5c6d",
+        "title": "Sodade",
+        "artist": "Cesária Évora",
+        "should_be_muted": false,
+        "intro": "Longing voice drifts over morna guitar."
       }
     ]
   }
