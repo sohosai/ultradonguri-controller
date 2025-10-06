@@ -16,7 +16,7 @@
   list-style: none;
 }
 
-.list > li > ul{
+.list > li > ul {
   display: flex;
   gap: 10px;
   font-size: 20px;
