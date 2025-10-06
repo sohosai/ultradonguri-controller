@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-import "./App.css";
+import styles from "./App.module.css";
 import Header from "./components/Header";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
+
 
 import type { Performance } from "./types/performances";
 
@@ -29,15 +30,21 @@ function App() {
   if (!data) return <div>データが見つかりません。</div>;
 
   return (
-    <main>
+    <div>
       <Header />
-      <div className="content">
-        <div className="performances">
-          <Performances items={data} onSelect={setSelected} />
+      <main>
+        <div className={styles.row}>
+          <div className={styles.rowLeft}>
+            <div className={styles.performances}>
+              <Performances items={data} onSelect={setSelected} />
+            </div>
+          </div>
+          <div className={styles.rowRight}>
+            <div className={styles.music}>{selected && <Musics items={selected.musics} />}</div>
+          </div>
         </div>
-        <div className="musics">{selected && <Musics items={selected.musics} />}</div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
 
