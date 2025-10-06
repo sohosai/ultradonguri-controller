@@ -8,7 +8,7 @@ type Props = {
   items: Music[];
 };
 
-export default function Music({ items }: Props) {
+export default function Musics({ items }: Props) {
   return (
     <ul className={styles.musics}>
       {items.map((m) => (
