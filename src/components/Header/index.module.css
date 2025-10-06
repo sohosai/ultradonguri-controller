@@ -1,12 +1,23 @@
 .header {
   width: 100%;
   height: 60px;
+  font-size: 25px;
+  color: var(--color-white);
 }
 
 .list {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 1200px;
+  height: 60px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   list-style: none;
+}
+
+.list > li > ul{
+  display: flex;
+  gap: 10px;
+  font-size: 20px;
 }
