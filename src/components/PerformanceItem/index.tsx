@@ -13,7 +13,7 @@ export default function PerformanceItem({ performance, onSelect }: Props) {
   };
 
   return (
-    <div className={styles.performance} role="button" onClick={handleClick}>
+    <div className={styles.performance} onClick={handleClick}>
       <div className={styles.time}>
         {performance.starts_at}〜{performance.ends_at}
       </div>
