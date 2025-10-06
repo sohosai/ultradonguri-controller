@@ -22,9 +22,16 @@ function App() {
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         const json = (await res.json()) as Performance[];
         setData(json);
+        // 初期選択は先頭のデータ
+        if (json.length > 0) {
+          setSelected(json[0]);
+        } else {
+          setSelected(null);
+        }
       } catch (e) {
         console.error(e);
         setData([]);
+        setSelected(null);
       }
     })();
   }, []);
