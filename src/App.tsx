@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 import styles from "./App.module.css";
+import Buttons from "./components/Buttons";
 import Header from "./components/Header";
+import Menu from "./components/Menu";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
 
 import type { Performance } from "./types/performances";
-import Menu from "./components/Menu";
-import Buttons from "./components/Buttons";
 
 function App() {
   const [data, setData] = useState<Performance[] | null>(null);
