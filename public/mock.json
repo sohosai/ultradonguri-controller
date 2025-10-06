@@ -34,6 +34,62 @@
         "artist": "Thelonious Monk",
         "should_be_muted": false,
         "intro": "It begins to tell 'round midnight..."
+      },
+      {
+        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "title": "Autumn Leaves",
+        "artist": "Joseph Kosma",
+        "should_be_muted": false,
+        "intro": "The falling leaves drift by the window..."
+      },
+      {
+        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+        "title": "Take Five",
+        "artist": "Dave Brubeck",
+        "should_be_muted": false,
+        "intro": "Won't you stop and take a little time..."
+      },
+      {
+        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+        "title": "So What",
+        "artist": "Miles Davis",
+        "should_be_muted": true,
+        "intro": "Instrumental bass line opening..."
+      },
+      {
+        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
+        "title": "Round Midnight",
+        "artist": "Thelonious Monk",
+        "should_be_muted": false,
+        "intro": "It begins to tell 'round midnight..."
+      },
+      {
+        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "title": "Autumn Leaves",
+        "artist": "Joseph Kosma",
+        "should_be_muted": false,
+        "intro": "The falling leaves drift by the window..."
+      },
+      {
+        "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+        "title": "Take Five",
+        "artist": "Dave Brubeck",
+        "should_be_muted": false,
+        "intro": "Won't you stop and take a little time..."
+      },
+      {
+        "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+        "title": "So What",
+        "artist": "Miles Davis",
+        "should_be_muted": true,
+        "intro": "Instrumental bass line opening..."
+      },
+      {
+        "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
+        "title": "Round Midnight",
+        "artist": "Thelonious Monk",
+        "should_be_muted": false,
+        "intro": "It begins to tell 'round midnight..."
       }
     ]
   },
