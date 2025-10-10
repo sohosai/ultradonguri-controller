@@ -1,1 +1,1 @@
-export type Status = "default" | "playing" | "queued";
+export type Status = "default" | "playing" | "next";

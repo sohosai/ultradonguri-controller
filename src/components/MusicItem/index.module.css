@@ -19,6 +19,6 @@
   background: var(--color-red);
 }
 
-.queued {
+.next {
   border-color: var(--color-green);
 }
