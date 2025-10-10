@@ -1,0 +1,1142 @@
+{
+  "type": "queue",
+  "data": [
+    {
+      "scene_id": "1102-U12- 76428",
+      "title": "筑音＆E.L.L合同ライブ",
+      "time": "15:30",
+      "timings": [
+        {
+          "id": "1102-U12- 5F72E",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "筑音＆E.L.L合同ライブ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U12-C00E42",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "筑音＆E.L.L合同ライブ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-U12", "artist": "", "title": "Over Drive", "stream_allowed": false },
+        { "id": "01-U12", "artist": "", "title": "a fact of life", "stream_allowed": false },
+        { "id": "02-U12", "artist": "", "title": "The Great Escape", "stream_allowed": false },
+        { "id": "02-U12", "artist": "", "title": "miles away", "stream_allowed": false },
+        { "id": "03-U12", "artist": "", "title": "クラシック", "stream_allowed": false },
+        { "id": "03-U12", "artist": "", "title": "slip of the lip", "stream_allowed": false },
+        { "id": "04-U12", "artist": "", "title": "error", "stream_allowed": false },
+        { "id": "04-U12", "artist": "", "title": "オールドタイマー", "stream_allowed": false },
+        { "id": "05-U12", "artist": "", "title": "Morning Paper", "stream_allowed": false },
+        { "id": "05-U12", "artist": "", "title": "the shadow of envy", "stream_allowed": false },
+        { "id": "06-U12", "artist": "", "title": "すけべな女の子", "stream_allowed": false },
+        { "id": "06-U12", "artist": "", "title": "Foss", "stream_allowed": false },
+        { "id": "07-U12", "artist": "", "title": "東京", "stream_allowed": false },
+        { "id": "07-U12", "artist": "", "title": "timeless", "stream_allowed": false },
+        { "id": "08-U12", "artist": "", "title": "(I'm) Waiting For The Sun", "stream_allowed": false },
+        { "id": "09-U12", "artist": "", "title": "スロウ", "stream_allowed": false },
+        { "id": "10-U12", "artist": "", "title": "君のように生きられたら", "stream_allowed": false },
+        { "id": "11-U12", "artist": "", "title": "日の当たる場所に来てよ", "stream_allowed": false },
+        { "id": "12-U12", "artist": "", "title": "日々のあわ", "stream_allowed": false },
+        { "id": "13-U12", "artist": "", "title": "部屋", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1102-U2-F49297",
+      "title": "芸術祭告知映像",
+      "time": "16:50",
+      "timings": [
+        {
+          "id": "1102-U2-D6BB02",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "芸術祭告知映像", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U2-7A4977",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "芸術祭告知映像" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1102-U3-11CE7D",
+      "title": "樽酒振る舞い 鏡開き",
+      "time": "17:10",
+      "timings": [
+        {
+          "id": "1102-U3-FDBE9B",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "樽酒振る舞い 鏡開き", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U3-7DC3CE",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "樽酒振る舞い 鏡開き" }
+        }
+      ],
+      "musics": [
+        { "id": "01-U3", "artist": "ユーキヒロセ", "title": "東の都を風切る夜は", "stream_allowed": false },
+        { "id": "02-U3", "artist": "ユーキヒロセ", "title": "深夜０時の机上論", "stream_allowed": false },
+        { "id": "03-U3", "artist": "ユーキヒロセ", "title": "茜色の桜を眺めて", "stream_allowed": false },
+        { "id": "04-U3", "artist": "ユーキヒロセ", "title": "雨の散歩道", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1102-U13-4B43A8",
+      "title": "斬桐舞＆応援部 WINSコラボステージ",
+      "time": "17:25",
+      "timings": [
+        {
+          "id": "1102-U13-6DF338",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "斬桐舞＆応援部 WINSコラボステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U13-829CC9",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "斬桐舞＆応援部 WINSコラボステージ" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1102-U14-9DFD46",
+      "title": "ジャズ集団Neopolis BIGBAND＆ESSASSA",
+      "time": "18:05",
+      "timings": [
+        {
+          "id": "1102-U14-8DA19A",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "ジャズ集団Neopolis BIGBAND＆ESSASSA", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U14-88392F",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "ジャズ集団Neopolis BIGBAND＆ESSASSA" }
+        }
+      ],
+      "musics": [
+        { "id": "01-U14", "artist": "", "title": "Too darn hot", "stream_allowed": false },
+        { "id": "02-U14", "artist": "", "title": "Time after time ", "stream_allowed": false },
+        { "id": "03-U14", "artist": "", "title": "Big time ", "stream_allowed": false },
+        { "id": "04-U14", "artist": "", "title": "Another day of sun", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1102-53-D9FE34",
+      "title": "TSUKUBA COLLECTION2024",
+      "performer": "学園祭実行委員会本部企画局",
+      "description": "今年度よりミス、ミスターという枠組を取り払い、生まれ変わりました。出場者の方々が外見や性別にとらわれず、自分の強みや魅力を最大限発揮できる機会を作りたい、という思いを持って企画を運営しております。",
+      "time": "18:40",
+      "timings": [
+        {
+          "id": "1102-53-1A2674",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "TSUKUBA COLLECTION2024", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-53-F5FF3D",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "TSUKUBA COLLECTION2024" }
+        }
+      ],
+      "musics": [
+        { "id": "00-53", "artist": "reGretGirl", "title": "best answer", "stream_allowed": false },
+        { "id": "00-53", "artist": "sumika", "title": "ガラナ", "stream_allowed": false },
+        { "id": "00-53", "artist": "Mrs. GREEN APPLE", "title": "StaRt", "stream_allowed": false },
+        { "id": "00-53", "artist": "Super Soul Bros", "title": "Guns\u0026Roses", "stream_allowed": false },
+        { "id": "00-53", "artist": "sumika", "title": "", "stream_allowed": false },
+        { "id": "00-53", "artist": "羊文学", "title": "ロマンス", "stream_allowed": false },
+        { "id": "00-53", "artist": "秦 基博, sumika", "title": "ハローサーリアル", "stream_allowed": false },
+        { "id": "00-53", "artist": "羊文学", "title": "あたらしいわたし", "stream_allowed": false },
+        { "id": "00-53", "artist": "石野卓球", "title": "It's Too Late", "stream_allowed": false },
+        { "id": "00-53", "artist": "石野卓球", "title": "Tokyo Swindlers Teaser", "stream_allowed": false },
+        { "id": "00-53", "artist": "Tele", "title": "", "stream_allowed": false },
+        { "id": "00-53", "artist": "ストレイテナー", "title": "鱗(うろこ)", "stream_allowed": false },
+        { "id": "00-53", "artist": "", "title": "bling-bang-bang-born", "stream_allowed": false },
+        { "id": "01-53", "artist": "SEKAI NO OWARI", "title": "最高到達点", "stream_allowed": true },
+        { "id": "01-53", "artist": "SEKAI NO OWARI ", "title": "栞", "stream_allowed": true },
+        {
+          "id": "02-53",
+          "artist": "Jessie J,Ariana Grande ＆ Nicki Minaj",
+          "title": "Bang Bang",
+          "stream_allowed": true
+        },
+        { "id": "02-53", "artist": "Mrs. GREEN APPLE", "title": "ライラック", "stream_allowed": true },
+        { "id": "03-53", "artist": "レディー・ガガ", "title": "ボーン・ディス・ウェイ", "stream_allowed": true },
+        { "id": "03-53", "artist": "東京事変", "title": "キラーチューン", "stream_allowed": true },
+        { "id": "04-53", "artist": "BUMP OF CHICKEN", "title": "新世界", "stream_allowed": true },
+        {
+          "id": "05-53",
+          "artist": "テイラー・スウィフト",
+          "title": "シェイク・イット・オフ〜気にしてなんかいられないっ!!",
+          "stream_allowed": true
+        },
+        { "id": "05-53", "artist": "米津玄師", "title": "感電", "stream_allowed": true },
+        { "id": "06-53", "artist": "藤井風", "title": "damn", "stream_allowed": true },
+        { "id": "06-53", "artist": "米津玄師", "title": "WOODEN DOLL", "stream_allowed": true },
+        { "id": "07-53", "artist": "", "title": "Intertwine", "stream_allowed": true },
+        { "id": "07-53", "artist": "日食なつこ", "title": "ログマロープ", "stream_allowed": true },
+        { "id": "08-53", "artist": "SEVENTEEN", "title": "God of Music", "stream_allowed": true },
+        {
+          "id": "08-53",
+          "artist": "坂東祐大 feat. 石若駿、須川崇志、Ensemble FOVE、林正樹",
+          "title": "♯まめ夫 序曲 〜「大豆田とわ子と三人の元夫」",
+          "stream_allowed": true
+        },
+        { "id": "09-53", "artist": "シャキーラ", "title": "トライ・エヴリシング", "stream_allowed": true },
+        { "id": "10-53", "artist": "TWICE", "title": "Feel Special", "stream_allowed": true },
+        { "id": "10-53", "artist": "安室奈美恵", "title": "Hero(Instrumental)", "stream_allowed": true },
+        { "id": "11-53", "artist": "IVE", "title": "WOW", "stream_allowed": true },
+        { "id": "11-53", "artist": "GReeeeN", "title": "いつまでも", "stream_allowed": true },
+        {
+          "id": "12-53",
+          "artist": "PRODUCE 101 JAPAN THE GIRLS",
+          "title": "LEAP HIGH! 〜明日へ、めいっぱい〜",
+          "stream_allowed": true
+        },
+        { "id": "12-53", "artist": "あいみょん", "title": "ラッキーカラー", "stream_allowed": true },
+        { "id": "13-53", "artist": "ヨルシカ", "title": "パレード", "stream_allowed": true },
+        { "id": "13-53", "artist": "ＤＩＳＮＥＹ", "title": "ミッキーマウスマーチ", "stream_allowed": true },
+        { "id": "14-53", "artist": "", "title": "小さな世界", "stream_allowed": true },
+        { "id": "14-53", "artist": "Mrs.GREEN APPLE", "title": "ダンスホール", "stream_allowed": true },
+        { "id": "15-53", "artist": "Vaundy", "title": "花占い", "stream_allowed": true },
+        { "id": "15-53", "artist": "TWICE", "title": "What is Love？", "stream_allowed": true },
+        { "id": "16-53", "artist": "ILLIT", "title": "Magnetic", "stream_allowed": true },
+        {
+          "id": "16-53",
+          "artist": "GEMN \u0026 中島健人 \u0026 キタニタツヤ",
+          "title": "ファタール - Fatal",
+          "stream_allowed": true
+        },
+        { "id": "17-53", "artist": "TWICE", "title": "Feel Special", "stream_allowed": true },
+        { "id": "17-53", "artist": "乃木坂46", "title": "帰り道は遠回りしたくなる", "stream_allowed": true },
+        { "id": "18-53", "artist": "ＫＥＰ１ＥＲ", "title": "shooting star", "stream_allowed": true },
+        { "id": "18-53", "artist": "Da-iCE", "title": "I wonder", "stream_allowed": true },
+        { "id": "19-53", "artist": "SHISHAMO", "title": "明日も", "stream_allowed": true },
+        { "id": "19-53", "artist": "奥田民生", "title": "さすらい", "stream_allowed": true },
+        { "id": "21-53", "artist": "sumika", "title": "運命", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1102-U15-879898",
+      "title": "Realjam",
+      "time": "20:05",
+      "timings": [
+        {
+          "id": "1102-U15-DAC520",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "Realjam", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1102-U15-89F7B4",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "Realjam" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1103-54-19799E",
+      "title": "書道パフォーマンス",
+      "performer": "筑波大学書道部",
+      "description": "筑波大学書道部では書道パフォーマンスを行います。雙峰祭本祭1日目、その始まりを「書」で彩ります。作品が出来上がっていく過程をぜひ間近でご覧ください！できた作品は雙峰祭の期間中展示します！",
+      "time": "10:00",
+      "timings": [
+        {
+          "id": "1103-54-7437F4",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "書道パフォーマンス", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-54-6A17E8",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "書道パフォーマンス" }
+        }
+      ],
+      "musics": [
+        { "id": "01-54", "artist": "ヨルシカ", "title": "晴る", "stream_allowed": true },
+        { "id": "02-54", "artist": "DOES", "title": "曇天", "stream_allowed": true },
+        { "id": "03-54", "artist": "櫻坂46", "title": "五月雨よ", "stream_allowed": true },
+        { "id": "04-54", "artist": "RADWIMPS", "title": "祝祭 (Movie edit) feat.三浦透子", "stream_allowed": true },
+        { "id": "05-54", "artist": "yama × ぼっちぼろまる", "title": "ハロ", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-17-4FEBEE",
+      "title": "研究学園戦士ツクバダインショー",
+      "performer": "ヒーローアクション同好会",
+      "description": "研究学園戦士ツクバダインが雙峰祭にやってくる！会場で、俺と握手！",
+      "time": "10:45",
+      "timings": [
+        {
+          "id": "1103-17-BA3227",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "研究学園戦士ツクバダインショー", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-17-315E21",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "研究学園戦士ツクバダインショー" }
+        }
+      ],
+      "musics": [
+        { "id": "01-17", "artist": "筑波大学ヒーローアクション同好会", "title": "ピエロ", "stream_allowed": true },
+        { "id": "02-17", "artist": "筑波大学ヒーローアクション同好会", "title": "登場", "stream_allowed": true },
+        { "id": "03-17", "artist": "BGMer", "title": "臥龍の陣", "stream_allowed": true },
+        { "id": "04-17", "artist": "Fukagawa", "title": "Ara-Nami", "stream_allowed": true },
+        {
+          "id": "05-17",
+          "artist": "筑波大学ヒーローアクション同好会",
+          "title": "beautiful darkness",
+          "stream_allowed": true
+        },
+        { "id": "06-17", "artist": "筑波大学ヒーローアクション同好会", "title": "姉妹登場", "stream_allowed": true },
+        { "id": "07-17", "artist": "こっけ（西本康佑）", "title": "不穏", "stream_allowed": true },
+        { "id": "08-17", "artist": "ハヤシユウ", "title": "箱からの脱出", "stream_allowed": true },
+        { "id": "09-17", "artist": "まんぼう二等兵", "title": "Reflect", "stream_allowed": true },
+        { "id": "10-17", "artist": "まんぼう二等兵", "title": "Will you still cry?", "stream_allowed": true },
+        { "id": "11-17", "artist": "カモキング", "title": "ウルトラスーパーヒーローズ", "stream_allowed": true },
+        { "id": "12-17", "artist": "カピバラっ子", "title": "戦隊ブラック", "stream_allowed": true },
+        { "id": "13-17", "artist": "カモキング", "title": "羽ばたけ、空高く", "stream_allowed": true },
+        {
+          "id": "14-17",
+          "artist": "筑波大学ヒーローアクション同好会",
+          "title": "ツクバダインのテーマ",
+          "stream_allowed": true
+        }
+      ]
+    },
+    {
+      "scene_id": "1103-14-580B0E",
+      "title": "斬桐舞スペシャルステージ",
+      "performer": "斬桐舞",
+      "description": "こんにちは斬桐舞です。私たちは、よさこいソーランを披露します！私たちが０から制作した、オリジナル曲「宝常」やおなじみの「南中ソーラン」、その他一緒に踊ることのできる総踊り曲で盛り上がりましょう！",
+      "time": "11:17",
+      "timings": [
+        {
+          "id": "1103-14-9477D8",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "斬桐舞スペシャルステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-14-C3B468",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "斬桐舞スペシャルステージ" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1103-187- 9D419",
+      "title": "ひらがなつくば坂道Live~ここにいること~",
+      "performer": "ひらがなつくば",
+      "description": "坂道アイドルのコピーダンスで沸かせます！乃木坂、櫻坂、日向坂、欅坂、ひらがなけやきのあの曲を披露！こだわりのセトリ、がなつくの愛と本気、そして革新を是非その目で！",
+      "time": "11:58",
+      "timings": [
+        {
+          "id": "1103-187-32084F",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "ひらがなつくば坂道Live~ここにいること~", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-187-BA5FB8",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "ひらがなつくば坂道Live~ここにいること~" }
+        }
+      ],
+      "musics": [
+        { "id": "01-187", "artist": "乃木坂46", "title": "OVERTURE", "stream_allowed": false },
+        { "id": "02-187", "artist": "乃木坂46", "title": "帰り道は遠回りしたくなる", "stream_allowed": true },
+        { "id": "03-187", "artist": "櫻坂46", "title": "承認欲求", "stream_allowed": true },
+        { "id": "04-187", "artist": "日向坂46", "title": "ソンナコトナイヨ off vocal ver.", "stream_allowed": true },
+        { "id": "05-187", "artist": "日向坂46", "title": "君はハニーデュー", "stream_allowed": true },
+        { "id": "06-187", "artist": "乃木坂46", "title": "I see…", "stream_allowed": true },
+        { "id": "07-187", "artist": "欅坂46", "title": "東京タワーはどこから見える？", "stream_allowed": true },
+        { "id": "08-187", "artist": "日向坂46", "title": "月と星が踊るMidnight", "stream_allowed": true },
+        { "id": "09-187", "artist": "欅坂46", "title": "抱きしめてやる", "stream_allowed": true },
+        { "id": "10-187", "artist": "櫻坂46", "title": "Dead end", "stream_allowed": false },
+        { "id": "11-187", "artist": "乃木坂46", "title": "インフルエンサー", "stream_allowed": true },
+        { "id": "12-187", "artist": "櫻坂46", "title": "Anthem time", "stream_allowed": true },
+        { "id": "13-187", "artist": "櫻坂46", "title": "隙間風よ", "stream_allowed": true },
+        { "id": "14-187", "artist": "乃木坂46", "title": "ジコチューで行こう！", "stream_allowed": true },
+        { "id": "15-187", "artist": "欅＆けやき坂組", "title": "太陽は見上げる人を選ばない", "stream_allowed": true },
+        { "id": "16-187", "artist": "けやき坂46", "title": "約束の卵", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-70-68B8B1",
+      "title": "体操部ステージパフォーマンス",
+      "performer": "体操部",
+      "description": "Gボールと組体操の作品を発表します！また、ラートのパフォーマンスも披露するのでお見逃しなく！",
+      "time": "12:48",
+      "timings": [
+        {
+          "id": "1103-70-782593",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "体操部ステージパフォーマンス", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-70-D8F02C",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "体操部ステージパフォーマンス" }
+        }
+      ],
+      "musics": [
+        { "id": "01-70", "artist": "Mrs. GREEN APPLE", "title": "ライラック", "stream_allowed": true },
+        {
+          "id": "02-70",
+          "artist": "東京ディズニーリゾート",
+          "title": "リビング・イン・カラー",
+          "stream_allowed": true
+        },
+        { "id": "03-70", "artist": "Superfly", "title": "タマシイレボリューション", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-232-424F2D",
+      "title": "Doo-Wopアカペラステージ",
+      "performer": "筑波大学アカペラサークルDoo-Wop",
+      "description": "楽器を使わずに表現する音楽、アカペラを演奏します！人の声が生み出す美しいハーモニーを是非ご堪能ください！",
+      "time": "13:15",
+      "timings": [
+        {
+          "id": "1103-232- D9E03",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "Doo-Wopアカペラステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-232-8DE30D",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "Doo-Wopアカペラステージ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-232", "artist": "DREAMS COME TRUE", "title": "愛がたどり着く場所", "stream_allowed": true },
+        { "id": "02-232", "artist": "TOMOO", "title": "Present", "stream_allowed": true },
+        { "id": "03-232", "artist": "秦基博", "title": "スミレ", "stream_allowed": true },
+        { "id": "04-232", "artist": "SUPER BEAVER", "title": "ひなた", "stream_allowed": true },
+        { "id": "05-232", "artist": "NICO Touches the Walls", "title": "手をたたけ", "stream_allowed": true },
+        { "id": "06-232", "artist": "関ジャニ∞", "title": "がむしゃら行進曲", "stream_allowed": true },
+        { "id": "07-232", "artist": "Goose house", "title": "オトノナルホウヘ→", "stream_allowed": true },
+        { "id": "08-232", "artist": "Goose house", "title": "僕らだけの等身大", "stream_allowed": true },
+        { "id": "09-232", "artist": "ぱなまん", "title": "夜交性", "stream_allowed": true },
+        { "id": "10-232", "artist": "くじら", "title": "抱きしめたいほど美しい日々に", "stream_allowed": true },
+        { "id": "11-232", "artist": "Ayase", "title": "夜撫でるメノウ", "stream_allowed": true },
+        { "id": "12-232", "artist": "yama", "title": "MoonWalker", "stream_allowed": true },
+        { "id": "13-232", "artist": "Ado", "title": "ドメスティックでバイオレンス", "stream_allowed": true },
+        { "id": "15-232", "artist": "TOKIO", "title": "宙船", "stream_allowed": true },
+        { "id": "16-232", "artist": "BRADIO", "title": "Overnight Superstar", "stream_allowed": true },
+        { "id": "17-232", "artist": "藤井風", "title": "damn", "stream_allowed": true },
+        { "id": "18-232", "artist": "井上あずみ", "title": "君をのせて", "stream_allowed": true },
+        { "id": "19-232", "artist": "手嶌葵", "title": "さよならの夏", "stream_allowed": true },
+        { "id": "20-232", "artist": "米良美一", "title": "もののけ姫", "stream_allowed": true },
+        { "id": "21-232", "artist": "つじあやの", "title": "風になる", "stream_allowed": true },
+        { "id": "22-232", "artist": "本名陽子", "title": "カントリーロード", "stream_allowed": true },
+        { "id": "47-232", "artist": "YOASOBI", "title": "アドベンチャー", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-166- 81445",
+      "title": "Let's Dance!～舞い踊れ!～",
+      "performer": "体育会ダンス部",
+      "description": "筑波大学ダンス部です！ 今回の雙峰祭のステージでは、普段の私たちとは一味違う、みなさんを笑顔に巻き込むパワフルなダンスを披露します‼︎是非一緒に、心踊る瞬間を共有しましょう‼︎",
+      "time": "14:03",
+      "timings": [
+        {
+          "id": "1103-166-E16846",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "Let's Dance!～舞い踊れ!～", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-166-604B3C",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "Let's Dance!～舞い踊れ!～" }
+        }
+      ],
+      "musics": [
+        { "id": "01-166", "artist": "Taylor Swift", "title": "ME!", "stream_allowed": false },
+        { "id": "02-166", "artist": "ゾンビーズ・キャスト", "title": "Fired Up", "stream_allowed": true },
+        { "id": "03-166", "artist": "Ed Sheeran", "title": "Celestial", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1103-220-C7089B",
+      "title": "コグマ KPOP COPY DANCE STAGE",
+      "performer": "Kpopコピーダンスサークル고구마(コグマ)",
+      "description": "今年もUNITEDステージでKpopのコピーダンスを披露します！かわいい曲からかっこいい曲まで、多彩な雰囲気の曲のコピーダンスをお楽しみいただけます！あなたもこぐまの虜になること間違いなし！！",
+      "time": "14:23",
+      "timings": [
+        {
+          "id": "1103-220-67C763",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "コグマ KPOP COPY DANCE STAGE", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-220-C4E614",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "コグマ KPOP COPY DANCE STAGE" }
+        }
+      ],
+      "musics": [
+        { "id": "01-220", "artist": "KISS OF LIFE", "title": "Sticky", "stream_allowed": false },
+        { "id": "02-220", "artist": "NMIXX", "title": "Party O'Clock", "stream_allowed": false },
+        { "id": "03-220", "artist": "NCT 127", "title": "Fact Check", "stream_allowed": false },
+        { "id": "04-220", "artist": "LE SSERAFIM", "title": "Perfect Night", "stream_allowed": false },
+        { "id": "05-220", "artist": "ILLIT", "title": "Lucky Girl Syndrome", "stream_allowed": false },
+        { "id": "06-220", "artist": "ITZY", "title": "UNTOUCHABLE", "stream_allowed": true },
+        { "id": "07-220", "artist": "NewJeans", "title": "How Sweet", "stream_allowed": false },
+        { "id": "08-220", "artist": "RIIZE", "title": "Impossible", "stream_allowed": false },
+        { "id": "09-220", "artist": "TWS", "title": "plot twist", "stream_allowed": true },
+        { "id": "10-220", "artist": "BABYMONSTAR", "title": "SHEESH", "stream_allowed": true },
+        { "id": "11-220", "artist": "IVE", "title": "HEYA", "stream_allowed": false },
+        { "id": "12-220", "artist": "SEVENTEEN", "title": "Snap Shoot", "stream_allowed": false },
+        { "id": "13-220", "artist": "BABYMONSTAR", "title": "LIKE THAT", "stream_allowed": true },
+        { "id": "14-220", "artist": "aespa", "title": "Supernova", "stream_allowed": false },
+        { "id": "15-220", "artist": "BTS", "title": "Boy With Luv(feat.Halsey)", "stream_allowed": true },
+        { "id": "16-220", "artist": "IVE", "title": "Accendio", "stream_allowed": false },
+        { "id": "17-220", "artist": "ENHYPEN", "title": "Given-Taken", "stream_allowed": true },
+        { "id": "18-220", "artist": "KISS OF LIFE", "title": "Midas Touch", "stream_allowed": false },
+        { "id": "19-220", "artist": "TAEYONG", "title": "TAP", "stream_allowed": false },
+        { "id": "20-220", "artist": "ILLIT", "title": "Magnetic", "stream_allowed": true },
+        { "id": "21-220", "artist": "Stray Kids", "title": "S-Class", "stream_allowed": true },
+        { "id": "22-220", "artist": "XG", "title": "NEW DANCE", "stream_allowed": false },
+        { "id": "23-220", "artist": "IZ*ONE", "title": "Sequence", "stream_allowed": true },
+        { "id": "24-220", "artist": "NCT DREAM", "title": "Earth, Wind \u0026 Fire", "stream_allowed": false },
+        { "id": "25-220", "artist": "BOYNEXTDOOR", "title": "Candy", "stream_allowed": false },
+        { "id": "26-220", "artist": "NMIXX", "title": "DASH", "stream_allowed": false },
+        { "id": "27-220", "artist": "NewJeans", "title": "Super Shy", "stream_allowed": false },
+        {
+          "id": "28-220",
+          "artist": "TOMORROW X TOGETHER",
+          "title": "I'll See You There Tomorrow",
+          "stream_allowed": false
+        },
+        { "id": "29-220", "artist": "TWICE", "title": "ONE SPARK", "stream_allowed": false },
+        { "id": "30-220", "artist": "RIIZE", "title": "Siren", "stream_allowed": true },
+        { "id": "31-220", "artist": "Kep1er", "title": "Shooting Star", "stream_allowed": true },
+        { "id": "32-220", "artist": "Cosmic", "title": "Cosmic", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1103-188-2E1C7F",
+      "title": "舞研雙峰祭スペシャルステージ",
+      "performer": "競技ダンスサークル舞研",
+      "description": "ジャック船長が雙峰祭にやってきた！“ダイナミックなラテン”と“力強く洗練されたモダン”をどちらも余さず楽しめるショーを皆様にお届けします！今回限りの舞研スペシャルステージをどうぞお楽しみください。",
+      "time": "15:51",
+      "timings": [
+        {
+          "id": "1103-188-2AC6EA",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "舞研雙峰祭スペシャルステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-188-90399F",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "舞研雙峰祭スペシャルステージ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-188", "artist": "", "title": "Pirates summer battle \"get wet!\"", "stream_allowed": false },
+        { "id": "02-188", "artist": "", "title": "Wet \u0026 Wild Pirates Night", "stream_allowed": false },
+        { "id": "03-188", "artist": "ハンス・ジマー", "title": "ディナーの席", "stream_allowed": true },
+        { "id": "04-188", "artist": "", "title": "彼こそが海賊", "stream_allowed": true },
+        { "id": "05-188", "artist": "ジェイコブ・コーラー", "title": "リベルタンゴ", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1103-31-B9F69B",
+      "title": "scramble ダンスパフォーマンス",
+      "performer": "scramble",
+      "description": "医学ダンスサークルScrambleのダンスパフォーマンスです。ストリート系の各ジャンルからK-popのカバーまで、様々なジャンルで盛り上げます！！ストリートダンスサークルRealjamとのコラボも、！",
+      "time": "16:18",
+      "timings": [
+        {
+          "id": "1103-31-EC4A69",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "scramble ダンスパフォーマンス", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-31-77DBE6",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "scramble ダンスパフォーマンス" }
+        }
+      ],
+      "musics": [
+        { "id": "01-31", "artist": "菅野よう子×手嶌葵", "title": "Because", "stream_allowed": true },
+        { "id": "02-31", "artist": "ヒグチアイ", "title": "劇場", "stream_allowed": true },
+        { "id": "03-31", "artist": "TWICE", "title": "LIKEY", "stream_allowed": true },
+        { "id": "04-31", "artist": "三浦大知", "title": "(RE)PLAY", "stream_allowed": true },
+        { "id": "05-31", "artist": "紫 今", "title": "魔性の女A", "stream_allowed": true },
+        { "id": "06-31", "artist": "B.Ames", "title": "Like,Really Cunt", "stream_allowed": false },
+        { "id": "07-31", "artist": "RIIZE", "title": "Impossible", "stream_allowed": false },
+        { "id": "08-31", "artist": "SEVENTEEN", "title": "HOT", "stream_allowed": true },
+        { "id": "09-31", "artist": "ILLIT", "title": "Magnetic", "stream_allowed": true },
+        { "id": "10-31", "artist": "初音ミク", "title": "Sweet Devil", "stream_allowed": false },
+        { "id": "11-31", "artist": "初音ミク", "title": "WILDCARD", "stream_allowed": false },
+        { "id": "12-31", "artist": "初音ミク", "title": "Beyond the way", "stream_allowed": false },
+        { "id": "13-31", "artist": "LE SSERAFIM", "title": "Perfect Night", "stream_allowed": false },
+        { "id": "14-31", "artist": "BTS", "title": "Butter", "stream_allowed": true },
+        {
+          "id": "15-31",
+          "artist": "BTS \u0026 Megan Thee Stallion",
+          "title": "Butter(feat.Megan Thee Stallion)",
+          "stream_allowed": true
+        }
+      ]
+    },
+    {
+      "scene_id": "1103-43-CA1EFE",
+      "title": "Bombs! 学祭公演 Vol.4",
+      "performer": "筑波大学アイドル研究会 Bombs!",
+      "description": "こんにちは！筑波大学アイドル研究会Bombs!です！私たちは女性アイドルグループのコピーダンスをする団体です。パフォーマンスを通して皆さんに笑顔をお届けします！！",
+      "time": "17:36",
+      "timings": [
+        {
+          "id": "1103-43-86E060",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "Bombs! 学祭公演 Vol.4", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-43-D8551D",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "Bombs! 学祭公演 Vol.4" }
+        }
+      ],
+      "musics": [
+        { "id": "01-43", "artist": "", "title": "SE", "stream_allowed": true },
+        { "id": "02-43", "artist": "AKB48", "title": "ギンガムチェック", "stream_allowed": true },
+        { "id": "03-43", "artist": "モーニング娘。'21", "title": "Teenage Solution", "stream_allowed": true },
+        { "id": "04-43", "artist": "AKB48", "title": "ギンガムチェック", "stream_allowed": true },
+        { "id": "05-43", "artist": "NMB48", "title": "床の間正座娘", "stream_allowed": true },
+        { "id": "06-43", "artist": "i★Ris", "title": "Shining Star", "stream_allowed": true },
+        { "id": "07-43", "artist": "ZOC", "title": "CUTTING EDGE", "stream_allowed": true },
+        { "id": "08-43", "artist": "≠ME", "title": "君はスパークル", "stream_allowed": true },
+        { "id": "09-43", "artist": "≠ME", "title": "君はスパークル", "stream_allowed": true },
+        { "id": "10-43", "artist": "スマイレージ", "title": "夢見る15歳", "stream_allowed": true },
+        { "id": "11-43", "artist": "わーすた", "title": "グレープフルーツムーン", "stream_allowed": true },
+        { "id": "12-43", "artist": "BEYOOOOONDS", "title": "恋する銀河", "stream_allowed": true },
+        { "id": "13-43", "artist": "μ's", "title": "Snow halation", "stream_allowed": true },
+        { "id": "14-43", "artist": "ベイビーレイズJAPAN", "title": "夜明け Brend New Days", "stream_allowed": true },
+        { "id": "15-43", "artist": "ベイビーレイズJAPAN", "title": "夜明け Brend New Days", "stream_allowed": true },
+        { "id": "16-43", "artist": "Jams Collection", "title": "Believe in Believer", "stream_allowed": true },
+        { "id": "17-43", "artist": "日向坂46", "title": "青春の馬", "stream_allowed": true },
+        { "id": "18-43", "artist": "つばきファクトリー", "title": "最上級ストーリー", "stream_allowed": true },
+        { "id": "19-43", "artist": "つばきファクトリー", "title": "最上級ストーリー", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-63-5CDA26",
+      "title": "Neopolis BIGBAND 雙峰祭ステージ",
+      "performer": "筑波大学ジャズ楽団Neopolis BIGBAND",
+      "description": "ビッグバンドジャズの華やかなサウンドをお楽しみください！　",
+      "time": "19:01",
+      "timings": [
+        {
+          "id": "1103-63-501E0E",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "Neopolis BIGBAND 雙峰祭ステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-63-3EA9C7",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "Neopolis BIGBAND 雙峰祭ステージ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-63", "artist": "", "title": "Night flight", "stream_allowed": true },
+        { "id": "02-63", "artist": "", "title": "Broadway", "stream_allowed": true },
+        { "id": "03-63", "artist": "", "title": "Moonlight Serenade", "stream_allowed": true },
+        { "id": "04-63", "artist": "", "title": "Feelin good", "stream_allowed": true },
+        { "id": "05-63", "artist": "", "title": "Two different days", "stream_allowed": false },
+        { "id": "06-63", "artist": "", "title": "Sing Sing Sing", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1103-9-5D5296",
+      "title": "帝国雙峰祭ステージ2024",
+      "performer": "The Empire of TSUKUBA",
+      "description": "今年はThe Empire of TSUKUBA×夜のさえずり×蕣による3チームコラボステージ。学園祭ヲタ芸史上最大、ド迫力の大人数構成芸をこの目に焼き付けろ！",
+      "time": "19:53",
+      "timings": [
+        {
+          "id": "1103-9- 422F8",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "帝国雙峰祭ステージ2024", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1103-9-C2C7D0",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "帝国雙峰祭ステージ2024" }
+        }
+      ],
+      "musics": [
+        { "id": "01-9", "artist": "EGOIST", "title": "名前のない怪物", "stream_allowed": true },
+        { "id": "02-9", "artist": "Official髭男dism", "title": "ホワイトノイズ", "stream_allowed": true },
+        {
+          "id": "03-9",
+          "artist": "ＭＡＩＳＯＮｄｅｓ　ｆｅａｔ．　美波，　ＳＡＫＵＲＡｍｏｔｉ\nＭＡＩＳＯＮｄｅｓ",
+          "title": "アイウエ",
+          "stream_allowed": true
+        },
+        { "id": "04-9", "artist": "柊マグネタイト", "title": "リアライズ", "stream_allowed": true },
+        {
+          "id": "05-9",
+          "artist": "ジャングルポケット(CV.藤本侑里)。アグネスタキオン(CV.上坂すみれ)、マンハッタンカフェ(CV.小倉唯)、ダンツフレーム(CV.福嶋晴菜)",
+          "title": "Ready!! Steady!! Derby!!",
+          "stream_allowed": true
+        },
+        { "id": "06-9", "artist": "星街　すいせい", "title": "ビビデバ", "stream_allowed": true },
+        { "id": "07-9", "artist": "島爺", "title": "IMAGINARY LIKE THE JUSTICE", "stream_allowed": false }
+      ]
+    },
+    {
+      "scene_id": "1104-86-FB3F1F",
+      "title": "つくばフォーク村雙峰祭UNITEDステージ",
+      "performer": "つくばフォーク村",
+      "description": "Vaundy，go!go!vanillas，Mrs. GREEN APPLEのコピーバンドが石の広場で大迫力の生演奏を披露します。原曲肉薄のクオリティで大熱狂のライブになる事をお約束します！",
+      "time": "10:00",
+      "timings": [
+        {
+          "id": "1104-86-7952DB",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "つくばフォーク村雙峰祭UNITEDステージ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-86-33F2EE",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "つくばフォーク村雙峰祭UNITEDステージ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-86", "artist": "Vaundy", "title": "Audio003", "stream_allowed": true },
+        { "id": "02-86", "artist": "Vaundy", "title": "東京フラッシュ", "stream_allowed": true },
+        { "id": "03-86", "artist": "Vaundy", "title": "常熱", "stream_allowed": true },
+        { "id": "04-86", "artist": "Vaundy", "title": "踊り子", "stream_allowed": true },
+        { "id": "05-86", "artist": "Vaundy", "title": "恋風邪にのせて", "stream_allowed": true },
+        { "id": "06-86", "artist": "Vaundy", "title": "逆光ｰreplicaｰ", "stream_allowed": true },
+        { "id": "07-86", "artist": "Vaundy", "title": "怪獣の花唄ｰreplicaｰ", "stream_allowed": true },
+        { "id": "08-86", "artist": "Vaundy", "title": "世界の秘密", "stream_allowed": true },
+        { "id": "09-86", "artist": "go!go!vanillas", "title": "カウンターアクション", "stream_allowed": true },
+        { "id": "10-86", "artist": "go!go!vanillas", "title": "平成ペイン", "stream_allowed": true },
+        { "id": "11-86", "artist": "go!go!vanillas", "title": "バイリンガール", "stream_allowed": true },
+        { "id": "12-86", "artist": "go!go!vanillas", "title": "お子さまプレート", "stream_allowed": true },
+        { "id": "13-86", "artist": "go!go!vanillas", "title": "エマ", "stream_allowed": true },
+        { "id": "14-86", "artist": "go!go!vanillas", "title": "マジック", "stream_allowed": true },
+        { "id": "15-86", "artist": "Mrs. GREEN APPLE", "title": "StaRt", "stream_allowed": true },
+        { "id": "16-86", "artist": "Mrs. GREEN APPLE", "title": "愛情と矛先", "stream_allowed": true },
+        { "id": "17-86", "artist": "Mrs. GREEN APPLE", "title": "CONFLICT", "stream_allowed": true },
+        { "id": "18-86", "artist": "Mrs. GREEN APPLE", "title": "インフェルノ", "stream_allowed": false },
+        { "id": "19-86", "artist": "Mrs. GREEN APPLE", "title": "Speaking", "stream_allowed": true },
+        { "id": "20-86", "artist": "Mrs. GREEN APPLE", "title": "私は最強", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-134-BE004A",
+      "title": "PBCM雙峰祭ライブ",
+      "performer": "バンドストッククラブPBCM",
+      "description": "筑波大学の軽音サークルPBCMからライブをお届けします！",
+      "time": "11:50",
+      "timings": [
+        {
+          "id": "1104-134-264AAC",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "PBCM雙峰祭ライブ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-134-EBDCB6",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "PBCM雙峰祭ライブ" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-95-DBFA9D",
+      "title": "学園祭ライブ Produced by TMP",
+      "performer": "TMP",
+      "description": "プロのアーティストによる圧巻のライブパフォーマンスが間近で楽しめます！",
+      "time": "13:35",
+      "timings": [
+        {
+          "id": "1104-95-6BDBDC",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "学園祭ライブ Produced by TMP", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-95-ABFBAF",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "学園祭ライブ Produced by TMP" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-8-58EE85",
+      "title": "雙峰祭50周年特別ステージ企画",
+      "performer": "学園祭実行委員会本部企画局",
+      "description": "第50回を迎える筑波大学学園祭「雙峰祭」の特別企画として、TOOBOEのライブが決定！ここでしか体験できない唯一無二の学園祭ライブ、ぜひお楽しみに！",
+      "time": "15:15",
+      "timings": [
+        {
+          "id": "1104-8-10851A",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭50周年特別ステージ企画", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-8- 23405",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭50周年特別ステージ企画" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-40-6C75AF",
+      "title": "沖縄県人会エイサー2024",
+      "performer": "筑波大学沖縄県人会",
+      "description": "エイサーは太鼓のリズムに合わせて力強く舞う沖縄の伝統的な踊りです。私たちのパフォーマンスでは、元気いっぱいの動きと迫力ある太鼓の響きで皆さんを魅了します。みんなで一緒に踊って盛り上がりましょう！",
+      "time": "16:15",
+      "timings": [
+        {
+          "id": "1104-40-7A04DD",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "沖縄県人会エイサー2024", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-40-44F19E",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "沖縄県人会エイサー2024" }
+        }
+      ],
+      "musics": [
+        { "id": "01-40", "artist": "", "title": "行逢り節　(いちゃりぶし)", "stream_allowed": true },
+        { "id": "02-40", "artist": "", "title": "南嶽節　(なんだきぶし)", "stream_allowed": true },
+        { "id": "03-40", "artist": "", "title": "仲順流り　(ちゅんじゅんながり)", "stream_allowed": true },
+        { "id": "04-40", "artist": "", "title": "久高万寿主　(くだかまんじゅーすー)", "stream_allowed": true },
+        { "id": "05-40", "artist": "", "title": "スンサーミー", "stream_allowed": true },
+        { "id": "06-40", "artist": "", "title": "テンヨー節", "stream_allowed": true },
+        { "id": "07-40", "artist": "", "title": "いちゅび小節　", "stream_allowed": true },
+        { "id": "08-40", "artist": "", "title": "海ヤカラー", "stream_allowed": true },
+        { "id": "09-40", "artist": "", "title": "固み節", "stream_allowed": true },
+        { "id": "10-40", "artist": "", "title": "花ぬ風車 (はなぬかじまやー)", "stream_allowed": true },
+        { "id": "11-40", "artist": "", "title": "安里屋ユンタ　(あさどやゆんた)", "stream_allowed": true },
+        { "id": "12-40", "artist": "", "title": "想い笛節", "stream_allowed": true },
+        { "id": "13-40", "artist": "", "title": "唐船ドーイ (とうしんどーい)", "stream_allowed": true },
+        { "id": "14-40", "artist": "", "title": "豊年音頭　(ほうねんおんど)", "stream_allowed": true },
+        { "id": "15-40", "artist": "BEGIN", "title": "オジー自慢のオリオンビール", "stream_allowed": true },
+        { "id": "16-40", "artist": "", "title": "遊び庭 (あしびなー)", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-U5-FB7441",
+      "title": "式典",
+      "time": "17:50",
+      "timings": [
+        {
+          "id": "1104-U5-59FB4D",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "式典", "stage": "UNITED_STAGE" }
+        },
+        { "id": "1104-U5-91BD60", "title": "[C2]スライド・映像", "layout_id": "1", "properties": { "main": "式典" } }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-U11-8BF04C",
+      "title": "The Empire of TSUKUBA＆ひらがなつくば",
+      "time": "18:15",
+      "timings": [
+        {
+          "id": "1104-U11-18038B",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "The Empire of TSUKUBA＆ひらがなつくば", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-U11-613E90",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "The Empire of TSUKUBA＆ひらがなつくば" }
+        }
+      ],
+      "musics": [
+        { "id": "01-U11", "artist": "乃木坂46", "title": "OVERTURE", "stream_allowed": true },
+        { "id": "02-U11", "artist": "乃木坂46", "title": "制服のマネキン", "stream_allowed": true },
+        { "id": "03-U11", "artist": "欅坂46", "title": "ガラスを割れ！", "stream_allowed": true },
+        { "id": "04-U11", "artist": "日向坂46", "title": "絶対的第六感", "stream_allowed": false },
+        { "id": "05-U11", "artist": "日向坂46", "title": "ドレミソラシド", "stream_allowed": true },
+        { "id": "06-U11", "artist": "乃木坂46", "title": "シンクロニシティ", "stream_allowed": true },
+        { "id": "07-U11", "artist": "櫻坂46", "title": "なぜ　恋をして来なかったんだろう？", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-46-8C5E0D",
+      "title": "つくばお笑いライブ",
+      "performer": "学園祭実行委員会本部企画局",
+      "description": "雙峰祭のお笑いライブに今年もスターがやってくる！昨年度も大好評を博した生ライブをぜひお見逃しなく！出演：男性ブランコ・ナイチンゲールダンス ※都合により出演者は変更になる場合があります。",
+      "time": "18:35",
+      "timings": [
+        {
+          "id": "1104-46-DD3A07",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "つくばお笑いライブ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-46-DD5D52",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "つくばお笑いライブ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-46", "artist": "LMFAO", "title": "September", "stream_allowed": true },
+        { "id": "02-46", "artist": "テイラー・スウィフト", "title": "shake it off", "stream_allowed": true },
+        { "id": "03-46", "artist": "ブルーノ・マーズ", "title": "Treasure", "stream_allowed": true },
+        { "id": "04-46", "artist": "ブルーノ・マーズ", "title": "Locked Out of Heaven", "stream_allowed": true },
+        { "id": "05-46", "artist": "テイラー・スウィフト", "title": "Because We Can", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-11-6BAD44",
+      "title": "雙峰祭グランプリ",
+      "performer": "学園祭実行委員会本部企画局",
+      "description": "雙峰祭のNo.1企画を来場者の皆様に決めていただく企画です。受賞団体には豪華賞品と表彰状が贈られます！結果発表は後夜祭の表彰式にて！！雙峰祭2024でグランプリに輝くのはどの企画だ？！",
+      "time": "19:10",
+      "timings": [
+        {
+          "id": "1104-11-99C772",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭グランプリ", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-11-2C3C4E",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭グランプリ" }
+        }
+      ],
+      "musics": [
+        { "id": "01-11", "artist": "Omoinotake", "title": "幾億光年", "stream_allowed": true },
+        { "id": "02-11", "artist": "NiziU", "title": "SWEET NONFICTION", "stream_allowed": true },
+        { "id": "03-11", "artist": "SPYAIR", "title": "オレンジ", "stream_allowed": true },
+        { "id": "04-11", "artist": "SEKAI NO OWARI", "title": "最高到達点", "stream_allowed": true },
+        { "id": "05-11", "artist": "Omoinotake", "title": "幾億光年", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-53-24D0F0",
+      "title": "TSUKUBA COLLECTION2024",
+      "performer": "学園祭実行委員会本部企画局",
+      "description": "今年度よりミス、ミスターという枠組を取り払い、生まれ変わりました。出場者の方々が外見や性別にとらわれず、自分の強みや魅力を最大限発揮できる機会を作りたい、という思いを持って企画を運営しております。",
+      "time": "19:30",
+      "timings": [
+        {
+          "id": "1104-53-FF5B35",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "TSUKUBA COLLECTION2024", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-53-FDC173",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "TSUKUBA COLLECTION2024" }
+        }
+      ],
+      "musics": [
+        { "id": "00-53", "artist": "reGretGirl", "title": "best answer", "stream_allowed": false },
+        { "id": "00-53", "artist": "sumika", "title": "ガラナ", "stream_allowed": false },
+        { "id": "00-53", "artist": "Mrs. GREEN APPLE", "title": "StaRt", "stream_allowed": false },
+        { "id": "00-53", "artist": "Super Soul Bros", "title": "Guns\u0026Roses", "stream_allowed": false },
+        { "id": "00-53", "artist": "sumika", "title": "", "stream_allowed": false },
+        { "id": "00-53", "artist": "羊文学", "title": "ロマンス", "stream_allowed": false },
+        { "id": "00-53", "artist": "秦 基博, sumika", "title": "ハローサーリアル", "stream_allowed": false },
+        { "id": "00-53", "artist": "羊文学", "title": "あたらしいわたし", "stream_allowed": false },
+        { "id": "00-53", "artist": "石野卓球", "title": "It's Too Late", "stream_allowed": false },
+        { "id": "00-53", "artist": "石野卓球", "title": "Tokyo Swindlers Teaser", "stream_allowed": false },
+        { "id": "00-53", "artist": "Tele", "title": "", "stream_allowed": false },
+        { "id": "00-53", "artist": "ストレイテナー", "title": "鱗(うろこ)", "stream_allowed": false },
+        { "id": "00-53", "artist": "", "title": "bling-bang-bang-born", "stream_allowed": false },
+        { "id": "01-53", "artist": "SEKAI NO OWARI", "title": "最高到達点", "stream_allowed": true },
+        { "id": "01-53", "artist": "SEKAI NO OWARI ", "title": "栞", "stream_allowed": true },
+        {
+          "id": "02-53",
+          "artist": "Jessie J,Ariana Grande ＆ Nicki Minaj",
+          "title": "Bang Bang",
+          "stream_allowed": true
+        },
+        { "id": "02-53", "artist": "Mrs. GREEN APPLE", "title": "ライラック", "stream_allowed": true },
+        { "id": "03-53", "artist": "レディー・ガガ", "title": "ボーン・ディス・ウェイ", "stream_allowed": true },
+        { "id": "03-53", "artist": "東京事変", "title": "キラーチューン", "stream_allowed": true },
+        { "id": "04-53", "artist": "BUMP OF CHICKEN", "title": "新世界", "stream_allowed": true },
+        {
+          "id": "05-53",
+          "artist": "テイラー・スウィフト",
+          "title": "シェイク・イット・オフ〜気にしてなんかいられないっ!!",
+          "stream_allowed": true
+        },
+        { "id": "05-53", "artist": "米津玄師", "title": "感電", "stream_allowed": true },
+        { "id": "06-53", "artist": "藤井風", "title": "damn", "stream_allowed": true },
+        { "id": "06-53", "artist": "米津玄師", "title": "WOODEN DOLL", "stream_allowed": true },
+        { "id": "07-53", "artist": "", "title": "Intertwine", "stream_allowed": true },
+        { "id": "07-53", "artist": "日食なつこ", "title": "ログマロープ", "stream_allowed": true },
+        { "id": "08-53", "artist": "SEVENTEEN", "title": "God of Music", "stream_allowed": true },
+        {
+          "id": "08-53",
+          "artist": "坂東祐大 feat. 石若駿、須川崇志、Ensemble FOVE、林正樹",
+          "title": "♯まめ夫 序曲 〜「大豆田とわ子と三人の元夫」",
+          "stream_allowed": true
+        },
+        { "id": "09-53", "artist": "シャキーラ", "title": "トライ・エヴリシング", "stream_allowed": true },
+        { "id": "10-53", "artist": "TWICE", "title": "Feel Special", "stream_allowed": true },
+        { "id": "10-53", "artist": "安室奈美恵", "title": "Hero(Instrumental)", "stream_allowed": true },
+        { "id": "11-53", "artist": "IVE", "title": "WOW", "stream_allowed": true },
+        { "id": "11-53", "artist": "GReeeeN", "title": "いつまでも", "stream_allowed": true },
+        {
+          "id": "12-53",
+          "artist": "PRODUCE 101 JAPAN THE GIRLS",
+          "title": "LEAP HIGH! 〜明日へ、めいっぱい〜",
+          "stream_allowed": true
+        },
+        { "id": "12-53", "artist": "あいみょん", "title": "ラッキーカラー", "stream_allowed": true },
+        { "id": "13-53", "artist": "ヨルシカ", "title": "パレード", "stream_allowed": true },
+        { "id": "13-53", "artist": "ＤＩＳＮＥＹ", "title": "ミッキーマウスマーチ", "stream_allowed": true },
+        { "id": "14-53", "artist": "", "title": "小さな世界", "stream_allowed": true },
+        { "id": "14-53", "artist": "Mrs.GREEN APPLE", "title": "ダンスホール", "stream_allowed": true },
+        { "id": "15-53", "artist": "Vaundy", "title": "花占い", "stream_allowed": true },
+        { "id": "15-53", "artist": "TWICE", "title": "What is Love？", "stream_allowed": true },
+        { "id": "16-53", "artist": "ILLIT", "title": "Magnetic", "stream_allowed": true },
+        {
+          "id": "16-53",
+          "artist": "GEMN \u0026 中島健人 \u0026 キタニタツヤ",
+          "title": "ファタール - Fatal",
+          "stream_allowed": true
+        },
+        { "id": "17-53", "artist": "TWICE", "title": "Feel Special", "stream_allowed": true },
+        { "id": "17-53", "artist": "乃木坂46", "title": "帰り道は遠回りしたくなる", "stream_allowed": true },
+        { "id": "18-53", "artist": "ＫＥＰ１ＥＲ", "title": "shooting star", "stream_allowed": true },
+        { "id": "18-53", "artist": "Da-iCE", "title": "I wonder", "stream_allowed": true },
+        { "id": "19-53", "artist": "SHISHAMO", "title": "明日も", "stream_allowed": true },
+        { "id": "19-53", "artist": "奥田民生", "title": "さすらい", "stream_allowed": true },
+        { "id": "21-53", "artist": "sumika", "title": "運命", "stream_allowed": true }
+      ]
+    },
+    {
+      "scene_id": "1104-U6-443F7D",
+      "title": "学園祭実行委員会 委員長挨拶",
+      "time": "20:10",
+      "timings": [
+        {
+          "id": "1104-U6-9825DA",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "学園祭実行委員会 委員長挨拶", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-U6-F77368",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "学園祭実行委員会 委員長挨拶" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-U8-466D1E",
+      "title": "雙峰祭ダイジェスト 2024",
+      "time": "20:15",
+      "timings": [
+        {
+          "id": "1104-U8- 69831",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭ダイジェスト 2024", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-U8-F6B331",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭ダイジェスト 2024" }
+        }
+      ],
+      "musics": null
+    },
+    {
+      "scene_id": "1104-U9-391E01",
+      "title": "雙峰祭後夜祭花火",
+      "time": "20:30",
+      "timings": [
+        {
+          "id": "1104-U9-93DA39",
+          "title": "[C1]パフォーマンス",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭後夜祭花火", "stage": "UNITED_STAGE" }
+        },
+        {
+          "id": "1104-U9-A92A43",
+          "title": "[C2]スライド・映像",
+          "layout_id": "1",
+          "properties": { "main": "雙峰祭後夜祭花火" }
+        }
+      ],
+      "musics": [
+        { "id": "01-U9", "artist": "YOASOBI", "title": "アイドル", "stream_allowed": true },
+        { "id": "02-U9", "artist": "aiko", "title": "花火", "stream_allowed": true }
+      ]
+    }
+  ]
+}

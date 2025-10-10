@@ -13,7 +13,7 @@ type Props = {
 export default function MusicItem({ music, status = "default" }: Props) {
   const className = clsx(styles.music, {
     [styles.playing]: status === "playing",
-    [styles.queued]: status === "queued",
+    [styles.next]: status === "next",
   });
 
   return (
