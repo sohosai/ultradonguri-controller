@@ -4,11 +4,7 @@ import styles from "./index.module.css";
 
 import type { Music } from "../../types/performances";
 import type { Status } from "../../types/status";
-
-type TrackRef = {
-  performanceId: string;
-  musicId: string;
-};
+import type { TrackRef } from "../../types/tracks";
 
 type Props = {
   items: Music[];

@@ -8,8 +8,7 @@ import Musics from "./components/Musics";
 import Performances from "./components/Performances";
 
 import type { Performance } from "./types/performances";
-
-type TrackRef = { performanceId: string; musicId: string };
+import type { TrackRef } from "./types/tracks";
 
 const findNextTrackRef = (list: Performance[], current: TrackRef | null): TrackRef | null => {
   if (!current) return null;
