@@ -6,85 +6,42 @@ import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
+import usePerformances from "./hooks/usePerformances";
+import usePlayback from "./hooks/usePlayback";
 
 import type { Performance } from "./types/performances";
 import type { TrackRef } from "./types/tracks";
 
-const findNextTrackRef = (list: Performance[], current: TrackRef | null): TrackRef | null => {
-  if (!current) return null;
-  const flattened: TrackRef[] = [];
-  for (const p of list) {
-    for (const m of p.musics) {
-      flattened.push({ performanceId: p.id, musicId: m.id });
-    }
-  }
-  const idx = flattened.findIndex(
-    (r) => r.performanceId === current.performanceId && r.musicId === current.musicId
-  );
-  if (idx < 0) return null;
-  return flattened[idx + 1] ?? null;
-};
-
 function App() {
-  const [performances, setPerformances] = useState<Performance[] | null>(null);
+  const { performances } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
-  const [currentTrack, setCurrentTrack] = useState<TrackRef | null>(null);
-  const [nextTrack, setNextTrack] = useState<TrackRef | null>(null);
+  const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
 
   useEffect(() => {
-    // データフェッチはバックエンドが出来たら変更する
-    const url = `${import.meta.env.BASE_URL}mock.json`;
-    (async () => {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-        const json = (await res.json()) as Performance[];
-        setPerformances(json);
-        // 初期選択は先頭のデータ
-        if (json.length > 0) {
-          setSelectedPerformance(json[0]);
-          const firstPerf = json[0];
-          const firstMusic = firstPerf.musics[0];
-          if (firstMusic) {
-            const firstRef: TrackRef = { performanceId: firstPerf.id, musicId: firstMusic.id };
-            setCurrentTrack(firstRef);
-            // 次曲（同パフォ内の次 or 全体で次）
-            const nextRef = findNextTrackRef(json, firstRef);
-            setNextTrack(nextRef);
-          } else {
-            setCurrentTrack(null);
-            setNextTrack(null);
-          }
-        } else {
-          setSelectedPerformance(null);
-          setCurrentTrack(null);
-          setNextTrack(null);
-        }
-      } catch (e) {
-        console.error(e);
-        setPerformances([]);
-        setSelectedPerformance(null);
-        setCurrentTrack(null);
-        setNextTrack(null);
-      }
-    })();
-  }, []);
+    // performances の変化に合わせて初期化（旧実装の振る舞いを維持）
+    if (performances === null) return;
+    if (performances.length > 0) {
+      setSelectedPerformance(performances[0]);
+      initializeFromFirst(performances);
+    } else {
+      setSelectedPerformance(null);
+      reset();
+    }
+  }, [performances, initializeFromFirst, reset]);
   if (!performances) return <div>データが見つかりません。</div>;
 
   const handleSelectNextTrack = (ref: TrackRef) => {
-    setNextTrack(ref);
+    selectNextTrack(ref);
   };
 
   const handleNext = () => {
     if (!performances) return;
     if (!nextTrack) return;
-    // nextTrack を currentTrack に昇格
-    setCurrentTrack(nextTrack);
-    // 新しい nextTrack を決定
-    const next = findNextTrackRef(performances, nextTrack);
-    setNextTrack(next);
+    const prevNext = nextTrack;
+    // 再生ポインタを進める
+    skipToNext(performances);
     // currentTrack のパフォーマンスが変更されたら selectedPerformance も追随
-    const newPlayingPerf = performances.find((p) => p.id === nextTrack.performanceId) || null;
+    const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
     if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
       setSelectedPerformance(newPlayingPerf);
     }
