@@ -6,6 +6,11 @@
   cursor: pointer;
   background: var(--color-surface);
   border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.performance[data-selected="false"] {
+  transform: scale(0.9);
 }
 
 .time {
