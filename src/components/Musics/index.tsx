@@ -19,6 +19,7 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
     if (currentTrack && currentTrack.performanceId === performanceId && currentTrack.musicId === musicId)
       return "playing";
     if (nextTrack && nextTrack.performanceId === performanceId && nextTrack.musicId === musicId) return "next";
+
     return "default";
   };
 

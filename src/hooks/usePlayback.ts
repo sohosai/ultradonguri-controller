@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
 
+import { findNextTrackRef } from "../lib/tracks";
+
 import type { Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
-import { findNextTrackRef } from "../lib/tracks";
 
 type UsePlaybackResult = {
   currentTrack: TrackRef | null;
@@ -41,6 +42,7 @@ export default function usePlayback(): UsePlaybackResult {
     (performances: Performance[] | null) => {
       if (!performances || performances.length === 0) {
         reset();
+
         return;
       }
       const firstPerf = performances[0];
@@ -59,4 +61,3 @@ export default function usePlayback(): UsePlaybackResult {
 
   return { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst };
 }
-
