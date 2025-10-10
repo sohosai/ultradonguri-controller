@@ -1,7 +1,7 @@
 .performances {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
   height: calc(100vh - 60px - 20px - 200px);
   padding: 0;

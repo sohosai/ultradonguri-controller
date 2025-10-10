@@ -53,7 +53,11 @@ function App() {
       <main>
         <div className={styles.row}>
           <div className={styles.rowLeft}>
-            <Performances items={performances} onSelect={setSelectedPerformance} />
+            <Performances
+              items={performances}
+              selectedPerformance={selectedPerformance}
+              onSelect={setSelectedPerformance}
+            />
             <Menu />
           </div>
           <div className={styles.rowRight}>
