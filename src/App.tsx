@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Buttons from "./components/Buttons";
 import Header from "./components/Header";
-import Menu from "./components/Menu";
+import Menu from "./components/DetailMenu";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
 import usePerformances from "./hooks/usePerformances";
