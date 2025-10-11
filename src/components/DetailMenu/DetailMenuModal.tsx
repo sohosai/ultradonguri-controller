@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./DetailMenuModal.module.css";
 
@@ -11,12 +11,15 @@ type DetailMenuModalProps = {
 };
 
 export default function DetailMenuModal({ isOpen, onClose, performances }: DetailMenuModalProps) {
-  const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(
-    performances ? performances[0] : null
-  );
-  const [selectedMusic, setSelectedMusic] = useState<Music | null>(
-    selectedPerformance ? selectedPerformance.musics[0] : null
-  );
+  const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
+  const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
+
+  useEffect(() => {
+    if (performances && performances.length > 0) {
+      setSelectedPerformance(performances[0]);
+      setSelectedMusic(performances[0].musics[0] || null);
+    }
+  }, [performances]);
 
   const handlePerformanceSelect = (performanceId: string) => {
     const performance = performances?.find((p) => p.id === performanceId);
