@@ -17,8 +17,7 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
   const isPlaying = (musicId: string) =>
     currentTrack?.performanceId === performanceId && currentTrack?.musicId === musicId;
 
-  const isNext = (musicId: string) =>
-    nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
+  const isNext = (musicId: string) => nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
   return (
     <ul className={styles.musics}>
