@@ -1,0 +1,98 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-modal-background);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 85vh;
+  background-color: var(--color-white);
+  border-radius: 10px;
+}
+
+.modalHeader {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+}
+
+.modalBody {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.performances,
+.musics,
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.performances h3,
+.musics h3,
+.details h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-surface);
+}
+
+.performances ul,
+.musics ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.performances li,
+.musics li {
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.performances li:hover,
+.musics li:hover {
+  background-color: var(--color-light-gray);
+}
+
+.performances li.selected,
+.musics li.selected {
+  font-weight: bold;
+  color: var(--color-white);
+  background-color: var(--color-surface);
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--color-white);
+  border-radius: 5px;
+}
+
+.detailItem label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+}
+
+.detailItem span {
+  font-size: 16px;
+  color: var(--color-surface);
+}
