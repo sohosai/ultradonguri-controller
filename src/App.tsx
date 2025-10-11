@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import styles from "./App.module.css";
 import Buttons from "./components/Buttons";
+import Menu from "./components/DetailMenu";
 import Header from "./components/Header";
-import Menu from "./components/Menu";
 import Musics from "./components/Musics";
 import Performances from "./components/Performances";
 import usePerformances from "./hooks/usePerformances";
@@ -18,7 +18,6 @@ function App() {
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
 
   useEffect(() => {
-    // performances の変化に合わせて初期化（旧実装の振る舞いを維持）
     if (performances === null) return;
     if (performances.length > 0) {
       setSelectedPerformance(performances[0]);

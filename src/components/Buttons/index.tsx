@@ -10,7 +10,6 @@ type Props = {
 export default function Buttons({ onNext }: Props) {
   return (
     <div className={styles.buttons}>
-      ここにボタン
       <ForceMute />
       <NextTrackButton onNext={onNext} />
     </div>
