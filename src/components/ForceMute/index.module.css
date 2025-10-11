@@ -1,5 +1,34 @@
 .forceMute {
-  width: 100px;
-  height: 100px;
+  position: relative;
+  width: 105px;
+  height: 105px;
+  padding-top: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-white);
+  text-align: center;
   background: var(--color-red);
+  border-radius: 50%;
+}
+
+.glass {
+  position: absolute;
+  top: 0;
+  width: 105px;
+  height: 105px;
+  background-color: var(--color-glass);
+
+}
+
+.tigerStripe {
+  width: 110px;
+  height: 110px;
+  padding: 2.5px;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-yellow),
+    var(--color-yellow) 10px,
+    var(--color-black) 10px,
+    var(--color-black) 20px
+  );
 }
