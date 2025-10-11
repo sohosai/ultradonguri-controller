@@ -13,13 +13,19 @@
   flex-direction: column;
   width: 85%;
   height: 85vh;
+  overflow: hidden;
   background-color: var(--color-white);
   border-radius: 10px;
 }
 
 .modalHeader {
-  height: 60px;
-  border-bottom: 1px solid #ddd;
+  height: 40px;
+  padding: 0 35px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  color: var(--color-white);
+  background: var(--color-surface);
 }
 
 .modalBody {
@@ -38,15 +44,6 @@
   flex-direction: column;
   padding: 15px;
   overflow-y: auto;
-}
-
-.performances h3,
-.musics h3,
-.details h3 {
-  margin: 0 0 15px;
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--color-surface);
 }
 
 .performances ul,

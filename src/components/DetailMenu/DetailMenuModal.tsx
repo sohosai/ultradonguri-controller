@@ -38,10 +38,9 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.modalHeader}></div>
+        <div className={styles.modalHeader}>詳細編集メニュー</div>
         <div className={styles.modalBody}>
           <div className={styles.performances}>
-            <h3>パフォーマンス一覧</h3>
             <ul>
               {performances?.map((p) => (
                 <li
@@ -54,7 +53,6 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
             </ul>
           </div>
           <div className={styles.musics}>
-            <h3>楽曲一覧</h3>
             <ul>
               {selectedPerformance?.musics.map((m) => (
                 <li
@@ -69,7 +67,6 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
           <div className={styles.details}>
             {selectedMusic && (
               <>
-                <h3>楽曲詳細</h3>
                 <div className={styles.detailItem}>
                   <label>タイトル:</label>
                   <span>{selectedMusic.title}</span>
