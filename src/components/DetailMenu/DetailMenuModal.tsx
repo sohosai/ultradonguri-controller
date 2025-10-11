@@ -68,21 +68,45 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
             <div className={styles.details}>
               {selectedMusic && (
                 <>
+                  <h3 className={styles.detailsTitle}>詳細編集</h3>
                   <div className={styles.detailItem}>
-                    <label>タイトル:</label>
-                    <span>{selectedMusic.title}</span>
+                    <label>タイトル</label>
+                    <input
+                      type="text"
+                      className={styles.input}
+                      defaultValue={selectedMusic.title}
+                    />
                   </div>
                   <div className={styles.detailItem}>
-                    <label>アーティスト:</label>
-                    <span>{selectedMusic.artist}</span>
+                    <label>アーティスト</label>
+                    <input
+                      type="text"
+                      className={styles.input}
+                      defaultValue={selectedMusic.artist}
+                    />
                   </div>
                   <div className={styles.detailItem}>
-                    <label>ミュート設定:</label>
-                    <span>{selectedMusic.should_be_muted ? "ミュート" : "通常"}</span>
-                  </div>
-                  <div className={styles.detailItem}>
-                    <label>イントロ:</label>
-                    <span>{selectedMusic.intro}</span>
+                    <label>ミュート設定</label>
+                    <div className={styles.radioGroup}>
+                      <label className={styles.radioLabel}>
+                        <input
+                          type="radio"
+                          name="mute"
+                          value="false"
+                          defaultChecked={!selectedMusic.should_be_muted}
+                        />
+                        配信OK
+                      </label>
+                      <label className={styles.radioLabel}>
+                        <input
+                          type="radio"
+                          name="mute"
+                          value="true"
+                          defaultChecked={selectedMusic.should_be_muted}
+                        />
+                        配信不可
+                      </label>
+                    </div>
                   </div>
                 </>
               )}

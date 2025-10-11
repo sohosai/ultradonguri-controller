@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-modal-background);
+  background: var(--color-modal-background);
 }
 
 .modalContent {
@@ -14,7 +14,7 @@
   width: 85%;
   height: 85vh;
   overflow: hidden;
-  background-color: var(--color-white);
+  background: var(--color-white);
   border-radius: 15px;
 }
 
@@ -68,11 +68,88 @@
 
 .performances li:hover,
 .musics li:hover {
-  background-color: var(--color-light-gray);
+  background: var(--color-light-gray);
 }
 
 .performances li.selected,
 .musics li.selected {
   color: var(--color-bg);
-  background-color: var(--color-light-gray);
+  background: var(--color-light-gray);
+}
+
+.details {
+  padding: 0 15px;
+}
+
+.detailsTitle {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-bg);
+}
+
+.detailItem {
+  margin-bottom: 20px;
+}
+
+.detailItem label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-bg);
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-bg);
+  background: var(--color-light-gray);
+  border: none;
+  border-radius: 15px;
+}
+
+.input:focus {
+  background: var(--color-gray);
+}
+
+.radioGroup {
+  display: flex;
+  gap: 15px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-bg);
+  cursor: pointer;
+}
+
+.radioLabel input[type="radio"] {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  margin-right: 5px;
+  cursor: pointer;
+  background: var(--color-white);
+  border: 2px solid var(--color-bg);
+  border-radius: 50%;
+}
+
+.radioLabel input[type="radio"]:checked::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  content: "";
+  background: var(--color-bg);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
