@@ -45,7 +45,8 @@
   overflow-y: auto;
 }
 
-.performances, .musics{
+.performances,
+.musics {
   border-right: solid 3px var(--color-light-gray);
 }
 
