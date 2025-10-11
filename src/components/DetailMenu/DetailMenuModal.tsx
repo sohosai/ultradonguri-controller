@@ -98,8 +98,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
             </div>
           </div>
           <div className={styles.buttons}>
-            <button onClick={onClose}>キャンセル</button>
-            <button>保存</button>
+            <button className={styles.cancel} onClick={onClose}>キャンセル</button>
+            <button className={styles.save}>保存</button>
           </div>
         </div>
       </div>
