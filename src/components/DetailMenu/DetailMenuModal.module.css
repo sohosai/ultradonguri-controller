@@ -15,7 +15,7 @@
   height: 85vh;
   overflow: hidden;
   background-color: var(--color-white);
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .modalHeader {
@@ -28,12 +28,12 @@
   background: var(--color-surface);
 }
 
-.modalBody {
+.modalBody .items {
   display: grid;
   flex: 1;
   grid-template-columns: 1fr 1fr 2fr;
-  gap: 20px;
   padding: 20px;
+  margin-top: 15px;
   overflow: hidden;
 }
 
@@ -42,14 +42,17 @@
 .details {
   display: flex;
   flex-direction: column;
-  padding: 15px;
   overflow-y: auto;
+}
+
+.performances, .musics{
+  border-right: solid 3px var(--color-light-gray);
 }
 
 .performances ul,
 .musics ul {
   padding: 0;
-  margin: 0;
+  margin: 0 15px;
   list-style: none;
 }
 
@@ -57,8 +60,10 @@
 .musics li {
   padding: 12px;
   margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--color-bg);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .performances li:hover,
@@ -68,28 +73,6 @@
 
 .performances li.selected,
 .musics li.selected {
-  font-weight: bold;
-  color: var(--color-white);
-  background-color: var(--color-surface);
-}
-
-.detailItem {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin-bottom: 15px;
-  background-color: var(--color-white);
-  border-radius: 5px;
-}
-
-.detailItem label {
-  margin-bottom: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #666;
-}
-
-.detailItem span {
-  font-size: 16px;
-  color: var(--color-surface);
+  color: var(--color-bg);
+  background-color: var(--color-light-gray);
 }

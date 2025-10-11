@@ -40,51 +40,57 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>詳細編集メニュー</div>
         <div className={styles.modalBody}>
-          <div className={styles.performances}>
-            <ul>
-              {performances?.map((p) => (
-                <li
-                  key={p.id}
-                  className={selectedPerformance?.id === p.id ? styles.selected : ""}
-                  onClick={() => handlePerformanceSelect(p.id)}>
-                  {p.title}
-                </li>
-              ))}
-            </ul>
+          <div className={styles.items}>
+            <div className={styles.performances}>
+              <ul>
+                {performances?.map((p) => (
+                  <li
+                    key={p.id}
+                    className={selectedPerformance?.id === p.id ? styles.selected : ""}
+                    onClick={() => handlePerformanceSelect(p.id)}>
+                    {p.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.musics}>
+              <ul>
+                {selectedPerformance?.musics.map((m) => (
+                  <li
+                    key={m.id}
+                    className={selectedMusic?.id === m.id ? styles.selected : ""}
+                    onClick={() => handleMusicSelect(m.id)}>
+                    {m.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.details}>
+              {selectedMusic && (
+                <>
+                  <div className={styles.detailItem}>
+                    <label>タイトル:</label>
+                    <span>{selectedMusic.title}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <label>アーティスト:</label>
+                    <span>{selectedMusic.artist}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <label>ミュート設定:</label>
+                    <span>{selectedMusic.should_be_muted ? "ミュート" : "通常"}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <label>イントロ:</label>
+                    <span>{selectedMusic.intro}</span>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-          <div className={styles.musics}>
-            <ul>
-              {selectedPerformance?.musics.map((m) => (
-                <li
-                  key={m.id}
-                  className={selectedMusic?.id === m.id ? styles.selected : ""}
-                  onClick={() => handleMusicSelect(m.id)}>
-                  {m.title}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.details}>
-            {selectedMusic && (
-              <>
-                <div className={styles.detailItem}>
-                  <label>タイトル:</label>
-                  <span>{selectedMusic.title}</span>
-                </div>
-                <div className={styles.detailItem}>
-                  <label>アーティスト:</label>
-                  <span>{selectedMusic.artist}</span>
-                </div>
-                <div className={styles.detailItem}>
-                  <label>ミュート設定:</label>
-                  <span>{selectedMusic.should_be_muted ? "ミュート" : "通常"}</span>
-                </div>
-                <div className={styles.detailItem}>
-                  <label>イントロ:</label>
-                  <span>{selectedMusic.intro}</span>
-                </div>
-              </>
-            )}
+          <div className={styles.buttons}>
+            <button onClick={onClose}>キャンセル</button>
+            <button>保存</button>
           </div>
         </div>
       </div>
