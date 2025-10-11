@@ -3,17 +3,17 @@ import clsx from "clsx";
 import styles from "./index.module.css";
 
 import type { Music } from "../../types/performances";
-import type { Status } from "../../types/status";
 
 type Props = {
   music: Music;
-  status?: Status;
+  isPlaying?: boolean;
+  isNext?: boolean;
 };
 
-export default function MusicItem({ music, status = "default" }: Props) {
+export default function MusicItem({ music, isPlaying = false, isNext = false }: Props) {
   const className = clsx(styles.music, {
-    [styles.playing]: status === "playing",
-    [styles.next]: status === "next",
+    [styles.playing]: isPlaying,
+    [styles.next]: isNext,
   });
 
   return (
