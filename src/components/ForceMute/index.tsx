@@ -25,18 +25,13 @@ export default function ForceMute() {
       </div>
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
-          <div
-            className={styles.modalContent}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <p>確認:ミュートしますか？</p>
             <div className={styles.modalButtons}>
-            <button className={styles.closeButton} onClick={closeModal}>
-              キャンセル
-            </button>
-            <button className={styles.muteButton}>
-              ミュート
-            </button>
+              <button className={styles.closeButton} onClick={closeModal}>
+                キャンセル
+              </button>
+              <button className={styles.muteButton}>ミュート</button>
             </div>
           </div>
         </div>
