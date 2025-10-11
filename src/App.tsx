@@ -18,7 +18,6 @@ function App() {
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
 
   useEffect(() => {
-    // performances の変化に合わせて初期化（旧実装の振る舞いを維持）
     if (performances === null) return;
     if (performances.length > 0) {
       setSelectedPerformance(performances[0]);
