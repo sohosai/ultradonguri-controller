@@ -3,7 +3,6 @@ import MusicItem from "../MusicItem";
 import styles from "./index.module.css";
 
 import type { Music } from "../../types/performances";
-import type { Status } from "../../types/status";
 import type { TrackRef } from "../../types/tracks";
 
 type Props = {
@@ -15,19 +14,16 @@ type Props = {
 };
 
 export default function Musics({ items, performanceId, currentTrack, nextTrack, onSelectNextTrack }: Props) {
-  const getStatus = (musicId: string): Status => {
-    if (currentTrack && currentTrack.performanceId === performanceId && currentTrack.musicId === musicId)
-      return "playing";
-    if (nextTrack && nextTrack.performanceId === performanceId && nextTrack.musicId === musicId) return "next";
+  const isPlaying = (musicId: string) =>
+    currentTrack?.performanceId === performanceId && currentTrack?.musicId === musicId;
 
-    return "default";
-  };
+  const isNext = (musicId: string) => nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
   return (
     <ul className={styles.musics}>
       {items.map((m) => (
         <li key={m.id} onClick={() => onSelectNextTrack && onSelectNextTrack({ performanceId, musicId: m.id })}>
-          <MusicItem music={m} status={getStatus(m.id)} />
+          <MusicItem music={m} isPlaying={isPlaying(m.id)} isNext={isNext(m.id)} />
         </li>
       ))}
     </ul>
