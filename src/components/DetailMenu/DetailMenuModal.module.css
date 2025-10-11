@@ -156,14 +156,15 @@
   transform: translate(-50%, -50%);
 }
 
-.buttons{
+.buttons {
   display: flex;
   gap: 10px;
   justify-content: end;
   margin-right: 100px;
 }
 
-.buttons .cancel, .buttons .save{
+.buttons .cancel,
+.buttons .save {
   height: auto;
   padding: 20px 40px;
   font-size: 20px;
@@ -172,16 +173,16 @@
   border-radius: 40px;
 }
 
-.buttons .cancel:hover, .buttons .save:hover{
+.buttons .cancel:hover,
+.buttons .save:hover {
   opacity: 0.7;
 }
 
-
-.buttons .cancel{
+.buttons .cancel {
   color: var(--color-surface);
 }
 
-.buttons .save{
+.buttons .save {
   color: var(--color-white);
   background: var(--color-surface);
 }
