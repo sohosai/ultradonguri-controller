@@ -67,7 +67,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
             </div>
             <div className={styles.details}>
               {selectedMusic && (
-                <>
+                <div key={selectedMusic.id}>
                   <h3 className={styles.detailsTitle}>詳細編集</h3>
                   <div className={styles.detailItem}>
                     <label>タイトル</label>
@@ -108,7 +108,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances }: Detai
                       </label>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </div>
           </div>
