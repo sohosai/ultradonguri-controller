@@ -16,8 +16,8 @@
   top: 0;
   width: 95px;
   height: 95px;
-  background-color: var(--color-glass);
   cursor: pointer;
+  background-color: var(--color-glass);
 }
 
 .glass:hover{
