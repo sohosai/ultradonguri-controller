@@ -1,4 +1,6 @@
 .music {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   padding: 15px 20px;
   color: var(--color-white);
@@ -8,7 +10,22 @@
   border-radius: 10px;
 }
 
+.should_be_muted {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+}
+
 .title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+
+.artist {
+  width: 60%;
   font-size: 18px;
   font-weight: bold;
   line-height: 40px;
