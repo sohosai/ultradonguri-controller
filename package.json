@@ -16,6 +16,7 @@
     "stylelint:check": "stylelint --cache **/*.css --ignore-path .gitignore"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.132.47",
     "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@tanstack/router-plugin": "^1.132.56",
     "@types/eslint": "^9.6.1",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
