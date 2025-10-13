@@ -6,9 +6,26 @@
   background: var(--color-surface);
   border: 2px solid transparent;
   border-radius: 10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.should_be_muted {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
 }
 
 .title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+
+.artist {
+  width: 60%;
   font-size: 18px;
   font-weight: bold;
   line-height: 40px;
