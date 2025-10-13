@@ -1,13 +1,13 @@
 .music {
+  display:flex;
+  justify-content:space-between;
   width: 100%;
   padding: 15px 20px;
   color: var(--color-white);
   cursor: pointer;
   background: var(--color-surface);
   border: 2px solid transparent;
-  display:flex;
   border-radius: 10px;
-  justify-content:space-between;
 }
 
 .should_be_muted {
