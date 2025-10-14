@@ -1,6 +1,12 @@
-export type TrackRef = {
-  type: "music" | "conversion";
-  performanceId?: string;
-  musicId?: string;
-  conversionId?: string;
+export type MusicTrackRef = {
+  type: "music";
+  performanceId: string;
+  musicId: string;
 };
+
+export type ConversionTrackRef = {
+  type: "conversion";
+  conversionId: string;
+};
+
+export type TrackRef = MusicTrackRef | ConversionTrackRef;
