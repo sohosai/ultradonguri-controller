@@ -35,16 +35,19 @@ export default function Performances({
         </li>
       );
 
-      const conversion = getConversion(index);
-      elements.push(
-        <li key={conversion.id}>
-          <ConversionItem
-            conversion={conversion}
-            isSelected={selectedConversion?.id === conversion.id}
-            onSelect={onSelectConversion}
-          />
-        </li>
-      );
+      // 最後のパフォーマンスの後には転換を追加しない
+      if (index < items.length - 1) {
+        const conversion = getConversion(index);
+        elements.push(
+          <li key={conversion.id}>
+            <ConversionItem
+              conversion={conversion}
+              isSelected={selectedConversion?.id === conversion.id}
+              onSelect={onSelectConversion}
+            />
+          </li>
+        );
+      }
     });
 
     return elements;

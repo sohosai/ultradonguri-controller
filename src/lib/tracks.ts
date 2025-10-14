@@ -10,9 +10,11 @@ export const flattenTracks = (list: Performance[]): TrackRef[] => {
     for (const m of p.musics) {
       flattened.push({ type: "music", performanceId: p.id, musicId: m.id });
     }
-    // 各パフォーマンスの後にconversionを追加
-    const conversion = getConversion(i);
-    flattened.push({ type: "conversion", conversionId: conversion.id });
+    // 最後のパフォーマンスの後には転換を追加しない
+    if (i < list.length - 1) {
+      const conversion = getConversion(i);
+      flattened.push({ type: "conversion", conversionId: conversion.id });
+    }
   }
 
   return flattened;
