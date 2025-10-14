@@ -1,7 +1,6 @@
 import { getPerformances } from '../http/endpoints';
 
 const STORAGE_KEY = 'ws_last_offset';
-const RECONNECT_INTERVAL = 1000; // 1 second
 
 export interface WSEvent {
   type: 'performance' | 'music' | 'conversion/start' | 'conversion/cm-mode';
@@ -13,78 +12,91 @@ type EventHandler = (data: unknown) => void;
 
 /**
  * WebSocket client for real-time event streaming
+ * In mock mode, uses BroadcastChannel for cross-tab communication
  */
 class StreamClient {
   private ws: WebSocket | null = null;
+  private channel: BroadcastChannel | null = null;
   private handlers = new Map<string, Set<EventHandler>>();
-  private reconnectTimer: number | null = null;
-  private shouldReconnect = false;
   private wsUrl: string;
+  private isMockMode: boolean;
 
   constructor() {
     this.wsUrl = import.meta.env.VITE_WS_URL || 'ws://local-mock/stream';
+    this.isMockMode = (import.meta.env.VITE_API_MODE || 'mock') === 'mock';
   }
 
   /**
-   * Connect to WebSocket server with lastOffset
+   * Connect to WebSocket server or BroadcastChannel
    */
   connect(): void {
-    if (this.ws?.readyState === WebSocket.OPEN) {
-      return;
-    }
+    if (this.isMockMode) {
+      // Use BroadcastChannel in mock mode
+      if (this.channel) {
+        console.log('[WS] Already connected to BroadcastChannel');
+        return;
+      }
 
-    this.shouldReconnect = true;
-    const lastOffset = this.getLastOffset();
-    const url = `${this.wsUrl}?lastOffset=${lastOffset}`;
-
-    try {
-      this.ws = new WebSocket(url);
-
-      this.ws.onopen = () => {
-        console.log('[WS] Connected');
-        if (this.reconnectTimer !== null) {
-          clearTimeout(this.reconnectTimer);
-          this.reconnectTimer = null;
-        }
+      this.channel = new BroadcastChannel('mock-ws-events');
+      this.channel.onmessage = (event) => {
+        console.log('[WS] Received message from BroadcastChannel:', event.data);
+        const wsEvent = event.data as WSEvent;
+        this.handleEvent(wsEvent);
+        this.saveLastOffset(wsEvent.offset);
       };
 
-      this.ws.onmessage = (event) => {
-        try {
-          const wsEvent: WSEvent = JSON.parse(event.data);
-          this.handleEvent(wsEvent);
-          this.saveLastOffset(wsEvent.offset);
-        } catch (error) {
-          console.error('[WS] Failed to parse message:', error);
-        }
-      };
+      console.log('[WS] Connected to BroadcastChannel');
+    } else {
+      // Use real WebSocket in real mode
+      if (this.ws?.readyState === WebSocket.OPEN) {
+        console.log('[WS] Already connected');
+        return;
+      }
 
-      this.ws.onerror = (error) => {
-        console.error('[WS] Error:', error);
-      };
+      const lastOffset = this.getLastOffset();
+      const url = `${this.wsUrl}?lastOffset=${lastOffset}`;
 
-      this.ws.onclose = () => {
-        console.log('[WS] Disconnected');
-        this.ws = null;
-        if (this.shouldReconnect) {
-          this.scheduleReconnect();
-        }
-      };
-    } catch (error) {
-      console.error('[WS] Connection failed:', error);
-      if (this.shouldReconnect) {
-        this.scheduleReconnect();
+      console.log('[WS] Connecting to:', url);
+
+      try {
+        this.ws = new WebSocket(url);
+
+        this.ws.onopen = () => {
+          console.log('[WS] Connected successfully');
+        };
+
+        this.ws.onmessage = (event) => {
+          console.log('[WS] Received message:', event.data);
+          try {
+            const wsEvent: WSEvent = JSON.parse(event.data);
+            this.handleEvent(wsEvent);
+            this.saveLastOffset(wsEvent.offset);
+          } catch (error) {
+            console.error('[WS] Failed to parse message:', error);
+          }
+        };
+
+        this.ws.onerror = (error) => {
+          console.error('[WS] Error:', error);
+        };
+
+        this.ws.onclose = () => {
+          console.log('[WS] Disconnected');
+          this.ws = null;
+        };
+      } catch (error) {
+        console.error('[WS] Connection failed:', error);
       }
     }
   }
 
   /**
-   * Disconnect from WebSocket server
+   * Disconnect from WebSocket server or BroadcastChannel
    */
   disconnect(): void {
-    this.shouldReconnect = false;
-    if (this.reconnectTimer !== null) {
-      clearTimeout(this.reconnectTimer);
-      this.reconnectTimer = null;
+    if (this.channel) {
+      this.channel.close();
+      this.channel = null;
     }
     if (this.ws) {
       this.ws.close();
@@ -138,17 +150,6 @@ class StreamClient {
         }
       });
     }
-  }
-
-  private scheduleReconnect(): void {
-    if (this.reconnectTimer !== null) {
-      return;
-    }
-    this.reconnectTimer = window.setTimeout(() => {
-      this.reconnectTimer = null;
-      console.log('[WS] Reconnecting...');
-      this.connect();
-    }, RECONNECT_INTERVAL);
   }
 
   private getLastOffset(): number {

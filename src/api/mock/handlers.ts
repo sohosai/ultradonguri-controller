@@ -43,6 +43,7 @@ export const handlers = [
       data: body,
     });
 
+    console.log('[MSW Handler] Broadcasting event:', event);
     window.dispatchEvent(
       new CustomEvent('mock-ws-broadcast', {
         detail: event,

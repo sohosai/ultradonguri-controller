@@ -1,57 +1,34 @@
-import { Server, WebSocket } from 'mock-socket';
-import { outbox, type OutboxEvent } from './outbox';
+import type { OutboxEvent } from './outbox';
 
 /**
- * Mock WebSocket server
+ * Mock WebSocket server using BroadcastChannel
  */
 class MockWSServer {
-  private server: Server | null = null;
-  private clients = new Map<WebSocket, number>(); // WebSocket -> lastOffset
+  private channel: BroadcastChannel | null = null;
 
   start(): void {
-    if (this.server) {
+    if (this.channel) {
       console.warn('[Mock WS] Server already running');
       return;
     }
 
-    const wsUrl = import.meta.env.VITE_WS_URL || 'ws://local-mock/stream';
-    this.server = new Server(wsUrl);
-
-    this.server.on('connection', (socket) => {
-      // Parse lastOffset from query string
-      const url = new URL(socket.url);
-      const lastOffset = parseInt(url.searchParams.get('lastOffset') || '0', 10);
-
-      console.log('[Mock WS] Client connected, lastOffset:', lastOffset);
-      this.clients.set(socket, lastOffset);
-
-      // Send missed events
-      const missedEvents = outbox.getAfter(lastOffset);
-      missedEvents.forEach((event) => {
-        socket.send(JSON.stringify(event));
-      });
-
-      socket.on('close', () => {
-        console.log('[Mock WS] Client disconnected');
-        this.clients.delete(socket);
-      });
-    });
+    // Create BroadcastChannel for cross-tab communication
+    this.channel = new BroadcastChannel('mock-ws-events');
 
     // Listen for broadcast events from HTTP handlers
     window.addEventListener('mock-ws-broadcast', this.handleBroadcast);
 
-    console.log('[Mock WS] Server started at', wsUrl);
+    console.log('[Mock WS] Server started with BroadcastChannel');
   }
 
   stop(): void {
-    if (!this.server) {
+    if (!this.channel) {
       return;
     }
 
     window.removeEventListener('mock-ws-broadcast', this.handleBroadcast);
-    this.server.close();
-    this.server = null;
-    this.clients.clear();
+    this.channel.close();
+    this.channel = null;
     console.log('[Mock WS] Server stopped');
   }
 
@@ -59,14 +36,12 @@ class MockWSServer {
     const customEvent = event as CustomEvent<OutboxEvent>;
     const outboxEvent = customEvent.detail;
 
-    // Broadcast to all connected clients
-    this.clients.forEach((lastOffset, socket) => {
-      if (socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify(outboxEvent));
-        // Update client's lastOffset
-        this.clients.set(socket, outboxEvent.offset);
-      }
-    });
+    console.log('[Mock WS] Broadcasting to all tabs:', outboxEvent);
+
+    // Broadcast to all tabs via BroadcastChannel
+    if (this.channel) {
+      this.channel.postMessage(outboxEvent);
+    }
   };
 }
 
