@@ -1,0 +1,104 @@
+.copyright {
+    display: grid;
+    grid-template-rows: 34px 66px;
+    grid-template-columns: 40px 140px 40px;
+}
+
+.copyrightTitle {
+    grid-row: 1 / 2;
+	grid-column: 1 / 4;
+    text-align:center;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--color-white);
+}
+
+.ToggleTextOff {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-white);
+}
+
+.ToggleTextOn {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-white);
+}
+
+/* 既存：配置や色はそのまま */
+.toggleButton {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  text-align: center;
+
+  --switchHeight: 66px;
+  --switchWidth: 120px;
+  --switchPadding: 0.2rem;
+  --circleSize: calc(var(--switchHeight) - var(--switchPadding) * 2);
+}
+
+.switch {
+  display: inline-block;
+  position: relative;
+  width: var(--switchWidth);
+  height: var(--switchHeight);
+  border-radius: 9999px;
+}
+
+.switch > input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.slider {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-light-gray);
+  border-radius: inherit;
+  transition: 0.4s;
+  position: relative;
+}
+
+.slider::after {
+  content: '';
+  position: absolute;
+  left: var(--switchPadding);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: var(--circleSize);
+  height: var(--circleSize);
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transition: 0.4s;
+}
+
+.switch > input:checked + .slider {
+  background: var(--color-green);
+}
+
+.switch > input:checked + .slider::after {
+  left: calc(100% - var(--circleSize) - var(--switchPadding));
+}
+
+.switch > input:focus-visible + .slider {
+  outline: 2px solid rgba(0,0,0,0.25);
+  outline-offset: 2px;
+}
