@@ -11,3 +11,11 @@ export const getConversion = (index: number): Conversion => ({
   id: `conversion-${index}`,
   ...CONVERSION_DATA,
 });
+
+// IDからconversionを取得（IDフォーマットのパース処理を集約）
+export const getConversionById = (id: string): Conversion | null => {
+  const match = id.match(/^conversion-(\d+)$/);
+  if (!match) return null;
+  const index = parseInt(match[1], 10);
+  return getConversion(index);
+};

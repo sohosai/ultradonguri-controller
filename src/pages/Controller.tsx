@@ -6,7 +6,7 @@ import Menu from "../components/DetailMenu";
 import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
-import { getConversion } from "../data/conversions";
+import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 
@@ -59,9 +59,7 @@ export default function Controller() {
 
     // nextTrackがconversionの場合
     if (prevNext.type === "conversion" && prevNext.conversionId) {
-      // conversionIdからindexを抽出してgetConversionで取得
-      const index = parseInt(prevNext.conversionId.replace("conversion-", ""), 10);
-      const conversion = getConversion(index);
+      const conversion = getConversionById(prevNext.conversionId);
       setSelectedConversion(conversion);
       setSelectedPerformance(null);
     }
