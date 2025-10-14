@@ -6,6 +6,12 @@ export type Music = {
   intro: string;
 };
 
+export type Conversion = {
+  id: string;
+  title: string;
+  description?: string;
+};
+
 export type Performance = {
   id: string;
   title: string;
