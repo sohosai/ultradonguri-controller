@@ -1,9 +1,16 @@
+.musicWrapper {
+  padding: 40px;
+  border: 8px solid var(--color-surface);
+  border-radius: 40px;
+}
+
 .musics {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: calc(100vh - 60px - 20px - 150px);
+  height: calc(100vh - 60px - 20px - 150px - 80px - 16px);
   padding: 0;
+  padding-right: 20px;
   margin: 0;
   overflow-y: scroll;
   list-style: none;

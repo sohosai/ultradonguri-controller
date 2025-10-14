@@ -5,6 +5,7 @@
   width: 100%;
   height: calc(100vh - 60px - 20px - 150px);
   padding: 0;
+  padding-right: 10px;
   overflow-y: scroll;
   list-style: none;
 }
