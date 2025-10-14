@@ -12,11 +12,7 @@ export default function CopyrightToggle({ isCopyrightVisible, onChange }: Props)
       <div className={styles.ToggleTextOff}>OFF</div>
       <div className={styles.toggleButton}>
         <label className={styles.switch}>
-          <input
-            type="checkbox"
-            checked={isCopyrightVisible}
-            onChange={(e) => onChange?.(e.target.checked)}
-          />
+          <input type="checkbox" checked={isCopyrightVisible} onChange={(e) => onChange?.(e.target.checked)} />
           <span className={styles.slider} aria-hidden="true" />
         </label>
       </div>
