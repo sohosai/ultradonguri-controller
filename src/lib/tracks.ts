@@ -28,6 +28,7 @@ export const findNextTrackRef = (list: Performance[], current: TrackRef | null):
     if (r.type === "conversion" && current.type === "conversion") {
       return r.conversionId === current.conversionId;
     }
+
     return false;
   });
   if (idx < 0) return null;

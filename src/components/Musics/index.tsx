@@ -27,10 +27,7 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
       {items.map((m) => (
         <li
           key={m.id}
-          onClick={() =>
-            onSelectNextTrack && onSelectNextTrack({ type: "music", performanceId, musicId: m.id })
-          }
-        >
+          onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "music", performanceId, musicId: m.id })}>
           <MusicItem music={m} isPlaying={isPlaying(m.id)} isNext={isNext(m.id)} />
         </li>
       ))}
