@@ -5,8 +5,8 @@
   height: calc(100vh - 60px - 20px - 150px);
   padding: 30px;
   color: var(--color-white);
-  background: var(--color-surface);
-  border-radius: 10px;
+  border: 8px solid var(--color-surface);
+  border-radius: 40px;
 }
 
 .title {

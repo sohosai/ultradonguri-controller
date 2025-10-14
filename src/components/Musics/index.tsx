@@ -23,14 +23,16 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
     nextTrack?.type === "music" && nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
   return (
-    <ul className={styles.musics}>
-      {items.map((m) => (
-        <li
-          key={m.id}
-          onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "music", performanceId, musicId: m.id })}>
-          <MusicItem music={m} isPlaying={isPlaying(m.id)} isNext={isNext(m.id)} />
-        </li>
-      ))}
-    </ul>
+    <div className={styles.musicWrapper}>
+      <ul className={styles.musics}>
+        {items.map((m) => (
+          <li
+            key={m.id}
+            onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "music", performanceId, musicId: m.id })}>
+            <MusicItem music={m} isPlaying={isPlaying(m.id)} isNext={isNext(m.id)} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
