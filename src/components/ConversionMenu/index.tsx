@@ -1,18 +1,11 @@
 import styles from "./index.module.css";
 
-import type { Conversion } from "../../types/performances";
-
-type Props = {
-  conversion: Conversion;
-};
-
-export default function ConversionMenu({ conversion }: Props) {
+export default function ConversionMenu() {
   return (
     <div className={styles.conversionMenu}>
-      <h2 className={styles.title}>{conversion.title}</h2>
-      {conversion.description && <p className={styles.description}>{conversion.description}</p>}
+      <h2 className={styles.title}>Conversion</h2>
       <div className={styles.info}>
-        <p>転換中...</p>
+        <p>CM ON/OFF</p>
       </div>
     </div>
   );

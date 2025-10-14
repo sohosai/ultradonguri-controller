@@ -99,7 +99,7 @@ export default function Controller() {
                   onSelectNextTrack={handleSelectNextTrack}
                 />
               )}
-              {selectedConversion && <ConversionMenu conversion={selectedConversion} />}
+              {selectedConversion && <ConversionMenu />}
             </div>
             <Buttons onNext={handleNext} />
           </div>
