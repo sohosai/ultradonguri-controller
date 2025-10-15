@@ -21,3 +21,11 @@
   gap: 10px;
   font-size: 20px;
 }
+
+.forceMute{
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-red);
+  -webkit-text-stroke: 7px var(--color-white);
+  paint-order: stroke fill;
+}
