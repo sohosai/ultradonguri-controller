@@ -9,18 +9,18 @@ import "./styles/reset.css";
 
 // Initialize mock services if in mock mode
 async function initializeMocks() {
-  const apiMode = import.meta.env.VITE_API_MODE || 'mock';
+  const apiMode = import.meta.env.VITE_API_MODE || "mock";
 
-  if (apiMode === 'mock') {
-    const { startMSW } = await import('./api/mock/msw');
-    const { mockWSServer } = await import('./api/mock/wsServer');
+  if (apiMode === "mock") {
+    const { startMSW } = await import("./api/mock/msw");
+    const { mockWSServer } = await import("./api/mock/wsServer");
 
     await startMSW();
     mockWSServer.start();
 
-    console.log('[Mock] Mock services started');
+    console.log("[Mock] Mock services started");
   } else {
-    console.log('[Mock] Running in real mode');
+    console.log("[Mock] Running in real mode");
   }
 }
 

@@ -1,4 +1,4 @@
-import { apiFetch } from './client';
+import { apiFetch } from "./client";
 
 /**
  * Type definitions for API requests/responses
@@ -39,17 +39,15 @@ export interface ForceMuteRequest {
  * GET /performances
  */
 export async function getPerformances(): Promise<unknown> {
-  return apiFetch('/performances');
+  return apiFetch("/performances");
 }
 
 /**
  * POST /performance/start
  */
-export async function postPerformanceStart(
-  body: PerformanceStartRequest,
-): Promise<void> {
-  return apiFetch('/performance/start', {
-    method: 'POST',
+export async function postPerformanceStart(body: PerformanceStartRequest): Promise<void> {
+  return apiFetch("/performance/start", {
+    method: "POST",
     body: JSON.stringify(body),
   });
 }
@@ -57,11 +55,9 @@ export async function postPerformanceStart(
 /**
  * POST /performance/music
  */
-export async function postPerformanceMusic(
-  body: MusicRequest,
-): Promise<void> {
-  return apiFetch('/performance/music', {
-    method: 'POST',
+export async function postPerformanceMusic(body: MusicRequest): Promise<void> {
+  return apiFetch("/performance/music", {
+    method: "POST",
     body: JSON.stringify(body),
   });
 }
@@ -69,11 +65,9 @@ export async function postPerformanceMusic(
 /**
  * POST /conversion/start
  */
-export async function postConversionStart(
-  body: ConversionStartRequest,
-): Promise<void> {
-  return apiFetch('/conversion/start', {
-    method: 'POST',
+export async function postConversionStart(body: ConversionStartRequest): Promise<void> {
+  return apiFetch("/conversion/start", {
+    method: "POST",
     body: JSON.stringify(body),
   });
 }
@@ -81,11 +75,9 @@ export async function postConversionStart(
 /**
  * POST /conversion/cm-mode
  */
-export async function postConversionCmMode(
-  body: ConversionCmModeRequest,
-): Promise<void> {
-  return apiFetch('/conversion/cm-mode', {
-    method: 'POST',
+export async function postConversionCmMode(body: ConversionCmModeRequest): Promise<void> {
+  return apiFetch("/conversion/cm-mode", {
+    method: "POST",
     body: JSON.stringify(body),
   });
 }
@@ -94,8 +86,8 @@ export async function postConversionCmMode(
  * POST /force_mute
  */
 export async function postForceMute(body: ForceMuteRequest): Promise<void> {
-  return apiFetch('/force_mute', {
-    method: 'POST',
+  return apiFetch("/force_mute", {
+    method: "POST",
     body: JSON.stringify(body),
   });
 }

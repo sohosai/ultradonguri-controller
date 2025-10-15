@@ -10,11 +10,7 @@ import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 import { findNextTrackRef } from "../lib/tracks";
-import {
-  sendConversionStart,
-  sendMusic,
-  sendPerformanceStart,
-} from "../services/performanceService";
+import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
 
 import styles from "./Controller.module.css";
 
@@ -86,9 +82,7 @@ export default function Controller() {
       // prevNext(conversion)の次のトラックを計算
       const nextAfterConversion = findNextTrackRef(performances, prevNext);
       if (nextAfterConversion && nextAfterConversion.type === "music") {
-        const nextPerformance = performances.find(
-          (p) => p.id === nextAfterConversion.performanceId
-        );
+        const nextPerformance = performances.find((p) => p.id === nextAfterConversion.performanceId);
 
         if (nextPerformance) {
           await sendConversionStart(nextPerformance);

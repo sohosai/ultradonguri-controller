@@ -137,29 +137,29 @@ import {
   postConversionStart,
   postConversionCmMode,
   postForceMute,
-} from './api/http/endpoints';
+} from "./api/http/endpoints";
 
 // パフォーマンス一覧を取得
 const performances = await getPerformances();
 
 // パフォーマンス開始
 await postPerformanceStart({
-  performance: { title: '曲名', performer: '演者名' },
+  performance: { title: "曲名", performer: "演者名" },
 });
 
 // 楽曲情報を送信
 await postPerformanceMusic({
-  music: { title: '曲名', artist: 'アーティスト', should_be_muted: false },
+  music: { title: "曲名", artist: "アーティスト", should_be_muted: false },
 });
 
 // 転換開始
 await postConversionStart({
   next_performances: [
     {
-      title: '次の演目',
-      performer: '演者',
-      description: '説明',
-      starts_at: '2025-10-14T12:00:00Z',
+      title: "次の演目",
+      performer: "演者",
+      description: "説明",
+      starts_at: "2025-10-14T12:00:00Z",
     },
   ],
 });
@@ -174,14 +174,14 @@ await postForceMute({ is_muted: true });
 #### WebSocket（リアルタイム受信）
 
 ```typescript
-import { streamClient } from './api/ws/streamClient';
+import { streamClient } from "./api/ws/streamClient";
 
 // 接続開始
 streamClient.connect();
 
 // イベントハンドラーを登録
-const unsubscribe = streamClient.on('performance', (data) => {
-  console.log('パフォーマンス開始:', data);
+const unsubscribe = streamClient.on("performance", (data) => {
+  console.log("パフォーマンス開始:", data);
 });
 
 // 必要に応じて購読解除

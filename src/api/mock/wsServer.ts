@@ -1,4 +1,4 @@
-import type { OutboxEvent } from './outbox';
+import type { OutboxEvent } from "./outbox";
 
 /**
  * Mock WebSocket server using BroadcastChannel
@@ -8,17 +8,18 @@ class MockWSServer {
 
   start(): void {
     if (this.channel) {
-      console.warn('[Mock WS] Server already running');
+      console.warn("[Mock WS] Server already running");
+
       return;
     }
 
     // Create BroadcastChannel for cross-tab communication
-    this.channel = new BroadcastChannel('mock-ws-events');
+    this.channel = new BroadcastChannel("mock-ws-events");
 
     // Listen for broadcast events from HTTP handlers
-    window.addEventListener('mock-ws-broadcast', this.handleBroadcast);
+    window.addEventListener("mock-ws-broadcast", this.handleBroadcast);
 
-    console.log('[Mock WS] Server started with BroadcastChannel');
+    console.log("[Mock WS] Server started with BroadcastChannel");
   }
 
   stop(): void {
@@ -26,17 +27,17 @@ class MockWSServer {
       return;
     }
 
-    window.removeEventListener('mock-ws-broadcast', this.handleBroadcast);
+    window.removeEventListener("mock-ws-broadcast", this.handleBroadcast);
     this.channel.close();
     this.channel = null;
-    console.log('[Mock WS] Server stopped');
+    console.log("[Mock WS] Server stopped");
   }
 
   private handleBroadcast = (event: Event): void => {
     const customEvent = event as CustomEvent<OutboxEvent>;
     const outboxEvent = customEvent.detail;
 
-    console.log('[Mock WS] Broadcasting to all tabs:', outboxEvent);
+    console.log("[Mock WS] Broadcasting to all tabs:", outboxEvent);
 
     // Broadcast to all tabs via BroadcastChannel
     if (this.channel) {

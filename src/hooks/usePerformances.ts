@@ -17,7 +17,7 @@ export default function usePerformances(): UsePerformancesResult {
       const data = await getPerformances();
       setPerformances(data as Performance[]);
     } catch (e) {
-      console.error('[usePerformances] Failed to fetch:', e);
+      console.error("[usePerformances] Failed to fetch:", e);
       setPerformances([]);
     }
   }, []);

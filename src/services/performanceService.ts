@@ -1,16 +1,11 @@
-import type { Music, Performance } from '../types/performances';
-import {
-  postConversionStart,
-  postPerformanceMusic,
-  postPerformanceStart,
-} from '../api/http/endpoints';
+import { postConversionStart, postPerformanceMusic, postPerformanceStart } from "../api/http/endpoints";
+
+import type { Music, Performance } from "../types/performances";
 
 /**
  * パフォーマンス開始をPOST
  */
-export async function sendPerformanceStart(
-  performance: Performance,
-): Promise<void> {
+export async function sendPerformanceStart(performance: Performance): Promise<void> {
   try {
     await postPerformanceStart({
       performance: {
@@ -19,7 +14,7 @@ export async function sendPerformanceStart(
       },
     });
   } catch (error) {
-    console.error('[PerformanceService] Failed to post performance/start:', error);
+    console.error("[PerformanceService] Failed to post performance/start:", error);
     throw error;
   }
 }
@@ -37,7 +32,7 @@ export async function sendMusic(music: Music): Promise<void> {
       },
     });
   } catch (error) {
-    console.error('[PerformanceService] Failed to post performance/music:', error);
+    console.error("[PerformanceService] Failed to post performance/music:", error);
     throw error;
   }
 }
@@ -45,9 +40,7 @@ export async function sendMusic(music: Music): Promise<void> {
 /**
  * 転換開始をPOST
  */
-export async function sendConversionStart(
-  nextPerformance: Performance,
-): Promise<void> {
+export async function sendConversionStart(nextPerformance: Performance): Promise<void> {
   try {
     await postConversionStart({
       next_performances: [
@@ -60,7 +53,7 @@ export async function sendConversionStart(
       ],
     });
   } catch (error) {
-    console.error('[PerformanceService] Failed to post conversion/start:', error);
+    console.error("[PerformanceService] Failed to post conversion/start:", error);
     throw error;
   }
 }

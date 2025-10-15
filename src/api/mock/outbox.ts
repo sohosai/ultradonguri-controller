@@ -23,6 +23,7 @@ class Outbox {
       offset: this.currentOffset,
     };
     this.events.push(outboxEvent);
+
     return outboxEvent;
   }
 
