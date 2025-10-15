@@ -25,7 +25,7 @@ export interface ConversionStartRequest {
     title: string;
     performer: string;
     description: string;
-    starts_at: string; // timestamp
+    starts_at: string;
   }>;
 }
 
