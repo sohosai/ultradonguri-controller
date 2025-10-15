@@ -6,6 +6,7 @@ import Menu from "../components/DetailMenu";
 import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
+import { postForceMute } from "../api/http/endpoints";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
@@ -24,6 +25,20 @@ export default function Controller() {
   const [error, setError] = useState<string | null>(null);
   const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
+
+  // 初期化時にforce muteをfalseに設定
+  useEffect(() => {
+    const initializeForceMute = async () => {
+      try {
+        await postForceMute({ is_muted: false });
+        setIsForceMuted(false);
+      } catch (error) {
+        console.error("[Controller] Failed to initialize force mute:", error);
+      }
+    };
+
+    initializeForceMute();
+  }, []);
 
   useEffect(() => {
     if (performances === null) return;
