@@ -10,7 +10,7 @@ type ConversionSceneProps = {
   nextPerformances: NextPerformance[];
 };
 
-const SWITCH_INTERVAL = 7000; // 7秒ごとに切り替え
+const SWITCH_INTERVAL = 10000; // 10秒ごとに切り替え
 
 export default function ConversionScene({ nextPerformances }: ConversionSceneProps) {
   const [showDetail, setShowDetail] = useState(false);
