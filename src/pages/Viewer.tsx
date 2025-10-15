@@ -56,7 +56,14 @@ export default function Viewer() {
   }, []);
 
   if (currentScene === "performance") {
-    return <PerformanceScene performer={performer} musicTitle={musicTitle} musicArtist={musicArtist} shouldBeMuted={shouldBeMuted} />;
+    return (
+      <PerformanceScene
+        performer={performer}
+        musicTitle={musicTitle}
+        musicArtist={musicArtist}
+        shouldBeMuted={shouldBeMuted}
+      />
+    );
   }
 
   if (currentScene === "conversion") {

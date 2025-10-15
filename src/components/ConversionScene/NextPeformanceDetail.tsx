@@ -1,6 +1,6 @@
-import type { NextPerformance } from "../../types/performances";
-
 import styles from "./NextPerformanceDetail.module.css";
+
+import type { NextPerformance } from "../../types/performances";
 
 type ConversionSceneProps = {
   nextPerformances: NextPerformance[];
