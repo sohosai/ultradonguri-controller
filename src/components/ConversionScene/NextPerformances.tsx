@@ -7,6 +7,10 @@ type ConversionSceneProps = {
 };
 
 export default function NextPerformances({ nextPerformances }: ConversionSceneProps) {
+  if (nextPerformances.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles.container}>
       {nextPerformances.slice(0, 3).map((performance, index) => (

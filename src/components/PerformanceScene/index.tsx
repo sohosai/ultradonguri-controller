@@ -8,8 +8,6 @@ type PerformanceSceneProps = {
 };
 
 export default function PerformanceScene({ performer, musicTitle, musicArtist, shouldBeMuted }: PerformanceSceneProps) {
-  console.log("[PerformanceScene] shouldBeMuted:", shouldBeMuted, typeof shouldBeMuted);
-
   return (
     <div className={styles.container}>
       {performer && <div className={styles.performer}>{performer}</div>}

@@ -7,6 +7,10 @@ type ConversionSceneProps = {
 };
 
 export default function NextPerformanceDetail({ nextPerformances }: ConversionSceneProps) {
+  if (nextPerformances.length === 0) {
+    return null;
+  }
+
   const performance = nextPerformances[0];
 
   return (

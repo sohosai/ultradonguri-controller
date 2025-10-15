@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import styles from "./index.module.css";
-import NextPerformanceDetail from "./NextPeformanceDetail";
+import NextPerformanceDetail from "./NextPerformanceDetail";
 import NextPerformances from "./NextPerformances";
 
 import type { NextPerformance } from "../../types/performances";
