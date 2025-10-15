@@ -40,17 +40,15 @@ export async function sendMusic(music: Music): Promise<void> {
 /**
  * 転換開始をPOST
  */
-export async function sendConversionStart(nextPerformance: Performance): Promise<void> {
+export async function sendConversionStart(nextPerformances: Performance[]): Promise<void> {
   try {
     await postConversionStart({
-      next_performances: [
-        {
-          title: nextPerformance.title,
-          performer: nextPerformance.performer,
-          description: nextPerformance.description,
-          starts_at: nextPerformance.starts_at,
-        },
-      ],
+      next_performances: nextPerformances.map((perf) => ({
+        title: perf.title,
+        performer: perf.performer,
+        description: perf.description,
+        starts_at: perf.starts_at,
+      })),
     });
   } catch (error) {
     console.error("[PerformanceService] Failed to post conversion/start:", error);
