@@ -18,9 +18,10 @@ import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
 export default function Controller() {
-  const { performances } = usePerformances();
+  const { performances, isLoading, error: fetchError } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
 
   useEffect(() => {
@@ -35,9 +36,14 @@ export default function Controller() {
       const firstMusic = firstPerformance.musics[0];
 
       const sendInitialData = async () => {
-        await sendPerformanceStart(firstPerformance);
-        if (firstMusic) {
-          await sendMusic(firstMusic);
+        try {
+          await sendPerformanceStart(firstPerformance);
+          if (firstMusic) {
+            await sendMusic(firstMusic);
+          }
+        } catch (error) {
+          console.error("[Controller] Failed to send initial data:", error);
+          setError("初期データの送信に失敗しました");
         }
       };
 
@@ -49,6 +55,8 @@ export default function Controller() {
     }
   }, [performances, initializeFromFirst, reset]);
 
+  if (isLoading) return <div>読み込み中...</div>;
+  if (fetchError) return <div>エラー: {fetchError.message}</div>;
   if (!performances) return <div>データが見つかりません。</div>;
 
   const handleSelectNextTrack = (ref: TrackRef) => {
@@ -69,43 +77,56 @@ export default function Controller() {
     if (!performances) return;
     if (!nextTrack) return;
     const prevNext = nextTrack;
-    // 再生ポインタを進める
-    skipToNext(performances);
 
-    // nextTrackがconversionの場合
-    if (prevNext.type === "conversion" && prevNext.conversionId) {
-      const conversion = getConversionById(prevNext.conversionId);
-      setSelectedConversion(conversion);
-      setSelectedPerformance(null);
+    try {
+      // nextTrackがconversionの場合
+      if (prevNext.type === "conversion" && prevNext.conversionId) {
+        const conversion = getConversionById(prevNext.conversionId);
 
-      // POST /conversion/start
-      // prevNext(conversion)の次のトラックを計算
-      const nextAfterConversion = findNextTrackRef(performances, prevNext);
-      if (nextAfterConversion && nextAfterConversion.type === "music") {
-        const nextPerformance = performances.find((p) => p.id === nextAfterConversion.performanceId);
+        // POST /conversion/start
+        // prevNext(conversion)の次のトラックを計算
+        const nextAfterConversion = findNextTrackRef(performances, prevNext);
+        if (nextAfterConversion && nextAfterConversion.type === "music") {
+          const nextPerformance = performances.find((p) => p.id === nextAfterConversion.performanceId);
 
-        if (nextPerformance) {
-          await sendConversionStart(nextPerformance);
+          if (nextPerformance) {
+            await sendConversionStart(nextPerformance);
+          }
         }
-      }
-    }
-    // nextTrackがmusicの場合
-    else if (prevNext.type === "music") {
-      const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
-      const music = newPlayingPerf?.musics.find((m) => m.id === prevNext.musicId);
 
-      if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
-        setSelectedPerformance(newPlayingPerf);
-        setSelectedConversion(null);
+        // API成功後に状態を更新
+        skipToNext(performances);
+        setSelectedConversion(conversion);
+        setSelectedPerformance(null);
+        setError(null);
+      }
+      // nextTrackがmusicの場合
+      else if (prevNext.type === "music") {
+        const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
+        const music = newPlayingPerf?.musics.find((m) => m.id === prevNext.musicId);
 
         // POST /performance/start (パフォーマンスが変わった時のみ)
-        await sendPerformanceStart(newPlayingPerf);
-      }
+        if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
+          await sendPerformanceStart(newPlayingPerf);
+        }
 
-      // POST /performance/music
-      if (music) {
-        await sendMusic(music);
+        // POST /performance/music
+        if (music) {
+          await sendMusic(music);
+        }
+
+        // API成功後に状態を更新
+        skipToNext(performances);
+        if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
+          setSelectedPerformance(newPlayingPerf);
+          setSelectedConversion(null);
+        }
+        setError(null);
       }
+    } catch (error) {
+      console.error("[Controller] Failed to proceed to next track:", error);
+      setError("次のトラックへの移動に失敗しました");
+      // エラー時は状態を更新しない（前の状態を維持）
     }
   };
 
@@ -113,6 +134,11 @@ export default function Controller() {
     <div>
       <Header />
       <main>
+        {error && (
+          <div style={{ padding: "1rem", backgroundColor: "#fee", color: "#c00", marginBottom: "1rem" }}>
+            エラー: {error}
+          </div>
+        )}
         <div className={styles.row}>
           <div className={styles.rowLeft}>
             <Performances

@@ -1,5 +1,7 @@
 import { apiFetch } from "./client";
 
+import type { Performance } from "../../types/performances";
+
 /**
  * Type definitions for API requests/responses
  */
@@ -38,8 +40,8 @@ export interface ForceMuteRequest {
 /**
  * GET /performances
  */
-export async function getPerformances(): Promise<unknown> {
-  return apiFetch("/performances");
+export async function getPerformances(): Promise<Performance[]> {
+  return apiFetch<Performance[]>("/performances");
 }
 
 /**

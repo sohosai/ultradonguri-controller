@@ -17,9 +17,9 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
   }
 
-  // For responses with no content (204, etc.), return null
+  // For responses with no content (204, etc.), return undefined for void types
   if (response.status === 204 || response.headers.get("content-length") === "0") {
-    return null as T;
+    return undefined as T;
   }
 
   return response.json();
