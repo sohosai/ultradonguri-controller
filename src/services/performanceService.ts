@@ -1,0 +1,59 @@
+import { postConversionStart, postPerformanceMusic, postPerformanceStart } from "../api/http/endpoints";
+
+import type { Music, Performance } from "../types/performances";
+
+/**
+ * パフォーマンス開始をPOST
+ */
+export async function sendPerformanceStart(performance: Performance): Promise<void> {
+  try {
+    await postPerformanceStart({
+      performance: {
+        title: performance.title,
+        performer: performance.performer,
+      },
+    });
+  } catch (error) {
+    console.error("[PerformanceService] Failed to post performance/start:", error);
+    throw error;
+  }
+}
+
+/**
+ * 楽曲情報をPOST
+ */
+export async function sendMusic(music: Music): Promise<void> {
+  try {
+    await postPerformanceMusic({
+      music: {
+        title: music.title,
+        artist: music.artist,
+        should_be_muted: music.should_be_muted,
+      },
+    });
+  } catch (error) {
+    console.error("[PerformanceService] Failed to post performance/music:", error);
+    throw error;
+  }
+}
+
+/**
+ * 転換開始をPOST
+ */
+export async function sendConversionStart(nextPerformance: Performance): Promise<void> {
+  try {
+    await postConversionStart({
+      next_performances: [
+        {
+          title: nextPerformance.title,
+          performer: nextPerformance.performer,
+          description: nextPerformance.description,
+          starts_at: nextPerformance.starts_at,
+        },
+      ],
+    });
+  } catch (error) {
+    console.error("[PerformanceService] Failed to post conversion/start:", error);
+    throw error;
+  }
+}
