@@ -21,7 +21,7 @@ export default function MusicItem({ music, isPlaying = false, isNext = false }: 
       <div className={styles.should_be_muted}>
         配信
         <br />
-        {music.should_be_muted ? "○" : "×"}
+        {music.should_be_muted ? "✕" : "○"}
       </div>
       <div className={styles.title}>{music.title}</div>
       <div className={styles.artist}>{music.artist}</div>
