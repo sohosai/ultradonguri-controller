@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 
 type Props = {
   isCopyrightVisible: boolean;
-  onCopyrightVisibleChange?: (v: boolean) => void;
+  onCopyrightVisibleChange: (v: boolean) => void;
   onNext?: () => void;
 };
 
