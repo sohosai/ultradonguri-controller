@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { postForceMute } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import Menu from "../components/DetailMenu";
@@ -22,7 +23,22 @@ export default function Controller() {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
+
+  // 初期化時にforce muteをfalseに設定
+  useEffect(() => {
+    const initializeForceMute = async () => {
+      try {
+        await postForceMute({ is_muted: false });
+        setIsForceMuted(false);
+      } catch (error) {
+        console.error("[Controller] Failed to initialize force mute:", error);
+      }
+    };
+
+    initializeForceMute();
+  }, []);
 
   useEffect(() => {
     if (performances === null) return;
@@ -134,7 +150,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header />
+      <Header isForceMuted={isForceMuted} />
       <main>
         {error && (
           <div style={{ padding: "1rem", backgroundColor: "#fee", color: "#c00", marginBottom: "1rem" }}>
@@ -165,7 +181,7 @@ export default function Controller() {
               )}
               {selectedConversion && <ConversionMenu />}
             </div>
-            <Buttons onNext={handleNext} />
+            <Buttons onNext={handleNext} isForceMuted={isForceMuted} onForceMuteChange={setIsForceMuted} />
           </div>
         </div>
       </main>

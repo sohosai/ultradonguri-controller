@@ -1,9 +1,17 @@
 import { useState } from "react";
 
+import { postForceMute } from "../../api/http/endpoints";
+
 import styles from "./index.module.css";
 
-export default function ForceMute() {
+type Props = {
+  isForceMuted: boolean;
+  onForceMuteChange: (isMuted: boolean) => void;
+};
+
+export default function ForceMute({ isForceMuted, onForceMuteChange }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -13,25 +21,43 @@ export default function ForceMute() {
     setIsModalOpen(false);
   };
 
+  const handleMuteToggle = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const newMuteState = !isForceMuted;
+      await postForceMute({ is_muted: newMuteState });
+      onForceMuteChange(newMuteState);
+      closeModal();
+    } catch (error) {
+      console.error("[ForceMute] Failed to toggle force mute:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <div className={styles.tigerStripe}>
         <div className={styles.forceMute}>
           強制
           <br />
-          ミュート
+          {isForceMuted ? "ミュート解除" : "ミュート"}
           <div className={styles.glass} onClick={openModal}></div>
         </div>
       </div>
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <p>確認:ミュートしますか？</p>
+            <p>確認:{isForceMuted ? "ミュートを解除" : "ミュート"}しますか？</p>
             <div className={styles.modalButtons}>
               <button className={styles.closeButton} onClick={closeModal}>
                 キャンセル
               </button>
-              <button className={styles.muteButton}>ミュート</button>
+              <button className={styles.muteButton} onClick={handleMuteToggle} disabled={isSubmitting}>
+                {isForceMuted ? "解除" : "ミュート"}
+              </button>
             </div>
           </div>
         </div>
