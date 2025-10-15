@@ -9,6 +9,11 @@ import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
+import {
+  sendConversionStart,
+  sendMusic,
+  sendPerformanceStart,
+} from "../services/performanceService";
 
 import styles from "./Controller.module.css";
 
@@ -27,6 +32,19 @@ export default function Controller() {
       setSelectedPerformance(performances[0]);
       setSelectedConversion(null);
       initializeFromFirst(performances);
+
+      // 最初のパフォーマンスと最初の曲をPOST
+      const firstPerformance = performances[0];
+      const firstMusic = firstPerformance.musics[0];
+
+      const sendInitialData = async () => {
+        await sendPerformanceStart(firstPerformance);
+        if (firstMusic) {
+          await sendMusic(firstMusic);
+        }
+      };
+
+      sendInitialData();
     } else {
       setSelectedPerformance(null);
       setSelectedConversion(null);
@@ -50,7 +68,7 @@ export default function Controller() {
     setSelectedPerformance(null);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!performances) return;
     if (!nextTrack) return;
     const prevNext = nextTrack;
@@ -62,13 +80,34 @@ export default function Controller() {
       const conversion = getConversionById(prevNext.conversionId);
       setSelectedConversion(conversion);
       setSelectedPerformance(null);
+
+      // POST /conversion/start
+      // 現在のパフォーマンスのインデックスを取得して次のパフォーマンスを探す
+      const currentIndex = performances.findIndex(
+        (p) => p.id === selectedPerformance?.id
+      );
+      const nextPerformance = currentIndex >= 0 ? performances[currentIndex + 1] : undefined;
+
+      if (nextPerformance) {
+        await sendConversionStart(nextPerformance);
+      }
     }
     // nextTrackがmusicの場合
     else if (prevNext.type === "music") {
       const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
+      const music = newPlayingPerf?.musics.find((m) => m.id === prevNext.musicId);
+
       if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
         setSelectedPerformance(newPlayingPerf);
         setSelectedConversion(null);
+
+        // POST /performance/start (パフォーマンスが変わった時のみ)
+        await sendPerformanceStart(newPlayingPerf);
+      }
+
+      // POST /performance/music
+      if (music) {
+        await sendMusic(music);
       }
     }
   };
