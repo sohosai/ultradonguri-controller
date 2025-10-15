@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { streamClient } from "../api/ws/streamClient";
-import PerformanceScene from "../components/PerformanceScene";
 import ConversionScene from "../components/ConversionScene";
+import PerformanceScene from "../components/PerformanceScene";
+
 import type { Performance, Music, NextPerformance } from "../types/performances";
 
 type SceneType = "performance" | "conversion" | null;

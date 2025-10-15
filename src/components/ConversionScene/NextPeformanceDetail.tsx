@@ -6,6 +6,7 @@ type ConversionSceneProps = {
 
 export default function NextPerformanceDetail({ nextPerformances }: ConversionSceneProps) {
   const performance = nextPerformances[0];
+
   return (
     <div>
       <div>{performance.title}</div>
