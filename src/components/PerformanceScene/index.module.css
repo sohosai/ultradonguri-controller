@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.performer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.musicTitle {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.shouldBeMuted {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

@@ -3,17 +3,32 @@ import { useEffect, useState } from "react";
 import { streamClient } from "../api/ws/streamClient";
 import PerformanceScene from "../components/PerformanceScene";
 import ConversionScene from "../components/ConversionScene";
+import type { Performance, Music } from "../types/performances";
 
 type SceneType = "performance" | "conversion" | null;
 
 export default function Viewer() {
   const [currentScene, setCurrentScene] = useState<SceneType>(null);
+  const [performer, setPerformer] = useState<string | null>(null);
+  const [musicTitle, setMusicTitle] = useState<string | null>(null);
+  const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
 
   useEffect(() => {
     streamClient.connect();
 
-    const handlePerformance = () => setCurrentScene("performance");
-    const handleMusic = () => setCurrentScene("performance");
+    const handlePerformance = (data: unknown) => {
+      setCurrentScene("performance");
+      const payload = data as { performance: Performance };
+      setPerformer(payload.performance.performer);
+    };
+
+    const handleMusic = (data: unknown) => {
+      setCurrentScene("performance");
+      const payload = data as { music: Music };
+      setMusicTitle(payload.music.title);
+      setShouldBeMuted(payload.music.should_be_muted);
+    };
+
     const handleConversionStart = () => setCurrentScene("conversion");
     const handleCmMode = () => setCurrentScene("conversion");
 
@@ -32,7 +47,7 @@ export default function Viewer() {
   }, []);
 
   if (currentScene === "performance") {
-    return <PerformanceScene />;
+    return <PerformanceScene performer={performer} musicTitle={musicTitle} shouldBeMuted={shouldBeMuted} />;
   }
 
   if (currentScene === "conversion") {
