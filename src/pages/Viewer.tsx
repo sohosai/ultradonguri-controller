@@ -1,37 +1,74 @@
 import { useEffect, useState } from "react";
 
 import { streamClient } from "../api/ws/streamClient";
+import ConversionScene from "../components/ConversionScene";
+import PerformanceScene from "../components/PerformanceScene";
+
+import type { Performance, Music, NextPerformance } from "../types/performances";
+
+type SceneType = "performance" | "conversion" | null;
 
 export default function Viewer() {
-  const [lastEvent, setLastEvent] = useState<{ type: string; data: unknown } | null>(null);
+  const [currentScene, setCurrentScene] = useState<SceneType>(null);
+  const [performer, setPerformer] = useState<string | null>(null);
+  const [musicTitle, setMusicTitle] = useState<string | null>(null);
+  const [musicArtist, setMusicArtist] = useState<string | null>(null);
+  const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
+  const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
 
   useEffect(() => {
     streamClient.connect();
 
-    const handleEvent = (type: string) => (data: unknown) => {
-      setLastEvent({ type, data });
+    const handlePerformance = (data: unknown) => {
+      setCurrentScene("performance");
+      const payload = data as { performance: Performance };
+      setPerformer(payload.performance.performer);
     };
 
-    const unsubPerformance = streamClient.on("performance", handleEvent("performance"));
-    const unsubMusic = streamClient.on("music", handleEvent("music"));
-    const unsubConversion = streamClient.on("conversion/start", handleEvent("conversion/start"));
-    const unsubCmMode = streamClient.on("conversion/cm-mode", handleEvent("conversion/cm-mode"));
-    const unsubForceMute = streamClient.on("force_mute", handleEvent("force_mute"));
+    const handleMusic = (data: unknown) => {
+      setCurrentScene("performance");
+      const payload = data as { music: Music };
+      setMusicTitle(payload.music.title);
+      setMusicArtist(payload.music.artist);
+      setShouldBeMuted(payload.music.should_be_muted);
+    };
+
+    const handleConversionStart = (data: unknown) => {
+      setCurrentScene("conversion");
+      const payload = data as { next_performances: NextPerformance[] };
+      setNextPerformances(payload.next_performances || []);
+    };
+
+    const handleCmMode = () => setCurrentScene("conversion");
+
+    const unsubPerformance = streamClient.on("performance", handlePerformance);
+    const unsubMusic = streamClient.on("music", handleMusic);
+    const unsubConversion = streamClient.on("conversion/start", handleConversionStart);
+    const unsubCmMode = streamClient.on("conversion/cm-mode", handleCmMode);
 
     return () => {
       unsubPerformance();
       unsubMusic();
       unsubConversion();
       unsubCmMode();
-      unsubForceMute();
       streamClient.disconnect();
     };
   }, []);
 
-  return (
-    <div>
-      <h1>Viewer</h1>
-      {lastEvent ? <pre>{JSON.stringify(lastEvent, null, 2)}</pre> : <p>待機中...</p>}
-    </div>
-  );
+  if (currentScene === "performance") {
+    return (
+      <PerformanceScene
+        performer={performer}
+        musicTitle={musicTitle}
+        musicArtist={musicArtist}
+        shouldBeMuted={shouldBeMuted}
+      />
+    );
+  }
+
+  if (currentScene === "conversion") {
+    return <ConversionScene nextPerformances={nextPerformances} />;
+  }
+
+  return <div>待機中...</div>;
 }
