@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { streamClient } from "../api/ws/streamClient";
 import PerformanceScene from "../components/PerformanceScene";
 import ConversionScene from "../components/ConversionScene";
-import type { Performance, Music } from "../types/performances";
+import type { Performance, Music, NextPerformance } from "../types/performances";
 
 type SceneType = "performance" | "conversion" | null;
 
@@ -12,6 +12,7 @@ export default function Viewer() {
   const [performer, setPerformer] = useState<string | null>(null);
   const [musicTitle, setMusicTitle] = useState<string | null>(null);
   const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
+  const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
 
   useEffect(() => {
     streamClient.connect();
@@ -29,7 +30,12 @@ export default function Viewer() {
       setShouldBeMuted(payload.music.should_be_muted);
     };
 
-    const handleConversionStart = () => setCurrentScene("conversion");
+    const handleConversionStart = (data: unknown) => {
+      setCurrentScene("conversion");
+      const payload = data as { next_performances: NextPerformance[] };
+      setNextPerformances(payload.next_performances || []);
+    };
+
     const handleCmMode = () => setCurrentScene("conversion");
 
     const unsubPerformance = streamClient.on("performance", handlePerformance);
@@ -51,7 +57,7 @@ export default function Viewer() {
   }
 
   if (currentScene === "conversion") {
-    return <ConversionScene />;
+    return <ConversionScene nextPerformances={nextPerformances} />;
   }
 
   return <div>待機中...</div>;

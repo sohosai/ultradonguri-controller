@@ -21,3 +21,10 @@ export type Performance = {
   ends_at: string;
   musics: Music[];
 };
+
+export type NextPerformance = {
+  title: string;
+  performer: string;
+  description: string;
+  starts_at: string;
+};
