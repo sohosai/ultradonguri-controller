@@ -8,7 +8,7 @@ export default function NextPerformances({ nextPerformances }: ConversionScenePr
   return (
     <div>
       <div>
-        {nextPerformances.map((performance, index) => (
+        {nextPerformances.slice(0, 3).map((performance, index) => (
           <div key={index}>
             <div>{performance.title}</div>
             <div>{performance.performer}</div>

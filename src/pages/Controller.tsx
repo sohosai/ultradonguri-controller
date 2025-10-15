@@ -84,14 +84,14 @@ export default function Controller() {
         const conversion = getConversionById(prevNext.conversionId);
 
         // POST /conversion/start
-        // prevNext(conversion)の次のトラックを計算して、続く3つのパフォーマンスを取得
+        // prevNext(conversion)の次のトラックを計算して、続く5つのパフォーマンスを取得
         const nextAfterConversion = findNextTrackRef(performances, prevNext);
         if (nextAfterConversion && nextAfterConversion.type === "music") {
           const nextPerformanceIndex = performances.findIndex((p) => p.id === nextAfterConversion.performanceId);
 
           if (nextPerformanceIndex >= 0) {
-            // 続く3つのパフォーマンスを取得（最大3つ）
-            const nextPerformances = performances.slice(nextPerformanceIndex, nextPerformanceIndex + 3);
+            // 続く5つのパフォーマンスを取得（最大5つ）
+            const nextPerformances = performances.slice(nextPerformanceIndex, nextPerformanceIndex + 5);
             await sendConversionStart(nextPerformances);
           }
         }
