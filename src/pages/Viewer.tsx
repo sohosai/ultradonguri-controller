@@ -12,6 +12,7 @@ export default function Viewer() {
   const [currentScene, setCurrentScene] = useState<SceneType>(null);
   const [performer, setPerformer] = useState<string | null>(null);
   const [musicTitle, setMusicTitle] = useState<string | null>(null);
+  const [musicArtist, setMusicArtist] = useState<string | null>(null);
   const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
   const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
 
@@ -28,6 +29,7 @@ export default function Viewer() {
       setCurrentScene("performance");
       const payload = data as { music: Music };
       setMusicTitle(payload.music.title);
+      setMusicArtist(payload.music.artist);
       setShouldBeMuted(payload.music.should_be_muted);
     };
 
@@ -54,7 +56,7 @@ export default function Viewer() {
   }, []);
 
   if (currentScene === "performance") {
-    return <PerformanceScene performer={performer} musicTitle={musicTitle} shouldBeMuted={shouldBeMuted} />;
+    return <PerformanceScene performer={performer} musicTitle={musicTitle} musicArtist={musicArtist} shouldBeMuted={shouldBeMuted} />;
   }
 
   if (currentScene === "conversion") {
