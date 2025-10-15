@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   width: 100%;
   height: 60px;
   font-size: 25px;
@@ -14,6 +15,12 @@
   padding: 0;
   margin: 0 auto;
   list-style: none;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .list > li > ul {
