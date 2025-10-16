@@ -1,3 +1,4 @@
+import Clock from "./clock.tsx";
 import styles from "./index.module.css";
 
 export default function Header() {
@@ -8,7 +9,9 @@ export default function Header() {
         <li>
           <ul>
             <li>5min押し</li>
-            <li>12:34</li>
+            <li>
+              <Clock />
+            </li>
           </ul>
         </li>
       </ul>
