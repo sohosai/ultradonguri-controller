@@ -67,9 +67,9 @@
   },
   {
     "id": "4a0b7d3e-8d4f-4958-a1f9-6f2d8e7c1b22",
-    "title": "Rock Night",
-    "performer": "The Wild Guitars",
-    "description": "熱狂的なロックナイト！",
+    "title": "そぽたん、マジシャンになる★",
+    "performer": "筑波大学 雙峰祭マスコットキャラクター  そぽたん",
+    "description": "そぽたんの新たな一面が見れるかも !! この瞬間を見逃すな！ここでは企画の紹介が入ります",
     "starts_at": "20:00",
     "ends_at": "22:00",
     "musics": [
@@ -133,7 +133,7 @@
   },
   {
     "id": "5b1c8e4f-9e50-4a6a-b2c0-7a3e9f8d2c33",
-    "title": "Classical Morning",
+    "title": "基調演説「近年の学園祭について」",
     "performer": "Tsukuba Philharmonic",
     "description": "朝にぴったりのクラシックコンサート。",
     "starts_at": "09:00",
@@ -199,7 +199,7 @@
   },
   {
     "id": "6c2d9f50-af61-4b7b-83d1-8b4f0a9c3d44",
-    "title": "Pop Vibes",
+    "title": "機材整理ショー",
     "performer": "Shiny Beats",
     "description": "最新のポップソングを届けます！",
     "starts_at": "15:00",

@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.performer {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  padding: 15px 15px 15px 40px;
+  font-size: 25px;
+  background: var(--color-light-gray);
+  border-radius: 40px 0 0 40px;
+}
+
+.musicTitle {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  font-size: 20px;
+  color: var(--color-black);
+  text-shadow:
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white);
+}
+
+.shouldBeMuted {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  font-size: 16px;
+  color: var(--color-black);
+  text-shadow:
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white),
+    0 0 10px var(--color-white);
+}
