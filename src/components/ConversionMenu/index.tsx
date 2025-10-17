@@ -8,9 +8,7 @@ export default function ConversionMenu() {
       <h2 className={styles.title}>Conversion</h2>
       <div className={styles.info}>
         <p>CM</p>
-        <p>
-          <Toggle />
-        </p>
+        <Toggle />
       </div>
     </div>
   );
