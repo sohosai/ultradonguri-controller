@@ -1,0 +1,14 @@
+.toggleRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyrightTitle {
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-white);
+  text-align: center;
+}
