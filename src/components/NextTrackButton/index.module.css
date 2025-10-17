@@ -1,16 +1,14 @@
 .nextTrackButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   width: 180px;
   height: 90px;
-  background: var(--color-green);
-  border-radius: 9999px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: var(--color-white);
   font-size: 24px;
   font-weight: bold;
-  outline-color: var(--color-white);
-  outline-style: solid;
-  outline-width: 5px;
+  color: var(--color-white);
   cursor: pointer;
+  outline: var(--color-white) solid 5px;
+  background: var(--color-green);
+  border-radius: 9999px;
 }
