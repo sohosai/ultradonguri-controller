@@ -1,3 +1,4 @@
+import Clock from "./clock.tsx";
 import styles from "./index.module.css";
 
 type Props = {
@@ -10,8 +11,10 @@ export default function Header({ isForceMuted }: Props) {
       <ul className={styles.list}>
         <li>
           <ul>
-            <li>12:34</li>
             <li>5min押し</li>
+            <li>
+              <Clock />
+            </li>
           </ul>
         </li>
         <li className={styles.logo}>Ultradonguri</li>

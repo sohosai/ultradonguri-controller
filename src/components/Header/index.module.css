@@ -36,3 +36,7 @@
   -webkit-text-stroke: 7px var(--color-white);
   paint-order: stroke fill;
 }
+
+.clock {
+  font-weight: bold;
+}
