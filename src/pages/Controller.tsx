@@ -27,7 +27,6 @@ export default function Controller() {
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const isInitialized = useRef(false);
 
-  // 初期化時にforce muteをfalseに設定
   useEffect(() => {
     const initializeForceMute = async () => {
       try {
@@ -38,29 +37,29 @@ export default function Controller() {
       }
     };
 
-    initializeForceMute();
+    void initializeForceMute();
   }, []);
 
   useEffect(() => {
     if (!performances) return;
 
-    // 初回ロード時
     if (!isInitialized.current) {
       if (performances.length === 0) {
         setSelectedPerformance(null);
         setSelectedConversion(null);
         reset();
+
         return;
       }
 
-      const firstPerformance = performances[0];
-      const firstMusic = firstPerformance.musics[0];
+      const initializePerformances = async () => {
+        const firstPerformance = performances[0];
+        const firstMusic = firstPerformance.musics[0];
 
-      setSelectedPerformance(firstPerformance);
-      setSelectedConversion(null);
-      initializeFromFirst(performances);
+        setSelectedPerformance(firstPerformance);
+        setSelectedConversion(null);
+        initializeFromFirst(performances);
 
-      const sendInitialData = async () => {
         try {
           await sendPerformanceStart(firstPerformance);
           if (firstMusic) await sendMusic(firstMusic);
@@ -70,12 +69,12 @@ export default function Controller() {
         }
       };
 
-      sendInitialData();
+      void initializePerformances();
       isInitialized.current = true;
+
       return;
     }
 
-    // refresh時: 選択中のパフォーマンスを更新
     if (selectedPerformance) {
       const updated = performances.find((p) => p.id === selectedPerformance.id);
       if (updated) setSelectedPerformance(updated);

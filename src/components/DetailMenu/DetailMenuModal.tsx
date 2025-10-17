@@ -27,12 +27,15 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     }
   }, [performances]);
 
-  // 選択された楽曲が変更されたら、編集フォームの値を更新
+  const resetEditForm = (music: Music) => {
+    setEditedTitle(music.title);
+    setEditedArtist(music.artist);
+    setEditedShouldBeMuted(music.should_be_muted);
+  };
+
   useEffect(() => {
     if (selectedMusic) {
-      setEditedTitle(selectedMusic.title);
-      setEditedArtist(selectedMusic.artist);
-      setEditedShouldBeMuted(selectedMusic.should_be_muted);
+      resetEditForm(selectedMusic);
     }
   }, [selectedMusic]);
 
@@ -76,9 +79,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     if (!selectedMusic || !window.confirm("この楽曲の編集内容をリセットしますか?")) return;
 
     removeMusicEdit(selectedMusic.id);
-    setEditedTitle(selectedMusic.title);
-    setEditedArtist(selectedMusic.artist);
-    setEditedShouldBeMuted(selectedMusic.should_be_muted);
+    resetEditForm(selectedMusic);
     onSave?.();
   };
 
@@ -110,7 +111,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                     className={selectedMusic?.id === m.id ? styles.selected : ""}
                     onClick={() => handleMusicSelect(m.id)}>
                     {m.title}
-                    {isMusicEdited(m.id) && <span style={{ marginLeft: "0.5rem", color: "#ff6b6b" }}>●</span>}
+                    {isMusicEdited(m.id) && <span className={styles.editIndicator}>●</span>}
                   </li>
                 ))}
               </ul>
@@ -118,20 +119,10 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
             <div className={styles.details}>
               {selectedMusic && (
                 <div key={selectedMusic.id}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div className={styles.detailsHeader}>
                     <h3 className={styles.detailsTitle}>詳細編集</h3>
                     {isMusicEdited(selectedMusic.id) && (
-                      <button
-                        onClick={handleResetEdit}
-                        style={{
-                          padding: "0.25rem 0.5rem",
-                          fontSize: "0.8rem",
-                          backgroundColor: "#ff6b6b",
-                          color: "white",
-                          border: "none",
-                          borderRadius: "4px",
-                          cursor: "pointer",
-                        }}>
+                      <button onClick={handleResetEdit} className={styles.resetButton}>
                         編集をリセット
                       </button>
                     )}

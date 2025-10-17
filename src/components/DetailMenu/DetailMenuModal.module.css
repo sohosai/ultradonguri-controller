@@ -186,3 +186,28 @@
   color: var(--color-white);
   background: var(--color-surface);
 }
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resetButton {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-white);
+  cursor: pointer;
+  background: #ff6b6b;
+  border: none;
+  border-radius: 4px;
+}
+
+.resetButton:hover {
+  opacity: 0.8;
+}
+
+.editIndicator {
+  margin-left: 0.5rem;
+  color: #ff6b6b;
+}
