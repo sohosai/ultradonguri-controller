@@ -1,5 +1,16 @@
 .nextTrackButton {
-  width: 100px;
-  height: 100px;
-  background-color: var(--color-green);
+  width: 180px;
+  height: 90px;
+  background: var(--color-green);
+  border-radius: 9999px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: bold;
+  outline-color: var(--color-white);
+  outline-style: solid;
+  outline-width: 5px;
+  cursor: pointer;
 }
