@@ -1,30 +1,17 @@
-.ToggleTextOff {
+.toggleRow {
   display: flex;
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
+  gap: 12px;
   align-items: center;
-  justify-content: flex-end;
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--color-white);
+  justify-content: center;
 }
 
-.ToggleTextOn {
-  display: flex;
-  grid-row: 2 / 3;
-  grid-column: 3 / 4;
-  align-items: center;
-  justify-content: flex-start;
+.toggleText {
   font-size: 18px;
   font-weight: bold;
   color: var(--color-white);
 }
 
 .toggleButton {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-  text-align: center;
-
   --switch-height: 66px;
   --switch-width: 120px;
   --switch-padding: 0.2rem;
@@ -37,6 +24,7 @@
   width: var(--switch-width);
   height: var(--switch-height);
   border-radius: 9999px;
+  cursor: pointer;
 }
 
 .switch > input {
