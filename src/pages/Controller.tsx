@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { postForceMute } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
@@ -19,12 +19,13 @@ import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
 export default function Controller() {
-  const { performances, isLoading, error: fetchError } = usePerformances();
+  const { performances, isLoading, error: fetchError, refresh } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
+  const isInitialized = useRef(false);
 
   // 初期化時にforce muteをfalseに設定
   useEffect(() => {
@@ -41,22 +42,28 @@ export default function Controller() {
   }, []);
 
   useEffect(() => {
-    if (performances === null) return;
-    if (performances.length > 0) {
-      setSelectedPerformance(performances[0]);
-      setSelectedConversion(null);
-      initializeFromFirst(performances);
+    if (!performances) return;
 
-      // 最初のパフォーマンスと最初の曲をPOST
+    // 初回ロード時
+    if (!isInitialized.current) {
+      if (performances.length === 0) {
+        setSelectedPerformance(null);
+        setSelectedConversion(null);
+        reset();
+        return;
+      }
+
       const firstPerformance = performances[0];
       const firstMusic = firstPerformance.musics[0];
+
+      setSelectedPerformance(firstPerformance);
+      setSelectedConversion(null);
+      initializeFromFirst(performances);
 
       const sendInitialData = async () => {
         try {
           await sendPerformanceStart(firstPerformance);
-          if (firstMusic) {
-            await sendMusic(firstMusic);
-          }
+          if (firstMusic) await sendMusic(firstMusic);
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
           setError("初期データの送信に失敗しました");
@@ -64,12 +71,16 @@ export default function Controller() {
       };
 
       sendInitialData();
-    } else {
-      setSelectedPerformance(null);
-      setSelectedConversion(null);
-      reset();
+      isInitialized.current = true;
+      return;
     }
-  }, [performances, initializeFromFirst, reset]);
+
+    // refresh時: 選択中のパフォーマンスを更新
+    if (selectedPerformance) {
+      const updated = performances.find((p) => p.id === selectedPerformance.id);
+      if (updated) setSelectedPerformance(updated);
+    }
+  }, [performances, initializeFromFirst, reset, selectedPerformance]);
 
   if (isLoading) return <div>読み込み中...</div>;
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
@@ -166,7 +177,7 @@ export default function Controller() {
               onSelectPerformance={handleSelectPerformance}
               onSelectConversion={handleSelectConversion}
             />
-            <Menu />
+            <Menu performances={performances} onRefresh={refresh} />
           </div>
           <div className={styles.rowRight}>
             <div className={styles.musics}>

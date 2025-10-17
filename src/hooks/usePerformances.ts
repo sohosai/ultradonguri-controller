@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { getPerformances } from "../api/http/endpoints";
+import { applyMusicEdits } from "../lib/musicStorage";
 
 import type { Performance } from "../types/performances";
 
@@ -21,7 +22,12 @@ export default function usePerformances(): UsePerformancesResult {
     setError(null);
     try {
       const data = await getPerformances();
-      setPerformances(data);
+      // 各パフォーマンスの楽曲リストに差分データを適用
+      const dataWithEdits = data.map((performance) => ({
+        ...performance,
+        musics: applyMusicEdits(performance.musics),
+      }));
+      setPerformances(dataWithEdits);
     } catch (e) {
       console.error("[usePerformances] Failed to fetch:", e);
       setError(e instanceof Error ? e : new Error("Failed to fetch performances"));
