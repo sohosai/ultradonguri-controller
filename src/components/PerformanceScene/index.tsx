@@ -10,7 +10,12 @@ type PerformanceSceneProps = {
 export default function PerformanceScene({ performer, musicTitle, musicArtist, shouldBeMuted }: PerformanceSceneProps) {
   return (
     <div className={styles.container}>
-      {performer && <div className={styles.performer}>{performer}</div>}
+      {performer && (
+        <div className={styles.performer}>
+          {performer}
+          <div className={styles.orangeObject}></div>
+        </div>
+      )}
       {musicTitle && (
         <>
           <div className={styles.musicTitle}>

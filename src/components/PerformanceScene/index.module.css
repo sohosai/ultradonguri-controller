@@ -8,8 +8,11 @@
   position: absolute;
   top: 30px;
   right: 0;
-  padding: 15px 15px 15px 40px;
+  width: fit-content;
+  height: 90px;
+  padding: 32.5px 15px 32.5px 25px;
   font-size: 25px;
+  font-weight: bold;
   background: var(--color-light-gray);
   border-radius: 40px 0 0 40px;
 }
@@ -40,4 +43,15 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
+}
+
+.orangeObject {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  z-index: -1;
+  width: calc(100% - 30px);
+  height: 30px;
+  background-color: var(--color-orange);
+  border-radius: 0 0 0 40px;
 }
