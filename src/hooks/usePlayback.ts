@@ -48,7 +48,7 @@ export default function usePlayback(): UsePlaybackResult {
       const firstPerf = performances[0];
       const firstMusic = firstPerf.musics[0];
       if (firstMusic) {
-        const firstRef: TrackRef = { performanceId: firstPerf.id, musicId: firstMusic.id };
+        const firstRef: TrackRef = { type: "music", performanceId: firstPerf.id, musicId: firstMusic.id };
         setCurrentTrack(firstRef);
         const nextRef = findNextTrackRef(performances, firstRef);
         setNextTrack(nextRef);

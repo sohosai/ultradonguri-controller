@@ -8,12 +8,20 @@ type Props = {
   isCopyrightVisible: boolean;
   onCopyrightVisibleChange: (v: boolean) => void;
   onNext?: () => void;
+  isForceMuted: boolean;
+  onForceMuteChange: (isMuted: boolean) => void;
 };
 
-export default function Buttons({ isCopyrightVisible, onCopyrightVisibleChange, onNext }: Props) {
+export default function Buttons({
+  isCopyrightVisible,
+  onCopyrightVisibleChange,
+  onNext,
+  isForceMuted,
+  onForceMuteChange,
+}: Props) {
   return (
     <div className={styles.buttons}>
-      <ForceMute />
+      <ForceMute isForceMuted={isForceMuted} onForceMuteChange={onForceMuteChange} />
       <CopyrightToggle isCopyrightVisible={isCopyrightVisible} onChange={onCopyrightVisibleChange} />
       <NextTrackButton onNext={onNext} />
     </div>

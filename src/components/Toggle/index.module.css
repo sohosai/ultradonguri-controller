@@ -23,8 +23,8 @@
   display: inline-block;
   width: var(--switch-width);
   height: var(--switch-height);
-  border-radius: 9999px;
   cursor: pointer;
+  border-radius: 9999px;
 }
 
 .switch > input {

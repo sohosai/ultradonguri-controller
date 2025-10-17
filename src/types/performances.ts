@@ -6,6 +6,12 @@ export type Music = {
   intro: string;
 };
 
+export type Conversion = {
+  id: string;
+  title: string;
+  description?: string;
+};
+
 export type Performance = {
   id: string;
   title: string;
@@ -14,4 +20,11 @@ export type Performance = {
   starts_at: string;
   ends_at: string;
   musics: Music[];
+};
+
+export type NextPerformance = {
+  title: string;
+  performer: string;
+  description: string;
+  starts_at: string;
 };

@@ -1,27 +1,33 @@
 import { useEffect, useState, useCallback } from "react";
 
+import { getPerformances } from "../api/http/endpoints";
+
 import type { Performance } from "../types/performances";
 
 type UsePerformancesResult = {
   performances: Performance[] | null;
+  isLoading: boolean;
+  error: Error | null;
   refresh: () => Promise<void>;
 };
 
-// ToDo; APIができ次第に置き換え予定
-
 export default function usePerformances(): UsePerformancesResult {
   const [performances, setPerformances] = useState<Performance[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
   const load = useCallback(async () => {
-    const url = `${import.meta.env.BASE_URL}mock.json`;
+    setIsLoading(true);
+    setError(null);
     try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-      const json = (await res.json()) as Performance[];
-      setPerformances(json);
+      const data = await getPerformances();
+      setPerformances(data);
     } catch (e) {
-      console.error(e);
-      setPerformances([]);
+      console.error("[usePerformances] Failed to fetch:", e);
+      setError(e instanceof Error ? e : new Error("Failed to fetch performances"));
+      setPerformances(null);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -29,5 +35,5 @@ export default function usePerformances(): UsePerformancesResult {
     void load();
   }, [load]);
 
-  return { performances, refresh: load };
+  return { performances, isLoading, error, refresh: load };
 }
