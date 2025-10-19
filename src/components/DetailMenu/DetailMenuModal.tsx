@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { saveMusicEdit, removeMusicEdit, isMusicEdited } from "../../lib/musicStorage";
+import { saveMusicEdit } from "../../lib/musicStorage";
 
 import styles from "./DetailMenuModal.module.css";
 
@@ -17,6 +17,8 @@ type DetailMenuModalProps = {
 type MusicEdits = {
   title: string;
   artist: string;
+
+  
   should_be_muted: boolean;
 };
 
@@ -113,19 +115,6 @@ export default function DetailMenuModal({
     onClose();
   };
 
-  const handleResetEdit = () => {
-    if (!selectedMusic || !window.confirm("この楽曲の編集内容をリセットしますか?")) return;
-
-    removeMusicEdit(selectedMusic.id);
-    // 未保存の編集も削除
-    setPendingEdits((prev) => {
-      const newMap = new Map(prev);
-      newMap.delete(selectedMusic.id);
-
-      return newMap;
-    });
-    onSave?.();
-  };
 
   if (!isOpen) return null;
 
@@ -155,7 +144,6 @@ export default function DetailMenuModal({
                     className={selectedMusic?.id === m.id ? styles.selected : ""}
                     onClick={() => handleMusicSelect(m.id)}>
                     {m.title}
-                    {isMusicEdited(m.id) && <span className={styles.editIndicator}>●</span>}
                   </li>
                 ))}
               </ul>
@@ -165,11 +153,6 @@ export default function DetailMenuModal({
                 <div key={selectedMusic.id}>
                   <div className={styles.detailsHeader}>
                     <h3 className={styles.detailsTitle}>詳細編集</h3>
-                    {isMusicEdited(selectedMusic.id) && (
-                      <button onClick={handleResetEdit} className={styles.resetButton}>
-                        編集をリセット
-                      </button>
-                    )}
                   </div>
                   <div className={styles.detailItem}>
                     <label>タイトル</label>
