@@ -10,11 +10,7 @@ export default function Header({ isForceMuted }: Props) {
     <header className={styles.header}>
       <ul className={styles.list}>
         <li>
-          <ul>
-            <li>
-              <Clock />
-            </li>
-          </ul>
+          <Clock />
         </li>
         <li className={styles.logo}>Ultradonguri</li>
         <li className={styles.forceMute}>{isForceMuted && "強制ミュート中"}</li>
