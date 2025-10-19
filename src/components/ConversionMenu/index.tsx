@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Toggle from "../Toggle";
+
 import { sendConversionCmMode } from "../../services/performanceService";
+import Toggle from "../Toggle";
 
 import styles from "./index.module.css";
 
