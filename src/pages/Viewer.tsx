@@ -15,6 +15,7 @@ export default function Viewer() {
   const [musicArtist, setMusicArtist] = useState<string | null>(null);
   const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
   const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
+  const [isCmMode, setIsCmMode] = useState<boolean>(false);
 
   useEffect(() => {
     streamClient.connect();
@@ -39,7 +40,11 @@ export default function Viewer() {
       setNextPerformances(payload.next_performances || []);
     };
 
-    const handleCmMode = () => setCurrentScene("conversion");
+    const handleCmMode = (data: unknown) => {
+      const payload = data as { is_cm_mode: boolean };
+      setIsCmMode(payload.is_cm_mode);
+      setCurrentScene("conversion");
+    };
 
     const unsubPerformance = streamClient.on("performance", handlePerformance);
     const unsubMusic = streamClient.on("music", handleMusic);
@@ -67,7 +72,7 @@ export default function Viewer() {
   }
 
   if (currentScene === "conversion") {
-    return <ConversionScene nextPerformances={nextPerformances} />;
+    return <ConversionScene nextPerformances={nextPerformances} isCmMode={isCmMode} />;
   }
 
   return <div>待機中...</div>;

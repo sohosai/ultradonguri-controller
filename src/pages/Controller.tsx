@@ -24,6 +24,8 @@ export default function Controller() {
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
+  const [isCmMode, setIsCmMode] = useState<boolean>(false);
+  const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const isInitialized = useRef(false);
 
@@ -189,9 +191,15 @@ export default function Controller() {
                   onSelectNextTrack={handleSelectNextTrack}
                 />
               )}
-              {selectedConversion && <ConversionMenu />}
+              {selectedConversion && <ConversionMenu isCmMode={isCmMode} onCmModeChange={setIsCmMode} />}
             </div>
-            <Buttons onNext={handleNext} isForceMuted={isForceMuted} onForceMuteChange={setIsForceMuted} />
+            <Buttons
+              onNext={handleNext}
+              isForceMuted={isForceMuted}
+              onForceMuteChange={setIsForceMuted}
+              isCopyrightVisible={isCopyrightVisible}
+              onCopyrightVisibleChange={setIsCopyrightVisible}
+            />
           </div>
         </div>
       </main>
