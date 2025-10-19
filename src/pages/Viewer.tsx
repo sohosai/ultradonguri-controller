@@ -16,6 +16,7 @@ export default function Viewer() {
   const [shouldBeMuted, setShouldBeMuted] = useState<boolean | null>(null);
   const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
+  const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
 
   useEffect(() => {
     streamClient.connect();
@@ -46,16 +47,23 @@ export default function Viewer() {
       setCurrentScene("conversion");
     };
 
+    const handleDisplayCopyright = (data: unknown) => {
+      const payload = data as { is_displayed_copyright: boolean };
+      setIsCopyrightVisible(payload.is_displayed_copyright);
+    };
+
     const unsubPerformance = streamClient.on("performance", handlePerformance);
     const unsubMusic = streamClient.on("music", handleMusic);
     const unsubConversion = streamClient.on("conversion/start", handleConversionStart);
     const unsubCmMode = streamClient.on("conversion/cm-mode", handleCmMode);
+    const unsubDisplayCopyright = streamClient.on("display-copyright", handleDisplayCopyright);
 
     return () => {
       unsubPerformance();
       unsubMusic();
       unsubConversion();
       unsubCmMode();
+      unsubDisplayCopyright();
       streamClient.disconnect();
     };
   }, []);
@@ -67,6 +75,7 @@ export default function Viewer() {
         musicTitle={musicTitle}
         musicArtist={musicArtist}
         shouldBeMuted={shouldBeMuted}
+        isCopyrightVisible={isCopyrightVisible}
       />
     );
   }
