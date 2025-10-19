@@ -23,16 +23,16 @@ export default function Viewer() {
 
     const handlePerformance = (data: unknown) => {
       setCurrentScene("performance");
-      const payload = data as { performance: Performance };
-      setPerformer(payload.performance.performer);
+      const payload = data as Performance;
+      setPerformer(payload.performer);
     };
 
     const handleMusic = (data: unknown) => {
       setCurrentScene("performance");
-      const payload = data as { music: Music };
-      setMusicTitle(payload.music.title);
-      setMusicArtist(payload.music.artist);
-      setShouldBeMuted(payload.music.should_be_muted);
+      const payload = data as Music;
+      setMusicTitle(payload.title);
+      setMusicArtist(payload.artist);
+      setShouldBeMuted(payload.should_be_muted);
     };
 
     const handleConversionStart = (data: unknown) => {
