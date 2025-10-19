@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { saveMusicEdit } from "../../lib/musicStorage";
+import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import styles from "./DetailMenuModal.module.css";
 
@@ -152,6 +152,7 @@ export default function DetailMenuModal({
                     className={selectedMusic?.id === m.id ? styles.selected : ""}
                     onClick={() => handleMusicSelect(m.id)}>
                     {m.title}
+                    {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                   </li>
                 ))}
               </ul>

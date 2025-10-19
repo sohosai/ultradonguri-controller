@@ -79,6 +79,13 @@
   background: var(--color-light-gray);
 }
 
+.editedMark {
+  margin-left: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-surface);
+}
+
 .details {
   padding: 0 15px;
 }
