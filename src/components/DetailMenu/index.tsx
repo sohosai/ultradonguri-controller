@@ -7,10 +7,11 @@ import type { Performance } from "../../types/performances";
 
 type DetailMenuProps = {
   performances: Performance[] | null;
+  originalPerformances: Performance[] | null;
   onRefresh: () => Promise<void>;
 };
 
-export default function DetailMenu({ performances, onRefresh }: DetailMenuProps) {
+export default function DetailMenu({ performances, originalPerformances, onRefresh }: DetailMenuProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -24,6 +25,7 @@ export default function DetailMenu({ performances, onRefresh }: DetailMenuProps)
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         performances={performances}
+        originalPerformances={originalPerformances}
         onSave={() => void onRefresh()}
       />
     </>

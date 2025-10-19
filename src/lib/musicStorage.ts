@@ -32,10 +32,29 @@ function getMusicEdit(musicId: string): MusicEdit | null {
   return edits[musicId] || null;
 }
 
-export function saveMusicEdit(edit: MusicEdit): void {
+export function saveMusicEdit(edit: MusicEdit, originalMusic: Music): void {
   try {
+    // 元データと比較して差分をチェック
+    const hasTitleDiff = edit.title !== undefined && edit.title !== originalMusic.title;
+    const hasArtistDiff = edit.artist !== undefined && edit.artist !== originalMusic.artist;
+    const hasMuteDiff = edit.should_be_muted !== undefined && edit.should_be_muted !== originalMusic.should_be_muted;
+
+    const hasDiff = hasTitleDiff || hasArtistDiff || hasMuteDiff;
+
+    // 差分がない場合はlocalStorageから削除
+    if (!hasDiff) {
+      removeMusicEdit(edit.id);
+      return;
+    }
+
+    // 差分がある項目のみを保存
+    const editToSave: MusicEdit = { id: edit.id };
+    if (hasTitleDiff) editToSave.title = edit.title;
+    if (hasArtistDiff) editToSave.artist = edit.artist;
+    if (hasMuteDiff) editToSave.should_be_muted = edit.should_be_muted;
+
     const edits = getMusicEdits();
-    edits[edit.id] = edit;
+    edits[edit.id] = editToSave;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
   } catch (error) {
     console.error("[musicStorage] Failed to save music edit:", error);

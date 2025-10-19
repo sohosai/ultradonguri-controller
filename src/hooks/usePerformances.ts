@@ -7,6 +7,7 @@ import type { Performance } from "../types/performances";
 
 type UsePerformancesResult = {
   performances: Performance[] | null;
+  originalPerformances: Performance[] | null;
   isLoading: boolean;
   error: Error | null;
   refresh: () => Promise<void>;
@@ -14,6 +15,7 @@ type UsePerformancesResult = {
 
 export default function usePerformances(): UsePerformancesResult {
   const [performances, setPerformances] = useState<Performance[] | null>(null);
+  const [originalPerformances, setOriginalPerformances] = useState<Performance[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -22,6 +24,8 @@ export default function usePerformances(): UsePerformancesResult {
     setError(null);
     try {
       const data = await getPerformances();
+      // 元データを保存
+      setOriginalPerformances(data);
       // 各パフォーマンスの楽曲リストに差分データを適用
       const dataWithEdits = data.map((performance) => ({
         ...performance,
@@ -32,6 +36,7 @@ export default function usePerformances(): UsePerformancesResult {
       console.error("[usePerformances] Failed to fetch:", e);
       setError(e instanceof Error ? e : new Error("Failed to fetch performances"));
       setPerformances(null);
+      setOriginalPerformances(null);
     } finally {
       setIsLoading(false);
     }
@@ -41,5 +46,5 @@ export default function usePerformances(): UsePerformancesResult {
     void load();
   }, [load]);
 
-  return { performances, isLoading, error, refresh: load };
+  return { performances, originalPerformances, isLoading, error, refresh: load };
 }

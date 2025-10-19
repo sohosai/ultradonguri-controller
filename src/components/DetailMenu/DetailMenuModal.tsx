@@ -10,6 +10,7 @@ type DetailMenuModalProps = {
   isOpen: boolean;
   onClose: () => void;
   performances: Performance[] | null;
+  originalPerformances: Performance[] | null;
   onSave?: () => void;
 };
 
@@ -19,7 +20,13 @@ type MusicEdits = {
   should_be_muted: boolean;
 };
 
-export default function DetailMenuModal({ isOpen, onClose, performances, onSave }: DetailMenuModalProps) {
+export default function DetailMenuModal({
+  isOpen,
+  onClose,
+  performances,
+  originalPerformances,
+  onSave,
+}: DetailMenuModalProps) {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
@@ -74,14 +81,28 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
   };
 
   const handleSave = () => {
+    // 事前にMusicIDをキーとしたMapを作成
+    const originalMusicMap = new Map<string, Music>();
+    for (const perf of originalPerformances || []) {
+      for (const music of perf.musics) {
+        originalMusicMap.set(music.id, music);
+      }
+    }
+
     // 全ての未保存の編集をlocalStorageに保存
     pendingEdits.forEach((edits, musicId) => {
-      saveMusicEdit({
-        id: musicId,
-        title: edits.title,
-        artist: edits.artist,
-        should_be_muted: edits.should_be_muted,
-      });
+      const originalMusic = originalMusicMap.get(musicId);
+      if (originalMusic) {
+        saveMusicEdit(
+          {
+            id: musicId,
+            title: edits.title,
+            artist: edits.artist,
+            should_be_muted: edits.should_be_muted,
+          },
+          originalMusic,
+        );
+      }
     });
 
     if (pendingEdits.size > 0) {
