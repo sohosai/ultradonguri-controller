@@ -81,6 +81,11 @@ export default function DetailMenuModal({
     }
   };
 
+  const handleCancel = () => {
+    setPendingEdits(new Map());
+    onClose();
+  };
+
   const handleSave = () => {
     // 事前にMusicIDをキーとしたMapを作成
     const originalMusicMap = new Map<string, Music>();
@@ -117,7 +122,7 @@ export default function DetailMenuModal({
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
+    <div className={styles.modalOverlay} onClick={handleCancel}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>詳細編集メニュー</div>
         <div className={styles.modalBody}>
@@ -200,7 +205,7 @@ export default function DetailMenuModal({
             </div>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.cancel} onClick={onClose}>
+            <button className={styles.cancel} onClick={handleCancel}>
               キャンセル
             </button>
             <button className={styles.save} onClick={handleSave}>
