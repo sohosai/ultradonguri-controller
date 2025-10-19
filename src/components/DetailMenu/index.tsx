@@ -1,28 +1,33 @@
 import { useState } from "react";
 
-import usePerformances from "../../hooks/usePerformances";
-
 import DetailMenuModal from "./DetailMenuModal";
 import styles from "./index.module.css";
 
-export default function DetailMenu() {
+import type { Performance } from "../../types/performances";
+
+type DetailMenuProps = {
+  performances: Performance[] | null;
+  originalPerformances: Performance[] | null;
+  onRefresh: () => Promise<void>;
+};
+
+export default function DetailMenu({ performances, originalPerformances, onRefresh }: DetailMenuProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  const { performances } = usePerformances();
 
   return (
     <>
       <div className={styles.detailMenu}>
-        <div className={styles.detailMenuButton} onClick={openModal}>
+        <div className={styles.detailMenuButton} onClick={() => setIsModalOpen(true)}>
           楽曲詳細編集
         </div>
       </div>
-      <DetailMenuModal isOpen={isModalOpen} onClose={closeModal} performances={performances} />
+      <DetailMenuModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        performances={performances}
+        originalPerformances={originalPerformances}
+        onSave={() => void onRefresh()}
+      />
     </>
   );
 }
