@@ -1,4 +1,9 @@
-import { postConversionStart, postPerformanceMusic, postPerformanceStart } from "../api/http/endpoints";
+import {
+  postConversionCmMode,
+  postConversionStart,
+  postPerformanceMusic,
+  postPerformanceStart,
+} from "../api/http/endpoints";
 
 import type { Music, Performance } from "../types/performances";
 
@@ -52,6 +57,20 @@ export async function sendConversionStart(nextPerformances: Performance[]): Prom
     });
   } catch (error) {
     console.error("[PerformanceService] Failed to post conversion/start:", error);
+    throw error;
+  }
+}
+
+/**
+ * 転換CMモードをPOST
+ */
+export async function sendConversionCmMode(isCmMode: boolean): Promise<void> {
+  try {
+    await postConversionCmMode({
+      is_cm_mode: isCmMode,
+    });
+  } catch (error) {
+    console.error("[PerformanceService] Failed to post conversion/cm-mode:", error);
     throw error;
   }
 }
