@@ -24,7 +24,7 @@ export const handlers = [
   http.post("/performance/start", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "performance",
+      type: "/performance/start",
       data: body,
     });
 
@@ -42,7 +42,7 @@ export const handlers = [
   http.post("/performance/music", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "music",
+      type: "/performance/music",
       data: body,
     });
 
