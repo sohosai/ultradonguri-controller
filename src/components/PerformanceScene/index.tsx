@@ -8,7 +8,13 @@ type PerformanceSceneProps = {
   isCopyrightVisible: boolean;
 };
 
-export default function PerformanceScene({ performer, musicTitle, musicArtist, shouldBeMuted, isCopyrightVisible }: PerformanceSceneProps) {
+export default function PerformanceScene({
+  performer,
+  musicTitle,
+  musicArtist,
+  shouldBeMuted,
+  isCopyrightVisible,
+}: PerformanceSceneProps) {
   return (
     <div className={styles.container}>
       {performer && (

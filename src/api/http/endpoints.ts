@@ -37,7 +37,7 @@ export interface ForceMuteRequest {
   is_muted: boolean;
 }
 
-export interface DisplayCopyright{
+export interface DisplayCopyright {
   is_displayed_copyright: boolean;
 }
 
