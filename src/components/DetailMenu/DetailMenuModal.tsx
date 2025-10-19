@@ -13,12 +13,16 @@ type DetailMenuModalProps = {
   onSave?: () => void;
 };
 
+type MusicEdits = {
+  title: string;
+  artist: string;
+  should_be_muted: boolean;
+};
+
 export default function DetailMenuModal({ isOpen, onClose, performances, onSave }: DetailMenuModalProps) {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
-  const [editedTitle, setEditedTitle] = useState<string>("");
-  const [editedArtist, setEditedArtist] = useState<string>("");
-  const [editedShouldBeMuted, setEditedShouldBeMuted] = useState<boolean>(false);
+  const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
 
   useEffect(() => {
     if (performances && performances.length > 0) {
@@ -27,17 +31,32 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     }
   }, [performances]);
 
-  const resetEditForm = (music: Music) => {
-    setEditedTitle(music.title);
-    setEditedArtist(music.artist);
-    setEditedShouldBeMuted(music.should_be_muted);
+  // 現在選択中の楽曲の編集内容を取得（未保存の編集 or 元の値）
+  const getCurrentEdits = (music: Music): MusicEdits => {
+    const pending = pendingEdits.get(music.id);
+    if (pending) return pending;
+
+    return {
+      title: music.title,
+      artist: music.artist,
+      should_be_muted: music.should_be_muted,
+    };
   };
 
-  useEffect(() => {
-    if (selectedMusic) {
-      resetEditForm(selectedMusic);
-    }
-  }, [selectedMusic]);
+  const currentEdits = selectedMusic ? getCurrentEdits(selectedMusic) : null;
+
+  // 編集内容を更新
+  const updateEdits = (musicId: string, updates: Partial<MusicEdits>) => {
+    setPendingEdits((prev) => {
+      const newMap = new Map(prev);
+      const current = selectedMusic ? getCurrentEdits(selectedMusic) : null;
+      if (!current) return prev;
+
+      newMap.set(musicId, { ...current, ...updates });
+
+      return newMap;
+    });
+  };
 
   const handlePerformanceSelect = (performanceId: string) => {
     const performance = performances?.find((p) => p.id === performanceId);
@@ -55,23 +74,21 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
   };
 
   const handleSave = () => {
-    if (!selectedMusic) return;
-
-    const hasChanges =
-      editedTitle !== selectedMusic.title ||
-      editedArtist !== selectedMusic.artist ||
-      editedShouldBeMuted !== selectedMusic.should_be_muted;
-
-    if (hasChanges) {
+    // 全ての未保存の編集をlocalStorageに保存
+    pendingEdits.forEach((edits, musicId) => {
       saveMusicEdit({
-        id: selectedMusic.id,
-        title: editedTitle,
-        artist: editedArtist,
-        should_be_muted: editedShouldBeMuted,
+        id: musicId,
+        title: edits.title,
+        artist: edits.artist,
+        should_be_muted: edits.should_be_muted,
       });
+    });
+
+    if (pendingEdits.size > 0) {
       onSave?.();
     }
 
+    setPendingEdits(new Map());
     onClose();
   };
 
@@ -79,7 +96,13 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     if (!selectedMusic || !window.confirm("この楽曲の編集内容をリセットしますか?")) return;
 
     removeMusicEdit(selectedMusic.id);
-    resetEditForm(selectedMusic);
+    // 未保存の編集も削除
+    setPendingEdits((prev) => {
+      const newMap = new Map(prev);
+      newMap.delete(selectedMusic.id);
+
+      return newMap;
+    });
     onSave?.();
   };
 
@@ -112,6 +135,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                     onClick={() => handleMusicSelect(m.id)}>
                     {m.title}
                     {isMusicEdited(m.id) && <span className={styles.editIndicator}>●</span>}
+                    {pendingEdits.has(m.id) && <span className={styles.pendingIndicator}>*</span>}
                   </li>
                 ))}
               </ul>
@@ -132,8 +156,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                     <input
                       type="text"
                       className={styles.input}
-                      value={editedTitle}
-                      onChange={(e) => setEditedTitle(e.target.value)}
+                      value={currentEdits?.title || ""}
+                      onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -141,8 +165,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                     <input
                       type="text"
                       className={styles.input}
-                      value={editedArtist}
-                      onChange={(e) => setEditedArtist(e.target.value)}
+                      value={currentEdits?.artist || ""}
+                      onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -153,8 +177,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                           type="radio"
                           name="mute"
                           value="false"
-                          checked={!editedShouldBeMuted}
-                          onChange={() => setEditedShouldBeMuted(false)}
+                          checked={!currentEdits?.should_be_muted}
+                          onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
                         />
                         配信OK
                       </label>
@@ -163,8 +187,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                           type="radio"
                           name="mute"
                           value="true"
-                          checked={editedShouldBeMuted}
-                          onChange={() => setEditedShouldBeMuted(true)}
+                          checked={currentEdits?.should_be_muted}
+                          onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
                         />
                         配信不可
                       </label>
@@ -179,7 +203,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
               キャンセル
             </button>
             <button className={styles.save} onClick={handleSave}>
-              保存
+              {pendingEdits.size > 0 ? `保存 (${pendingEdits.size}件の変更)` : "保存"}
             </button>
           </div>
         </div>

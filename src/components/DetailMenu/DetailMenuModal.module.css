@@ -211,3 +211,9 @@
   margin-left: 0.5rem;
   color: #ff6b6b;
 }
+
+.pendingIndicator {
+  margin-left: 0.25rem;
+  font-weight: bold;
+  color: #ffa500;
+}
