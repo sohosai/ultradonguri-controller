@@ -106,4 +106,21 @@ export const handlers = [
 
     return new HttpResponse(null, { status: 204 });
   }),
+
+  // POST /display-copyright
+  http.post("/display-copyright", async ({ request }) => {
+    const body = await request.json();
+    const event = outbox.append({
+      type: "display-copyright",
+      data: body,
+    });
+
+    window.dispatchEvent(
+      new CustomEvent("mock-ws-broadcast", {
+        detail: event,
+      })
+    );
+
+    return new HttpResponse(null, { status: 204 });
+  }),
 ];
