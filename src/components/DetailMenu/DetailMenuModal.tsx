@@ -82,6 +82,11 @@ export default function DetailMenuModal({
   };
 
   const handleCancel = () => {
+    if (pendingEdits.size > 0) {
+      if (!confirm("今の変更は保存されません。よろしいですか？")) {
+        return;
+      }
+    }
     setPendingEdits(new Map());
     onClose();
   };
