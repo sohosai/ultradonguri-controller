@@ -26,7 +26,7 @@ export default function ConversionScene({ nextPerformances, isCmMode }: Conversi
   }, []);
 
   if (isCmMode) {
-    return <CmMode />;
+    return <CmMode nextPerformances={nextPerformances} />;
   }
 
   return (
