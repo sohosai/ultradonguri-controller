@@ -13,10 +13,8 @@ import type { Music, Performance } from "../types/performances";
 export async function sendPerformanceStart(performance: Performance): Promise<void> {
   try {
     await postPerformanceStart({
-      performance: {
-        title: performance.title,
-        performer: performance.performer,
-      },
+      title: performance.title,
+      performer: performance.performer,
     });
   } catch (error) {
     console.error("[PerformanceService] Failed to post performance/start:", error);
@@ -30,11 +28,9 @@ export async function sendPerformanceStart(performance: Performance): Promise<vo
 export async function sendMusic(music: Music): Promise<void> {
   try {
     await postPerformanceMusic({
-      music: {
-        title: music.title,
-        artist: music.artist,
-        should_be_muted: music.should_be_muted,
-      },
+      title: music.title,
+      artist: music.artist,
+      should_be_muted: music.should_be_muted,
     });
   } catch (error) {
     console.error("[PerformanceService] Failed to post performance/music:", error);

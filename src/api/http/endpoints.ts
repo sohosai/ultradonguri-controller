@@ -6,18 +6,14 @@ import type { Performance } from "../../types/performances";
  * Type definitions for API requests/responses
  */
 export interface PerformanceStartRequest {
-  performance: {
-    title: string;
-    performer: string;
-  };
+  title: string;
+  performer: string;
 }
 
 export interface MusicRequest {
-  music: {
-    title: string;
-    artist: string;
-    should_be_muted: boolean;
-  };
+  title: string;
+  artist: string;
+  should_be_muted: boolean;
 }
 
 export interface ConversionStartRequest {
