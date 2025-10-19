@@ -156,7 +156,6 @@ export default function DetailMenuModal({
                     onClick={() => handleMusicSelect(m.id)}>
                     {m.title}
                     {isMusicEdited(m.id) && <span className={styles.editIndicator}>●</span>}
-                    {pendingEdits.has(m.id) && <span className={styles.pendingIndicator}>*</span>}
                   </li>
                 ))}
               </ul>
@@ -224,7 +223,7 @@ export default function DetailMenuModal({
               キャンセル
             </button>
             <button className={styles.save} onClick={handleSave}>
-              {pendingEdits.size > 0 ? `保存 (${pendingEdits.size}件の変更)` : "保存"}
+              保存
             </button>
           </div>
         </div>
