@@ -52,11 +52,11 @@ export default function Viewer() {
       setIsCopyrightVisible(payload.is_displayed_copyright);
     };
 
-    const unsubPerformance = streamClient.on("performance", handlePerformance);
-    const unsubMusic = streamClient.on("music", handleMusic);
-    const unsubConversion = streamClient.on("conversion/start", handleConversionStart);
-    const unsubCmMode = streamClient.on("conversion/cm-mode", handleCmMode);
-    const unsubDisplayCopyright = streamClient.on("display-copyright", handleDisplayCopyright);
+    const unsubPerformance = streamClient.on("/performance/start", handlePerformance);
+    const unsubMusic = streamClient.on("/performance/music", handleMusic);
+    const unsubConversion = streamClient.on("/conversion/start", handleConversionStart);
+    const unsubCmMode = streamClient.on("/conversion/cm-mode", handleCmMode);
+    const unsubDisplayCopyright = streamClient.on("/display-copyright", handleDisplayCopyright);
 
     return () => {
       unsubPerformance();
