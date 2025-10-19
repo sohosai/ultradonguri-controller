@@ -18,7 +18,6 @@ type MusicEdits = {
   title: string;
   artist: string;
 
-  
   should_be_muted: boolean;
 };
 
@@ -114,7 +113,6 @@ export default function DetailMenuModal({
     setPendingEdits(new Map());
     onClose();
   };
-
 
   if (!isOpen) return null;
 
