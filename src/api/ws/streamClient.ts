@@ -3,7 +3,13 @@ import { getPerformances } from "../http/endpoints";
 const STORAGE_KEY = "ws_last_offset";
 
 export interface WSEvent {
-  type: "/performance/start" | "/performance/music" | "/conversion/start" | "/conversion/cm-mode" | "/display-copyright" | "/force_mute";
+  type:
+    | "/performance/start"
+    | "/performance/music"
+    | "/conversion/start"
+    | "/conversion/cm-mode"
+    | "/display-copyright"
+    | "/force_mute";
   data: unknown;
   offset: number;
 }
