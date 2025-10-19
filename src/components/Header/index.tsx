@@ -11,7 +11,6 @@ export default function Header({ isForceMuted }: Props) {
       <ul className={styles.list}>
         <li>
           <ul>
-            <li>5min押し</li>
             <li>
               <Clock />
             </li>
