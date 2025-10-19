@@ -5,9 +5,16 @@ type PerformanceSceneProps = {
   musicTitle: string | null;
   musicArtist: string | null;
   shouldBeMuted: boolean | null;
+  isCopyrightVisible: boolean;
 };
 
-export default function PerformanceScene({ performer, musicTitle, musicArtist, shouldBeMuted }: PerformanceSceneProps) {
+export default function PerformanceScene({
+  performer,
+  musicTitle,
+  musicArtist,
+  shouldBeMuted,
+  isCopyrightVisible,
+}: PerformanceSceneProps) {
   return (
     <div className={styles.container}>
       {performer && (
@@ -16,7 +23,7 @@ export default function PerformanceScene({ performer, musicTitle, musicArtist, s
           <div className={styles.orangeObject}></div>
         </div>
       )}
-      {musicTitle && (
+      {musicTitle && isCopyrightVisible && (
         <>
           <div className={styles.musicTitle}>
             {musicTitle} / {musicArtist}

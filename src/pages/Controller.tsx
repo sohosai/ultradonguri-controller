@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-import { postForceMute } from "../api/http/endpoints";
+import { postForceMute, postDisplayCopyright } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import Menu from "../components/DetailMenu";
@@ -39,7 +39,17 @@ export default function Controller() {
       }
     };
 
+    const initializeCopyright = async () => {
+      try {
+        await postDisplayCopyright({ is_displayed_copyright: true });
+        setIsCopyrightVisible(true);
+      } catch (error) {
+        console.error("[Controller] Failed to initialize copyright:", error);
+      }
+    };
+
     void initializeForceMute();
+    void initializeCopyright();
   }, []);
 
   useEffect(() => {
@@ -99,6 +109,16 @@ export default function Controller() {
   const handleSelectConversion = (conversion: Conversion) => {
     setSelectedConversion(conversion);
     setSelectedPerformance(null);
+  };
+
+  const handleCopyrightVisibleChange = async (isVisible: boolean) => {
+    try {
+      await postDisplayCopyright({ is_displayed_copyright: isVisible });
+      setIsCopyrightVisible(isVisible);
+    } catch (error) {
+      console.error("[Controller] Failed to update copyright visibility:", error);
+      setError("著作権表示の切り替えに失敗しました");
+    }
   };
 
   const handleNext = async () => {
@@ -198,7 +218,7 @@ export default function Controller() {
               isForceMuted={isForceMuted}
               onForceMuteChange={setIsForceMuted}
               isCopyrightVisible={isCopyrightVisible}
-              onCopyrightVisibleChange={setIsCopyrightVisible}
+              onCopyrightVisibleChange={handleCopyrightVisibleChange}
             />
           </div>
         </div>

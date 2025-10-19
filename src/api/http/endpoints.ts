@@ -37,6 +37,10 @@ export interface ForceMuteRequest {
   is_muted: boolean;
 }
 
+export interface DisplayCopyright {
+  is_displayed_copyright: boolean;
+}
+
 /**
  * GET /performances
  */
@@ -89,6 +93,16 @@ export async function postConversionCmMode(body: ConversionCmModeRequest): Promi
  */
 export async function postForceMute(body: ForceMuteRequest): Promise<void> {
   return apiFetch("/force_mute", {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+}
+
+/**
+ * POST /force_mute
+ */
+export async function postDisplayCopyright(body: DisplayCopyright): Promise<void> {
+  return apiFetch("/display-copyright", {
     method: "POST",
     body: JSON.stringify(body),
   });
