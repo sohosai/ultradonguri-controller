@@ -44,6 +44,7 @@ export function saveMusicEdit(edit: MusicEdit, originalMusic: Music): void {
     // 差分がない場合はlocalStorageから削除
     if (!hasDiff) {
       removeMusicEdit(edit.id);
+
       return;
     }
 

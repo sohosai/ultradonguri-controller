@@ -100,7 +100,7 @@ export default function DetailMenuModal({
             artist: edits.artist,
             should_be_muted: edits.should_be_muted,
           },
-          originalMusic,
+          originalMusic
         );
       }
     });
