@@ -154,9 +154,9 @@ export default function Controller() {
       else if (prevNext.type === "music") {
         const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
         const music = newPlayingPerf?.musics.find((m) => m.id === prevNext.musicId);
-
+        const currentPerformanceId = currentTrack?.type === "music" ? currentTrack.performanceId : null;
         // POST /performance/start (パフォーマンスが変わった時のみ)
-        if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
+        if (newPlayingPerf && currentPerformanceId !== newPlayingPerf.id) {
           await sendPerformanceStart(newPlayingPerf);
         }
 
@@ -167,7 +167,7 @@ export default function Controller() {
 
         // API成功後に状態を更新
         skipToNext(performances);
-        if (newPlayingPerf && (!selectedPerformance || selectedPerformance.id !== newPlayingPerf.id)) {
+        if (newPlayingPerf && currentPerformanceId !== newPlayingPerf.id) {
           setSelectedPerformance(newPlayingPerf);
           setSelectedConversion(null);
         }
