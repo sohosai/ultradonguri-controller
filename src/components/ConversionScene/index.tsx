@@ -4,6 +4,7 @@ import CmMode from "./CmMode";
 import styles from "./index.module.css";
 import NextPerformanceDetail from "./NextPerformanceDetail";
 import NextPerformances from "./NextPerformances";
+import Clock from "./Clock";
 
 import type { NextPerformance } from "../../types/performances";
 
@@ -31,6 +32,7 @@ export default function ConversionScene({ nextPerformances, isCmMode }: Conversi
 
   return (
     <div className={styles.container}>
+      {!isCmMode && <Clock />}
       <div className={styles.nextDetail}>
         {showDetail ? (
           <NextPerformanceDetail nextPerformances={nextPerformances} />
