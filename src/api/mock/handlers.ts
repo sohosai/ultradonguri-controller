@@ -60,7 +60,7 @@ export const handlers = [
   http.post("/conversion/start", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "conversion/start",
+      type: "/conversion/start",
       data: body,
     });
 
@@ -77,7 +77,7 @@ export const handlers = [
   http.post("/conversion/cm-mode", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "conversion/cm-mode",
+      type: "/conversion/cm-mode",
       data: body,
     });
 
@@ -94,7 +94,7 @@ export const handlers = [
   http.post("/force_mute", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "force_mute",
+      type: "/force_mute",
       data: body,
     });
 
@@ -111,7 +111,7 @@ export const handlers = [
   http.post("/display-copyright", async ({ request }) => {
     const body = await request.json();
     const event = outbox.append({
-      type: "display-copyright",
+      type: "/display-copyright",
       data: body,
     });
 
