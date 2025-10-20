@@ -50,9 +50,14 @@ export default function ConversionScene({ nextPerformances, isCmMode }: Conversi
 
   const getAnimationClass = () => {
     if (!isAnimating) return "";
+
     return animationState === "in"
-      ? (showDetail ? detailStyles.slideIn : performancesStyles.slideIn)
-      : (showDetail ? performancesStyles.slideOut : detailStyles.slideOut);
+      ? showDetail
+        ? detailStyles.slideIn
+        : performancesStyles.slideIn
+      : showDetail
+        ? performancesStyles.slideOut
+        : detailStyles.slideOut;
   };
 
   return (
