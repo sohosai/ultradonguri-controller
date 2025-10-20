@@ -10,3 +10,35 @@
   bottom: 0;
   left: 0;
 }
+
+.enter {
+  animation: slideInFromBottom 1.5s ease-out;
+}
+
+.exit {
+  animation: slideOutToBottom 1.5s ease-out;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutToBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
