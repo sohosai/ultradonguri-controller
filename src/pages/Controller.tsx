@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-import { postForceMute, postDisplayCopyright } from "../api/http/endpoints";
+import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import Menu from "../components/DetailMenu";
@@ -48,8 +48,18 @@ export default function Controller() {
       }
     };
 
+    const initializeCmMode = async () => {
+      try {
+        await postConversionCmMode({ is_cm_mode: false });
+        setIsCmMode(false);
+      } catch (error) {
+        console.error("[Controller] Failed to initialize CM mode:", error);
+      }
+    };
+
     void initializeForceMute();
     void initializeCopyright();
+    void initializeCmMode();
   }, []);
 
   useEffect(() => {
