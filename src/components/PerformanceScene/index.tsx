@@ -18,8 +18,8 @@ export default function PerformanceScene({
   return (
     <div className={styles.container}>
       {performer && (
-        <div className={styles.performer}>
-          {performer}
+        <div key={performer} className={styles.performer}>
+          <div className={styles.performerTitle}>{performer}</div>
           <div className={styles.orangeObject}></div>
         </div>
       )}
