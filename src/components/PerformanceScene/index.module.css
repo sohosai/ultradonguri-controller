@@ -4,7 +4,7 @@
   height: 100vh;
 }
 
-.performer{
+.performer {
   position: absolute;
   top: 30px;
   right: 0;
@@ -12,7 +12,7 @@
   animation: slideIn 0.5s ease-out;
 }
 
-.performerTitle{
+.performerTitle {
   height: 90px;
   padding: 32.5px 15px 32.5px 25px;
   font-size: 25px;
@@ -32,7 +32,6 @@
   border-radius: 0 0 0 40px;
 }
 
-
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -42,6 +41,16 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -57,6 +66,7 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .shouldBeMuted {
@@ -71,4 +81,5 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
+  animation: fadeIn 0.5s ease-out;
 }

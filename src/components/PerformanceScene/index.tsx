@@ -25,10 +25,14 @@ export default function PerformanceScene({
       )}
       {musicTitle && isCopyrightVisible && (
         <>
-          <div className={styles.musicTitle}>
-            {musicTitle} / {musicArtist}
+          <div key={`${musicTitle}-${musicArtist}`} className={styles.musicTitle}>
+            ♫ {musicTitle} / {musicArtist}
           </div>
-          {shouldBeMuted === true && <div className={styles.shouldBeMuted}>著作権上の都合で音声を削除しています</div>}
+          {shouldBeMuted === true && (
+            <div key={`muted-${musicTitle}`} className={styles.shouldBeMuted}>
+              著作権上の都合で音声を削除しています
+            </div>
+          )}
         </>
       )}
     </div>
