@@ -18,17 +18,21 @@ export default function PerformanceScene({
   return (
     <div className={styles.container}>
       {performer && (
-        <div className={styles.performer}>
-          {performer}
+        <div key={performer} className={styles.performer}>
+          <div className={styles.performerTitle}>{performer}</div>
           <div className={styles.orangeObject}></div>
         </div>
       )}
       {musicTitle && isCopyrightVisible && (
         <>
-          <div className={styles.musicTitle}>
-            {musicTitle} / {musicArtist}
+          <div key={`${musicTitle}-${musicArtist}`} className={styles.musicTitle}>
+            ♫ {musicTitle} / {musicArtist}
           </div>
-          {shouldBeMuted === true && <div className={styles.shouldBeMuted}>著作権上の都合で音声を削除しています</div>}
+          {shouldBeMuted === true && (
+            <div key={`muted-${musicTitle}`} className={styles.shouldBeMuted}>
+              著作権上の都合で音声を削除しています
+            </div>
+          )}
         </>
       )}
     </div>

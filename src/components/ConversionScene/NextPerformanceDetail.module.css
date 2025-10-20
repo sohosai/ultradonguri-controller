@@ -1,3 +1,5 @@
+@import url("./animations.module.css");
+
 .container {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@
   display: flex;
   gap: 50px;
   align-items: center;
+  animation: slideInFromLeft 1s ease-out;
 }
 
 .left .starts_at {
@@ -55,4 +58,6 @@
   color: var(--color-black);
   -webkit-text-stroke: 15px var(--color-white);
   word-break: keep-all;
+  animation: slideInFromLeft 1s ease-out;
+  animation-delay: 0.15s;
 }

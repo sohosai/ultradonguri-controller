@@ -16,14 +16,22 @@ const SWITCH_INTERVAL = 10000; // 10秒ごとに切り替え
 
 export default function ConversionScene({ nextPerformances, isCmMode }: ConversionSceneProps) {
   const [showDetail, setShowDetail] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setShowDetail((prev) => !prev);
+      setIsExiting(true);
     }, SWITCH_INTERVAL);
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleAnimationEnd = () => {
+    if (isExiting) {
+      setShowDetail((prev) => !prev);
+      setIsExiting(false);
+    }
+  };
 
   if (isCmMode) {
     return <CmMode nextPerformances={nextPerformances} />;
@@ -32,11 +40,13 @@ export default function ConversionScene({ nextPerformances, isCmMode }: Conversi
   return (
     <div className={styles.container}>
       <div className={styles.nextDetail}>
-        {showDetail ? (
-          <NextPerformanceDetail nextPerformances={nextPerformances} />
-        ) : (
-          <NextPerformances nextPerformances={nextPerformances} />
-        )}
+        <div className={isExiting ? styles.exit : styles.enter} onAnimationEnd={handleAnimationEnd}>
+          {showDetail ? (
+            <NextPerformanceDetail nextPerformances={nextPerformances} />
+          ) : (
+            <NextPerformances nextPerformances={nextPerformances} />
+          )}
+        </div>
       </div>
     </div>
   );

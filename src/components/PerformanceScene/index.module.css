@@ -9,12 +9,49 @@
   top: 30px;
   right: 0;
   width: fit-content;
+  animation: slideIn 0.5s ease-out;
+}
+
+.performerTitle {
   height: 90px;
   padding: 32.5px 15px 32.5px 25px;
   font-size: 25px;
   font-weight: bold;
   background: var(--color-light-gray);
   border-radius: 40px 0 0 40px;
+}
+
+.orangeObject {
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  width: calc(100% - 30px);
+  height: 30px;
+  margin: -20px 0 0 auto;
+  background-color: var(--color-orange);
+  border-radius: 0 0 0 40px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .musicTitle {
@@ -29,6 +66,7 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .shouldBeMuted {
@@ -43,15 +81,5 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
-}
-
-.orangeObject {
-  position: absolute;
-  top: 70px;
-  right: 0;
-  z-index: -1;
-  width: calc(100% - 30px);
-  height: 30px;
-  background-color: var(--color-orange);
-  border-radius: 0 0 0 40px;
+  animation: fadeIn 0.5s ease-out;
 }
