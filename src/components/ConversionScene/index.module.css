@@ -12,11 +12,11 @@
 }
 
 .enter {
-  animation: slideInFromBottom 1.5s ease-out;
+  animation: slideInFromBottom 1s ease-out;
 }
 
 .exit {
-  animation: slideOutToBottom 1.5s ease-out;
+  animation: slideOutToBottom 1s ease-out;
 }
 
 @keyframes slideInFromBottom {

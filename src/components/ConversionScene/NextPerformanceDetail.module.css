@@ -14,6 +14,7 @@
   display: flex;
   gap: 50px;
   align-items: center;
+  animation: slideInFromLeft 1s ease-out;
 }
 
 .left .starts_at {
@@ -55,4 +56,18 @@
   color: var(--color-black);
   -webkit-text-stroke: 15px var(--color-white);
   word-break: keep-all;
+  animation: slideInFromLeft 1s ease-out;
+  animation-delay: 0.15s;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
