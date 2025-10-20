@@ -1,3 +1,5 @@
+@import url("./animations.module.css");
+
 .container {
   display: flex;
   flex-direction: column;
@@ -58,16 +60,4 @@
   word-break: keep-all;
   animation: slideInFromLeft 1s ease-out;
   animation-delay: 0.15s;
-}
-
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
