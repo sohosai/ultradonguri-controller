@@ -32,7 +32,7 @@ const CmClock = () => {
   return (
     <>
       <span>{hours}</span>
-      <span style={{ width: "15px", display: "Block" }}>{colon}</span>
+      <span style={{ width: "15px", display: "Block", textAlign: "center" }}>{colon}</span>
       <span>{minutes}</span>
     </>
   );
