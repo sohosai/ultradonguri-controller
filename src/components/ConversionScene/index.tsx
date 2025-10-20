@@ -19,10 +19,15 @@ const ANIMATION_DURATION = 1000; // アニメーション時間（ミリ秒）
 
 export default function ConversionScene({ nextPerformances, isCmMode }: ConversionSceneProps) {
   const [showDetail, setShowDetail] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
   const [animationState, setAnimationState] = useState<"in" | "out">("in");
 
   useEffect(() => {
+    // 初回マウント時のアニメーション
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, ANIMATION_DURATION);
+
     const timer = setInterval(() => {
       setIsAnimating(true);
       setAnimationState("out");
