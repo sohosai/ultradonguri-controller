@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
+import Clock from "./Clock";
 import CmMode from "./CmMode";
 import styles from "./index.module.css";
 import NextPerformanceDetail from "./NextPerformanceDetail";
 import NextPerformances from "./NextPerformances";
-import Clock from "./Clock";
 
 import type { NextPerformance } from "../../types/performances";
 

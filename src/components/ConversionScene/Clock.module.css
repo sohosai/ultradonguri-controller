@@ -2,19 +2,16 @@
   position: absolute;
   top: 32px;
   right: 32px;
-
-  background: color-mix(in srgb, var(--color-surface) 20%, transparent);
-  border-radius: 30px;
-  padding: 36px 56px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
+  padding: 36px 56px;
   color: var(--color-black);
+  background: color-mix(in srgb, var(--color-surface) 20%, transparent);
+  border-radius: 30px;
 }
 
 .time {
-  font-weight: bold;
   font-size: 48px;
+  font-weight: bold;
 }
