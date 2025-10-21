@@ -1,3 +1,112 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
   color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  height: 75vh;
+}
+
+.topGuides {
+  width: 25vw;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  height: 25vh;
+  overflow: hidden;
+}
+
+.clock {
+  display: flex;
+  justify-content: center;
+  height: 11vh;
+  padding-top: 2vh;
+  font-size: 50px;
+}
+
+.nextGuide {
+  width: 21vw;
+  height: 64vh;
+  padding: 0 1vw;
+  margin-left: 2vw;
+  border: 5px solid var(--color-blue);
+  border-radius: 50px;
+}
+
+.nextGuideTime {
+  margin-top: 8vh;
+  font-size: 30px;
+  color: var(--color-surface);
+}
+
+.nextGuideTitle {
+  margin-top: 1vh;
+  font-size: 28px;
+  color: var(--color-orange);
+}
+
+.nextGuideperformer {
+  margin-top: 1vh;
+  font-size: 23px;
+  color: var(--color-surface);
+}
+
+.nextGuideDescription {
+  margin-top: 1vh;
+  font-size: 23px;
+  color: var(--color-surface);
+}
+
+.broadcast {
+  width: 75vw;
+  background-color: var(--color-blue);
+}
+
+.laterGuide {
+  display: flex;
+  margin-left: 25vw;
+  color: var(--color-surface);
+  animation: slideIn 1.25s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.laterGuideTime {
+  display: flex;
+  align-items: center;
+  width: 12vw;
+  font-size: 40px;
+}
+
+.laterGuideRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 63vw;
+}
+
+.laterGuideTitle {
+  font-size: 40px;
+}
+
+.laterGuidePerformer {
+  font-size: 30px;
+  text-align: left;
 }
