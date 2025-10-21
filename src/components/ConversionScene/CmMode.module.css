@@ -91,7 +91,7 @@
 .laterGuideTime {
   display: flex;
   align-items: center;
-  width: 10vw;
+  width: 12vw;
   font-size: 40px;
 }
 
@@ -100,7 +100,6 @@
   flex-direction: column;
   justify-content: center;
   width: 63vw;
-  margin-left: 2vw;
 }
 
 .laterGuideTitle {
