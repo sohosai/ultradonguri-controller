@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import CmClock from "./CmClock";
 import styles from "./CmMode.module.css";
 
@@ -16,7 +17,7 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % nextPerformances.length);
-    }, 10000); // 5秒ごとに切り替え
+    }, 5000); // 5秒ごとに切り替え
 
     return () => clearInterval(interval);
   }, [nextPerformances.length]);
@@ -40,7 +41,7 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
         <div className={styles.broadcast}></div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.laterGuide}>
+        <div key={currentIndex} className={styles.laterGuide}>
           <p className={styles.laterGuideTime}>{currentPerformance.starts_at}〜</p>
           <div className={styles.laterGuideRight}>
             <p className={styles.laterGuideTitle}>{currentPerformance.title}</p>

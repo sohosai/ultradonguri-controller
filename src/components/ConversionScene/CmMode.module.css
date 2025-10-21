@@ -72,6 +72,19 @@
   display: flex;
   margin-left: 25vw;
   color: var(--color-surface);
+  animation: slideIn 1.25s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .laterGuideTime {
