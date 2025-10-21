@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import CmClock from "./CmClock";
 import styles from "./CmMode.module.css";
 
@@ -8,6 +10,20 @@ type CmModeProps = {
 };
 
 export default function CmMode({ nextPerformances }: CmModeProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (nextPerformances.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % nextPerformances.length);
+    }, 5000); // 5秒ごとに切り替え
+
+    return () => clearInterval(interval);
+  }, [nextPerformances.length]);
+
+  const currentPerformance = nextPerformances[currentIndex] || nextPerformances[0];
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -25,11 +41,11 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
         <div className={styles.broadcast}></div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.laterGuide}>
-          <p className={styles.laterGuideTime}>12:30〜</p>
+        <div key={currentIndex} className={styles.laterGuide}>
+          <p className={styles.laterGuideTime}>{currentPerformance.starts_at}〜</p>
           <div className={styles.laterGuideRight}>
-            <p className={styles.laterGuideTitle}>研究学園戦士ツクバダインショー</p>
-            <p className={styles.laterGuidePerformer}>ヒーローアクション同好会</p>
+            <p className={styles.laterGuideTitle}>{currentPerformance.title}</p>
+            <p className={styles.laterGuidePerformer}>{currentPerformance.performer}</p>
           </div>
         </div>
       </div>
