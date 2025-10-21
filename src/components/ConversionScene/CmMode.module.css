@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: row;
   height: 25vh;
+  overflow: hidden;
 }
 
 .clock {
@@ -98,6 +99,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 63vw;
   margin-left: 2vw;
 }
 
@@ -106,6 +108,6 @@
 }
 
 .laterGuidePerformer {
-  margin-left: 30vw;
   font-size: 30px;
+  text-align: left;
 }

@@ -44,8 +44,9 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
         <div key={currentIndex} className={styles.laterGuide}>
           <p className={styles.laterGuideTime}>{currentPerformance.starts_at}〜</p>
           <div className={styles.laterGuideRight}>
-            <p className={styles.laterGuideTitle}>{currentPerformance.title}</p>
-            <p className={styles.laterGuidePerformer}>{currentPerformance.performer}</p>
+            <p className={styles.laterGuideTitle}>
+              {currentPerformance.title} <p className={styles.laterGuidePerformer}>{currentPerformance.performer}</p>
+            </p>
           </div>
         </div>
       </div>
