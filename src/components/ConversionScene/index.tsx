@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import Clock from "./Clock";
 import CmMode from "./CmMode";
 import styles from "./index.module.css";
 import NextPerformanceDetail from "./NextPerformanceDetail";
@@ -39,6 +40,7 @@ export default function ConversionScene({ nextPerformances, isCmMode }: Conversi
 
   return (
     <div className={styles.container}>
+      {!isCmMode && <Clock />}
       <div className={styles.nextDetail}>
         <div className={isExiting ? styles.exit : styles.enter} onAnimationEnd={handleAnimationEnd}>
           {showDetail ? (
