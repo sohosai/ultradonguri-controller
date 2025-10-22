@@ -7,9 +7,10 @@ import styles from "./index.module.css";
 type Props = {
   isForceMuted: boolean;
   onForceMuteChange: (isMuted: boolean) => void;
+  onError?: (errorMessage: string) => void;
 };
 
-export default function ForceMute({ isForceMuted, onForceMuteChange }: Props) {
+export default function ForceMute({ isForceMuted, onForceMuteChange, onError }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,6 +33,8 @@ export default function ForceMute({ isForceMuted, onForceMuteChange }: Props) {
       closeModal();
     } catch (error) {
       console.error("[ForceMute] Failed to toggle force mute:", error);
+      onError?.("ミュート設定の変更に失敗しました");
+      closeModal();
     } finally {
       setIsSubmitting(false);
     }

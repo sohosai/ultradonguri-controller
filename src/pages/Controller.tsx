@@ -229,6 +229,7 @@ export default function Controller() {
               onForceMuteChange={setIsForceMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
+              onError={setError}
             />
           </div>
         </div>
