@@ -14,10 +14,12 @@
 
 .enter {
   animation: slideInFromBottom 1s ease-out;
+  animation-fill-mode: both;
 }
 
 .exit {
   animation: slideOutToBottom 1s ease-out;
+  animation-fill-mode: both;
 }
 
 @keyframes slideInFromBottom {
