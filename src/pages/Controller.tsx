@@ -195,8 +195,11 @@ export default function Controller() {
       <Header isForceMuted={isForceMuted} />
       <main>
         {error && (
-          <div style={{ padding: "1rem", backgroundColor: "#fee", color: "#c00", marginBottom: "1rem" }}>
-            エラー: {error}
+          <div className={styles.error}>
+            <span className={styles.errorMessage}>エラー: {error}</span>
+            <button onClick={() => setError(null)} className={styles.errorCloseButton} aria-label="エラーを閉じる">
+              ✕
+            </button>
           </div>
         )}
         <div className={styles.row}>
@@ -229,6 +232,7 @@ export default function Controller() {
               onForceMuteChange={setIsForceMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
+              onError={setError}
             />
           </div>
         </div>

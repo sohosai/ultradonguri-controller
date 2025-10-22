@@ -95,7 +95,7 @@ export async function postForceMute(body: ForceMuteRequest): Promise<void> {
 }
 
 /**
- * POST /force_mute
+ * POST /display-copyright
  */
 export async function postDisplayCopyright(body: DisplayCopyright): Promise<void> {
   return apiFetch("/display-copyright", {
