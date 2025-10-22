@@ -9,15 +9,16 @@ type Props = {
   onForceMuteChange: (isMuted: boolean) => void;
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
+  isConversion?: boolean;
 };
 
-export default function ForceMute({ isForceMuted, onForceMuteChange, onError, isCmMode }: Props) {
+export default function ForceMute({ isForceMuted, onForceMuteChange, onError, isCmMode, isConversion }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const openModal = () => {
-    // CM-modeのときは、ミュート操作(isForceMuted=false)のみ無効化
-    if (isCmMode && !isForceMuted) {
+    // コンバージョン中 & CM-mode のときは、強制ミュート(isForceMuted=false)のみ無効化
+    if (isConversion && isCmMode && !isForceMuted) {
       return;
     }
     setIsModalOpen(true);
@@ -45,7 +46,7 @@ export default function ForceMute({ isForceMuted, onForceMuteChange, onError, is
     }
   };
 
-  const isDisabled = isCmMode && !isForceMuted;
+  const isDisabled = isConversion && isCmMode && !isForceMuted;
 
   return (
     <>

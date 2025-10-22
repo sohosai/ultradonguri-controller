@@ -107,6 +107,9 @@ export default function Controller() {
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
   if (!performances) return <div>データが見つかりません。</div>;
 
+  // コンバージョン中かどうかを判定
+  const isConversion = selectedConversion !== null;
+
   const handleSelectNextTrack = (ref: TrackRef) => {
     selectNextTrack(ref);
   };
@@ -142,7 +145,6 @@ export default function Controller() {
         const conversion = getConversionById(prevNext.conversionId);
 
         // conversion開始時に常にCMモードをfalseにリセット
-        await postConversionCmMode({ is_cm_mode: false });
         setIsCmMode(false);
 
         // POST /conversion/start
@@ -238,6 +240,7 @@ export default function Controller() {
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}
               isCmMode={isCmMode}
+              isConversion={isConversion}
             />
           </div>
         </div>
