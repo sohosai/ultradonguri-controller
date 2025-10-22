@@ -142,7 +142,6 @@ export default function Controller() {
         const conversion = getConversionById(prevNext.conversionId);
 
         // conversion開始時に常にCMモードをfalseにリセット
-        await postConversionCmMode({ is_cm_mode: false });
         setIsCmMode(false);
 
         // POST /conversion/start
