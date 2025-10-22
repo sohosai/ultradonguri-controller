@@ -23,12 +23,14 @@ export default function Viewer() {
 
     const handlePerformance = (data: unknown) => {
       setCurrentScene("performance");
+      setIsCmMode(false);
       const payload = data as Performance;
       setPerformerTitle(payload.title);
     };
 
     const handleMusic = (data: unknown) => {
       setCurrentScene("performance");
+      setIsCmMode(false);
       const payload = data as Music;
       setMusicTitle(payload.title);
       setMusicArtist(payload.artist);
