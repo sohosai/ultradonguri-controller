@@ -31,3 +31,33 @@ main {
   gap: 20px;
   width: calc(100% - 350px);
 }
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-red);
+  background-color: #fee;
+}
+
+.errorMessage {
+  flex: 1;
+}
+
+.errorCloseButton {
+  flex-shrink: 0;
+  padding: 0;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-red);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.errorCloseButton:hover {
+  opacity: 0.7;
+}
