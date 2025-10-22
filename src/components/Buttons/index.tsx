@@ -25,7 +25,12 @@ export default function Buttons({
 }: Props) {
   return (
     <div className={styles.buttons}>
-      <ForceMute isForceMuted={isForceMuted} onForceMuteChange={onForceMuteChange} onError={onError} isCmMode={isCmMode} />
+      <ForceMute
+        isForceMuted={isForceMuted}
+        onForceMuteChange={onForceMuteChange}
+        onError={onError}
+        isCmMode={isCmMode}
+      />
       <CopyrightToggle isCopyrightVisible={isCopyrightVisible} onChange={onCopyrightVisibleChange} />
       <NextTrackButton onNext={onNext} />
     </div>
