@@ -83,7 +83,7 @@ export default function DetailMenuModal({
 
   const handleCancel = () => {
     if (pendingEdits.size > 0) {
-      if (!confirm("今の変更は保存されていません。キャンセルしてよろしいですか？")) {
+      if (!confirm("今の変更は保存されていません。変更を破棄しますか？")) {
         return;
       }
     }
