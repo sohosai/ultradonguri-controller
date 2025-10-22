@@ -197,11 +197,7 @@ export default function Controller() {
         {error && (
           <div className={styles.error}>
             <span className={styles.errorMessage}>エラー: {error}</span>
-            <button
-              onClick={() => setError(null)}
-              className={styles.errorCloseButton}
-              aria-label="エラーを閉じる"
-            >
+            <button onClick={() => setError(null)} className={styles.errorCloseButton} aria-label="エラーを閉じる">
               ✕
             </button>
           </div>
