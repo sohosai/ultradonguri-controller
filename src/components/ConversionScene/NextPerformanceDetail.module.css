@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: fit-content;
   max-width: 90%;
   padding: 60px 80px;
   font-weight: bold;
