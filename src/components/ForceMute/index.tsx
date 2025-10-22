@@ -8,13 +8,18 @@ type Props = {
   isForceMuted: boolean;
   onForceMuteChange: (isMuted: boolean) => void;
   onError?: (errorMessage: string) => void;
+  isCmMode?: boolean;
 };
 
-export default function ForceMute({ isForceMuted, onForceMuteChange, onError }: Props) {
+export default function ForceMute({ isForceMuted, onForceMuteChange, onError, isCmMode }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const openModal = () => {
+    // CM-modeのときは、ミュート操作(isForceMuted=false)のみ無効化
+    if (isCmMode && !isForceMuted) {
+      return;
+    }
     setIsModalOpen(true);
   };
 
@@ -40,10 +45,12 @@ export default function ForceMute({ isForceMuted, onForceMuteChange, onError }: 
     }
   };
 
+  const isDisabled = isCmMode && !isForceMuted;
+
   return (
     <>
       <div className={styles.tigerStripe}>
-        <div className={styles.forceMute}>
+        <div className={`${styles.forceMute} ${isDisabled ? styles.disabled : ""}`}>
           強制
           <br />
           {isForceMuted ? "ミュート解除" : "ミュート"}

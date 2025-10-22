@@ -13,6 +13,11 @@
   border-radius: 50%;
 }
 
+.forceMute.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .glass {
   position: absolute;
   top: 0;
@@ -25,6 +30,14 @@
 .glass:hover {
   background-color: transparent;
   transition: 0.2s;
+}
+
+.forceMute.disabled .glass {
+  cursor: not-allowed;
+}
+
+.forceMute.disabled .glass:hover {
+  background-color: var(--color-glass);
 }
 
 .tigerStripe {
