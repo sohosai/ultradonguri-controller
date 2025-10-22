@@ -237,6 +237,7 @@ export default function Controller() {
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}
+              isCmMode={isCmMode}
             />
           </div>
         </div>
