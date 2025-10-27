@@ -6,10 +6,13 @@ React + TypeScript + Vite で構築されたコントローラ用フロントエ
 
 - Node.js
 - npm
+- または Docker
 
 Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等で切り替えてください。
 
 ## セットアップ
+
+### 通常の環境
 
 1. リポジトリのクローン
    - `git clone https://github.com/sohosai/ultradonguri-controller.git`
@@ -18,6 +21,15 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
 3. 開発サーバ起動
    - `npm run dev`
    - ターミナルに表示される URL にアクセス
+
+### Docker を使用する場合
+
+1. リポジトリのクローン
+   - `git clone https://github.com/sohosai/ultradonguri-controller.git`
+2. Docker Compose で起動
+   - `docker compose up`
+3. ブラウザで開く
+   - `http://localhost:5173` にアクセス
 
 ## 開発コマンド
 
