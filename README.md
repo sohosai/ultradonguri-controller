@@ -28,8 +28,7 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
    - `git clone https://github.com/sohosai/ultradonguri-controller.git`
 2. Docker Compose で起動
    - `docker compose up`
-3. ブラウザで開く
-   - `http://localhost:5173` にアクセス
+   - ターミナルに表示される URL にアクセス
 
 ## 開発コマンド
 
