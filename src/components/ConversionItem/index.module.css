@@ -16,6 +16,10 @@
   transform: scale(0.9);
 }
 
+.conversion[data-playing="true"] {
+  border: 1px solid var(--color-white);
+}
+
 .title {
   font-size: 16px;
   font-weight: 600;

@@ -13,8 +13,21 @@
   transform: scale(0.9);
 }
 
-.time {
+.performance[data-playing="true"] {
+  border: 1px solid var(--color-white);
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
   font-size: 14px;
+}
+
+.time {
+  line-height: 22px;
+}
+
+.isPlaying {
   line-height: 22px;
 }
 

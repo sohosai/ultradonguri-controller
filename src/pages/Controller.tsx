@@ -263,6 +263,7 @@ export default function Controller() {
               items={scopedPerformances || []}
               selectedPerformance={selectedPerformance}
               selectedConversion={selectedConversion}
+              currentTrack={currentTrack}
               onSelectPerformance={handleSelectPerformance}
               onSelectConversion={handleSelectConversion}
             />
