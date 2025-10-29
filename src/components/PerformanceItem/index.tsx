@@ -1,7 +1,8 @@
+import { formatToMonthDay, formatToHourMinute } from "../../utils/dateFormat";
+
 import styles from "./index.module.css";
 
 import type { Performance } from "../../types/performances";
-import { formatToMonthDay, formatToHourMinute } from "../../utils/dateFormat";
 
 type Props = {
   performance: Performance;

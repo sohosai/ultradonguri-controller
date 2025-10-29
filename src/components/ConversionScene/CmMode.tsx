@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
+import { formatToHourMinute } from "../../utils/dateFormat";
+
 import CmClock from "./CmClock";
 import styles from "./CmMode.module.css";
 
 import type { NextPerformance } from "../../types/performances";
-import { formatToHourMinute } from "../../utils/dateFormat";
 
 type CmModeProps = {
   nextPerformances: NextPerformance[];

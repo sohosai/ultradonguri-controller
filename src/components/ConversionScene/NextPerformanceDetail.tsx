@@ -1,7 +1,8 @@
+import { formatToHourMinute } from "../../utils/dateFormat";
+
 import styles from "./NextPerformanceDetail.module.css";
 
 import type { NextPerformance } from "../../types/performances";
-import { formatToHourMinute } from "../../utils/dateFormat";
 
 type ConversionSceneProps = {
   nextPerformances: NextPerformance[];
