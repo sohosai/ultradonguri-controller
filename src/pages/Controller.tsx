@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 
 import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
@@ -7,11 +7,13 @@ import Menu from "../components/DetailMenu";
 import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
+import DateTabs from "../components/DateTabs";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 import { findNextTrackRef } from "../lib/tracks";
 import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
+import { formatToYmd } from "../utils/dateFormat";
 
 import styles from "./Controller.module.css";
 
@@ -27,7 +29,30 @@ export default function Controller() {
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
-  const isInitialized = useRef(false);
+  const initializedDateKeyRef = useRef<string | null>(null);
+  const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
+
+  // グルーピング: 日付 -> performances（差分適用後）
+  const { dateKeys, byDate } = useMemo(() => {
+    const map = new Map<string, Performance[]>();
+
+    if (performances) {
+      for (const p of performances) {
+        const key = formatToYmd(p.starts_at);
+        const arr = map.get(key) ?? [];
+        arr.push(p);
+        map.set(key, arr);
+      }
+    }
+
+    const keys = Array.from(map.keys()).sort();
+    return { dateKeys: keys, byDate: map };
+  }, [performances]);
+
+  const scopedPerformances = useMemo<Performance[] | null>(() => {
+    if (!selectedDateKey) return null;
+    return byDate.get(selectedDateKey) ?? [];
+  }, [byDate, selectedDateKey]);
 
   useEffect(() => {
     const initializeForceMute = async () => {
@@ -62,26 +87,46 @@ export default function Controller() {
     void initializeCmMode();
   }, []);
 
+  // 初回とデータ変化時に日付キーを初期化
   useEffect(() => {
     if (!performances) return;
+    if (dateKeys.length === 0) {
+      setSelectedDateKey(null);
+      setSelectedPerformance(null);
+      setSelectedConversion(null);
+      reset();
+      initializedDateKeyRef.current = null;
 
-    if (!isInitialized.current) {
-      if (performances.length === 0) {
-        setSelectedPerformance(null);
-        setSelectedConversion(null);
-        reset();
+      return;
+    }
+    // リロード時は最初の日付
+    if (!selectedDateKey) {
+      setSelectedDateKey(dateKeys[0] || null);
+    }
+  }, [performances, dateKeys, reset, selectedDateKey]);
 
-        return;
-      }
+  // 日付選択の変更やスコープ変更時の初期化
+  useEffect(() => {
+    if (!scopedPerformances) return;
+    if (scopedPerformances.length === 0) {
+      setSelectedPerformance(null);
+      setSelectedConversion(null);
+      reset();
+      initializedDateKeyRef.current = selectedDateKey;
 
-      const initializePerformances = async () => {
-        const firstPerformance = performances[0];
-        const firstMusic = firstPerformance.musics[0];
+      return;
+    }
 
-        setSelectedPerformance(firstPerformance);
-        setSelectedConversion(null);
-        initializeFromFirst(performances);
+    const needInit = initializedDateKeyRef.current !== selectedDateKey;
+    if (needInit) {
+      const firstPerformance = scopedPerformances[0];
+      const firstMusic = firstPerformance.musics[0];
 
+      setSelectedPerformance(firstPerformance);
+      setSelectedConversion(null);
+      initializeFromFirst(scopedPerformances);
+
+      const init = async () => {
         try {
           await sendPerformanceStart(firstPerformance);
           if (firstMusic) await sendMusic(firstMusic);
@@ -90,18 +135,18 @@ export default function Controller() {
           setError("初期データの送信に失敗しました");
         }
       };
-
-      void initializePerformances();
-      isInitialized.current = true;
+      void init();
+      initializedDateKeyRef.current = selectedDateKey;
 
       return;
     }
 
+    // データ更新時に選択が存在すれば同期
     if (selectedPerformance) {
-      const updated = performances.find((p) => p.id === selectedPerformance.id);
+      const updated = scopedPerformances.find((p) => p.id === selectedPerformance.id);
       if (updated) setSelectedPerformance(updated);
     }
-  }, [performances, initializeFromFirst, reset, selectedPerformance]);
+  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance]);
 
   if (isLoading) return <div>読み込み中...</div>;
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
@@ -135,7 +180,8 @@ export default function Controller() {
   };
 
   const handleNext = async () => {
-    if (!performances) return;
+    const list = scopedPerformances;
+    if (!list) return;
     if (!nextTrack) return;
     const prevNext = nextTrack;
 
@@ -149,26 +195,26 @@ export default function Controller() {
 
         // POST /conversion/start
         // prevNext(conversion)の次のトラックを計算して、続く5つのパフォーマンスを取得
-        const nextAfterConversion = findNextTrackRef(performances, prevNext);
+        const nextAfterConversion = findNextTrackRef(list, prevNext);
         if (nextAfterConversion && nextAfterConversion.type === "music") {
-          const nextPerformanceIndex = performances.findIndex((p) => p.id === nextAfterConversion.performanceId);
+          const nextPerformanceIndex = list.findIndex((p) => p.id === nextAfterConversion.performanceId);
 
           if (nextPerformanceIndex >= 0) {
             // 続く5つのパフォーマンスを取得（最大5つ）
-            const nextPerformances = performances.slice(nextPerformanceIndex, nextPerformanceIndex + 5);
+            const nextPerformances = list.slice(nextPerformanceIndex, nextPerformanceIndex + 5);
             await sendConversionStart(nextPerformances);
           }
         }
 
         // API成功後に状態を更新
-        skipToNext(performances);
+        skipToNext(list);
         setSelectedConversion(conversion);
         setSelectedPerformance(null);
         setError(null);
       }
       // nextTrackがmusicの場合
       else if (prevNext.type === "music") {
-        const newPlayingPerf = performances.find((p) => p.id === prevNext.performanceId) || null;
+        const newPlayingPerf = list.find((p) => p.id === prevNext.performanceId) || null;
         const music = newPlayingPerf?.musics.find((m) => m.id === prevNext.musicId);
         const currentPerformanceId = currentTrack?.type === "music" ? currentTrack.performanceId : null;
         // POST /performance/start (パフォーマンスが変わった時のみ)
@@ -182,7 +228,7 @@ export default function Controller() {
         }
 
         // API成功後に状態を更新
-        skipToNext(performances);
+        skipToNext(list);
         if (newPlayingPerf && currentPerformanceId !== newPlayingPerf.id) {
           setSelectedPerformance(newPlayingPerf);
           setSelectedConversion(null);
@@ -210,8 +256,9 @@ export default function Controller() {
         )}
         <div className={styles.row}>
           <div className={styles.rowLeft}>
+            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={setSelectedDateKey} />
             <Performances
-              items={performances}
+              items={scopedPerformances || []}
               selectedPerformance={selectedPerformance}
               selectedConversion={selectedConversion}
               onSelectPerformance={handleSelectPerformance}
