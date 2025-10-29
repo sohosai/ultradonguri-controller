@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default function DateTabs({ dateKeys, selected, onChange }: Props) {
-
   return (
     <div className={styles.tabs} role="tablist" aria-label="日付タブ">
       {dateKeys.map((key) => {
@@ -28,4 +27,3 @@ export default function DateTabs({ dateKeys, selected, onChange }: Props) {
     </div>
   );
 }
-

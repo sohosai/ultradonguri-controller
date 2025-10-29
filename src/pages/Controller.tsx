@@ -3,11 +3,11 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
+import DateTabs from "../components/DateTabs";
 import Menu from "../components/DetailMenu";
 import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
-import DateTabs from "../components/DateTabs";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
@@ -46,11 +46,13 @@ export default function Controller() {
     }
 
     const keys = Array.from(map.keys()).sort();
+
     return { dateKeys: keys, byDate: map };
   }, [performances]);
 
   const scopedPerformances = useMemo<Performance[] | null>(() => {
     if (!selectedDateKey) return null;
+
     return byDate.get(selectedDateKey) ?? [];
   }, [byDate, selectedDateKey]);
 
