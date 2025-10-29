@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 5px;
   width: 100%;
-  height: calc(100vh - 60px - 20px - 150px);
+  height: calc(100vh - 60px - 20px - 150px - 62px);
   padding: 0;
   padding-right: 10px;
   overflow-y: scroll;

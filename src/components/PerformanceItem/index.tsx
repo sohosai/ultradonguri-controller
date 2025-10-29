@@ -1,3 +1,5 @@
+import { formatToMonthDay, formatToHourMinute } from "../../utils/dateFormat";
+
 import styles from "./index.module.css";
 
 import type { Performance } from "../../types/performances";
@@ -13,10 +15,14 @@ export default function PerformanceItem({ performance, isSelected, onSelect }: P
     if (onSelect) onSelect(performance);
   };
 
+  const monthDay = formatToMonthDay(performance.starts_at);
+  const startTime = formatToHourMinute(performance.starts_at);
+  const endTime = formatToHourMinute(performance.ends_at);
+
   return (
     <div className={styles.performance} data-selected={isSelected} onClick={handleClick}>
       <div className={styles.time}>
-        {performance.starts_at}〜{performance.ends_at}
+        {monthDay} / {startTime}〜{endTime}
       </div>
       <div className={styles.title}>{performance.title}</div>
     </div>

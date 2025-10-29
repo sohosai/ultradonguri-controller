@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tab {
+  height: 32px;
+  padding: 0 12px;
+  color: var(--color-white);
+  background: var(--color-surface);
+  border-radius: 6px;
+  transform: scale(0.85);
+  transition: transform 0.3s ease;
+}
+
+.tab[data-selected="true"] {
+  color: var(--color-surface);
+  background: var(--color-white);
+  transform: scale(1);
+}

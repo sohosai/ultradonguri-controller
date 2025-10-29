@@ -1,3 +1,5 @@
+import { formatToHourMinute } from "../../utils/dateFormat";
+
 import styles from "./NextPerformanceDetail.module.css";
 
 import type { NextPerformance } from "../../types/performances";
@@ -12,12 +14,13 @@ export default function NextPerformanceDetail({ nextPerformances }: ConversionSc
   }
 
   const performance = nextPerformances[0];
+  const startTime = formatToHourMinute(performance.starts_at);
 
   return (
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.left}>
-          <div className={styles.starts_at}>{performance.starts_at}</div>
+          <div className={styles.starts_at}>{startTime}</div>
           <div className={styles.nextLabel}>NEXT</div>
         </div>
         <div className={styles.right}>
