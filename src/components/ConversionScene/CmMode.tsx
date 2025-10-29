@@ -4,6 +4,7 @@ import CmClock from "./CmClock";
 import styles from "./CmMode.module.css";
 
 import type { NextPerformance } from "../../types/performances";
+import { formatToHourMinute } from "../../utils/dateFormat";
 
 type CmModeProps = {
   nextPerformances: NextPerformance[];
@@ -23,6 +24,8 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
   }, [nextPerformances.length]);
 
   const currentPerformance = nextPerformances[currentIndex] || nextPerformances[0];
+  const nextStartTime = formatToHourMinute(nextPerformances[0].starts_at);
+  const currentStartTime = formatToHourMinute(currentPerformance.starts_at);
 
   return (
     <div className={styles.container}>
@@ -32,7 +35,7 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
             <CmClock />
           </div>
           <div className={styles.nextGuide}>
-            <p className={styles.nextGuideTime}>{nextPerformances[0].starts_at}〜</p>
+            <p className={styles.nextGuideTime}>{nextStartTime}〜</p>
             <p className={styles.nextGuideTitle}>{nextPerformances[0].title}</p>
             <p className={styles.nextGuideperformer}>{nextPerformances[0].performer}</p>
             <p className={styles.nextGuideDescription}>{nextPerformances[0].description}</p>
@@ -42,7 +45,7 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
       </div>
       <div className={styles.bottom}>
         <div key={currentIndex} className={styles.laterGuide}>
-          <p className={styles.laterGuideTime}>{currentPerformance.starts_at}〜</p>
+          <p className={styles.laterGuideTime}>{currentStartTime}〜</p>
           <div className={styles.laterGuideRight}>
             <p className={styles.laterGuideTitle}>
               {currentPerformance.title} <p className={styles.laterGuidePerformer}>{currentPerformance.performer}</p>
