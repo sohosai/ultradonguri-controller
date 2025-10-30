@@ -7,7 +7,7 @@
   justify-content: center;
   padding: 36px 56px;
   color: var(--color-black);
-  background: color-mix(in srgb, var(--color-surface) 20%, transparent);
+  background: color-mix(in srgb, var(--color-white) 80%, transparent);
   border-radius: 30px;
 }
 
