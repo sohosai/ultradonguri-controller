@@ -9,7 +9,7 @@ on:
 
 jobs:
   use-npm:
-    runs-on: [rke2-github-actions-runner]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
