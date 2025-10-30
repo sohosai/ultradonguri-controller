@@ -8,6 +8,7 @@
   font-weight: bold;
   color: var(--color-white);
   cursor: pointer;
+  user-select: none;
   outline: var(--color-white) solid 5px;
   background: var(--color-green);
   border-radius: 9999px;
