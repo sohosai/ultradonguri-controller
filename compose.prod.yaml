@@ -27,8 +27,10 @@ services:
       MUTED_SCENE_NAME: "Muted_Scene"
       CM_SCENE_NAME: "CM_Scene"
       CONTROLLER_ADDRESS: "http://localhost,http://127.0.0.1,http://0.0.0.0"
-      SCENE_BACKUP_PATH: "scene.json"
-      TELOP_BACKUP_PATH: "telop.json"
+      SCENE_BACKUP_PATH: "/app/data/scene.json"
+      TELOP_BACKUP_PATH: "/app/data/telop.json"
+    volumes:
+      - ./server-data:/app/data
     networks:
       - app
 

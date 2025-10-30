@@ -3,13 +3,8 @@
 }
 
 :{$PORT:5173} {
-    root * /srv
-    encode gzip
-    file_server
-    try_files {path} /index.html
-
     # WebSocket proxy for /ws path
-    handle /ws* {
+    handle /ws {
         reverse_proxy {$SERVER_HOST:server}:{$SERVER_PORT:8080} {
             header_up Host {http.request.host}
             header_up Upgrade {http.request.header.upgrade}
@@ -18,7 +13,20 @@
     }
 
     # API proxy for /api path
-    handle /api* {
+    handle_path /api* {
         reverse_proxy {$SERVER_HOST:server}:{$SERVER_PORT:8080}
+    }
+
+    # Swagger UI proxy
+    handle /swagger* {
+        reverse_proxy {$SERVER_HOST:server}:{$SERVER_PORT:8080}
+    }
+
+    # Static files
+    handle {
+        root * /srv
+        encode gzip
+        try_files {path} /index.html
+        file_server
     }
 }
