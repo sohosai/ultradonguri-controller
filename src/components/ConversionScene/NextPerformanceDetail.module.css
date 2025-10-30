@@ -22,8 +22,23 @@
 
 .left .starts_at {
   font-size: 48px;
-  -webkit-text-stroke: 15px var(--color-white);
   color: var(--color-orange);
+  text-shadow:
+  0 0 1px var(--color-white),
+  0 0 2px var(--color-white),
+  0 0 3px var(--color-white),
+  0 0 4px var(--color-white),
+  0 0 5px var(--color-white),
+  0 0 6px var(--color-white),
+  0 0 7px var(--color-white),
+  0 0 8px var(--color-white),
+  0 0 9px var(--color-white),
+  0 0 10px var(--color-white),
+  0 0 11px var(--color-white),
+  0 0 12px var(--color-white),
+  0 0 13px var(--color-white),
+  0 0 14px var(--color-white),
+  0 0 15px var(--color-white);
 }
 
 .left .nextLabel {
@@ -43,22 +58,67 @@
 }
 
 .right .title {
-  -webkit-text-stroke: 15px var(--color-white);
   font-size: 60px;
   color: var(--color-orange);
+  text-shadow:
+  0 0 1px var(--color-white),
+  0 0 2px var(--color-white),
+  0 0 3px var(--color-white),
+  0 0 4px var(--color-white),
+  0 0 5px var(--color-white),
+  0 0 6px var(--color-white),
+  0 0 7px var(--color-white),
+  0 0 8px var(--color-white),
+  0 0 9px var(--color-white),
+  0 0 10px var(--color-white),
+  0 0 11px var(--color-white),
+  0 0 12px var(--color-white),
+  0 0 13px var(--color-white),
+  0 0 14px var(--color-white),
+  0 0 15px var(--color-white);
 }
 
 .right .performer {
   font-size: 27px;
   color: var(--color-orange);
-  -webkit-text-stroke: 10px var(--color-white);
+  text-shadow:
+  0 0 1px var(--color-white),
+  0 0 2px var(--color-white),
+  0 0 3px var(--color-white),
+  0 0 4px var(--color-white),
+  0 0 5px var(--color-white),
+  0 0 6px var(--color-white),
+  0 0 7px var(--color-white),
+  0 0 8px var(--color-white),
+  0 0 9px var(--color-white),
+  0 0 10px var(--color-white),
+  0 0 11px var(--color-white),
+  0 0 12px var(--color-white),
+  0 0 13px var(--color-white),
+  0 0 14px var(--color-white),
+  0 0 15px var(--color-white);
 }
 
 .description {
   font-size: 40px;
   color: var(--color-black);
-  -webkit-text-stroke: 15px var(--color-white);
   word-break: keep-all;
+  text-shadow:
+  0 0 1px var(--color-white),
+  0 0 2px var(--color-white),
+  0 0 3px var(--color-white),
+  0 0 4px var(--color-white),
+  0 0 5px var(--color-white),
+  0 0 6px var(--color-white),
+  0 0 7px var(--color-white),
+  0 0 8px var(--color-white),
+  0 0 9px var(--color-white),
+  0 0 10px var(--color-white),
+  0 0 11px var(--color-white),
+  0 0 12px var(--color-white),
+  0 0 13px var(--color-white),
+  0 0 14px var(--color-white),
+  0 0 15px var(--color-white);
   animation: slideInFromLeft 1s ease-out;
   animation-delay: 0.15s;
 }
