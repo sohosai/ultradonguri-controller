@@ -9,6 +9,9 @@ services:
       - "5173:5173"
     environment:
       TZ: Asia/Tokyo
+      PORT: 5173
+      SERVER_HOST: server
+      SERVER_PORT: 8080
     networks:
       - app
   server:
@@ -26,8 +29,6 @@ services:
       CONTROLLER_ADDRESS: "http://localhost,http://127.0.0.1,http://0.0.0.0"
       SCENE_BACKUP_PATH: "scene.json"
       TELOP_BACKUP_PATH: "telop.json"
-    ports:
-      - "8080:8080"
     networks:
       - app
 

@@ -1,0 +1,24 @@
+{
+    auto_https off
+}
+
+:{$PORT:5173} {
+    root * /srv
+    encode gzip
+    file_server
+    try_files {path} /index.html
+
+    # WebSocket proxy for /ws path
+    handle /ws* {
+        reverse_proxy {$SERVER_HOST:server}:{$SERVER_PORT:8080} {
+            header_up Host {http.request.host}
+            header_up Upgrade {http.request.header.upgrade}
+            header_up Connection {http.request.header.connection}
+        }
+    }
+
+    # API proxy for /api path
+    handle /api* {
+        reverse_proxy {$SERVER_HOST:server}:{$SERVER_PORT:8080}
+    }
+}
