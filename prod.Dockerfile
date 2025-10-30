@@ -20,11 +20,11 @@ RUN echo $'{\n\
     auto_https off\n\
 }\n\
 \n\
-:5137 {\n\
+:5173 {\n\
     root * /srv\n\
     encode gzip\n\
     file_server\n\
     try_files {path} /index.html\n\
 }' > /etc/caddy/Caddyfile
 
-EXPOSE 5137
+EXPOSE 5173
