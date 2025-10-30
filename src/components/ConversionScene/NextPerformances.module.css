@@ -7,7 +7,7 @@
   width: fit-content;
   max-width: 90%;
   padding: 60px 80px;
-  background: color-mix(in srgb, var(--color-surface) 20%, transparent);
+  background: color-mix(in srgb, var(--color-white) 80%, transparent);
   border-radius: 0 30px 0 0;
 }
 
