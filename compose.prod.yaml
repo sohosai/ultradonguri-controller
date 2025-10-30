@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+    # image: ghcr.io/sohosai/ultradonguri-controller:latest
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      TZ: Asia/Tokyo
