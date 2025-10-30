@@ -1,8 +1,8 @@
 FROM node:22-alpine AS builder
 
-ENV VITE_API_MODE=prod
-ENV VITE_API_BASE_URL=http://server:8080
-ENV VITE_WS_URL=ws://server:8080/ws
+ENV VITE_API_MODE=real
+ENV VITE_API_BASE_URL=http://localhost:8080
+ENV VITE_WS_URL=ws://localhost:8080/stream
 
 WORKDIR /app
 

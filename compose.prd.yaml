@@ -23,9 +23,11 @@ services:
       NORMAL_SCENE_NAME: "Normal_Scene"
       MUTED_SCENE_NAME: "Muted_Scene"
       CM_SCENE_NAME: "CM_Scene"
-      CONTROLLER_ADDRESS: "http://app:5173,http://localhost,http://127.0.0.1,http://0.0.0.0"
+      CONTROLLER_ADDRESS: "http://localhost,http://127.0.0.1,http://0.0.0.0"
       SCENE_BACKUP_PATH: "scene.json"
       TELOP_BACKUP_PATH: "telop.json"
+    ports:
+      - "8080:8080"
     networks:
       - app
 
