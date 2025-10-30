@@ -2,15 +2,30 @@ services:
   app:
     build:
       context: .
-      dockerfile: prd.Dockerfile
+      dockerfile: prod.Dockerfile
+    # images: ghcr.io/sohosai/ultradonguri-controller:latest
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "5173:5173"
+    networks:
+      - app
     environment:
       TZ: Asia/Tokyo
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+  server:
+    image: ghcr.io/sohosai/ultradonguri-server:latest
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Tokyo
+      ADDRESS: ${ADDRESS:-}
+      PASSWORD: ${PASSWORD:-}
+      NORMAL_SCENE_NAME: "Normal_Scene"
+      MUTED_SCENE_NAME: "Muted_Scene"
+      CM_SCENE_NAME: "CM_Scene"
+      CONTROLLER_ADDRESS: "http://app:5173,http://localhost,http://127.0.0.1,http://0.0.0.0"
+      SCENE_BACKUP_PATH: "scene.json"
+      TELOP_BACKUP_PATH: "telop.json"
+    networks:
+      - app
+
+networks:
+  app:
