@@ -23,17 +23,15 @@ export default function PerformanceScene({
           <div className={styles.orangeObject}></div>
         </div>
       )}
-      {musicTitle && isCopyrightVisible && (
-        <>
-          <div key={`${musicTitle}-${musicArtist}`} className={styles.musicTitle}>
-            ♫ {musicTitle} / {musicArtist}
-          </div>
-          {shouldBeMuted === true && (
-            <div key={`muted-${musicTitle}`} className={styles.shouldBeMuted}>
-              著作権上の都合で音声を削除しています
-            </div>
-          )}
-        </>
+      {musicTitle && (
+        <div key={musicTitle} className={styles.musicTitle}>
+          ♫ {musicTitle} {musicArtist && `/ ${musicArtist}`}
+        </div>
+      )}
+      {isCopyrightVisible && shouldBeMuted === true && (
+        <div key={`muted-${musicTitle}`} className={styles.shouldBeMuted}>
+          著作権上の都合で音声を削除しています
+        </div>
       )}
     </div>
   );
