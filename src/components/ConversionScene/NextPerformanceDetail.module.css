@@ -56,13 +56,14 @@
 
 .description {
   display: -webkit-box;
+  width: 100%;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   line-clamp: 4;
   font-size: 40px;
   color: var(--color-black);
-  word-break: keep-all;
+  word-break: break-all;
   text-shadow: var(--text-shadow-glow);
   animation: slideInFromLeft 1s ease-out;
   animation-delay: 0.15s;
