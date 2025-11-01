@@ -70,5 +70,5 @@
 .item:first-child .right .performer {
   font-size: 27px;
   color: var(--color-orange);
-  -webkit-text-stroke: 10px var(--color-white);
+  text-shadow: var(--text-shadow-glow);
 }
