@@ -23,7 +23,7 @@ export default function PerformanceScene({
           <div className={styles.orangeObject}></div>
         </div>
       )}
-      {musicTitle && (
+      {isCopyrightVisible && musicTitle && (
         <div key={musicTitle} className={styles.musicTitle}>
           ♫ {musicTitle} {musicArtist && `/ ${musicArtist}`}
         </div>
