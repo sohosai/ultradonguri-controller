@@ -59,7 +59,12 @@
 }
 
 .nextGuideDescription {
+  display: -webkit-box;
   margin-top: 1vh;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
   font-size: 23px;
   color: var(--color-surface);
 }
