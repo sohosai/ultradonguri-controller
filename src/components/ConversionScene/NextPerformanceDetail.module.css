@@ -57,7 +57,6 @@
 .description {
   display: -webkit-box;
   width: 100%;
-  padding: 10px;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
