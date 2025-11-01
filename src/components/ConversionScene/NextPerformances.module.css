@@ -45,12 +45,7 @@
 
 .right .title {
   font-size: 48px;
-  white-space: nowrap;
   text-shadow: var(--text-shadow-glow);
-}
-
-.right .performer {
-  white-space: nowrap;
 }
 
 .item:first-child .left .nextLabel {
