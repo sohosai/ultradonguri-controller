@@ -26,7 +26,7 @@ export default function PerformanceScene({
       {musicTitle && (
         <>
           <div key={musicTitle} className={styles.musicTitle}>
-            ♫ {musicTitle} {musicArtist &&  `/ ${musicArtist}`}
+            ♫ {musicTitle} {musicArtist && `/ ${musicArtist}`}
           </div>
         </>
       )}
