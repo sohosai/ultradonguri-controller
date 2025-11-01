@@ -3,7 +3,6 @@
   flex-direction: column;
   font-weight: bold;
   color: var(--color-black);
-  background-color: var(--color-white);
 }
 
 .top {
