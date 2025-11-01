@@ -1,5 +1,6 @@
 .music {
   display: flex;
+  gap: 30px;
   justify-content: space-between;
   width: 100%;
   padding: 15px 20px;
@@ -17,6 +18,12 @@
   text-align: center;
 }
 
+.music_info {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
 .title {
   font-size: 18px;
   font-weight: bold;
@@ -25,7 +32,6 @@
 }
 
 .artist {
-  width: 60%;
   font-size: 18px;
   font-weight: bold;
   line-height: 40px;
