@@ -56,7 +56,8 @@
 
 .description {
   display: -webkit-box;
-  width: 100%;
+  width: calc(100% + 20px);
+  padding: 10px 10px 0;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
