@@ -1,661 +1,2283 @@
 [
   {
-    "id": "5b1c8e4f-9e50-4a6a-b2c0-7a3e9f8d2c33",
-    "title": "基調演説「近年の学園祭について」",
-    "performer": "Tsukuba Philharmonic",
-    "description": "朝にぴったりのクラシックコンサート。",
-    "starts_at": "2025-11-01T09:00:00+09:00",
-    "ends_at": "2025-11-01T11:00:00+09:00",
+    "id": "f8806b5f-b976-4b92-a378-de3e3321a094",
+    "title": "樽酒振る舞い企画",
+    "performer": "筑波大学学園祭実行委員会本部企画局",
+    "description": "企画概要 ・茨城県内の地酒を来場者に無料で振る舞う企画です。  場所　 ・1D棟前, (雨天時：1D204)  日時 ・前夜祭 11/1(土)　17:30～20:00 ・本祭1日目11/2(日)　17:00～20:00 ・本祭2日目11/3(月)　15:00～18:00  鏡開き ・前夜祭11/1(土)　17:10よりUNITEDステージにて樽酒の鏡開きを行います(雨天中止)。ぜひご覧ください。  注意事項 ・20歳未満の方へのお酒の提供はできません。 ・顔写真付きの身分証明書の提示が必要となります。ご提示いただけない場合はお酒を提供することはできません。 ・試飲後に運転や企画運営をする予定がある方へのお酒の提供はお断りさせていただきます。 ・1日につきお一人様1回、紙コップ2杯までの配布となります。 ・量の制限によりご希望のお酒が飲めない場合がございます。お早めに並ばれることをお勧めいたします。  酒造とお酒の種類 ・来福酒造　桐の華 ・浦里酒造　霧筑波 ・岡部合名会社　松盛純米 ・井坂酒造店　日乃出鶴美山錦 純米吟醸 ・椎名酒造　富久心 純米酒 ・月の井酒造　月の井 純米吟醸 ・須藤本家　郷乃誉 純米大吟醸 ・笹目宗兵衛商店　清酒 二波山松緑 精撰 ・磯蔵酒造　稲里 純米 　　　　　  稲里 純米日本晴 　　　　　  稲里 辛口 　　　　　  稲里 純米大吟醸 　　　　　  稲里 大吟醸 五百万石 ・村井醸造　真上 純米吟醸酒　 　　　　　 真上 特別純米酒　 　　　　　 真上 純米酒Regular ・西岡本店　花の井 本醸造 ・武勇　樽生 ・竹村酒造　京の夢 ・愛友酒造　愛友 純米酒 ・青木酒造　御慶事 特別純米酒 ・萩原酒造　徳正宗 本醸造 ",
+    "starts_at": "2025-11-01T17:10:00+09:00",
+    "ends_at": "2025-11-01T17:25:00+09:00",
     "musics": [
       {
-        "id": "a78192b3-0c1d-4e2f-a345-56b78c90d1e2",
-        "title": "Symphony No.5 (I)",
-        "artist": "Ludwig van Beethoven",
-        "should_be_muted": true,
-        "intro": "Fate motif: short-short-short-long."
+        "id": "296ac09b-889e-4807-b13c-212efb675cd4",
+        "title": "東の都を風切る夜は",
+        "artist": "ユーキヒロセ",
+        "should_be_muted": false
       },
       {
-        "id": "b892a3c4-1d2e-4f30-b456-67c89da1e2f3",
-        "title": "Eine kleine Nachtmusik (I)",
-        "artist": "W. A. Mozart",
-        "should_be_muted": false,
-        "intro": "Brisk strings launch a joyful serenade."
+        "id": "00cfb0e1-714c-4544-af55-8a9afb0962eb",
+        "title": "茜色の桜を眺めて",
+        "artist": "ユーキヒロセ",
+        "should_be_muted": false
       },
       {
-        "id": "c9a3b4d5-2e3f-4041-c567-78d9aeb2f304",
-        "title": "Swan Lake Theme",
-        "artist": "Pyotr Ilyich Tchaikovsky",
-        "should_be_muted": true,
-        "intro": "Haunting oboe over shimmering strings."
-      },
-      {
-        "id": "dab4c5e6-3f40-4152-d678-89eabfc30415",
-        "title": "Canon in D",
-        "artist": "Johann Pachelbel",
-        "should_be_muted": false,
-        "intro": "Layered strings weave a gentle canon."
-      },
-      {
-        "id": "eac5d6f7-4051-4263-e789-9fbcd0d41526",
-        "title": "Clair de Lune",
-        "artist": "Claude Debussy",
-        "should_be_muted": true,
-        "intro": "Soft piano arpeggios under moonlit hush."
-      },
-      {
-        "id": "fbd6e708-5162-4374-f89a-a0cde1e52637",
-        "title": "Air on the G String",
-        "artist": "J. S. Bach",
-        "should_be_muted": false,
-        "intro": "Serene melody floats above steady bass."
-      },
-      {
-        "id": "0ce7f819-6273-4485-09ab-b1def2f63748",
-        "title": "The Four Seasons: Spring (I)",
-        "artist": "Antonio Vivaldi",
-        "should_be_muted": true,
-        "intro": "Violins burst with birdsong-like figures."
-      },
-      {
-        "id": "1df8092a-7384-4596-1abc-c2ef03f74859",
-        "title": "Symphony No.9 (Largo)",
-        "artist": "Antonín Dvořák",
-        "should_be_muted": false,
-        "intro": "English horn sings a homesick hymn."
+        "id": "6e56fc29-7976-4602-87ed-1a5f246dd2b8",
+        "title": "雨の散歩道",
+        "artist": "ユーキヒロセ",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "c283f016-05c7-4a2e-8fd1-e1b46ff193aa",
-    "title": "World Music Journey",
-    "performer": "Globe Ensemble",
-    "description": "世界の音楽を旅するステージ。",
-    "starts_at": "2025-11-01T11:30:00+09:00",
-    "ends_at": "2025-11-01T12:45:00+09:00",
+    "id": "12ae1f50-71b0-4fd1-8f27-14a06ac69f6e",
+    "title": "筑波大学応援部WINS＆斬桐舞コラボステージ",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-01T17:25:00+09:00",
+    "ends_at": "2025-11-01T17:45:00+09:00",
     "musics": [
       {
-        "id": "2138893a-84bc-4e0f-9076-0f1a2b3c4d5e",
-        "title": "Chan Chan",
-        "artist": "Buena Vista Social Club",
-        "should_be_muted": true,
-        "intro": "De Alto Cedro voy para Marcané"
+        "id": "ce3020b7-8816-4d71-a64e-31eaf390a238",
+        "title": "筑波大学応援歌",
+        "artist": "",
+        "should_be_muted": false
       },
       {
-        "id": "32499a4b-95cd-4f10-a187-10b2c3d4e5f6",
-        "title": "Bamboléo",
-        "artist": "Gipsy Kings",
-        "should_be_muted": false,
-        "intro": "Bamboléo, bambolea..."
+        "id": "b7453c55-6bcf-4076-ac03-5dad7715a43b",
+        "title": "宇宙戦艦ヤマト",
+        "artist": "ささきいさお",
+        "should_be_muted": false
       },
       {
-        "id": "435aab5c-a6de-4021-b298-21c3d4e5f607",
-        "title": "Sastanàqqàm",
-        "artist": "Tinariwen",
-        "should_be_muted": true,
-        "intro": "Desert guitars drone in hypnotic cycles."
+        "id": "19427c8c-429f-480f-bb57-638dfffc89b4",
+        "title": "海のトリトン",
+        "artist": "鈴木宏昌",
+        "should_be_muted": false
       },
       {
-        "id": "546bbc6d-b7ef-4132-c3a9-32d4e5f60718",
-        "title": "Raga Jog (Alaap)",
-        "artist": "Ravi Shankar",
-        "should_be_muted": false,
-        "intro": "Sitar explores the raga's twilight mood."
+        "id": "7caab543-f60d-46c6-81e4-71a5174fced7",
+        "title": "サウスポー",
+        "artist": "ピンク・レディ",
+        "should_be_muted": false
       },
       {
-        "id": "657ccd7e-c800-4243-d4ba-43e5f6071829",
-        "title": "7 Seconds",
-        "artist": "Youssou N'Dour & Neneh Cherry",
-        "should_be_muted": true,
-        "intro": "Boul ma s'en boul ma s'enoul..."
+        "id": "056d5c75-9a61-41ba-8a99-48662a726171",
+        "title": "THOSE MAGNIFICENT MEN IN THEIR FLYING MACHINE",
+        "artist": "Ron goodwin",
+        "should_be_muted": false
       },
       {
-        "id": "768dde8f-d911-4354-e5cb-54f718293a4b",
-        "title": "Water No Get Enemy",
-        "artist": "Fela Kuti",
-        "should_be_muted": false,
-        "intro": "Horn riffs ride a deep Afrobeat groove."
+        "id": "bb4fe188-c962-4bcf-b96c-c30953d46e5d",
+        "title": "夜っしゃ来い",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "879eef90-ea22-4465-f6dc-65f8293a4b5c",
-        "title": "Homeless",
-        "artist": "Ladysmith Black Mambazo",
-        "should_be_muted": true,
-        "intro": "A cappella textures shimmer and sway."
-      },
-      {
-        "id": "98af00a1-fb33-4576-07ed-76093a4b5c6d",
-        "title": "Sodade",
-        "artist": "Cesária Évora",
-        "should_be_muted": false,
-        "intro": "Longing voice drifts over morna guitar."
+        "id": "baaaf2b1-782d-4565-b85d-efa52953769e",
+        "title": "宝常",
+        "artist": "",
+        "should_be_muted": true
       }
     ]
   },
   {
-    "id": "a061de94-e3a5-4f2c-87a5-cf843edf7188",
-    "title": "Acoustic Afternoon",
-    "performer": "Sunny Strings",
-    "description": "心地よいアコースティックライブ。",
-    "starts_at": "2025-11-01T13:00:00+09:00",
-    "ends_at": "2025-11-01T14:30:00+09:00",
+    "id": "262433f2-741c-4a56-99c8-3d279201bfe5",
+    "title": "芸術祭告知映像",
+    "performer": "筑波大学芸術祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-01T17:50:00+09:00",
+    "ends_at": "2025-11-01T18:00:00+09:00",
     "musics": [
       {
-        "id": "2841ef05-86de-4b8a-9102-1a2b3c4d5e6f",
-        "title": "Photograph",
-        "artist": "Ed Sheeran",
-        "should_be_muted": true,
-        "intro": "Loving can hurt, loving can hurt sometimes"
-      },
-      {
-        "id": "39520016-97ef-4c9b-a213-2b3c4d5e6f70",
-        "title": "I'm Yours",
-        "artist": "Jason Mraz",
-        "should_be_muted": false,
-        "intro": "Well, you done done me and you bet I felt it"
-      },
-      {
-        "id": "4a633127-a800-4dac-b324-3c4d5e6f7081",
-        "title": "Blackbird",
-        "artist": "The Beatles",
-        "should_be_muted": true,
-        "intro": "Blackbird singing in the dead of night"
-      },
-      {
-        "id": "5b744238-b911-4ebd-c435-4d5e6f708192",
-        "title": "Scarborough Fair",
-        "artist": "Simon & Garfunkel",
-        "should_be_muted": false,
-        "intro": "Are you going to Scarborough Fair?"
-      },
-      {
-        "id": "6c855349-ca22-4fce-d546-5e6f708192a3",
-        "title": "Better Together",
-        "artist": "Jack Johnson",
-        "should_be_muted": true,
-        "intro": "There's no combination of words I could put on the back of a postcard"
-      },
-      {
-        "id": "7d96645a-db33-40df-e657-6f708192a3b4",
-        "title": "Don't Know Why",
-        "artist": "Norah Jones",
-        "should_be_muted": false,
-        "intro": "I waited 'til I saw the sun"
-      },
-      {
-        "id": "8ea7756b-ec44-41f0-f768-708192a3b4c5",
-        "title": "Fast Car",
-        "artist": "Tracy Chapman",
-        "should_be_muted": true,
-        "intro": "You got a fast car, I want a ticket to anywhere"
-      },
-      {
-        "id": "9fb8867c-fd55-4201-0879-8192a3b4c5d6",
-        "title": "Gravity",
-        "artist": "John Mayer",
-        "should_be_muted": false,
-        "intro": "Gravity is working against me"
+        "id": "baaaf2b1-782d-4565-b85d-efa529537111",
+        "title": "",
+        "artist": "",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "8e4fbc72-c183-4d0a-a5f3-ad621cbe5f66",
-    "title": "Lo-Fi Chillout",
-    "performer": "Midnight Producers",
-    "description": "勉強や作業にぴったりのチルセット。",
-    "starts_at": "2025-11-01T15:00:00+09:00",
-    "ends_at": "2025-11-01T16:30:00+09:00",
+    "id": "367f7a8f-0324-4082-85ff-99657fa73402",
+    "title": "筑波大学ミュージカル集団ESSASSA",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-01T18:00:00+09:00",
+    "ends_at": "2025-11-01T18:20:00+09:00",
     "musics": [
       {
-        "id": "28489a3b-84cd-4e1f-9076-df1a2b3c4d5e",
-        "title": "Aruarian Dance",
-        "artist": "Nujabes",
-        "should_be_muted": false,
-        "intro": "Warm Rhodes chords and mellow beats."
+        "id": "37f5304d-b83f-4512-8452-0a37b29b00c3",
+        "title": "遊園地のパレード",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "3959ab4c-95de-4f20-a187-e01b2c3d4e5f",
-        "title": "Luv(sic) Pt3",
-        "artist": "Nujabes feat. Shing02",
-        "should_be_muted": true,
-        "intro": "It's funny how the music put time in perspective"
+        "id": "5138df42-c2ab-497f-ab08-8f6ee22afd4d",
+        "title": "走る雲を追いかけて",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "4a6abc5d-a6ef-4021-b298-f12c3d4e5f60",
-        "title": "Kiara",
-        "artist": "Bonobo",
-        "should_be_muted": false,
-        "intro": "Eastern strings over downtempo pulse."
-      },
-      {
-        "id": "5b7bcd6e-b700-4132-c3a9-023d4e5f6071",
-        "title": "Awake",
-        "artist": "Tycho",
-        "should_be_muted": true,
-        "intro": "Guitars and synths bloom into daylight."
-      },
-      {
-        "id": "6c8cde7f-c811-4243-d4ba-134e5f607182",
-        "title": "both of us",
-        "artist": "idealism",
-        "should_be_muted": false,
-        "intro": "Soft piano loops over gentle vinyl crackle."
-      },
-      {
-        "id": "7d9def80-d922-4354-e5cb-245f60718293",
-        "title": "affection",
-        "artist": "Jinsang",
-        "should_be_muted": true,
-        "intro": "Dusty chords glide with laid-back drums."
-      },
-      {
-        "id": "8eaf0091-ea33-4465-f6dc-3560718293a4",
-        "title": "forest glade",
-        "artist": "eevee",
-        "should_be_muted": false,
-        "intro": "Subtle keys and rustling ambience."
-      },
-      {
-        "id": "9fb011a2-fb44-4576-07ed-46718293a4b5",
-        "title": "Workinonit",
-        "artist": "J Dilla",
-        "should_be_muted": true,
-        "intro": "Chopped samples snap over swaggering drums."
+        "id": "020721a2-90fd-424c-a2dc-ec1a7cb2021d",
+        "title": "誰でも完璧じゃない",
+        "artist": "劇団四季",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "6c2d9f50-af61-4b7b-83d1-8b4f0a9c3d44",
-    "title": "機材整理ショー",
-    "performer": "Shiny Beats",
-    "description": "最新のポップソングを届けます！",
-    "starts_at": "2025-11-02T15:00:00+09:00",
-    "ends_at": "2025-11-02T16:30:00+09:00",
+    "id": "f6808c00-7316-46de-b9ac-32bf5050d620",
+    "title": "TSUKUBA COLLECTION2025",
+    "performer": "筑波大学学園祭実行委員会本部企画局",
+    "description": "TSUKUBA COLLECTION2025はつくコレと呼ばれる委員会開催企画です！  前夜祭と後夜祭に出演します！！ 投票は11/2の17時まで行えます！  ぜひ投票してください！！ お待ちしております！",
+    "starts_at": "2025-11-01T18:25:00+09:00",
+    "ends_at": "2025-11-01T19:55:00+09:00",
     "musics": [
       {
-        "id": "20e91a3b-8495-46a7-2bcd-d3f01408596a",
-        "title": "Shape of You",
-        "artist": "Ed Sheeran",
-        "should_be_muted": true,
-        "intro": "The club isn't the best place to find a lover"
+        "id": "06ffa700-5679-407a-9ed1-47c7aeb87be8",
+        "title": "ストロー",
+        "artist": "aiko",
+        "should_be_muted": false
       },
       {
-        "id": "31fa2b4c-95a6-47b8-3cde-e40125196a7b",
-        "title": "Blinding Lights",
-        "artist": "The Weeknd",
-        "should_be_muted": false,
-        "intro": "I said, ooh, I'm blinded by the lights"
+        "id": "95aa08b4-e013-4295-9c1f-44392f3a427e",
+        "title": "ビターバカンス",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
       },
       {
-        "id": "420b3c5d-a6b7-48c9-4def-f512362a7b8c",
-        "title": "bad guy",
-        "artist": "Billie Eilish",
-        "should_be_muted": true,
-        "intro": "So you're a tough guy, like it really rough guy"
+        "id": "d0b987e7-f4eb-49bb-959e-36fb8dda4391",
+        "title": "怪獣の花唄",
+        "artist": "Vaundy",
+        "should_be_muted": false
       },
       {
-        "id": "531c4d6e-b7c8-49da-5ef0-0623473b8c9d",
-        "title": "Levitating",
-        "artist": "Dua Lipa",
-        "should_be_muted": false,
-        "intro": "If you wanna run away with me..."
+        "id": "c5ab53be-fe27-4bdc-afac-de5e3fe812ad",
+        "title": "カブトムシ",
+        "artist": "aiko",
+        "should_be_muted": false
       },
       {
-        "id": "642d5e7f-c8d9-4aeb-6f01-1734584c9dae",
-        "title": "Uptown Funk",
-        "artist": "Mark Ronson feat. Bruno Mars",
-        "should_be_muted": true,
-        "intro": "This hit, that ice cold, Michelle Pfeiffer..."
+        "id": "2eaa4399-6829-48a6-91d6-dd72cd19fb9a",
+        "title": "Shall we meet?",
+        "artist": "MATSU",
+        "should_be_muted": false
       },
       {
-        "id": "753e6f80-d9ea-4bfc-7012-2845695d0ebf",
-        "title": "Rolling in the Deep",
-        "artist": "Adele",
-        "should_be_muted": false,
-        "intro": "There's a fire starting in my heart"
+        "id": "37c3fa1a-5e88-4cec-97e1-91ccdc22a77e",
+        "title": "A Girl Before",
+        "artist": "Cassandra Compton",
+        "should_be_muted": false
       },
       {
-        "id": "864f8091-eafb-4c0d-8123-39567a6e1fc0",
-        "title": "Shake It Off",
-        "artist": "Taylor Swift",
-        "should_be_muted": true,
-        "intro": "I stay out too late, got nothing in my brain"
+        "id": "9ca15d62-dde6-4bcb-b391-c99557361f09",
+        "title": "長く短い祭り",
+        "artist": "椎名林檎",
+        "should_be_muted": false
       },
       {
-        "id": "975091a2-fb0c-4d1e-9234-4a678b7f20d1",
-        "title": "Happy",
-        "artist": "Pharrell Williams",
-        "should_be_muted": false,
-        "intro": "It might seem crazy what I'm 'bout to say"
+        "id": "2fd29a5d-1a20-4c21-ace1-73627b6b741c",
+        "title": "うるうびと",
+        "artist": "RADWIMPS",
+        "should_be_muted": false
+      },
+      {
+        "id": "b3b89915-2426-402b-9c73-e94e086164f7",
+        "title": "ラブリーフラワー",
+        "artist": "甘茶",
+        "should_be_muted": false
+      },
+      {
+        "id": "7ed7e5e1-91da-4dc3-8866-334900fcc887",
+        "title": "スターラブレイション",
+        "artist": "ケラケラ",
+        "should_be_muted": false
+      },
+      {
+        "id": "735a4868-bc84-48f9-bfea-de27cd082771",
+        "title": "日曜日よりの使者",
+        "artist": "The High-Lows",
+        "should_be_muted": false
+      },
+      {
+        "id": "d996d9b5-983e-4a38-aeeb-e92662166548",
+        "title": "overture",
+        "artist": "=LOVE",
+        "should_be_muted": false
+      },
+      {
+        "id": "98719294-681f-4a02-a4ef-3c68d5968d6a",
+        "title": "抱きしめたい",
+        "artist": "Mr.Children",
+        "should_be_muted": false
+      },
+      {
+        "id": "36f2a829-c33d-4c3f-875a-0cb88c264aed",
+        "title": "HOLA SOLAR",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "ed937f2c-6fb4-4e71-80e4-ef2fcc93b9a4",
+        "title": "カリスマックス",
+        "artist": "Snow Man",
+        "should_be_muted": false
+      },
+      {
+        "id": "ccc061f1-5a0c-431f-a7a5-4051b5874b1c",
+        "title": "Happiness",
+        "artist": "嵐",
+        "should_be_muted": false
+      },
+      {
+        "id": "e591b896-61cc-4fad-a64b-bc330fd71c3b",
+        "title": "テレビ番組「ネプリーグ」中ファイブボンバーのBGM",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "09f32f22-80b9-4502-bdd7-92b1eb18541a",
+        "title": "KICK BACK",
+        "artist": "米津玄師",
+        "should_be_muted": false
+      },
+      {
+        "id": "00a25673-64f5-4a8f-8643-85a191db7b83",
+        "title": "「名探偵コナン 瞳の中の暗殺者」より",
+        "artist": "大野克夫",
+        "should_be_muted": false
+      },
+      {
+        "id": "8c717dfe-75ac-4aa0-b59f-9d45b1d381a5",
+        "title": "倍倍FIGHT!",
+        "artist": "CANDY TUNE",
+        "should_be_muted": false
+      },
+      {
+        "id": "0bf8e4de-3c9b-4be5-936e-409deea99660",
+        "title": "ピタゴラスイッチ オープニングテーマ",
+        "artist": "栗コーダーカルテット",
+        "should_be_muted": false
+      },
+      {
+        "id": "72c0893a-dd21-437d-8a60-8dfc5adfb764",
+        "title": "Bling-Bang-Bang-Born",
+        "artist": "Creepy Nuts",
+        "should_be_muted": false
+      },
+      {
+        "id": "6c6df374-718e-467f-a345-98a8426d28d9",
+        "title": "こっから",
+        "artist": "SixTONES",
+        "should_be_muted": false
+      },
+      {
+        "id": "4b9d9516-536b-44d7-a882-cc10f70b2b95",
+        "title": "きらり",
+        "artist": "藤井 風",
+        "should_be_muted": false
+      },
+      {
+        "id": "f7c50295-083e-45ab-89f7-215fc76bd821",
+        "title": "jellous",
+        "artist": "ILLIT",
+        "should_be_muted": false
+      },
+      {
+        "id": "b30aaae7-7239-400f-a3ca-fc9d4c40332b",
+        "title": "TWILIGHT!!!",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "f5368068-a7e8-4aef-b0d3-919d1dda28ad",
+        "title": "がむしゃら行進曲",
+        "artist": "関ジャニ∞",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "b172ef05-f4b6-4a1d-9be7-d0a45fe08299",
-    "title": "Hip-Hop Cypher",
-    "performer": "Tsukuba Rhymes",
-    "description": "熱いサイファーとビート。",
-    "starts_at": "2025-11-02T17:00:00+09:00",
-    "ends_at": "2025-11-02T18:30:00+09:00",
+    "id": "bc11da07-ac2e-41e2-888a-32b6d651c023",
+    "title": "アカペラサークルDoo-Wop",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-01T19:55:00+09:00",
+    "ends_at": "2025-11-01T20:15:00+09:00",
     "musics": [
       {
-        "id": "a9c011b2-0c34-4d56-a978-12f3c4d5e6f7",
-        "title": "Lose Yourself",
-        "artist": "Eminem",
-        "should_be_muted": false,
-        "intro": "Look, if you had one shot, or one opportunity"
+        "id": "94fc6fd3-6c63-416e-9c6a-9d5b94b075ae",
+        "title": "感情リテラシー",
+        "artist": "BRADIO",
+        "should_be_muted": true
       },
       {
-        "id": "bac122c3-1d45-4e67-ba89-23f4d5e6f708",
-        "title": "HUMBLE.",
-        "artist": "Kendrick Lamar",
-        "should_be_muted": true,
-        "intro": "Sit down, be humble"
+        "id": "11a1ae49-a172-467f-8e87-2de5a028ad17",
+        "title": "生存フラグのサタデーナイト",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "cbd233d4-2e56-4f78-cb9a-34f5e6f70819",
-        "title": "Juicy",
-        "artist": "The Notorious B.I.G.",
-        "should_be_muted": false,
-        "intro": "It was all a dream"
+        "id": "d3eb450d-2d63-4a4f-b102-6f221491e663",
+        "title": "永劫DISCO",
+        "artist": "BRADIO",
+        "should_be_muted": false
       },
       {
-        "id": "dce344e5-3f67-4099-dcab-45f60708192a",
-        "title": "Changes",
-        "artist": "2Pac",
-        "should_be_muted": true,
-        "intro": "Come on, come on, I see no changes"
+        "id": "417a3e87-0362-4c84-be2d-a54e48daa45b",
+        "title": "北の漁場",
+        "artist": "北島三郎",
+        "should_be_muted": false
       },
       {
-        "id": "edf455f6-4078-41aa-edbc-560708192a3b",
-        "title": "99 Problems",
-        "artist": "JAY-Z",
-        "should_be_muted": false,
-        "intro": "If you're having girl problems I feel bad for you, son"
-      },
-      {
-        "id": "fe056607-5189-42bb-fecd-6708192a3b4c",
-        "title": "God's Plan",
-        "artist": "Drake",
-        "should_be_muted": true,
-        "intro": "I been movin' calm, don't start no trouble with me"
-      },
-      {
-        "id": "0f166718-629a-43cc-0fed-78092a3b4c5d",
-        "title": "Stronger",
-        "artist": "Kanye West",
-        "should_be_muted": false,
-        "intro": "N-now th-that that don't kill me"
-      },
-      {
-        "id": "10277829-73ab-44dd-10fe-890a3b4c5d6e",
-        "title": "Work It",
-        "artist": "Missy Elliott",
-        "should_be_muted": true,
-        "intro": "Is it worth it? Let me work it"
+        "id": "5ac7d761-459f-4b95-a91a-a0b1a8a5f16e",
+        "title": "天城越え",
+        "artist": "石川さゆり",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "3f9a6c2c-7c2d-4b0b-9c0b-2a6a8b5f22d1",
-    "title": "Evening Jazz Session",
-    "performer": "Blue Note Quartet",
-    "description": "しっとりとしたジャズセッションで夜を彩ります。",
-    "starts_at": "2025-11-02T18:00:00+09:00",
-    "ends_at": "2025-11-02T19:30:00+09:00",
+    "id": "6929a6af-9370-4f7a-bcc6-6400df165c63",
+    "title": "ひらがなつくば&The Empire of TSUKUBAコラボステージ",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-01T20:20:00+09:00",
+    "ends_at": "2025-11-01T20:40:00+09:00",
     "musics": [
       {
-        "id": "a4e1b2c3-9f6d-4f1b-8c2e-3b5f6a7c8d91",
-        "title": "Autumn Leaves",
-        "artist": "Joseph Kosma",
-        "should_be_muted": false,
-        "intro": "The falling leaves drift by the window..."
+        "id": "40c7185f-48a0-4bc7-9587-96bda907b2cb",
+        "title": "Overture",
+        "artist": "日向坂46",
+        "should_be_muted": false
       },
       {
-        "id": "b5f2c3d4-0a7e-4a2c-9d3f-4c6a7b8c9d02",
-        "title": "Take Five",
-        "artist": "Dave Brubeck",
-        "should_be_muted": true,
-        "intro": "Instrumental 5/4 groove opens the tune."
+        "id": "552ba86a-3b30-4458-881e-fcdd26344118",
+        "title": "ソンナコトナイヨ",
+        "artist": "日向坂46",
+        "should_be_muted": false
       },
       {
-        "id": "c6a3d4e5-1b8f-4b3d-8e40-5d7b8c9d0e13",
-        "title": "So What",
-        "artist": "Miles Davis",
-        "should_be_muted": false,
-        "intro": "Bass call-and-response sets the modal mood."
+        "id": "90b07543-06f7-423d-9645-dfd6ce7a3957",
+        "title": "Actually...",
+        "artist": "乃木坂46",
+        "should_be_muted": false
       },
       {
-        "id": "d7b4e5f6-2c90-4c4e-9f51-6e8c9d0e1f24",
-        "title": "'Round Midnight",
-        "artist": "Thelonious Monk",
-        "should_be_muted": true,
-        "intro": "It begins to tell 'round midnight..."
+        "id": "e613f16e-ac92-4352-8b26-7e4d9dccb43c",
+        "title": "サイレントマジョリティー",
+        "artist": "欅坂46",
+        "should_be_muted": false
       },
       {
-        "id": "e8c5f607-3da1-4d5f-a062-7f9d0e1f2035",
-        "title": "My Favorite Things",
-        "artist": "John Coltrane",
-        "should_be_muted": false,
-        "intro": "Soprano sax spins a waltzing motif."
+        "id": "60e9726d-82eb-4d23-9936-cf84548b7433",
+        "title": "Start over!",
+        "artist": "櫻坂46",
+        "should_be_muted": false
       },
       {
-        "id": "f9d60718-4eb2-4650-b173-80a01f203146",
-        "title": "All Blues",
-        "artist": "Miles Davis",
-        "should_be_muted": true,
-        "intro": "A lilting 6/8 vamp ushers in the head."
+        "id": "b48fbac3-245f-42c7-a9e0-7f7e78eba48f",
+        "title": "ガールズルール",
+        "artist": "乃木坂46",
+        "should_be_muted": false
       },
       {
-        "id": "0ae71829-5fc3-4761-c284-91b12f314257",
-        "title": "Blue in Green",
-        "artist": "Bill Evans / Miles Davis",
-        "should_be_muted": false,
-        "intro": "Hushed piano chords paint a misty hue."
-      },
-      {
-        "id": "1bf8293a-60d4-4872-d395-a2c23f425368",
-        "title": "Footprints",
-        "artist": "Wayne Shorter",
-        "should_be_muted": true,
-        "intro": "A slow 6/8 groove traces the steps."
+        "id": "e043333f-fef8-4a38-bc54-5ec4bb699321",
+        "title": "しあわせの保護色",
+        "artist": "乃木坂46",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "7d3eaf61-b072-4c8c-94e2-9c501bad4e55",
-    "title": "Anime Song Night",
-    "performer": "Otaku Band",
-    "description": "アニソン好き必見の夜。",
-    "starts_at": "2025-11-02T19:00:00+09:00",
-    "ends_at": "2025-11-02T21:00:00+09:00",
+    "id": "d4068579-9b50-48a5-aa3a-27d0d32b53b0",
+    "title": "ちくおん雙峰祭ステージ",
+    "performer": "筑波音楽協会",
+    "description": "筑波音楽協会（ちくおん）が雙峰祭UNITEDステージでライブ！！デカい音でメタルを聴け！！ ANTI POP, STAY METAL!!!! ",
+    "starts_at": "2025-11-02T10:00:00+09:00",
+    "ends_at": "2025-11-02T11:05:00+09:00",
     "musics": [
       {
-        "id": "a96012b3-0c45-4d67-a890-51f2c3d4e5f6",
-        "title": "紅蓮華",
-        "artist": "LiSA",
-        "should_be_muted": false,
-        "intro": "強くなれる理由を知った"
+        "id": "0224abfe-3dc9-4c91-94c9-e399740a1248",
+        "title": "Countdown To Hell",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "b07123c4-1d56-4e78-b901-62f3d4e5f607",
-        "title": "残酷な天使のテーゼ",
-        "artist": "高橋洋子",
-        "should_be_muted": true,
-        "intro": "残酷な天使のように少年よ神話になれ"
+        "id": "e8d7a847-8ebb-4eb4-8563-365c41eacf66",
+        "title": "Monolith",
+        "artist": "Crossfaith",
+        "should_be_muted": false
       },
       {
-        "id": "c18234d5-2e67-4f89-ca12-73f4e5f60718",
-        "title": "only my railgun",
-        "artist": "fripSide",
-        "should_be_muted": false,
-        "intro": "放て！心に刻んだ夢を"
+        "id": "ea8d6659-87df-4d1c-a84d-753549331a0a",
+        "title": "Xeno",
+        "artist": "Crossfaith",
+        "should_be_muted": false
       },
       {
-        "id": "d29345e6-3f78-409a-db23-84f506071829",
-        "title": "君の知らない物語",
-        "artist": "supercell",
-        "should_be_muted": true,
-        "intro": "いつもどおりのある日のこと"
+        "id": "5c197f53-6ac1-4c8b-a291-e1ba3814555a",
+        "title": "Sam's Town",
+        "artist": "The Killers",
+        "should_be_muted": false
       },
       {
-        "id": "e30456f7-4089-41ab-ec34-95f61718293a",
-        "title": "crossing field",
-        "artist": "LiSA",
-        "should_be_muted": false,
-        "intro": "この手は君を守るために"
+        "id": "5fac0fa6-54dd-46a4-bbf2-02243178fda0",
+        "title": "When You Were Young",
+        "artist": "The Killers",
+        "should_be_muted": false
       },
       {
-        "id": "f4156708-519a-42bc-fd45-a60718293a4b",
-        "title": "unravel",
-        "artist": "TK from 凛として時雨",
-        "should_be_muted": true,
-        "intro": "教えて 教えて 僕は"
+        "id": "5c1eb52a-9ed9-4643-8391-1a9f7a1561d5",
+        "title": "Mr. Brightside",
+        "artist": "The Killers",
+        "should_be_muted": false
       },
       {
-        "id": "06267819-62ab-43cd-0e56-b718293a4b5c",
-        "title": "again",
-        "artist": "YUI",
-        "should_be_muted": false,
-        "intro": "夢の続き 追いかけていたはずなのに"
+        "id": "e742a959-fb12-4ab3-abdb-171955313a7a",
+        "title": "A Work of Art（feat. SHAVO）",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "1737892a-73bc-44de-1f67-c8293a4b5c6d",
-        "title": "青春コンプレックス",
-        "artist": "結束バンド",
-        "should_be_muted": true,
-        "intro": "生きづらい毎日を歌う"
+        "id": "29b3c3b1-ed85-464e-bf1a-a94c6669e4bf",
+        "title": "The American Nightmare",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "161829da-28b3-4686-b4d4-78bb7a5702dc",
+        "title": "Stabbing In The Dark",
+        "artist": "",
+        "should_be_muted": true
       }
     ]
   },
   {
-    "id": "4a0b7d3e-8d4f-4958-a1f9-6f2d8e7c1b22",
-    "title": "そぽたん、マジシャンになる★",
-    "performer": "筑波大学 雙峰祭マスコットキャラクター  そぽたん",
-    "description": "そぽたんの新たな一面が見れるかも !! この瞬間を見逃すな！ここでは企画の紹介が入ります",
-    "starts_at": "2025-11-03T20:00:00+09:00",
-    "ends_at": "2025-11-03T22:00:00+09:00",
+    "id": "c6b46900-51d3-403d-a632-aee75384b1b9",
+    "title": "舞研雙峰祭スペシャルステージ",
+    "performer": "競技ダンスサークル舞研",
+    "description": "",
+    "starts_at": "2025-11-02T11:26:00+09:00",
+    "ends_at": "2025-11-02T11:46:00+09:00",
     "musics": [
       {
-        "id": "2c0a3b4c-71e5-4a6f-9b07-3de41a526a10",
-        "title": "Highway Star",
-        "artist": "Deep Purple",
-        "should_be_muted": false,
-        "intro": "Nobody gonna take my car..."
+        "id": "a738fba2-3ac6-44f6-8fda-1784d1c72695",
+        "title": "ファイアーボール feat.ジョン・ライアン",
+        "artist": "ピットブル",
+        "should_be_muted": false
       },
       {
-        "id": "3d1b4c5d-82f6-4b70-ac18-4ef52b637b21",
-        "title": "Smoke on the Water",
-        "artist": "Deep Purple",
-        "should_be_muted": true,
-        "intro": "We all came out to Montreux..."
+        "id": "4d24a3c2-0a6c-45c5-8576-41817811eda4",
+        "title": "I Dreamed a Dream",
+        "artist": "Susan Boyle",
+        "should_be_muted": true
       },
       {
-        "id": "4e2c5d6e-93a7-4c81-bd29-5f063c748c32",
-        "title": "Back In Black",
-        "artist": "AC/DC",
-        "should_be_muted": false,
-        "intro": "Back in black, I hit the sack..."
+        "id": "1a08f304-e560-4f48-9943-dfcbd0de6eed",
+        "title": "生まれてはじめて",
+        "artist": "クリステン・ベル＆イディナ・メンゼル",
+        "should_be_muted": false
       },
       {
-        "id": "5f3d6e7f-a4b8-4d92-ce3a-60174d859d43",
-        "title": "Bohemian Rhapsody",
-        "artist": "Queen",
-        "should_be_muted": true,
-        "intro": "Is this the real life? Is this just fantasy?"
+        "id": "e5c063ff-1d38-4bc7-bc70-76d0ff6cff6a",
+        "title": "とびら開けて",
+        "artist": "クリステン・ベル＆サンティノ・フォンタナ",
+        "should_be_muted": false
       },
       {
-        "id": "604e7f80-b5c9-4ea3-df4b-71285e96ae54",
-        "title": "Sweet Child O' Mine",
-        "artist": "Guns N' Roses",
-        "should_be_muted": false,
-        "intro": "She's got a smile that it seems to me..."
-      },
-      {
-        "id": "715f8091-c6da-4fb4-e05c-82396fa7bf65",
-        "title": "Hotel California",
-        "artist": "Eagles",
-        "should_be_muted": true,
-        "intro": "On a dark desert highway, cool wind in my hair"
-      },
-      {
-        "id": "826091a2-d7eb-40c5-f16d-934a70b8c076",
-        "title": "Stairway to Heaven",
-        "artist": "Led Zeppelin",
-        "should_be_muted": false,
-        "intro": "There's a lady who's sure..."
-      },
-      {
-        "id": "9371a2b3-e8fc-41d6-027e-a45b81c9d187",
-        "title": "Born to Run",
-        "artist": "Bruce Springsteen",
-        "should_be_muted": true,
-        "intro": "In the day we sweat it out on the streets..."
+        "id": "72a34baa-2c52-4480-9dbf-624db05771ff",
+        "title": "レット・イット・ゴー",
+        "artist": "イディナ・メンゼル",
+        "should_be_muted": false
       }
     ]
   },
   {
-    "id": "9f50cd83-d294-4e1b-b6f4-be732dcf6077",
-    "title": "EDM Festival",
-    "performer": "Pulse Riders",
-    "description": "フロアを揺らすエレクトロセット。",
-    "starts_at": "2025-11-03T22:00:00+09:00",
-    "ends_at": "2025-11-03T23:59:00+09:00",
+    "id": "d742d6d6-eb11-4dbd-ae4b-9d5758e38b28",
+    "title": "斬桐舞スペシャルステージ",
+    "performer": "斬桐舞",
+    "description": "バックグランドに関わらず誰もがよさこいソーランを楽しもうという「ユニバーサルソーラン」をコンセプトに学生や地域の社会人が一緒になって楽しく活動しています！踊り子たちのあふれる元気とはじける笑顔をみなさんにお届けします！",
+    "starts_at": "2025-11-02T11:48:00+09:00",
+    "ends_at": "2025-11-02T12:18:00+09:00",
     "musics": [
       {
-        "id": "a0c122b3-0e55-468c-a908-58f2c3d4e5f6",
-        "title": "Levels",
-        "artist": "Avicii",
-        "should_be_muted": false,
-        "intro": "Oh, sometimes I get a good feeling"
+        "id": "7823f0bf-3634-4663-bc74-469c4bb5152a",
+        "title": "宝常",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "b1d233c4-1f66-479d-ba19-69f3d4e5f607",
-        "title": "Clarity",
-        "artist": "Zedd feat. Foxes",
-        "should_be_muted": true,
-        "intro": "If our love is tragedy, why are you my remedy?"
+        "id": "6c644dff-8114-455e-8338-fed261022a9c",
+        "title": "夢煙火",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "c2e344d5-2077-48ae-cb2a-7a04e5f60718",
-        "title": "Animals",
-        "artist": "Martin Garrix",
-        "should_be_muted": false,
-        "intro": "Minimal lead roars into the drop."
+        "id": "1267c16d-d813-4746-944b-4792682e2c8e",
+        "title": "舞っちゃげDAYS",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "d3f455e6-3188-49bf-dc3b-8b15f6071829",
-        "title": "Don't You Worry Child",
-        "artist": "Swedish House Mafia",
-        "should_be_muted": true,
-        "intro": "Don't you worry, don't you worry, child"
+        "id": "2abce162-fcce-4cc1-9f23-2d4897c0e63a",
+        "title": "南中ソーラン",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "e40666f7-4299-4ad0-ed4c-9c26f718293a",
-        "title": "Titanium",
-        "artist": "David Guetta feat. Sia",
-        "should_be_muted": false,
-        "intro": "You shout it out, but I can't hear a word you say"
+        "id": "b195e0fd-ec5f-41ce-b980-b47d7d36866e",
+        "title": "うらじゃ音頭",
+        "artist": "",
+        "should_be_muted": true
+      }
+    ]
+  },
+  {
+    "id": "c90b06fe-020d-4d57-bcc8-6572c25f0ab4",
+    "title": "This is our stage! 〜個の共鳴〜",
+    "performer": "体育会ダンス部",
+    "description": "筑波大学ダンス部です！ 今回の雙峰祭のステージでは、普段の私たちとは一味違う、みなさんを笑顔に巻き込むパワフルなダンスを披露します‼︎1人1人が輝くステージをお楽しみください！",
+    "starts_at": "2025-11-02T12:23:00+09:00",
+    "ends_at": "2025-11-02T12:38:00+09:00",
+    "musics": [
+      {
+        "id": "0a0b4155-6774-4bc8-b00c-c083ec099dd3",
+        "title": "Black Magic",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "f5177708-53aa-4be1-fe5d-ad37f8293a4b",
-        "title": "Summer",
-        "artist": "Calvin Harris",
-        "should_be_muted": true,
-        "intro": "When I met you in the summer"
+        "id": "48e33912-659b-41f7-84b9-4305437a2a3b",
+        "title": "Wonderland",
+        "artist": "",
+        "should_be_muted": true
       },
       {
-        "id": "06228819-64bb-4cf2-0f6e-be48a93a4b5c",
-        "title": "Firestone",
-        "artist": "Kygo feat. Conrad Sewell",
-        "should_be_muted": false,
-        "intro": "I'm a flame, you're a fire"
+        "id": "cae2b9de-bcf4-4721-a4d4-6fdefbecf8b2",
+        "title": "You will be found",
+        "artist": "",
+        "should_be_muted": true
+      }
+    ]
+  },
+  {
+    "id": "8d75ca1b-2a26-4111-ae7c-97d8d8205437",
+    "title": "Doo-Wopアカペラステージ",
+    "performer": "筑波大学アカペラサークルＤoo-Ｗop",
+    "description": "こんにちは！筑波大学アカペラサークルDoo-Wopです！ 私たちは様々なジャンルの音楽を人の声だけで創り上げる「アカペラ」という形で演奏します。 今年のテーマは「百歌喝采」です。盛り上がるような曲から、ゆったりとした曲までアカペラの様々な一面をお届けします！ ぜひお越しください！！",
+    "starts_at": "2025-11-02T12:46:00+09:00",
+    "ends_at": "2025-11-02T13:26:00+09:00",
+    "musics": [
+      {
+        "id": "e7a5e2c8-b85c-43c6-ab0d-49bbe4a63824",
+        "title": "All Of Me",
+        "artist": "Highline Vocal Jazz",
+        "should_be_muted": true
       },
       {
-        "id": "1733992a-75cc-4d03-106f-cf59b04b5c6d",
-        "title": "Bangarang",
-        "artist": "Skrillex",
-        "should_be_muted": true,
-        "intro": "Shout to all my lost boys!"
+        "id": "3116c9a0-7f48-463f-a44a-fae471c91edb",
+        "title": "Bad",
+        "artist": "The Real Group",
+        "should_be_muted": true
+      },
+      {
+        "id": "0f1999d0-7e8c-4b72-8f21-951c94f79e35",
+        "title": "Cosmic Girl",
+        "artist": "Jamiroquai",
+        "should_be_muted": false
+      },
+      {
+        "id": "525dddf4-56a9-4ca1-9b0f-bc5bd5bb2734",
+        "title": "Soul With A Capital \"S\"",
+        "artist": "TOWER OF POWER",
+        "should_be_muted": false
+      },
+      {
+        "id": "dc7511d5-dc82-4967-9682-9a941afbfe3f",
+        "title": "永遠",
+        "artist": "キタニタツヤ",
+        "should_be_muted": false
+      },
+      {
+        "id": "de235369-bc94-414c-aa1e-6f24acbf4729",
+        "title": "化け猫",
+        "artist": "キタニタツヤ",
+        "should_be_muted": false
+      },
+      {
+        "id": "4042bc38-b506-4c0f-bce4-48f9a8f7af52",
+        "title": "PINK",
+        "artist": "キタニタツヤ",
+        "should_be_muted": false
+      },
+      {
+        "id": "6c8b64c9-d692-49b2-839d-257507c3b4b0",
+        "title": "オセロ",
+        "artist": "TOMOO",
+        "should_be_muted": false
+      },
+      {
+        "id": "1416217a-37f4-42a3-b2b4-527e39f2c685",
+        "title": "Super Ball",
+        "artist": "TOMOO",
+        "should_be_muted": false
+      },
+      {
+        "id": "b3b0869a-e537-4140-ba79-7db3dccb6b80",
+        "title": "世界でいちばん熱い夏",
+        "artist": "プリンセス プリンセス",
+        "should_be_muted": false
+      },
+      {
+        "id": "32f987d4-d3cb-460f-a702-c06e292b9d86",
+        "title": "そばかす",
+        "artist": "JUDY AND MARY",
+        "should_be_muted": false
+      },
+      {
+        "id": "46cba6c7-b452-4949-b9a1-f51c84ae6b8d",
+        "title": "LOVE PHANTOM",
+        "artist": "B'z",
+        "should_be_muted": false
+      },
+      {
+        "id": "c2e2c3aa-f48b-40cc-ab07-39b46df7423c",
+        "title": "オトナチック",
+        "artist": "ゲスの極み乙女",
+        "should_be_muted": false
+      },
+      {
+        "id": "5cbb94c2-5487-4391-b83e-914e0543715a",
+        "title": "何度でも",
+        "artist": "DREAMS COME TRUE",
+        "should_be_muted": false
+      },
+      {
+        "id": "13f80b8a-cd32-4ca0-8797-dd30014a8316",
+        "title": "One Love",
+        "artist": "嵐",
+        "should_be_muted": false
+      },
+      {
+        "id": "8207327f-2684-4591-a9d6-dfe3a7c28085",
+        "title": "愛をからだに吹き込んで",
+        "artist": "Superfly",
+        "should_be_muted": false
+      },
+      {
+        "id": "e10c328d-0c9f-4d2b-b1d0-fc9c0ac3d40c",
+        "title": "Alright!!",
+        "artist": "Superfly",
+        "should_be_muted": false
+      },
+      {
+        "id": "c76b6750-0f2d-4126-947f-de7568787d0c",
+        "title": "Ride On Time",
+        "artist": "BRADIO",
+        "should_be_muted": false
+      },
+      {
+        "id": "3772f578-62bc-4779-a21a-2d59c510a1b8",
+        "title": "Aurora",
+        "artist": "BUMP OF CHICKEN",
+        "should_be_muted": false
+      },
+      {
+        "id": "58288ad5-3b44-4898-b63f-d41d8febc84f",
+        "title": "Azalea",
+        "artist": "米津玄師",
+        "should_be_muted": false
+      },
+      {
+        "id": "ce129e1a-05a0-4333-b59f-690512064ad6",
+        "title": "メランコリーキッチン",
+        "artist": "米津玄師",
+        "should_be_muted": false
+      },
+      {
+        "id": "070f4122-4af8-4773-b262-44fb49f28df9",
+        "title": "Swamp",
+        "artist": "iri",
+        "should_be_muted": false
+      },
+      {
+        "id": "3236a91b-7360-4ed2-bbb6-e57226e31ea8",
+        "title": "Sleepwalk",
+        "artist": "なとり",
+        "should_be_muted": false
+      },
+      {
+        "id": "f558acc1-c40f-41b3-9bc6-54123b451daf",
+        "title": "Bless u",
+        "artist": "礼賛",
+        "should_be_muted": false
+      },
+      {
+        "id": "86270bf0-0cca-4891-a200-251f329203e8",
+        "title": "優しいあの子",
+        "artist": "スピッツ",
+        "should_be_muted": false
+      },
+      {
+        "id": "1728542e-f301-4b83-850d-1eeb856f9aa6",
+        "title": "ハルノヒ",
+        "artist": "あいみょん",
+        "should_be_muted": false
+      },
+      {
+        "id": "94d565ef-d86f-42e2-bce9-5041650f8a20",
+        "title": "Say Amen(Saturday Night)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "37b789e4-69b5-492a-8c40-ac1c5633a8a0",
+        "title": "Red Desert",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e968834f-eb66-4b52-afb9-a5a4e27e51cd",
+        "title": "Centuries",
+        "artist": "Fall Out Boy",
+        "should_be_muted": false
+      },
+      {
+        "id": "1c13ce51-092d-4210-8dff-b582bd904825",
+        "title": "1 2 3 〜恋がはじまる〜",
+        "artist": "いきものがかり",
+        "should_be_muted": false
+      },
+      {
+        "id": "04309d33-2193-47b4-841e-6a4deb78fe1b",
+        "title": "風と未来",
+        "artist": "いきものがかり",
+        "should_be_muted": false
+      },
+      {
+        "id": "f29fbf68-8147-4968-bdac-af9f1849c1b3",
+        "title": "アルデバラン",
+        "artist": "AI",
+        "should_be_muted": false
+      },
+      {
+        "id": "b7b451e8-d2f4-4eea-a7b3-2cae0cb3db95",
+        "title": "カイト",
+        "artist": "嵐",
+        "should_be_muted": false
+      },
+      {
+        "id": "310aab8b-3571-416a-8eb4-643f8b8a1f91",
+        "title": "ビターバカンス",
+        "artist": "Mrs. GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "e09b533f-6e8e-4b40-813f-49fc9ec91c8a",
+        "title": "庶幾の唄",
+        "artist": "Mrs. GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "7a165bda-5374-473c-9340-67ca1711578b",
+        "title": "Lovin'",
+        "artist": "Mrs. GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "662844f3-2806-4af7-9847-1f4d7681327c",
+        "title": "ハイボールブギ",
+        "artist": "Da-iCE",
+        "should_be_muted": false
+      },
+      {
+        "id": "56ae7a9b-1c19-485b-8e90-7113d732356a",
+        "title": "幸せのシャナナ",
+        "artist": "BRADIO",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "1b2cd139-5ca6-4602-8863-994d9bbb3ee9",
+    "title": "研究学園戦士ツクバダインショー",
+    "performer": "ヒーローアクション同好会",
+    "description": "研究学園戦士ツクバダインが今年もUNITEDステージにやってくる！みんなで応援しよう！  俺は研究学園戦士ツクバダイン。つくば市のとある研究所で作られたアンドロイドだ。人間とアンドロイドが仲良く暮らせる世界のため、日々戦っているんだ。是非、俺の活躍を見に来てくれ！会場で、俺と握手！",
+    "starts_at": "2025-11-02T13:32:00+09:00",
+    "ends_at": "2025-11-02T13:55:00+09:00",
+    "musics": [
+      {
+        "id": "509c91bc-56f5-4186-9f54-80b607c8741e",
+        "title": "ピエロ",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "bf6e7b5a-642b-4eb0-a1e3-15f0c4971e3c",
+        "title": "登場",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "b7b13f45-6789-4f88-9c0f-2b32cb9b9a3f",
+        "title": "battle start",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "1ae4b36a-4b93-429b-96aa-d15806b6ff1c",
+        "title": "beautiful darkness",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "be039b57-0f92-491a-a95c-fa08e06b731f",
+        "title": "臥龍の陣",
+        "artist": "BGMer",
+        "should_be_muted": false
+      },
+      {
+        "id": "69fe9e6b-f186-493d-8ae9-8ca481a09eb0",
+        "title": "Ara-Nami",
+        "artist": "Fukagawa",
+        "should_be_muted": false
+      },
+      {
+        "id": "9ab0c016-00e7-4fec-89c0-a1cd0c889ccc",
+        "title": "ira",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "9669f031-41a4-4cc1-b45e-ebc703a2d221",
+        "title": "iris",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "8ddb93f1-95ee-47b9-badf-934841d1009f",
+        "title": "Good Luck",
+        "artist": "siroimu",
+        "should_be_muted": false
+      },
+      {
+        "id": "f6f883ff-2735-43e3-b46c-181e084eb16a",
+        "title": "fighting",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      },
+      {
+        "id": "49bdd569-6b4b-4099-9df4-337b52853217",
+        "title": "ウルトラスーパーヒーローズ",
+        "artist": "カモキング",
+        "should_be_muted": false
+      },
+      {
+        "id": "5bdeea2d-2086-447f-9873-da5b575f31fd",
+        "title": "ツクバダインのテーマ",
+        "artist": "筑波大学ヒーローアクション同好会",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "41c6166a-308e-466c-a9e7-aebb931cce56",
+    "title": "コグマ KPOP COPY DANCE STAGE",
+    "performer": "Kpopコピーダンスサークル고구마(コグマ)",
+    "description": "✨K-POPコピーダンスステージ✨ 今年も私たちのステージがやってきます！ 人気の最新曲からあの名曲まで、多彩なセットリストでお届け！ 曲ごとに雰囲気を変えながら、皆様にたっぷり楽しんでいただけるステージをつくりました♡ ダンスや表情、チームでの息の合ったパフォーマンスにもぜひご注目ください！  皆様に見ていただけるのを心から楽しみにしています💫",
+    "starts_at": "2025-11-02T14:02:00+09:00",
+    "ends_at": "2025-11-02T15:09:00+09:00",
+    "musics": [
+      {
+        "id": "110375cf-8fb2-4c05-b791-ff875e67e730",
+        "title": "HOLA SOLAR",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "184fd46b-2b89-463d-9346-a14f8b53854f",
+        "title": "CLAP",
+        "artist": "SEVENTEEN",
+        "should_be_muted": false
+      },
+      {
+        "id": "ff2fd1c7-a584-4324-8485-68d74455ee87",
+        "title": "SIGNAL",
+        "artist": "TWICE",
+        "should_be_muted": false
+      },
+      {
+        "id": "53776cac-b5d7-44c8-83b6-a9ebe307add2",
+        "title": "HANDS UP",
+        "artist": "MEOVV",
+        "should_be_muted": false
+      },
+      {
+        "id": "c1c9b7c1-540f-411e-8deb-456ac9d28720",
+        "title": "Fly Up",
+        "artist": "RIIZE",
+        "should_be_muted": false
+      },
+      {
+        "id": "3721afb4-b9c9-470d-a689-c34c4a07e703",
+        "title": "Gee",
+        "artist": "少女時代",
+        "should_be_muted": false
+      },
+      {
+        "id": "1d4659c7-b07a-4256-ba80-ec4b93e169f5",
+        "title": "Pirate",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "c14c8a9c-7e0a-4186-9ee3-798418aa63af",
+        "title": "STYLE",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e6b33646-9a3c-4a0a-b2e7-4eacc29ff7c6",
+        "title": "IF I SAY, I LOVE YOU",
+        "artist": "BOYNEXTDOOR",
+        "should_be_muted": false
+      },
+      {
+        "id": "afe7b897-3cb7-4de4-b5a6-da766cabbbc0",
+        "title": "GingaMingaYo",
+        "artist": "Billlie",
+        "should_be_muted": true
+      },
+      {
+        "id": "b2ddea4e-245f-4387-9131-c0f551c78e90",
+        "title": "Dirty Work",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e1df1161-08c4-4111-8eba-3ff995cd95d2",
+        "title": "LUV ME",
+        "artist": "TWICE",
+        "should_be_muted": false
+      },
+      {
+        "id": "e29a5317-7eda-496d-8e65-a147f1601e32",
+        "title": "Steady",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "886d77da-1e2f-44fa-8912-cec4686c8dfa",
+        "title": "DIFFERENT(English ver.)",
+        "artist": "LE SSERAFIM",
+        "should_be_muted": false
+      },
+      {
+        "id": "913793ce-2cb1-41fe-a652-12dbef9fb1d0",
+        "title": "Billyeoon Goyangi (Do the Dance)",
+        "artist": "ILLIT",
+        "should_be_muted": false
+      },
+      {
+        "id": "aabd8f5f-7f71-4888-b5a5-f31fee75d59e",
+        "title": "LALALALA",
+        "artist": "Stray Kids",
+        "should_be_muted": false
+      },
+      {
+        "id": "a927d1fd-1361-4e8f-a9a4-f6182abb144c",
+        "title": "Go Go",
+        "artist": "BTS(防弾少年団)",
+        "should_be_muted": false
+      },
+      {
+        "id": "6d6edceb-055a-47b1-8929-4620a9b05eda",
+        "title": "The Chase",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "8df1c367-eeb8-4e1d-95ab-1a6b3ebe950e",
+        "title": "DNA",
+        "artist": "BTS(防弾少年団)",
+        "should_be_muted": false
+      },
+      {
+        "id": "f5049a9b-1f4d-47fa-9147-19009b171516",
+        "title": "KILL THE ROMEO",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "ef7b9a29-2f20-4f2d-b402-68115f19be1d",
+        "title": "Violeta",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e4c0d64f-b5e6-4ab0-a5ab-d23ac6c3d18b",
+        "title": "Run With Me",
+        "artist": "NEXZ",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "1f18b3aa-c2c9-4887-af69-5fae05c3a5da",
+    "title": "Bombs! 学祭公演 vol.5",
+    "performer": "アイドル研究会Bombs!",
+    "description": "こんにちは！筑波大学アイドル研究会Bombs!です！私たちは女性アイドルグループのコピーダンスをする団体です。パフォーマンスを通して皆さんに笑顔をお届けします！！",
+    "starts_at": "2025-11-02T15:19:00+09:00",
+    "ends_at": "2025-11-02T16:09:00+09:00",
+    "musics": [
+      {
+        "id": "86cc8ffc-4cee-4251-86f6-5f81208f7392",
+        "title": "Break a leg!",
+        "artist": "ラストアイドル",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "98e78e03-a11d-4e27-82a5-9fc83f9c247c",
+    "title": "Realjamダンスパフォーマンスショー",
+    "performer": "ストリートダンスサークルRealjam",
+    "description": "筑波大学ストリートダンスサークルRealjamです！ 今回私たちはpop,waack,jazz,hiphop,break,lock,houseの7ジャンルのショーケースを披露します！ 是非ご覧ください！",
+    "starts_at": "2025-11-02T16:17:00+09:00",
+    "ends_at": "2025-11-02T17:14:00+09:00",
+    "musics": [
+      {
+        "id": "e413f3c8-fe04-4c36-8975-384a64e97688",
+        "title": "No. 24 in A Minor",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "684aca3a-ce26-4d73-9799-f2b744365d21",
+        "title": "Maestro of My Heart(Instrumental)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "d9894f34-850f-4f1c-8385-38e344550473",
+        "title": "4u",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "369995de-45bf-4de9-b581-ad98c3364e9f",
+        "title": "Future dust",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "4c4f1acd-6a05-4be3-83cb-4e716a5b37fd",
+        "title": "Love Is the Answer",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "9e48ab1a-4d38-4bc3-9925-c0ca7d476160",
+        "title": "Bring U Up (Jasper James Rimix)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "885cd157-6bf6-474d-bb58-d817f15afa65",
+        "title": "Ooh wee",
+        "artist": "Mark Ronson",
+        "should_be_muted": false
+      },
+      {
+        "id": "4301926c-f487-4706-b2ac-5fb4379374e9",
+        "title": "The Hustle Parisian",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "bc62322c-f8b5-43fe-b650-26056cb23ab7",
+        "title": "Fever",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "2f13b1ca-76fe-4d0e-ac8a-a881790dffff",
+        "title": "黒帯-Black Belt Remix",
+        "artist": "OMSB",
+        "should_be_muted": false
+      },
+      {
+        "id": "689adaa0-f0bd-444b-8390-9832ef26d84c",
+        "title": "Magikess",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e897dd3e-c16c-4830-94c3-95c23fc2d200",
+        "title": "Paradox",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b167894d-78f7-4536-9578-f3f0353c8337",
+        "title": "Go shorty",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "87a94087-d16d-4693-9cca-a53d21074416",
+        "title": "47",
+        "artist": "梅田サイファー",
+        "should_be_muted": false
+      },
+      {
+        "id": "5215747f-324c-4cb8-aa17-7064c250571b",
+        "title": "Is It Love",
+        "artist": "Loreen",
+        "should_be_muted": false
+      },
+      {
+        "id": "3e1c56b9-43ab-4d09-87eb-7254be37aa9f",
+        "title": "O.O.O (Over&Over&Over)(Kep1er Version)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "69b23d8c-2325-4187-98e9-d053f826465a",
+        "title": "Soranji",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "5bb5a566-e696-426e-b7d3-cdf6a03d49c7",
+        "title": "Soranji - ~The White Lounge Version~",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "c0cef80d-85db-471e-8a60-5aa8e05d0d99",
+        "title": "The Doo Wah Song",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "890e5f4d-cc3a-456b-b0f2-015cec412bb2",
+        "title": "Cheshire(feat. Megan Hamilton)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "fda65835-b244-48c0-a24f-c152d4e46279",
+        "title": "100Lives",
+        "artist": "ジョナス・ブルー& EYLR",
+        "should_be_muted": false
+      },
+      {
+        "id": "3eaa114a-f54c-42fb-b6fa-b0a7f916f91d",
+        "title": "Assets(feat.The Kemist)",
+        "artist": "Yellow Claw & Tropkillaz",
+        "should_be_muted": false
+      },
+      {
+        "id": "dcb6aec6-b682-4d77-8143-97eb18bf63e0",
+        "title": "HOP ON DA SHOW",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "6ca7a0d0-ef2e-405a-8935-6a4c8e5a0a7e",
+        "title": "WATAHELEM SQUAD",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b52ce9d8-1d5a-421b-acb0-c08630435526",
+        "title": "The Irishman",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b2c42316-4bca-409c-bfac-f94bf87f8d95",
+        "title": "Wrong Way",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "53044263-9527-4a2c-b2c3-22ab6f5528b4",
+        "title": "Cohesion",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "86539f2b-621f-4748-a8e7-4993d0b6a669",
+        "title": "Talk",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "4fa53499-0a7b-46ac-a8d0-5200a92d87b2",
+        "title": "Who Ride Wit Us,",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "59d685f3-88d9-43ed-9219-168dbe7b0be5",
+        "title": "I Can Feel Jesus",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "311a095a-a838-4fed-a0b1-26084acdaae0",
+        "title": "This far(RudeLies Remix)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b5d26946-9c02-4e31-85a4-f3be8b44f7fb",
+        "title": "B-Boy",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "dfaa1c74-e4be-42bd-8983-d16d6705aa4e",
+        "title": "The Next Episode -Instrumental-",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "fe2198bc-4f45-4980-9a44-2a56cde0a318",
+        "title": "The Next Episode",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "ca951394-67f4-4558-b3a4-04545a5491d5",
+        "title": "spin",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "de4c9437-a689-4319-b3fb-02a9a637fb8d",
+        "title": "RAGE OF DUST",
+        "artist": "SPYAIR",
+        "should_be_muted": false
+      },
+      {
+        "id": "680d67eb-4a0f-4023-bf29-944d2ba32943",
+        "title": "Take 5(kool Summer",
+        "artist": "XL",
+        "should_be_muted": false
+      },
+      {
+        "id": "d56524f5-28a5-42ed-8973-4ae482ae9a65",
+        "title": "I’m a Good Man Remixes, Pt.1(Miusse T Breakbeat Mix)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "691602ee-a3a9-4e9b-a1ab-470176dd45d1",
+        "title": "Up To The Sky ( Original Mix)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b0b0b9ba-b2c0-4015-8d63-f6c32671f151",
+        "title": "イナズマ - 2024 Ver",
+        "artist": "JABBERLOOP",
+        "should_be_muted": false
+      },
+      {
+        "id": "8aaf67da-d11c-4009-8bf1-cfaaf81b57bb",
+        "title": "Starting Over",
+        "artist": "sumika",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "355bc258-b532-49e8-bb10-77e697eb31cc",
+    "title": "書道パフォーマンス",
+    "performer": "書道部",
+    "description": "私たち書道パフォーマンス企画は、音楽に合わせて大きな筆で文字を描くステージ型のパフォーマンスを行います。力強さとしなやかさを兼ね備えた筆の動き、墨が広がる一瞬の表情、そして作品に込められた想いを、照明や演出とともに表現します。 今年のテーマは「挑戦と歩み」。過去の自分を超え、未来に向かって進んでいく姿を言葉と書に託しました。観客の皆さんに、言葉の力や筆文字の迫力を全身で感じていただけると嬉しいです。",
+    "starts_at": "2025-11-02T17:34:00+09:00",
+    "ends_at": "2025-11-02T17:59:00+09:00",
+    "musics": [
+      {
+        "id": "4162106a-0372-49f4-884c-92d6ccc2fb72",
+        "title": "Call of Silence",
+        "artist": "Gemie",
+        "should_be_muted": false
+      },
+      {
+        "id": "daa7671b-40d4-439c-b2c9-6995b9001909",
+        "title": "飛行艇",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "411b2fc6-9b17-4c17-a009-ee2cd0c8778f",
+        "title": "TWILIGHT!!!",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "9813daf5-bf99-40f7-ad83-b7d22347ff23",
+        "title": "ROSE",
+        "artist": "HANA",
+        "should_be_muted": false
+      },
+      {
+        "id": "32d1641f-96ec-40a9-8c4d-747013e5a464",
+        "title": "This is me",
+        "artist": "キアラ・セトル＆ザ・グレイテスト・ショーマン・アンサンブル",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "360c8c93-02ec-4927-8bb2-4401da5a3d51",
+    "title": "Neopolis雙峰祭スペシャルステージ",
+    "performer": "筑波大学ジャズ楽団Neopolis BIGBAND",
+    "description": "今年も雙峰祭に筑波大学唯一のビッグバンドサークル、Neopolis BIGBANDが登場！ 華やかなサウンドのスウィング・ジャズでUNITEDステージの夜を彩ります。 迫力満点で聴きごたえのある音楽を一緒に楽しみませんか？ ",
+    "starts_at": "2025-11-02T18:44:00+09:00",
+    "ends_at": "2025-11-02T19:11:00+09:00",
+    "musics": [
+      {
+        "id": "a37268e7-27b5-42f3-bd75-5ad855c3c1ba",
+        "title": "Surge",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "1c43dbd9-f7f0-493b-a7d7-ad1b659427de",
+        "title": "I'm Glad There Is You",
+        "artist": "Stan Kenton",
+        "should_be_muted": false
+      },
+      {
+        "id": "676d8325-fb18-41be-8082-0d5789909585",
+        "title": "You'd Be So Nice To Come Home To",
+        "artist": "CARMEN TAYLOR",
+        "should_be_muted": false
+      },
+      {
+        "id": "d3b37632-0aeb-4fca-82b8-cfd0fce011a8",
+        "title": "Ride Like The Wind",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "1ae3fdec-e437-49ec-81f3-0204adb92575",
+        "title": "H.Y.Z.",
+        "artist": "イガバンBB",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "dbf87b33-829d-4170-a415-436c85da74c8",
+    "title": "帝国雙峰祭ステージ2025",
+    "performer": "The Empire of TSUKUBA",
+    "description": "今年は「輝け！帝国の希望たち」をテーマに、帝国色全開で彩るステージをお届けします！ 今年はやどかり祭当日のゆかコン実施が叶わず、1年生の初舞台は我々が経験してきたものとは異なる形でのお披露目となりました。それにもかかわらず、1年生達はヲタ芸へのモチベーションを日々高め、いつの間にか2、3年生が鼓舞されるほどに成長して来てくれていました。そして今、どの学年も「このままでは今年のヲタ芸を終われない」と熱く燃えています。雙峰祭で最高のステージを。この気持ちをパフォーマンスに昇華すべく、ゲストの力も借りながら、構成の練り上げを行って来ました。昨年とはまた違う豪華さで、彩りで、雙峰祭の夜を明るく照らしますので、是非ご覧下さい！",
+    "starts_at": "2025-11-02T19:28:00+09:00",
+    "ends_at": "2025-11-02T19:58:00+09:00",
+    "musics": [
+      {
+        "id": "86364f77-d5aa-4488-be1a-28b50fb14001",
+        "title": "KiLLKiSS",
+        "artist": "Ave Mujica",
+        "should_be_muted": true
+      },
+      {
+        "id": "e37b2547-1824-43b9-9cdf-7f5ea835156a",
+        "title": "革命道中",
+        "artist": "アイナ・ジ・エンド",
+        "should_be_muted": false
+      },
+      {
+        "id": "ab3049b5-2165-4cf1-8838-63050e41faca",
+        "title": "妖怪ウォッチバスターズのテーマ",
+        "artist": "西郷　憲一郎",
+        "should_be_muted": true
+      },
+      {
+        "id": "78897879-8390-4aeb-8621-15f662bfabd9",
+        "title": "お金ナイダーのテーマ",
+        "artist": "西郷　憲一郎",
+        "should_be_muted": true
+      },
+      {
+        "id": "292c0196-dcb4-4744-a89c-362e014fd1d7",
+        "title": "ＶＳ赤魔寝鬼白古魔",
+        "artist": "西郷　憲一郎",
+        "should_be_muted": true
+      },
+      {
+        "id": "c871f73b-f184-4b56-a0fa-980c46cda0cc",
+        "title": "Shake Shake 黄金のShake",
+        "artist": "キング・クリームソーダ",
+        "should_be_muted": false
+      },
+      {
+        "id": "3a0d84a6-5099-4d6f-b6e3-1c5f61ca2a6d",
+        "title": "花一匁",
+        "artist": "ずっと真夜中でいいのに。",
+        "should_be_muted": false
+      },
+      {
+        "id": "205f88a1-3fc6-432f-90fb-a3075242157c",
+        "title": "Future Pop",
+        "artist": "Perfume",
+        "should_be_muted": false
+      },
+      {
+        "id": "88861e27-af1e-4079-ae94-64663f23fbb7",
+        "title": "ラストラス",
+        "artist": "",
+        "should_be_muted": true
+      }
+    ]
+  },
+  {
+    "id": "816c9bfa-f345-43a5-a5cb-42b9323c8fa3",
+    "title": "つくばフォーク村UNITEDステージ",
+    "performer": "つくばフォーク村",
+    "description": "今年度はつくばフォーク村から、King Gnuとフレデリックのコピーバンドが登場！ 圧巻の演奏で、雙峰祭2日目の朝を彩ります！ 盛り上がれるライブになること間違いなしです！朝一発目ではありますが、観客の皆様も是非一緒に、盛り上がってください♫ タイムテーブル 10:00- Radicalz(King Gnu) 10:30- ぱるでりっく(フレデリック) それぞれ5曲程度演奏します！  出演バンドの紹介や、詳しいタイムテーブルはTwitter(現：X)、Instagramにて！ また、つくばフォーク村の教室ライブである「雙峰祭ライブハウス」にもお気軽にお越しください！！",
+    "starts_at": "2025-11-03T10:00:00+09:00",
+    "ends_at": "2025-11-03T11:02:00+09:00",
+    "musics": [
+      {
+        "id": "d3d0f045-560c-4f0d-a4fd-df4c246b7441",
+        "title": "一途",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "359d2358-9224-41d4-bca6-422d84323227",
+        "title": "Sorrows",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "598e3477-7bea-49a7-ae28-e3225b284563",
+        "title": "Vinyl",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "c08ade45-a838-4a58-8d5b-23b6e2d6cb29",
+        "title": "Stardom",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "82edc372-6868-4a98-b745-02fbf6544d5b",
+        "title": "Flash!!!",
+        "artist": "King Gnu",
+        "should_be_muted": false
+      },
+      {
+        "id": "7670566f-75e6-4ed0-8119-f250008fa1d6",
+        "title": "CYAN",
+        "artist": "フレデリック",
+        "should_be_muted": false
+      },
+      {
+        "id": "e1636aea-1d7b-4cda-8a66-181dfd0cc826",
+        "title": "KITAKU BEATS",
+        "artist": "フレデリック",
+        "should_be_muted": false
+      },
+      {
+        "id": "c7166cc9-144e-4709-85f1-041070946ef8",
+        "title": "飄々とエモーション",
+        "artist": "フレデリック",
+        "should_be_muted": false
+      },
+      {
+        "id": "bc2843a1-061f-43c8-b881-555c21d57886",
+        "title": "オドループ",
+        "artist": "フレデリック",
+        "should_be_muted": false
+      },
+      {
+        "id": "058b0198-8eb2-4c6e-b8a9-f555ba4c18f9",
+        "title": "ジャンキー",
+        "artist": "フレデリック",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "74843ca6-e1d0-4956-81d6-e0f6e18c8273",
+    "title": "E.L.L.野外バンドパフォーマンス",
+    "performer": "E.L.L.(筑波軽音楽協会)",
+    "description": "軽音サークルELLが青空の下でバンド演奏を行います！スピッツとkurayamisakaのコピーバンドが出演します。是非お越しください！！",
+    "starts_at": "2025-11-03T11:17:00+09:00",
+    "ends_at": "2025-11-03T12:19:00+09:00",
+    "musics": [
+      {
+        "id": "a6528f76-6cb6-4540-a816-4c99f4ff32a6",
+        "title": "8823",
+        "artist": "スピッツ",
+        "should_be_muted": false
+      },
+      {
+        "id": "7732ee9c-d0d7-4232-96a0-eca8706ee05f",
+        "title": "ワタリ",
+        "artist": "スピッツ",
+        "should_be_muted": false
+      },
+      {
+        "id": "ee384a48-87f1-452a-a61d-b94de272f582",
+        "title": "スカーレット",
+        "artist": "スピッツ",
+        "should_be_muted": false
+      },
+      {
+        "id": "9ae8f3df-6c16-4a3f-9057-e53d95a91792",
+        "title": "リコシェ号",
+        "artist": "スピッツ",
+        "should_be_muted": false
+      },
+      {
+        "id": "fa5c6371-54b7-4254-8a80-50bb66deb38e",
+        "title": "theme(kimi wo omotteiru)",
+        "artist": "kurayamisaka",
+        "should_be_muted": false
+      },
+      {
+        "id": "3de23261-33c8-4034-9d1e-e946eadea234",
+        "title": "cinema paradiso",
+        "artist": "kurayamisaka",
+        "should_be_muted": false
+      },
+      {
+        "id": "bd4d2b6f-be74-49af-8aa2-3dabb1bd8aa5",
+        "title": "farewell",
+        "artist": "kurayamisaka",
+        "should_be_muted": false
+      },
+      {
+        "id": "db407808-e056-4f40-b643-86b990bbf14e",
+        "title": "curten call",
+        "artist": "kurayamisaka",
+        "should_be_muted": false
+      },
+      {
+        "id": "06816017-2617-46a0-aaee-6691b64cc2c2",
+        "title": "jitensha",
+        "artist": "kurayamisaka",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "95690504-e087-4e3e-b3c1-cb8a56ea5c41",
+    "title": "Scrambleダンスステージ",
+    "performer": "医学ダンスサークルScramble",
+    "description": "去年以上のインパクトをお届けする、今年のScrambleにご期待ください！",
+    "starts_at": "2025-11-03T12:31:00+09:00",
+    "ends_at": "2025-11-03T13:33:00+09:00",
+    "musics": [
+      {
+        "id": "ad8a3ef4-c126-4fe4-b2d0-d6f4b458a6a4",
+        "title": "Trouble",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "381a23a0-918f-4456-8829-54732cae00eb",
+        "title": "Take a hint",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "2f11d0e2-1d70-41c8-9831-b125f826756e",
+        "title": "I AM",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "42c5a1f5-b8a7-48aa-9ea2-e413376eded1",
+        "title": "HANDS UP",
+        "artist": "MEOVV",
+        "should_be_muted": false
+      },
+      {
+        "id": "5c5f38a6-f391-4ef2-8688-b1f9b4ea9509",
+        "title": "I CAN'T STOP ME",
+        "artist": "TWICE",
+        "should_be_muted": false
+      },
+      {
+        "id": "b872f37d-31d9-487b-aa19-424562db9b35",
+        "title": "DRAMA",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "30b24b43-2984-4e65-a811-1f46b53b89db",
+        "title": "Golden",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "2ccbdbff-eb78-44ea-b205-028874511d3a",
+        "title": "Cherish(My Love)",
+        "artist": "ILLIT",
+        "should_be_muted": false
+      },
+      {
+        "id": "f1c4ab98-dc7f-4194-8b60-d06080debc22",
+        "title": "Lucky girl syndrome",
+        "artist": "ILLIT",
+        "should_be_muted": false
+      },
+      {
+        "id": "5e04dc68-badf-47c7-aee5-840f91c6860e",
+        "title": "ROSE",
+        "artist": "HANA",
+        "should_be_muted": false
+      },
+      {
+        "id": "60776538-b9df-4f9d-917e-d7f32286a762",
+        "title": "PLAYING WITH FIRE-KR Ver.",
+        "artist": "BLACKPINK",
+        "should_be_muted": false
+      },
+      {
+        "id": "528e40e1-ef6b-434e-8cb1-3d5564273ef5",
+        "title": "Snapping",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "c09f8121-b48f-47fb-9b27-786371acfffb",
+        "title": "People I Don't like",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "f88a02ce-78cc-4fff-bfb7-413d616ac3c2",
+        "title": "Shape Of you",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "6c712a8a-26ac-4776-82fb-8c3f03a40cf5",
+        "title": "sports car",
+        "artist": "Tate McRae",
+        "should_be_muted": false
+      },
+      {
+        "id": "016be72b-cc27-4e30-baff-e13c04d64880",
+        "title": "Make A Wish(Birthday Song)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e5480369-422a-494d-968b-f277d6f4bc2f",
+        "title": "Go Big or Go Home",
+        "artist": "ENHYPEN",
+        "should_be_muted": false
+      },
+      {
+        "id": "f0c6fc39-398d-4507-b7ca-b30c74a8e53e",
+        "title": "FLASH BACK",
+        "artist": "capsule",
+        "should_be_muted": false
+      },
+      {
+        "id": "251f4d72-c2d6-48fd-b547-190f0e19d5ea",
+        "title": "ライラック",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "962f1eb3-3371-47bf-a9ff-2344ff71d008",
+        "title": "Nxde",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "e04524fa-facc-47a7-aff7-4b5799c1d5c2",
+        "title": "Queencard",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "87916ffe-b41a-4ea9-be7a-322fb0784948",
+        "title": "プリキュア5、スマイルgogo！",
+        "artist": "工藤真由",
+        "should_be_muted": false
+      },
+      {
+        "id": "16b510c0-8a29-448b-bd3a-6eab66aea03e",
+        "title": "WORK HARD",
+        "artist": "ちゃんみな",
+        "should_be_muted": false
+      },
+      {
+        "id": "393f5b3a-f882-490c-a327-1640f8942947",
+        "title": "Buddies",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "9dbcba81-b743-4fe6-92ad-f2ac77b847db",
+        "title": "Magnetic (R&B慵懒版)",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "5c8d34e9-3989-4bfa-a3b3-aa069c088510",
+        "title": "REVEL HEART",
+        "artist": "IVE",
+        "should_be_muted": false
+      },
+      {
+        "id": "db8d492a-20c7-4dac-b5a9-ad98cbcd2deb",
+        "title": "How Deep Is Your Love",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "1c194fe5-0166-40f3-a0a4-a84c6e70a7b8",
+        "title": "Be Honest",
+        "artist": "Kiddy Smile",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "cd53a7de-b3cd-4d98-a2ff-c51ae24ea444",
+    "title": "無絃塾SUPER LIVE",
+    "performer": "津軽三味線倶楽部無絃塾",
+    "description": "無絃塾SUPER LIVE!!11/3(月)UNITEDステージにて13:45開演！津軽三味線、和太鼓、お琴の豪華な演奏と踊りをとくとご覧あれ！ 無絃塾スーパーライブ 津軽三味線倶楽部無絃塾です！ 津軽三味線や和太鼓、唄に踊り、キーボードなどなんでもござれ！！ 本祭二日目11/3(月)UNITEDステージにて13:45開演でステージを行います！ 毎年大盛り上がりのこの舞台！今年も一緒に盛り上がりましょう✨",
+    "starts_at": "2025-11-03T13:45:00+09:00",
+    "ends_at": "2025-11-03T14:25:00+09:00",
+    "musics": [
+      {
+        "id": "fc91b650-f5ed-4ec9-b423-bb476d8af6e3",
+        "title": "南部俵積み唄",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "784bcbdb-7df2-4bc9-aab7-598e01c90643",
+        "title": "六段",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "898d94e7-76ec-4f1b-a075-d4c4cf48e9a7",
+        "title": "貝殻節",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "b7a43b5e-afa4-439f-9e3b-fbc81e9f7552",
+        "title": "荒波",
+        "artist": "津軽三味線倶楽部無絃塾",
+        "should_be_muted": false
+      },
+      {
+        "id": "10dceb98-6d98-43c5-99f4-219b0b7fb959",
+        "title": "東京ブギウギ",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "1f1f66ce-e572-4d73-8eb8-19cf4a61dcf0",
+        "title": "心の中の太陽",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "83b6b457-5434-49bd-ad5b-fb3ad0b0f21d",
+        "title": "風の詩",
+        "artist": "津軽三味線倶楽部無絃塾",
+        "should_be_muted": false
+      },
+      {
+        "id": "e68b6e3c-e88f-476d-9128-ba9ee78045f1",
+        "title": "よさこいソーランロック",
+        "artist": "小夏＆ひょっとこ",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "cf435384-ddbe-40bb-b7de-96225cfe0eaa",
+    "title": "沖縄県人会エイサー2025",
+    "performer": "筑波大学沖縄県人会",
+    "description": "はいさい！筑波大学沖縄県人会です！沖縄の伝統的な踊り、エイサーを披露します！最後は観客のみなさんも一緒に歌って踊りましょう〜！",
+    "starts_at": "2025-11-03T16:25:00+09:00",
+    "ends_at": "2025-11-03T16:55:00+09:00",
+    "musics": [
+      {
+        "id": "afb0cd83-118f-46cc-856f-f6eb0bbe6500",
+        "title": "行逢り節",
+        "artist": "筑波大学沖縄県人会",
+        "should_be_muted": false
+      },
+      {
+        "id": "75bb1b35-41c7-4e0d-9eb3-d241fbf45d25",
+        "title": "南嶽節",
+        "artist": "筑波大学沖縄県人会",
+        "should_be_muted": false
+      },
+      {
+        "id": "94e13f1a-6309-4b32-bd02-f9e4e18457f6",
+        "title": "仲順流り",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "02c1c9f3-72b0-4709-9d25-356246330707",
+        "title": "久高マンジュウ主",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "1d27c60f-92e8-44a8-8e21-27fd71eef5f1",
+        "title": "スンサーミ―",
+        "artist": "新崎　松秀",
+        "should_be_muted": false
+      },
+      {
+        "id": "a6613d6f-7903-443d-8885-459510447a82",
+        "title": "テンヨー節",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "24bf890d-3518-4107-a916-832dc9cca4cd",
+        "title": "いちゅび小節",
+        "artist": "新崎　松秀",
+        "should_be_muted": false
+      },
+      {
+        "id": "2ae81c03-da6e-4e3e-9a29-f2f7df75f673",
+        "title": "海ヤカラー",
+        "artist": "新崎　松秀",
+        "should_be_muted": false
+      },
+      {
+        "id": "deededad-7a8a-479a-ba5f-d19a5b9e91c4",
+        "title": "固み節",
+        "artist": "登川　誠仁",
+        "should_be_muted": false
+      },
+      {
+        "id": "9ca8ffd2-0267-409e-b6ec-59204cf7cad5",
+        "title": "花ぬ風車",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "2316587e-053c-4e28-9267-be88f188f33c",
+        "title": "安里屋ユンタ",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "f30efe9c-84ee-474f-8ba3-cee4b05b4f34",
+        "title": "想い笛節",
+        "artist": "筑波大学沖縄県人会",
+        "should_be_muted": false
+      },
+      {
+        "id": "0235baa1-7fa3-4da2-b935-671f680e783e",
+        "title": "唐船ドーイ",
+        "artist": "沖縄県民謡",
+        "should_be_muted": false
+      },
+      {
+        "id": "c15cae6a-42df-404f-a298-d81808a96675",
+        "title": "豊年音頭",
+        "artist": "ネーネーズ",
+        "should_be_muted": false
+      },
+      {
+        "id": "899c706f-bf20-45f0-8ad3-85ed9f776dff",
+        "title": "オジー自慢のオリオンビール",
+        "artist": "BEGIN",
+        "should_be_muted": false
+      },
+      {
+        "id": "7b8f296b-1c6d-41f1-845d-b17ce0c18062",
+        "title": "遊び庭（あしびなー）",
+        "artist": "前川守賢",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "f79322d3-d2ba-4bc9-855d-b3fe1622e45f",
+    "title": "津軽三味線倶楽部無絃塾＆筑波大学書道部",
+    "performer": "夜祭パフォーマンスショー　筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-03T17:50:00+09:00",
+    "ends_at": "2025-11-03T18:10:00+09:00",
+    "musics": [
+      {
+        "id": "624f2a71-ca9d-4c29-8e99-b93dff8d9811",
+        "title": "六段",
+        "artist": "",
+        "should_be_muted": true
+      },
+      {
+        "id": "81df5f35-6046-4de0-be76-97f3c99bfa9a",
+        "title": "よさこいソーランロック",
+        "artist": "津軽三味線倶楽部無絃塾",
+        "should_be_muted": false
+      },
+      {
+        "id": "180f360d-c6e5-43ee-9c71-ddc0ebb9b618",
+        "title": "風の詩",
+        "artist": "小夏＆ひょっとこ",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "1b28fe72-d304-4bfc-bf36-e03162ca31ce",
+    "title": "式典・目録贈呈",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-03T18:25:00+09:00",
+    "ends_at": "2025-11-03T18:45:00+09:00",
+    "musics": [
+      {
+        "id": "1a118050-409c-4721-b2f7-cbd7f808e967",
+        "title": "",
+        "artist": "",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "987ad7d0-5e8c-446b-b821-11a87b002a66",
+    "title": "つくばお笑いライブ2025",
+    "performer": "筑波大学学園祭実行委員会本部企画局",
+    "description": "",
+    "starts_at": "2025-11-03T18:45:00+09:00",
+    "ends_at": "2025-11-03T19:20:00+09:00",
+    "musics": [
+      {
+        "id": "07d0b78b-fd36-4ec3-99ad-1fbbd869d35c",
+        "title": "Party Rock Anthem",
+        "artist": "LMFAO",
+        "should_be_muted": false
+      },
+      {
+        "id": "36ddc428-f425-4334-b6e8-bd0e2305a51d",
+        "title": "A PIZZA ALREADY",
+        "artist": "Fatboy Slim",
+        "should_be_muted": false
+      },
+      {
+        "id": "536cef03-75d1-45fb-b0bb-3f61ba0d2a8a",
+        "title": "A PIZZA ALREADY",
+        "artist": "Fatboy Slim",
+        "should_be_muted": true
+      },
+      {
+        "id": "94b338bd-23e0-4a36-8678-4ea5e3b42414",
+        "title": "September",
+        "artist": "Earth Wind ＆ Fire",
+        "should_be_muted": false
+      },
+      {
+        "id": "96cd0c52-3267-4058-af69-36612b99c248",
+        "title": "shake it off",
+        "artist": "テイラー・スウィフト",
+        "should_be_muted": false
+      },
+      {
+        "id": "8c4af2b6-935f-4045-8b20-6caca6c98d52",
+        "title": "Treasure",
+        "artist": "ブルーノ・マーズ",
+        "should_be_muted": false
+      },
+      {
+        "id": "4ea176ed-762e-4351-920d-f139ec3a301f",
+        "title": "Locked Out of Heaven",
+        "artist": "ブルーノ・マーズ",
+        "should_be_muted": false
+      },
+      {
+        "id": "01ba422b-ed24-4a6c-af0d-ec1744178d8e",
+        "title": "Arrival",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      },
+      {
+        "id": "c350b68b-c4e4-47df-b608-901f3dd63ada",
+        "title": "Road Trip",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      },
+      {
+        "id": "7298b07c-e7ce-4d80-b9e9-a1b6ce9cd527",
+        "title": "Hello",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      },
+      {
+        "id": "cb7dae3a-cd1d-4293-b672-d4d7e5e1f81b",
+        "title": "Sanctuary",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      },
+      {
+        "id": "f39a286c-cc8c-4c6a-a1ed-c5d8864f52d7",
+        "title": "Days",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      },
+      {
+        "id": "382b8635-0e95-45f8-9f5b-8964ffeacc73",
+        "title": "Dive",
+        "artist": "Music : RYU ITO https://ryu110.com/",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "a22d1ba0-0988-4670-a5d0-11e095c2638e",
+    "title": "雙峰祭グランプリ",
+    "performer": "筑波大学学園祭実行委員会本部企画局",
+    "description": "雙峰祭グランプリは、来場者の皆さまが「ステージ企画部門」と「一般企画部門」それぞれから、印象に残った企画を選ぶ参加型の企画です！  投票数に応じて、各部門から以下の賞が決定されます：最優秀賞（1企画）、学生賞（1企画）、優秀賞（2企画）  投票は1人最大3票までです。参加方法も簡単です！投票用QRコードを読み取り、気になった企画を検索して投票するだけ。 雙峰祭には、個性豊かなステージ企画や体験型企画、思わず笑顔になる展示や飲食ブースなど、多彩な企画が勢ぞろいしています。 見て、聞いて、触れて、味わって…五感で楽しみながら、あなたが「心から素敵だと思った企画」にぜひ投票してください！",
+    "starts_at": "2025-11-03T19:20:00+09:00",
+    "ends_at": "2025-11-03T19:35:00+09:00",
+    "musics": [
+      {
+        "id": "53ae54b8-45b7-4e5e-902f-6f164ac6c6de",
+        "title": "青と夏",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "54ae54b8-45b7-4e5e-902f-6f164ac6c6de",
+        "title": "開幕宣言",
+        "artist": "Novelbright",
+        "should_be_muted": true
+      },
+      {
+        "id": "aa8acd1b-bba8-4c0f-a95d-b095ca48d27d",
+        "title": "ホムンクルス",
+        "artist": "Vaundy",
+        "should_be_muted": false
+      },
+      {
+        "id": "8d589b28-136d-4638-9cd4-5dcfc1302aeb",
+        "title": "Sailing",
+        "artist": "BE:FIRST",
+        "should_be_muted": false
+      },
+      {
+        "id": "a2edcf22-b92b-44c6-bade-576bb484297b",
+        "title": "Mela!",
+        "artist": "緑黄色社会",
+        "should_be_muted": false
+      },
+      {
+        "id": "8b92a153-c60b-4ea0-b017-822504d37290",
+        "title": "ワタリドリ",
+        "artist": "［Alexandros］",
+        "should_be_muted": false
+      },
+      {
+        "id": "8b72a153-c60b-4ea0-b017-822504d37290",
+        "title": "フィクション",
+        "artist": "sumika",
+        "should_be_muted": true
+      },
+      {
+        "id": "5a673c66-j345-4ef2-8d3f-c927268d65f1",
+        "title": "10時の方角",
+        "artist": "sumika",
+        "should_be_muted": true
+      },
+      {
+        "id": "5a673c66-a672-4ef2-8d3f-c927268d65f1",
+        "title": "宿命",
+        "artist": "Official髭男dism",
+        "should_be_muted": true
+      },
+      {
+        "id": "5a673c66-a943-4ef2-8d3f-c927268d65f1",
+        "title": "South Wind",
+        "artist": "FLASH☆BEAT",
+        "should_be_muted": true
+      }
+    ]
+  },
+  {
+    "id": "c7cac8e9-5fc3-4bc3-8f49-dae0cf32b9b2",
+    "title": "TSUKUBA COLLECTION2025",
+    "performer": "筑波大学学園祭実行委員会本部企画局",
+    "description": "TSUKUBA COLLECTION2025はつくコレと呼ばれる委員会開催企画です！  前夜祭と後夜祭に出演します！！ 投票は11/2の17時まで行えます！  ぜひ投票してください！！ お待ちしております！",
+    "starts_at": "2025-11-03T19:35:00+09:00",
+    "ends_at": "2025-11-03T20:15:00+09:00",
+    "musics": [
+      {
+        "id": "1ef78172-3eb6-440b-af65-8f5775191b71",
+        "title": "シグナル",
+        "artist": "WANIMA",
+        "should_be_muted": false
+      },
+      {
+        "id": "72e44513-a836-42cd-a710-42e713b4c5c3",
+        "title": "コロンブス",
+        "artist": "Mrs.GREEN APPLE",
+        "should_be_muted": false
+      },
+      {
+        "id": "62d5026b-b745-46e4-8369-29628646e352",
+        "title": "踊り子",
+        "artist": "Vaundy",
+        "should_be_muted": false
+      },
+      {
+        "id": "1df07596-b4ba-4bd2-8fe9-5beea22557fc",
+        "title": "じょいふる",
+        "artist": "いきものがかり",
+        "should_be_muted": false
+      },
+      {
+        "id": "39af95ee-3768-484a-b9ad-02b5e144445f",
+        "title": "ガールフレンド",
+        "artist": "アヴリル・ラヴィーン",
+        "should_be_muted": false
+      },
+      {
+        "id": "0d7811f6-0743-4604-9e1d-71bc81680345",
+        "title": "THIS IS FOR",
+        "artist": "TWICE",
+        "should_be_muted": true
+      },
+      {
+        "id": "58670f66-599a-453f-80a1-43f68430b4df",
+        "title": "イケナイ太陽",
+        "artist": "オレンジレンジ",
+        "should_be_muted": false
+      },
+      {
+        "id": "a3da6fc2-d713-46ba-b370-8249711c52e6",
+        "title": "シーソーゲーム ～勇敢な恋の歌～",
+        "artist": "Mr.Children",
+        "should_be_muted": false
+      },
+      {
+        "id": "146cd964-5bd9-4edc-b9ed-cbb723df8f0a",
+        "title": "ラヴ・ライク・ディス",
+        "artist": "藤井 風",
+        "should_be_muted": false
+      },
+      {
+        "id": "2dffbb64-9649-4e42-8d19-ee33427cb8f2",
+        "title": "ボーイフレンド",
+        "artist": "aiko",
+        "should_be_muted": false
+      },
+      {
+        "id": "7d337cd4-57c8-4334-81da-412a71bfbfd7",
+        "title": "me me she",
+        "artist": "RADWIMPS",
+        "should_be_muted": false
+      },
+      {
+        "id": "9ba82f3b-147e-457f-89ca-431e2cf0b263",
+        "title": "だけど僕は",
+        "artist": "ゲスの極み乙女。",
+        "should_be_muted": false
+      },
+      {
+        "id": "3f485fa2-817f-4d22-84fa-2c10f82e5435",
+        "title": "瞳のアドリブ",
+        "artist": "indigo la End",
+        "should_be_muted": false
+      },
+      {
+        "id": "f44b83a7-14df-4a03-b99c-6229a71c6a0c",
+        "title": "NEW KAWAII",
+        "artist": "FRUITS ZIPPER",
+        "should_be_muted": false
+      },
+      {
+        "id": "0cce15b5-6862-4b41-8298-8ae9ff6d2fc8",
+        "title": "ミックスナッツ",
+        "artist": "Official髭男dism",
+        "should_be_muted": false
+      },
+      {
+        "id": "9a8c8050-409c-4721-b2f7-cbd7f808e967",
+        "title": "明日も",
+        "artist": "SHISHAMO",
+        "should_be_muted": false
+      },
+      {
+        "id": "8f214499-6e1c-400f-9c49-b7a7f7cb6db5",
+        "title": "らしさ",
+        "artist": "Official髭男dism",
+        "should_be_muted": true
+      }
+    ]
+  },
+  {
+    "id": "813aeef0-d8f1-43cf-856c-01bfd4899354",
+    "title": "学園祭実行委員会 委員長挨拶",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-03T20:15:00+09:00",
+    "ends_at": "2025-11-03T20:20:00+09:00",
+    "musics": [
+      {
+        "id": "1a8c8050-409c-4721-b2f7-cbd7f808e967",
+        "title": "",
+        "artist": "",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "b904d642-bd20-4814-9a87-9caa98ec869d",
+    "title": "雙峰祭ダイジェスト",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-03T20:20:00+09:00",
+    "ends_at": "2025-11-03T20:30:00+09:00",
+    "musics": [
+      {
+        "id": "2a8c8050-409c-4721-b2f7-cbd7f808e967",
+        "title": "",
+        "artist": "",
+        "should_be_muted": false
+      }
+    ]
+  },
+  {
+    "id": "cf930d59-e591-4394-b578-460e22346a56",
+    "title": "後夜祭花火",
+    "performer": "筑波大学学園祭実行委員会",
+    "description": "",
+    "starts_at": "2025-11-03T20:30:00+09:00",
+    "ends_at": "2025-11-03T20:46:00+09:00",
+    "musics": [
+      {
+        "id": "7adb2cf1-531e-4977-872d-21fe416cabf8",
+        "title": "アイドル",
+        "artist": "YOASOBI",
+        "should_be_muted": false
+      },
+      {
+        "id": "ed5d7334-b9a1-485f-8179-7f77aa8d05f9",
+        "title": "夏影テールライト",
+        "artist": "UNISON SQUARE GARDEN",
+        "should_be_muted": false
       }
     ]
   }
