@@ -29,7 +29,7 @@ export default function ConversionMenu({ isCmMode, onCmModeChange }: Props) {
 
   return (
     <div className={styles.conversionMenu}>
-      <h2 className={styles.title}>Conversion</h2>
+      <h2 className={styles.title}>ー 転換 ー</h2>
       <div className={styles.info}>
         <p>CM</p>
         <Toggle checked={isCmMode} onChange={handleCmModeToggle} />
