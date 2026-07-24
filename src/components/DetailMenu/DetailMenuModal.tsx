@@ -142,6 +142,11 @@ export default function DetailMenuModal({
                     {p.title}
                   </li>
                 ))}
+                <div className={styles.buttons}>
+                  <button className={styles.addgroup} >
+                    団体追加
+                  </button>
+                </div>
               </ul>
             </div>
             <div className={styles.musics}>
@@ -155,6 +160,11 @@ export default function DetailMenuModal({
                     {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                   </li>
                 ))}
+                <div className={styles.buttons}>
+                  <button className={styles.addmusic} >
+                    楽曲追加
+                  </button>
+                </div>
               </ul>
             </div>
             <div className={styles.details}>
