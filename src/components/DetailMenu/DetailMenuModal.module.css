@@ -170,6 +170,17 @@
   margin: 0 100px;
 }
 
+.buttons .addgroup,
+.buttons .addmusic {
+  position: absolute;
+  height: auto;
+  padding: 20px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border: solid 2px var(--color-surface);
+  border-radius: 40px;
+}
+
 .buttons .cancel,
 .buttons .save {
   height: auto;
@@ -180,11 +191,14 @@
   border-radius: 40px;
 }
 
+.buttons .addgroup:hover,
+.buttons .addmusic:hover,
 .buttons .cancel:hover,
 .buttons .save:hover {
   opacity: 0.7;
 }
-
+.buttons .addgroup,
+.buttons .addmusic,
 .buttons .cancel {
   color: var(--color-surface);
 }
