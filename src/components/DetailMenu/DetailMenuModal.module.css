@@ -166,19 +166,32 @@
 .buttons {
   display: flex;
   gap: 10px;
-  justify-content: end;
+}
+
+.buttonsColumn {
+  justify-content: center;
+  margin: 0;
+}
+
+.buttonsFooter{
+  justify-content: end;   
   margin: 0 100px;
 }
 
 .buttons .addgroup,
 .buttons .addmusic {
-  position: absolute;
-  height: auto;
-  padding: 20px 40px;
-  font-size: 20px;
+  position: static;
+  flex: 0 0 auto;           
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  min-width: 140px;         
+  padding: 10px 24px;
+  font-size: 15px;
   font-weight: bold;
   border: solid 2px var(--color-surface);
-  border-radius: 40px;
+  border-radius: 60px;
+  box-sizing: border-box;
 }
 
 .buttons .cancel,
@@ -187,6 +200,7 @@
   padding: 20px 40px;
   font-size: 20px;
   font-weight: bold;
+  justify-content: end;
   border: solid 2px var(--color-surface);
   border-radius: 40px;
 }

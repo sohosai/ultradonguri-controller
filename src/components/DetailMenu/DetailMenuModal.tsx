@@ -142,7 +142,7 @@ export default function DetailMenuModal({
                     {p.title}
                   </li>
                 ))}
-                <div className={styles.buttons}>
+                <div className={`${styles.buttons} ${styles.buttonsColumn}`}>
                   <button className={styles.addgroup} >
                     団体追加
                   </button>
@@ -160,7 +160,7 @@ export default function DetailMenuModal({
                     {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                   </li>
                 ))}
-                <div className={styles.buttons}>
+                <div className={`${styles.buttons} ${styles.buttonsColumn}`}>
                   <button className={styles.addmusic} >
                     楽曲追加
                   </button>
@@ -220,7 +220,7 @@ export default function DetailMenuModal({
               )}
             </div>
           </div>
-          <div className={styles.buttons}>
+          <div className={`${styles.buttons} ${styles.buttonsFooter}`}>
             <button className={styles.cancel} onClick={handleCancel}>
               キャンセル
             </button>
