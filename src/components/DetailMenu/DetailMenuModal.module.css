@@ -43,7 +43,7 @@
 .details {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  
 }
 
 .performances,
@@ -56,6 +56,8 @@
   padding: 0;
   margin: 0 15px;
   list-style: none;
+  flex:1;
+  overflow-y: auto;
 }
 
 .performances li,
@@ -170,7 +172,7 @@
 
 .buttonsColumn {
   justify-content: center;
-  margin: 0;
+  margin-top: auto;
 }
 
 .buttonsFooter{
@@ -180,18 +182,18 @@
 
 .buttons .addgroup,
 .buttons .addmusic {
-  position: static;
   flex: 0 0 auto;           
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
   min-width: 140px;         
   padding: 10px 24px;
-  font-size: 15px;
+  font-size: 30px;
   font-weight: bold;
   border: solid 2px var(--color-surface);
   border-radius: 60px;
   box-sizing: border-box;
+
 }
 
 .buttons .cancel,
