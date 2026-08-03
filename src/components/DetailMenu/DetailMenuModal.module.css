@@ -43,7 +43,6 @@
 .details {
   display: flex;
   flex-direction: column;
-  
 }
 
 .performances,
@@ -53,7 +52,7 @@
 
 .performances ul,
 .musics ul {
-  flex:1;
+  flex: 1;
   padding: 0;
   margin: 0 15px;
   overflow-y: auto;
@@ -175,19 +174,19 @@
   margin-top: auto;
 }
 
-.buttonsFooter{
-  justify-content: end;   
+.buttonsFooter {
+  justify-content: end;
   margin: 0 100px;
 }
 
 .buttons .addgroup,
 .buttons .addmusic {
-  box-sizing: border-box;           
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 92%;
-  min-width: 140px;         
+  min-width: 140px;
   padding: 10px 24px;
   font-size: 30px;
   font-weight: bold;

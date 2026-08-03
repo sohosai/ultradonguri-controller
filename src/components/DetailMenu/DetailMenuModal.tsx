@@ -142,11 +142,9 @@ export default function DetailMenuModal({
                     {p.title}
                   </li>
                 ))}
-              </ul>                
+              </ul>
               <div className={`${styles.buttons} ${styles.buttonsColumn}`}>
-                <button className={styles.addgroup} >
-                  団体追加
-                </button>
+                <button className={styles.addgroup}>団体追加</button>
               </div>
             </div>
             <div className={styles.musics}>
@@ -162,9 +160,7 @@ export default function DetailMenuModal({
                 ))}
               </ul>
               <div className={`${styles.buttons} ${styles.buttonsColumn}`}>
-                <button className={styles.addmusic} >
-                  楽曲追加
-                </button>
+                <button className={styles.addmusic}>楽曲追加</button>
               </div>
             </div>
             <div className={styles.details}>
