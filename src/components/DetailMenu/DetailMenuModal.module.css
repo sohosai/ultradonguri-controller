@@ -53,8 +53,10 @@
 
 .performances ul,
 .musics ul {
+  flex: 1;
   padding: 0;
   margin: 0 15px;
+  overflow-y: auto;
   list-style: none;
 }
 
@@ -166,12 +168,38 @@
 .buttons {
   display: flex;
   gap: 10px;
+}
+
+.buttonsColumn {
+  justify-content: center;
+  margin-top: auto;
+}
+
+.buttonsFooter {
   justify-content: end;
   margin: 0 100px;
 }
 
+.buttons .addgroup,
+.buttons .addmusic {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92%;
+  min-width: 140px;
+  padding: 10px 24px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  border: solid 2px var(--color-surface);
+  border-radius: 60px;
+}
+
 .buttons .cancel,
 .buttons .save {
+  justify-content: end;
   height: auto;
   padding: 20px 40px;
   font-size: 20px;
@@ -180,11 +208,15 @@
   border-radius: 40px;
 }
 
+.buttons .addgroup:hover,
+.buttons .addmusic:hover,
 .buttons .cancel:hover,
 .buttons .save:hover {
   opacity: 0.7;
 }
 
+.buttons .addgroup,
+.buttons .addmusic,
 .buttons .cancel {
   color: var(--color-surface);
 }
