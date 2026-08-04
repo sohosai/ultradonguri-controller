@@ -1,56 +1,9 @@
-.forceMute {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 95px;
-  height: 95px;
-  font-size: 20px;
+.copyrightTitle {
+  margin-bottom: 10px;
+  font-size: 26px;
   font-weight: bold;
   color: var(--color-white);
   text-align: center;
-  background: var(--color-red);
-  border-radius: 50%;
-}
-
-.forceMute.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.glass {
-  position: absolute;
-  top: 0;
-  width: 95px;
-  height: 95px;
-  cursor: pointer;
-  background-color: var(--color-glass);
-}
-
-.glass:hover {
-  background-color: transparent;
-  transition: 0.2s;
-}
-
-.forceMute.disabled .glass {
-  cursor: not-allowed;
-}
-
-.forceMute.disabled .glass:hover {
-  background-color: var(--color-glass);
-}
-
-.tigerStripe {
-  width: 100px;
-  height: 100px;
-  padding: 2.5px;
-  background: repeating-linear-gradient(
-    135deg,
-    var(--color-yellow),
-    var(--color-yellow) 10px,
-    var(--color-black) 10px,
-    var(--color-black) 20px
-  );
 }
 
 .modalOverlay {

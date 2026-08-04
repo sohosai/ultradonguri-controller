@@ -4,6 +4,8 @@ import { postForceMute } from "../../api/http/endpoints";
 
 import styles from "./index.module.css";
 
+import MuteToggle from "../MuteToggle";
+
 type Props = {
   isForceMuted: boolean;
   onForceMuteChange: (isMuted: boolean) => void;
@@ -46,17 +48,11 @@ export default function ForceMute({ isForceMuted, onForceMuteChange, onError, is
     }
   };
 
-  const isDisabled = isConversion && isCmMode && !isForceMuted;
-
   return (
     <>
-      <div className={styles.tigerStripe}>
-        <div className={`${styles.forceMute} ${isDisabled ? styles.disabled : ""}`}>
-          強制
-          <br />
-          {isForceMuted ? "ミュート解除" : "ミュート"}
-          <div className={styles.glass} onClick={openModal}></div>
-        </div>
+      <div className={styles.copyright}>
+        <div className={styles.copyrightTitle}>ミュート</div>
+        <MuteToggle checked={isForceMuted} onChange={openModal} />
       </div>
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
