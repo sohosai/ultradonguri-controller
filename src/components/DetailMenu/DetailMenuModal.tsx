@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import styles from "./DetailMenuModal.module.css";
+import SampleModal from "./SampleModal.tsx";
 
 import type { Performance, Music } from "../../types/performances";
+
 
 type DetailMenuModalProps = {
   isOpen: boolean;
@@ -31,6 +33,7 @@ export default function DetailMenuModal({
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
+  const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
 
   useEffect(() => {
     if (performances && performances.length > 0) {
@@ -127,6 +130,7 @@ export default function DetailMenuModal({
   if (!isOpen) return null;
 
   return (
+  <>
     <div className={styles.modalOverlay} onClick={handleCancel}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>詳細編集メニュー</div>
@@ -213,7 +217,9 @@ export default function DetailMenuModal({
             </div>
           </div>
           <div className={`${styles.buttons} ${styles.buttonsFooter}`}>
-            <button className={styles.addgroup}>団体追加</button>
+            <button className={styles.addgroup} onClick={() => setIsSampleModalOpen(true)}>
+              団体追加
+            </button>
             <button className={styles.addmusic}>楽曲追加</button>
             <button className={styles.cancel} onClick={handleCancel}>
               キャンセル
@@ -225,5 +231,7 @@ export default function DetailMenuModal({
         </div>
       </div>
     </div>
+      <SampleModal isOpen={isSampleModalOpen} />
+  </>  
   );
 }
