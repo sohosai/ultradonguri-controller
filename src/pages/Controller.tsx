@@ -131,7 +131,12 @@ export default function Controller() {
       const init = async () => {
         try {
           await sendPerformanceStart(firstPerformance);
-          if (firstMusic) await sendMusic(firstMusic);
+          if (firstMusic) {
+            await sendMusic(firstMusic);
+            // 1曲目が配信NGなら自動ミュート
+            await postForceMute({ is_muted: firstMusic.should_be_muted });
+            setIsForceMuted(firstMusic.should_be_muted);
+          }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
           setError("初期データの送信に失敗しました");
@@ -227,6 +232,11 @@ export default function Controller() {
         // POST /performance/music
         if (music) {
           await sendMusic(music);
+          // 配信NGの曲なら自動ミュート、配信OKの曲なら自動解除
+          if (music.should_be_muted !== isForceMuted) {
+            await postForceMute({ is_muted: music.should_be_muted });
+            setIsForceMuted(music.should_be_muted);
+          }
         }
 
         // API成功後に状態を更新
