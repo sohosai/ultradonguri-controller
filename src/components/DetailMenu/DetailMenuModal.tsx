@@ -216,17 +216,19 @@ export default function DetailMenuModal({
               )}
             </div>
           </div>
-          <div className={`${styles.buttons} ${styles.buttonsFooter}`}>
+          <div className={styles.buttons}>
             <button className={styles.addgroup} onClick={() => setIsSampleModalOpen(true)}>
-              団体追加
+              団体追加              
             </button>
             <button className={styles.addmusic}>楽曲追加</button>
-            <button className={styles.cancel} onClick={handleCancel}>
-              キャンセル
-            </button>
-            <button className={styles.save} onClick={handleSave}>
-              保存
-            </button>
+            <div className={styles.buttonsFooter}>
+              <button className={styles.cancel} onClick={handleCancel}>
+                キャンセル
+              </button>
+              <button className={styles.save} onClick={handleSave}>
+                保存
+              </button>
+            </div>
           </div>
         </div>
       </div>
