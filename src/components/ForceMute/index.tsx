@@ -5,7 +5,6 @@ import MuteToggle from "../MuteToggle";
 
 import styles from "./index.module.css";
 
-
 type Props = {
   isForceMuted: boolean;
   onForceMuteChange: (isMuted: boolean) => void;
