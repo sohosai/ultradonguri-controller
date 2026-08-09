@@ -31,7 +31,7 @@ export default function ConversionMenu({ isCmMode, onCmModeChange }: Props) {
   return (
     <div className={styles.conversionMenu}>
       <h2 className={styles.title}>Conversion</h2>
-      <ConversionToggleItem isPlaying={false} isNext={false} />
+      <ConversionToggleItem isPlaying={false} isNext={false} isCmMode={isCmMode} onChange={handleCmModeToggle}/>
       <div className={styles.info}>
         <p>CM</p>
         <Toggle checked={isCmMode} onChange={handleCmModeToggle} />
