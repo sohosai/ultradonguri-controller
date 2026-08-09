@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { sendConversionCmMode } from "../../services/performanceService";
 import Toggle from "../Toggle";
+import ConversionToggleItem from "../ConversionToggleItem";
 
 import styles from "./index.module.css";
 
@@ -30,6 +31,7 @@ export default function ConversionMenu({ isCmMode, onCmModeChange }: Props) {
   return (
     <div className={styles.conversionMenu}>
       <h2 className={styles.title}>Conversion</h2>
+      <ConversionToggleItem isPlaying={false} isNext={false} />
       <div className={styles.info}>
         <p>CM</p>
         <Toggle checked={isCmMode} onChange={handleCmModeToggle} />
