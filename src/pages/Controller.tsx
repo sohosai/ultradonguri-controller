@@ -26,6 +26,7 @@ export default function Controller() {
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
+  const [isUnmuteConfirmOpen, setIsUnmuteConfirmOpen] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
@@ -232,10 +233,13 @@ export default function Controller() {
         // POST /performance/music
         if (music) {
           await sendMusic(music);
-          // 配信NGの曲なら自動ミュート、配信OKの曲なら自動解除
-          if (music.should_be_muted !== isForceMuted) {
-            await postForceMute({ is_muted: music.should_be_muted });
-            setIsForceMuted(music.should_be_muted);
+          if (music.should_be_muted && !isForceMuted) {
+            // 配信NGの曲は即時ミュート
+            await postForceMute({ is_muted: true });
+            setIsForceMuted(true);
+          } else if (!music.should_be_muted && isForceMuted) {
+            // ミュート中に配信OKの曲が来たら、解除するかモーダルで確認
+            setIsUnmuteConfirmOpen(true);
           }
         }
 
@@ -301,6 +305,8 @@ export default function Controller() {
               onError={setError}
               isCmMode={isCmMode}
               isConversion={isConversion}
+              isUnmuteConfirmOpen={isUnmuteConfirmOpen}
+              onUnmuteConfirmClose={() => setIsUnmuteConfirmOpen(false)}
             />
           </div>
         </div>

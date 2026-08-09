@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { postForceMute } from "../../api/http/endpoints";
+import MuteToggle from "../MuteToggle";
 
 import styles from "./index.module.css";
 
-import MuteToggle from "../MuteToggle";
 
 type Props = {
   isForceMuted: boolean;
@@ -12,9 +12,19 @@ type Props = {
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;
+  isUnmuteConfirmOpen?: boolean;
+  onUnmuteConfirmClose?: () => void;
 };
 
-export default function ForceMute({ isForceMuted, onForceMuteChange, onError, isCmMode, isConversion }: Props) {
+export default function ForceMute({
+  isForceMuted,
+  onForceMuteChange,
+  onError,
+  isCmMode,
+  isConversion,
+  isUnmuteConfirmOpen = false,
+  onUnmuteConfirmClose,
+}: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,6 +38,7 @@ export default function ForceMute({ isForceMuted, onForceMuteChange, onError, is
 
   const closeModal = () => {
     setIsModalOpen(false);
+    onUnmuteConfirmClose?.();
   };
 
   const handleMuteToggle = async () => {
@@ -54,7 +65,7 @@ export default function ForceMute({ isForceMuted, onForceMuteChange, onError, is
         <div className={styles.copyrightTitle}>ミュート</div>
         <MuteToggle checked={isForceMuted} onChange={openModal} />
       </div>
-      {isModalOpen && (
+      {(isModalOpen || isUnmuteConfirmOpen) && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <p>確認:{isForceMuted ? "ミュートを解除" : "ミュート"}しますか？</p>

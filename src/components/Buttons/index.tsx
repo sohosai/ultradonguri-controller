@@ -13,6 +13,8 @@ type Props = {
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;
+  isUnmuteConfirmOpen?: boolean;
+  onUnmuteConfirmClose?: () => void;
 };
 
 export default function Buttons({
@@ -24,6 +26,8 @@ export default function Buttons({
   onError,
   isCmMode,
   isConversion,
+  isUnmuteConfirmOpen,
+  onUnmuteConfirmClose,
 }: Props) {
   return (
     <div className={styles.buttons}>
@@ -33,6 +37,8 @@ export default function Buttons({
         onError={onError}
         isCmMode={isCmMode}
         isConversion={isConversion}
+        isUnmuteConfirmOpen={isUnmuteConfirmOpen}
+        onUnmuteConfirmClose={onUnmuteConfirmClose}
       />
       <CopyrightToggle isCopyrightVisible={isCopyrightVisible} onChange={onCopyrightVisibleChange} />
       <NextTrackButton onNext={onNext} />
