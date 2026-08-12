@@ -1,11 +1,8 @@
 import clsx from "clsx";
 
-import styles from "./index.module.css";
-
-import { useState } from "react";
-
-import { sendConversionCmMode } from "../../services/performanceService";
 import Toggle from "../Toggle";
+
+import styles from "./index.module.css";
 
 type Props = {
 
