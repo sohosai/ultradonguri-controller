@@ -28,14 +28,10 @@ export default function ConversionMenu({ isCmMode, onCmModeChange }: Props) {
     }
   };
 
+  // ConversionToggleItem の isPlying, isNext は機能実装後に書き換える
   return (
     <div className={styles.conversionMenu}>
-      <h2 className={styles.title}>Conversion</h2>
       <ConversionToggleItem isPlaying={false} isNext={false} isCmMode={isCmMode} onChange={handleCmModeToggle}/>
-      <div className={styles.info}>
-        <p>CM</p>
-        <Toggle checked={isCmMode} onChange={handleCmModeToggle} />
-      </div>
     </div>
   );
 }

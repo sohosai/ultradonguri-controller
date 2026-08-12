@@ -1,4 +1,4 @@
-.music {
+.conversionToggleItem {
   display: flex;
   gap: 30px;
   justify-content: space-between;
@@ -26,6 +26,7 @@
   align-items: center;
   font-size: 32px;
   font-weight: bold;
+  width: 98%;
 }
 
 .conversion {

@@ -31,10 +31,11 @@ export default function ConversionToggleItem({ isPlaying = false, isNext = false
           <p className={styles.conversion}>転換</p>
           <div className={styles.CMandToggle}>
             <p>CM</p>
-            <Toggle checked={isCmMode} onChange={onChange} />
+            <div className={styles.toggle}>
+              <Toggle checked={isCmMode} onChange={onChange} />
+            </div>
           </div>
         </div>
-        {/* <Toggle checked={true} onChange={()=>true}></Toggle> */}
     </div>
   );
 }
