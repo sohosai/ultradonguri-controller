@@ -18,3 +18,25 @@
 .next {
   border-color: var(--color-green);
 }
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.conversion {
+  margin-left: 40px;
+  font-size: 36px;
+}
+
+.CMandToggle {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+  margin-left: auto;
+}

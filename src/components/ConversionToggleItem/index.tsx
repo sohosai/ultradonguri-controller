@@ -27,9 +27,13 @@ export default function ConversionToggleItem({ isPlaying = false, isNext = false
 
   return (
     <div className={className}>
-        <div>ー 転換 ー</div>
-        <div>CM</div>
-        <Toggle checked={isCmMode} onChange={onChange} />
+        <div className={styles.info}>
+          <p className={styles.conversion}>転換</p>
+          <div className={styles.CMandToggle}>
+            <p>CM</p>
+            <Toggle checked={isCmMode} onChange={onChange} />
+          </div>
+        </div>
         {/* <Toggle checked={true} onChange={()=>true}></Toggle> */}
     </div>
   );
