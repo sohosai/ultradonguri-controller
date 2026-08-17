@@ -2,9 +2,17 @@ import styles from "./SampleModal.module.css";
 
 type SampleModalProps = {
   isOpen: boolean;
+  onClose: () => void;
 };
 
-export default function SampleModal({ isOpen }: SampleModalProps) {
+
+export default function SampleModal({ 
+  isOpen,
+  onClose,
+ }: SampleModalProps) {
+  const handleCancel = () => {
+    onClose();
+  }
   if (!isOpen) return null;
 
   return (
@@ -21,7 +29,7 @@ export default function SampleModal({ isOpen }: SampleModalProps) {
             </div>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.cancel}>キャンセル</button>
+            <button className={styles.cancel} onClick={handleCancel}>キャンセル</button>
             <button className={styles.save}>保存</button>
           </div>
         </div>

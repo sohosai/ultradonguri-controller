@@ -241,7 +241,10 @@ export default function DetailMenuModal({
           </div>
         </div>
       </div>
-      <SampleModal isOpen={isSampleModalOpen} />
+      <SampleModal 
+        isOpen={isSampleModalOpen}
+        onClose={() => setIsSampleModalOpen(false)}
+      />
     </>
   );
 }
