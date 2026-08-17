@@ -99,8 +99,21 @@
 
 .detailItem {
   margin-bottom: 20px;
+  color: var(--color-bg);
 }
 
+.editGroup,
+.editMusic {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  color: var(--color-bg);
+}
+
+.editMusic {
+  margin-top: 35px;
+}
 .detailItem label {
   display: block;
   margin-bottom: 8px;

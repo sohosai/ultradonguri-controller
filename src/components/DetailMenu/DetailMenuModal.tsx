@@ -166,6 +166,17 @@ export default function DetailMenuModal({
                     <div className={styles.detailsHeader}>
                       <h3 className={styles.detailsTitle}>詳細編集</h3>
                     </div>
+                    <div className={styles.editGroup}>団体</div>
+                    <div className={styles.detailItem}>
+                      <label>タイトル</label>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        value={currentEdits?.title || ""}
+                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
+                      />
+                    </div>
+                    <div className={styles.editMusic}>楽曲</div>
                     <div className={styles.detailItem}>
                       <label>タイトル</label>
                       <input
