@@ -144,13 +144,13 @@ Viewer は OBS ブラウザソース（OBS に内蔵された独立のブラウ�
 
 **ゴール**: `videos/` フォルダを介した動画のアップロード・一覧・削除と、Range リクエスト対応の配信が curl で確認できる。
 
-- [ ] `videos/` ディレクトリの自動作成（サーバー起動時）と `.gitignore` への追加
-- [ ] `GET /burari/videos` — 一覧（filename, size）
-- [ ] `POST /burari/videos` — multipart 受信、`.mp4` 検証、同名 409、ファイル名サニタイズ
-- [ ] `DELETE /burari/videos/:filename`
-- [ ] `GET /burari/videos/:filename` — **Range リクエスト対応**の動画配信
-- [ ] `src/api/http/` に上記を叩くクライアント関数を追加する（`getBurariVideos` / `uploadBurariVideo` / `deleteBurariVideo`）
-- [ ] 動作確認: curl でアップロード → 一覧 → Range 付き GET（206 が返る）→ 削除。エクスプローラーで直接置いたファイルも一覧に出る
+- [x] `videos/` ディレクトリの自動作成と `.gitignore` への追加
+- [x] `GET /burari/videos` — 一覧（filename, size）
+- [x] `POST /burari/videos` — raw バイナリ + `?filename=` クエリで受信（multipart は使わずパーサ依存を回避）、`.mp4` 検証、同名 409、ファイル名サニタイズ、一時ファイル経由の書き込みで中断時のゴミを防止
+- [x] `DELETE /burari/videos/:filename`
+- [x] `GET /burari/videos/:filename` — **Range リクエスト対応**の動画配信（実装は `server/videosMiddleware.ts`）
+- [x] `src/api/http/burariVideos.ts` にクライアント関数を追加（`getBurariVideos` / `uploadBurariVideo` / `deleteBurariVideo` / `burariVideoUrl`）
+- [x] 動作確認: curl でアップロード 201 → 同名 409 → パストラバーサル・非 mp4 400 → 一覧 → Range 付き GET 206（Content-Range 正常）→ 全体 GET 200 → 削除 204 → 404 を確認。一覧はフォルダを都度読むためエクスプローラーで直接置いたファイルも出る
 
 ## Phase 3: Controller UI（ぶらり旅セクション + 再生中モーダル）
 

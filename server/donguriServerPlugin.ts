@@ -1,4 +1,8 @@
+import path from "node:path";
+
 import { WebSocketServer, WebSocket } from "ws";
+
+import { createVideosMiddleware } from "./videosMiddleware";
 
 import type { Server } from "node:http";
 import type { Plugin } from "vite";
@@ -77,13 +81,20 @@ function setupRelay(httpServer: Server): void {
  * dev / preview の両サーバーに WebSocket リレー（/burari/ws）を追加する。
  */
 export function donguriServerPlugin(): Plugin {
+  let videosDir = path.resolve(process.cwd(), "videos");
+
   return {
     name: "donguri-server",
+    configResolved(config) {
+      videosDir = path.resolve(config.root, "videos");
+    },
     configureServer(server) {
       if (server.httpServer) setupRelay(server.httpServer as Server);
+      server.middlewares.use(createVideosMiddleware(videosDir));
     },
     configurePreviewServer(server) {
       setupRelay(server.httpServer as Server);
+      server.middlewares.use(createVideosMiddleware(videosDir));
     },
   };
 }
