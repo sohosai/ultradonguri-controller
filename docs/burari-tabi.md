@@ -16,13 +16,13 @@ donguri は学園祭の生配信で使うテロッパーおよび関連機能で
 
 ## 2. 前提・運用形態
 
-| 項目 | 内容 |
-| --- | --- |
-| Controller | 通常のブラウザ（Chrome 等）で `http://<host>:5173/` を開く |
-| Viewer | **OBS のブラウザソース**で `http://<host>:5173/viewer` を開く |
-| 起動方法 | `npm run dev`（開発）/ `npm run build` → `npm run preview`（本番運用） |
-| 楽曲データ | 従来どおりバックエンド（mock モードでは MSW（Mock Service Worker ライブラリ）+ `public/mock.json`）から `GET /performances` で取得。**変更しない** |
-| 動画フォーマット | **mp4 のみ**対応 |
+| 項目             | 内容                                                                                                                                               |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Controller       | 通常のブラウザ（Chrome 等）で `http://<host>:5173/` を開く                                                                                         |
+| Viewer           | **OBS のブラウザソース**で `http://<host>:5173/viewer` を開く                                                                                      |
+| 起動方法         | `npm run dev`（開発）/ `npm run build` → `npm run preview`（本番運用）                                                                             |
+| 楽曲データ       | 従来どおりバックエンド（mock モードでは MSW（Mock Service Worker ライブラリ）+ `public/mock.json`）から `GET /performances` で取得。**変更しない** |
+| 動画フォーマット | **mp4 のみ**対応                                                                                                                                   |
 
 ### 2.1 通信アーキテクチャ（重要な設計判断）
 
@@ -81,13 +81,13 @@ Viewer は OBS ブラウザソース（OBS に内蔵された独立のブラウ�
 
 ### 3.3 サーバー（Vite プラグイン）API
 
-| メソッド / パス | 内容 |
-| --- | --- |
-| `GET /burari/videos` | `videos/` フォルダ内の mp4 一覧を返す（`[{ filename, size }]`） |
-| `POST /burari/videos` | mp4 をアップロードして `videos/` に保存。拡張子 `.mp4` 以外は 400。**同名ファイルが存在する場合は 409 で拒否**し、Controller はエラーを表示する |
-| `DELETE /burari/videos/:filename` | 該当ファイルを削除 |
-| `GET /burari/videos/:filename` | 動画本体を配信。**Range リクエスト対応必須**（`<video>` のシーク・OBS での再生に必要） |
-| `WebSocket /burari/ws` | イベントリレー。受信した JSON イベントを送信元以外を含む全接続クライアントへブロードキャスト |
+| メソッド / パス                   | 内容                                                                                                                                            |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /burari/videos`              | `videos/` フォルダ内の mp4 一覧を返す（`[{ filename, size }]`）                                                                                 |
+| `POST /burari/videos`             | mp4 をアップロードして `videos/` に保存。拡張子 `.mp4` 以外は 400。**同名ファイルが存在する場合は 409 で拒否**し、Controller はエラーを表示する |
+| `DELETE /burari/videos/:filename` | 該当ファイルを削除                                                                                                                              |
+| `GET /burari/videos/:filename`    | 動画本体を配信。**Range リクエスト対応必須**（`<video>` のシーク・OBS での再生に必要）                                                          |
+| `WebSocket /burari/ws`            | イベントリレー。受信した JSON イベントを送信元以外を含む全接続クライアントへブロードキャスト                                                    |
 
 - ファイル名はパストラバーサル対策としてサニタイズする（`..`、`/` 等を拒否）
 - WebSocket のパスは Vite 自身のホットリロード用 WebSocket と衝突しないよう専用パスとし、`httpServer` の `upgrade` イベントでパスを見て振り分ける
@@ -100,10 +100,10 @@ Viewer は OBS ブラウザソース（OBS に内蔵された独立のブラウ�
 
 新規イベント:
 
-| type | 方向 | data |
-| --- | --- | --- |
-| `/burari/play` | Controller → Viewer | `{ filename: string }` |
-| `/burari/stop` | Controller → Viewer | `{}` |
+| type            | 方向                | data                   |
+| --------------- | ------------------- | ---------------------- |
+| `/burari/play`  | Controller → Viewer | `{ filename: string }` |
+| `/burari/stop`  | Controller → Viewer | `{}`                   |
 | `/burari/ended` | Viewer → Controller | `{ filename: string }` |
 
 - リレーサーバーはイベントに `offset` を採番し、**メモリ上に直近のイベントログを保持**する。クライアントは接続時に `lastOffset` を渡し、未受信分の再送を受ける（Viewer の OBS 内リロード・再接続時に転換シーン状態を復元するため）。サーバー再起動でログが消えるのは許容する
@@ -126,19 +126,19 @@ Viewer は OBS ブラウザソース（OBS に内蔵された独立のブラウ�
 
 **ゴール**: Controller ↔ Viewer の既存イベントが、OBS ブラウザソースを含む別プロセス間で Vite サーバー経由で流れる。
 
-- [ ] `ws` パッケージを devDependencies に追加する
-- [ ] `server/` （または `vite-plugins/`）に Vite プラグイン `donguriServerPlugin` を新規作成する
-  - [ ] `configureServer` / `configurePreviewServer` 両対応
-  - [ ] `httpServer` の `upgrade` を `/burari/ws` パスでフックし、WebSocket リレーを実装（全クライアントへブロードキャスト）
-  - [ ] offset 採番 + メモリ上イベントログ + 接続時 `lastOffset` からの再送
-- [ ] `vite.config.ts` にプラグインを追加する
-- [ ] `src/api/ws/streamClient.ts` を改修する
-  - [ ] 接続先を Vite サーバーの `/burari/ws`（同一オリジン、`ws(s)://location.host`）に変更
-  - [ ] イベント**送信**メソッド `send(type, data)` を追加（双方向化）
-  - [ ] BroadcastChannel 分岐（mock モード）を撤去
-- [ ] `src/services/performanceService.ts` の送出系を WebSocket リレー送信に切り替える（`/performance/start`、`/performance/music`、`/conversion/start`、`/conversion/cm-mode`、`/display-copyright`、`/force_mute`）
-- [ ] MSW モックの整理: `GET /performances` のハンドラのみ残し、送出系 POST ハンドラ・`wsServer.ts`・`outbox.ts` など不要になったコードを削除する
-- [ ] 動作確認: `npm run dev` で Chrome の Controller から送出し、**別ブラウザ（または OBS）の Viewer** にシーン切替が反映される。Viewer をリロードしても直近状態が復元される
+- [x] `ws` パッケージを devDependencies に追加する（未使用の mock-socket は削除）
+- [x] `server/` に Vite プラグイン `donguriServerPlugin` を新規作成する
+  - [x] `configureServer` / `configurePreviewServer` 両対応
+  - [x] `httpServer` の `upgrade` を `/burari/ws` パスでフックし、WebSocket リレーを実装（全クライアントへブロードキャスト）
+  - [x] offset 採番 + メモリ上イベントログ + 接続時 `lastOffset` からの再送（サーバー再起動検知用の epoch 照合付き）
+- [x] `vite.config.ts` にプラグインを追加する
+- [x] `src/api/ws/streamClient.ts` を改修する
+  - [x] 接続先を Vite サーバーの `/burari/ws`（同一オリジン、`ws(s)://location.host`）に変更
+  - [x] イベント**送信**メソッド `send(type, data)` を追加（双方向化、接続前はキューイング、切断時は自動再接続）
+  - [x] BroadcastChannel 分岐（mock モード）を撤去
+- [x] 送出系を WebSocket リレー送信に切り替える（呼び出し元の変更を避けるため `src/api/http/endpoints.ts` の POST 関数の中身を差し替えた。`performanceService` はそのまま経由）
+- [x] MSW モックの整理: `GET /performances` のハンドラのみ残し、送出系 POST ハンドラ・`wsServer.ts`・`outbox.ts` を削除
+- [x] 動作確認: Node クライアント 2 つを別プロセスから接続する自動テストで、双方向ブロードキャスト・lastOffset 再送・epoch 不一致時の全再送を dev / preview 両サーバーで確認（OBS 実機での確認は Phase 5 で実施）
 
 ## Phase 2: 動画ファイル API（アップロード・一覧・削除・配信）
 
