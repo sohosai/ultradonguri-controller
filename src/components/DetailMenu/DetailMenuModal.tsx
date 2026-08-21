@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import styles from "./DetailMenuModal.module.css";
-import SampleModal from "./SampleModal.tsx";
+import AddGroupModal from "./AddGroupModal.tsx";
+import AddMusicModal from "./AddMusicModal.tsx";
 
 import type { Performance, Music } from "../../types/performances";
 
@@ -32,7 +33,8 @@ export default function DetailMenuModal({
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
-  const [isSampleModalOpen, setIsSampleModalOpen] = useState(false);
+  const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState(false);
+  const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
 
   useEffect(() => {
     if (performances && performances.length > 0) {
@@ -225,10 +227,12 @@ export default function DetailMenuModal({
               </div>
             </div>
             <div className={styles.buttons}>
-              <button className={styles.addgroup} onClick={() => setIsSampleModalOpen(true)}>
+              <button className={styles.addgroup} onClick={() => setIsAddGroupModalOpen(true)}>
                 団体追加
               </button>
-              <button className={styles.addmusic}>楽曲追加</button>
+              <button className={styles.addmusic} onClick={() => setIsAddMusicModalOpen(true)}>
+                楽曲追加
+              </button>
               <div className={styles.buttonsFooter}>
                 <button className={styles.cancel} onClick={handleCancel}>
                   キャンセル
@@ -241,9 +245,13 @@ export default function DetailMenuModal({
           </div>
         </div>
       </div>
-      <SampleModal 
-        isOpen={isSampleModalOpen}
-        onClose={() => setIsSampleModalOpen(false)}
+      <AddGroupModal 
+        isOpen={isAddGroupModalOpen}
+        onClose={() => setIsAddGroupModalOpen(false)}
+      />
+      <AddMusicModal 
+        isOpen={isAddMusicModalOpen}
+        onClose={() => setIsAddMusicModalOpen(false)}
       />
     </>
   );

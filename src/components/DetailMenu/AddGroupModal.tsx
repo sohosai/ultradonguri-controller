@@ -1,15 +1,15 @@
-import styles from "./SampleModal.module.css";
+import styles from "./AddGroupModal.module.css";
 
-type SampleModalProps = {
+type AddGroupModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 
-export default function SampleModal({ 
+export default function AddGroupModal({ 
   isOpen,
   onClose,
- }: SampleModalProps) {
+ }: AddGroupModalProps) {
   const handleCancel = () => {
     onClose();
   }
