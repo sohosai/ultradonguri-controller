@@ -117,20 +117,19 @@
 
 .buttons {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
-  margin: 10px;
   margin-top: 10px;
   margin-bottom: 30px;
-  margin-left: 690px;
 }
 
 .buttons .cancel,
 .buttons .save {
-  justify-content: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: auto;
   padding: 20px 40px;
-  margin-right: 5px;
-  margin-left: 15px;
   font-size: 20px;
   font-weight: bold;
   border: solid 2px var(--color-surface);
@@ -147,6 +146,7 @@
 }
 
 .buttons .save {
+  margin-right: 35px;
   color: var(--color-white);
   background: var(--color-surface);
 }

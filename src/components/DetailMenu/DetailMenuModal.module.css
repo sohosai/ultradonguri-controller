@@ -179,42 +179,34 @@
 
 .buttons {
   display: flex;
-  gap: 10px;
-  margin: 10px;
+  gap: 15px;
   margin-top: 30px;
   margin-bottom: 60px;
 }
 
-.buttonsFooter {
-  margin-left: 145px;
-}
-
 .buttons .addgroup,
 .buttons .addmusic {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 23%;
-  min-width: 140px;
-  padding: 10px 20px;
-  margin-right: 15px;
-  margin-left: 5px;
+  align-items: left;
+  height: auto;
+  width: 22%;
+  padding: 14px 20px;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  white-space: nowrap;
   border: solid 2px var(--color-surface);
   border-radius: 60px;
 }
 
+.buttons .addgroup{
+  margin-left: 30px;
+}
+
 .buttons .cancel,
 .buttons .save {
-  justify-content: flex-end;
+  display: flex-end;
   height: auto;
+  align-items: right;
   padding: 20px 40px;
-  margin-right: 5px;
-  margin-left: 15px;
   font-size: 20px;
   font-weight: bold;
   border: solid 2px var(--color-surface);
@@ -234,7 +226,12 @@
   color: var(--color-surface);
 }
 
-.buttons .save {
+.buttons .cancel{
+  margin-left: 16%;
+}
+
+.buttons .save{
+  margin-right: 45px;
   color: var(--color-white);
   background: var(--color-surface);
 }

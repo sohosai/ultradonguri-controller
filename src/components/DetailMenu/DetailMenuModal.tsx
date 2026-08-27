@@ -233,14 +233,12 @@ export default function DetailMenuModal({
               <button className={styles.addmusic} onClick={() => setIsAddMusicModalOpen(true)}>
                 楽曲追加
               </button>
-              <div className={styles.buttonsFooter}>
-                <button className={styles.cancel} onClick={handleCancel}>
-                  キャンセル
-                </button>
-                <button className={styles.save} onClick={handleSave}>
-                  保存
-                </button>
-              </div>
+              <button className={styles.cancel} onClick={handleCancel}>
+                キャンセル
+              </button>
+              <button className={styles.save} onClick={handleSave}>
+                保存
+              </button>
             </div>
           </div>
         </div>
