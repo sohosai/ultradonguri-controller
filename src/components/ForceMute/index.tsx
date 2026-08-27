@@ -13,13 +13,7 @@ type Props = {
   isConversion?: boolean;
 };
 
-export default function ForceMute({
-  isForceMuted,
-  onForceMuteChange,
-  onError,
-  isCmMode,
-  isConversion,
-}: Props) {
+export default function ForceMute({ isForceMuted, onForceMuteChange, onError, isCmMode, isConversion }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
