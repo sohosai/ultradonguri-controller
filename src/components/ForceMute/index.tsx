@@ -11,8 +11,6 @@ type Props = {
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;
-  isUnmuteConfirmOpen?: boolean;
-  onUnmuteConfirmClose?: () => void;
 };
 
 export default function ForceMute({
@@ -21,8 +19,6 @@ export default function ForceMute({
   onError,
   isCmMode,
   isConversion,
-  isUnmuteConfirmOpen = false,
-  onUnmuteConfirmClose,
 }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,7 +33,6 @@ export default function ForceMute({
 
   const closeModal = () => {
     setIsModalOpen(false);
-    onUnmuteConfirmClose?.();
   };
 
   const handleMuteToggle = async () => {
@@ -64,7 +59,7 @@ export default function ForceMute({
         <div className={styles.copyrightTitle}>ミュート</div>
         <MuteToggle checked={isForceMuted} onChange={openModal} />
       </div>
-      {(isModalOpen || isUnmuteConfirmOpen) && (
+      {isModalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <p>確認:{isForceMuted ? "ミュートを解除" : "ミュート"}しますか？</p>
