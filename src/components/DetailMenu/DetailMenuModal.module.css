@@ -186,9 +186,8 @@
 
 .buttons .addgroup,
 .buttons .addmusic {
-  align-items: left;
-  height: auto;
   width: 22%;
+  height: auto;
   padding: 14px 20px;
   font-size: 30px;
   font-weight: bold;
@@ -197,15 +196,13 @@
   border-radius: 60px;
 }
 
-.buttons .addgroup{
+.buttons .addgroup {
   margin-left: 30px;
 }
 
 .buttons .cancel,
 .buttons .save {
-  display: flex-end;
   height: auto;
-  align-items: right;
   padding: 20px 40px;
   font-size: 20px;
   font-weight: bold;
@@ -226,11 +223,11 @@
   color: var(--color-surface);
 }
 
-.buttons .cancel{
+.buttons .cancel {
   margin-left: 16%;
 }
 
-.buttons .save{
+.buttons .save {
   margin-right: 45px;
   color: var(--color-white);
   background: var(--color-surface);

@@ -117,8 +117,8 @@
 
 .buttons {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
+  justify-content: flex-end;
   margin-top: 10px;
   margin-bottom: 30px;
 }
@@ -126,8 +126,8 @@
 .buttons .cancel,
 .buttons .save {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   height: auto;
   padding: 20px 40px;
   font-size: 20px;
