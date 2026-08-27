@@ -5,14 +5,10 @@ type AddMusicModalProps = {
   onClose: () => void;
 };
 
-
-export default function AddMusicModal({ 
-  isOpen,
-  onClose,
- }: AddMusicModalProps) {
+export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
   const handleCancel = () => {
     onClose();
-  }
+  };
   if (!isOpen) return null;
 
   return (
@@ -33,7 +29,9 @@ export default function AddMusicModal({
             </div>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.cancel} onClick={handleCancel}>キャンセル</button>
+            <button className={styles.cancel} onClick={handleCancel}>
+              キャンセル
+            </button>
             <button className={styles.save}>保存</button>
           </div>
         </div>

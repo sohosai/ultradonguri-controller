@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 
 import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
-import styles from "./DetailMenuModal.module.css";
 import AddGroupModal from "./AddGroupModal.tsx";
 import AddMusicModal from "./AddMusicModal.tsx";
+import styles from "./DetailMenuModal.module.css";
 
 import type { Performance, Music } from "../../types/performances";
 
@@ -245,14 +245,8 @@ export default function DetailMenuModal({
           </div>
         </div>
       </div>
-      <AddGroupModal 
-        isOpen={isAddGroupModalOpen}
-        onClose={() => setIsAddGroupModalOpen(false)}
-      />
-      <AddMusicModal 
-        isOpen={isAddMusicModalOpen}
-        onClose={() => setIsAddMusicModalOpen(false)}
-      />
+      <AddGroupModal isOpen={isAddGroupModalOpen} onClose={() => setIsAddGroupModalOpen(false)} />
+      <AddMusicModal isOpen={isAddMusicModalOpen} onClose={() => setIsAddMusicModalOpen(false)} />
     </>
   );
 }

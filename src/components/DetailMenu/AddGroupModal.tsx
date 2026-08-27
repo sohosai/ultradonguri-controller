@@ -5,14 +5,10 @@ type AddGroupModalProps = {
   onClose: () => void;
 };
 
-
-export default function AddGroupModal({ 
-  isOpen,
-  onClose,
- }: AddGroupModalProps) {
+export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
   const handleCancel = () => {
     onClose();
-  }
+  };
   if (!isOpen) return null;
 
   return (
@@ -29,7 +25,9 @@ export default function AddGroupModal({
             </div>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.cancel} onClick={handleCancel}>キャンセル</button>
+            <button className={styles.cancel} onClick={handleCancel}>
+              キャンセル
+            </button>
             <button className={styles.save}>保存</button>
           </div>
         </div>
