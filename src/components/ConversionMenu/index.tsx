@@ -43,7 +43,7 @@ export default function ConversionMenu({ isCmMode, onCmModeChange, conversionId,
 
   // ConversionToggleItem の isPlying, isNext は機能実装後に書き換える
   return (
-    <div className={styles.conversionMenu}>
+    <div className={styles.conversionMenu} onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
       <ConversionToggleItem isPlaying={isPlaying(conversionId)} isNext={isNext(conversionId)} isCmMode={isCmMode} onChange={handleCmModeToggle}/>
     </div>
   );

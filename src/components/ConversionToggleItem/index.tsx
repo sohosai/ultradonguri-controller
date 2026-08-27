@@ -10,9 +10,9 @@ type Props = {
   isNext?: boolean;
 
   isCmMode: boolean;
-  // onCmModeChange: (isCmMode: boolean) => void;
 
   onChange: (isCmMode: boolean) => void;
+  
 };
 
 
