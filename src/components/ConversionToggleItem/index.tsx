@@ -28,7 +28,7 @@ export default function ConversionToggleItem({ isPlaying = false, isNext = false
           <p className={styles.conversion}>転換</p>
           <div className={styles.CMandToggle}>
             <p>CM</p>
-            <div className={styles.toggle}>
+            <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
               <Toggle checked={isCmMode} onChange={onChange} />
             </div>
           </div>
