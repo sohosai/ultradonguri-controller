@@ -288,8 +288,8 @@ export default function Controller() {
                   currentTrack={currentTrack}
                   nextTrack={nextTrack}
                   onSelectNextTrack={handleSelectNextTrack}
-                  />
-                )}
+                />
+              )}
             </div>
             <Buttons
               onNext={handleNext}

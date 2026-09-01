@@ -20,9 +20,7 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
     currentTrack?.musicId === musicId;
 
   const isNext = (musicId: string) =>
-    nextTrack?.type === "music" &&
-    nextTrack?.performanceId === performanceId &&
-    nextTrack?.musicId === musicId;
+    nextTrack?.type === "music" && nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
   return (
     <div className={styles.musicWrapper}>
