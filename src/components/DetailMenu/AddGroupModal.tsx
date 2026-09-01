@@ -9,7 +9,7 @@ export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
   const handleCancel = () => {
     onClose();
   };
-  
+
   const handleSave = () => {
     onClose();
   };
