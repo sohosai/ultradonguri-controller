@@ -9,6 +9,11 @@ export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
   const handleCancel = () => {
     onClose();
   };
+  
+  const handleSave = () => {
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -28,7 +33,9 @@ export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
             <button className={styles.cancel} onClick={handleCancel}>
               キャンセル
             </button>
-            <button className={styles.save}>保存</button>
+            <button className={styles.save} onClick={handleSave}>
+              保存
+            </button>
           </div>
         </div>
       </div>
