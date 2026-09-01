@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+import UpSvg from "../../assets/icons/up.svg";
+import DownSvg from "../../assets/icons/down.svg";
+import TrashSvg from "../../assets/icons/trash.svg";
 import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import AddGroupModal from "./AddGroupModal.tsx";
@@ -145,6 +148,9 @@ export default function DetailMenuModal({
                       className={selectedPerformance?.id === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       {p.title}
+                      <img src={UpSvg} alt="aikon" className={styles.up} />
+                      <img src={DownSvg} alt="aikon" className={styles.up}/>
+                      <img src={TrashSvg} alt="aikon" className={styles.up}/>
                     </li>
                   ))}
                 </ul>
@@ -158,6 +164,9 @@ export default function DetailMenuModal({
                       onClick={() => handleMusicSelect(m.id)}>
                       {m.title}
                       {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
+                      <img src={UpSvg} alt="aikon" className={styles.up} />
+                      <img src={DownSvg} alt="aikon" className={styles.up}/>
+                      <img src={TrashSvg} alt="aikon" className={styles.up}/>
                     </li>
                   ))}
                 </ul>
