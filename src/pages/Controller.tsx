@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { postMute } from "../api/http/osechi";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import DateTabs from "../components/DateTabs";
@@ -25,7 +26,7 @@ export default function Controller() {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
@@ -57,12 +58,12 @@ export default function Controller() {
   }, [byDate, selectedDateKey]);
 
   useEffect(() => {
-    const initializeForceMute = async () => {
+    const initializeMute = async () => {
       try {
-        await postForceMute({ is_muted: false });
-        setIsForceMuted(false);
+        const state = await postMute({ is_muted: false });
+        setIsMuted(state.is_muted);
       } catch (error) {
-        console.error("[Controller] Failed to initialize force mute:", error);
+        console.error("[Controller] Failed to initialize mute:", error);
       }
     };
 
@@ -84,7 +85,7 @@ export default function Controller() {
       }
     };
 
-    void initializeForceMute();
+    void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
   }, []);
@@ -134,8 +135,8 @@ export default function Controller() {
           if (firstMusic) {
             await sendMusic(firstMusic);
             // 1曲目が配信NGなら自動ミュート
-            await postForceMute({ is_muted: firstMusic.should_be_muted });
-            setIsForceMuted(firstMusic.should_be_muted);
+            const state = await postMute({ is_muted: firstMusic.should_be_muted });
+            setIsMuted(state.is_muted);
           }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
@@ -232,14 +233,14 @@ export default function Controller() {
         // POST /performance/music
         if (music) {
           await sendMusic(music);
-          if (music.should_be_muted && !isForceMuted) {
+          if (music.should_be_muted && !isMuted) {
             // 配信NGの曲は即時ミュート
-            await postForceMute({ is_muted: true });
-            setIsForceMuted(true);
-          } else if (!music.should_be_muted && isForceMuted) {
+            const state = await postMute({ is_muted: true });
+            setIsMuted(state.is_muted);
+          } else if (!music.should_be_muted && isMuted) {
             // 配信OKの曲が来たら自動でミュート解除
-            await postForceMute({ is_muted: false });
-            setIsForceMuted(false);
+            const state = await postMute({ is_muted: false });
+            setIsMuted(state.is_muted);
           }
         }
 
@@ -260,7 +261,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header isForceMuted={isForceMuted} />
+      <Header isMuted={isMuted} />
       <main>
         {error && (
           <div className={styles.error}>
@@ -298,8 +299,8 @@ export default function Controller() {
             </div>
             <Buttons
               onNext={handleNext}
-              isForceMuted={isForceMuted}
-              onForceMuteChange={setIsForceMuted}
+              isMuted={isMuted}
+              onMuteChange={setIsMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}

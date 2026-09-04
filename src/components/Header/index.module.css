@@ -30,7 +30,7 @@
   font-size: 20px;
 }
 
-.forceMute {
+.mute {
   font-size: 26px;
   font-weight: bold;
   color: var(--color-red);
