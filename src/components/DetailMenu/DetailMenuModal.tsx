@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
+import DownSvg from "../../assets/icons/down.svg";
+import TrashSvg from "../../assets/icons/trash.svg";
+import UpSvg from "../../assets/icons/up.svg";
 import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
+import AddGroupModal from "./AddGroupModal.tsx";
+import AddMusicModal from "./AddMusicModal.tsx";
 import styles from "./DetailMenuModal.module.css";
 
 import type { Performance, Music } from "../../types/performances";
@@ -31,6 +36,8 @@ export default function DetailMenuModal({
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
+  const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState(false);
+  const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
 
   useEffect(() => {
     if (performances && performances.length > 0) {
@@ -127,99 +134,126 @@ export default function DetailMenuModal({
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay} onClick={handleCancel}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.modalHeader}>詳細編集メニュー</div>
-        <div className={styles.modalBody}>
-          <div className={styles.items}>
-            <div className={styles.performances}>
-              <ul>
-                {performances?.map((p) => (
-                  <li
-                    key={p.id}
-                    className={selectedPerformance?.id === p.id ? styles.selected : ""}
-                    onClick={() => handlePerformanceSelect(p.id)}>
-                    {p.title}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.musics}>
-              <ul>
-                {selectedPerformance?.musics.map((m) => (
-                  <li
-                    key={m.id}
-                    className={selectedMusic?.id === m.id ? styles.selected : ""}
-                    onClick={() => handleMusicSelect(m.id)}>
-                    {m.title}
-                    {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.details}>
-              {selectedMusic && (
-                <div key={selectedMusic.id}>
-                  <div className={styles.detailsHeader}>
-                    <h3 className={styles.detailsTitle}>詳細編集</h3>
-                  </div>
-                  <div className={styles.detailItem}>
-                    <label>タイトル</label>
-                    <input
-                      type="text"
-                      className={styles.input}
-                      value={currentEdits?.title || ""}
-                      onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
-                    />
-                  </div>
-                  <div className={styles.detailItem}>
-                    <label>アーティスト</label>
-                    <input
-                      type="text"
-                      className={styles.input}
-                      value={currentEdits?.artist || ""}
-                      onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
-                    />
-                  </div>
-                  <div className={styles.detailItem}>
-                    <label>ミュート設定</label>
-                    <div className={styles.radioGroup}>
-                      <label className={styles.radioLabel}>
-                        <input
-                          type="radio"
-                          name="mute"
-                          value="false"
-                          checked={!currentEdits?.should_be_muted}
-                          onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
-                        />
-                        配信OK
-                      </label>
-                      <label className={styles.radioLabel}>
-                        <input
-                          type="radio"
-                          name="mute"
-                          value="true"
-                          checked={currentEdits?.should_be_muted}
-                          onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
-                        />
-                        配信不可
-                      </label>
+    <>
+      <div className={styles.modalOverlay} onClick={handleCancel}>
+        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.modalHeader}>詳細編集メニュー</div>
+          <div className={styles.modalBody}>
+            <div className={styles.items}>
+              <div className={styles.performances}>
+                <ul>
+                  {performances?.map((p) => (
+                    <li
+                      key={p.id}
+                      className={selectedPerformance?.id === p.id ? styles.selected : ""}
+                      onClick={() => handlePerformanceSelect(p.id)}>
+                      {p.title}
+                      <img src={UpSvg} alt="aikon" className={styles.side} />
+                      <img src={DownSvg} alt="aikon" className={styles.side} />
+                      <img src={TrashSvg} alt="aikon" className={styles.side} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.musics}>
+                <ul>
+                  {selectedPerformance?.musics.map((m) => (
+                    <li
+                      key={m.id}
+                      className={selectedMusic?.id === m.id ? styles.selected : ""}
+                      onClick={() => handleMusicSelect(m.id)}>
+                      {m.title}
+                      {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
+                      <img src={UpSvg} alt="aikon" className={styles.side} />
+                      <img src={DownSvg} alt="aikon" className={styles.side} />
+                      <img src={TrashSvg} alt="aikon" className={styles.side} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className={styles.details}>
+                {selectedMusic && (
+                  <div key={selectedMusic.id}>
+                    <div className={styles.detailsHeader}>
+                      <h3 className={styles.detailsTitle}>詳細編集</h3>
+                    </div>
+                    <div className={styles.editGroup}>団体</div>
+                    <div className={styles.detailItem}>
+                      <label>タイトル</label>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        value={currentEdits?.title || ""}
+                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
+                      />
+                    </div>
+                    <div className={styles.editMusic}>楽曲</div>
+                    <div className={styles.detailItem}>
+                      <label>タイトル</label>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        value={currentEdits?.title || ""}
+                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
+                      />
+                    </div>
+                    <div className={styles.detailItem}>
+                      <label>アーティスト</label>
+                      <input
+                        type="text"
+                        className={styles.input}
+                        value={currentEdits?.artist || ""}
+                        onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
+                      />
+                    </div>
+                    <div className={styles.detailItem}>
+                      <label>ミュート設定</label>
+                      <div className={styles.radioGroup}>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            name="mute"
+                            value="false"
+                            checked={!currentEdits?.should_be_muted}
+                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
+                          />
+                          配信OK
+                        </label>
+                        <label className={styles.radioLabel}>
+                          <input
+                            type="radio"
+                            name="mute"
+                            value="true"
+                            checked={currentEdits?.should_be_muted}
+                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
+                          />
+                          配信不可
+                        </label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-          <div className={styles.buttons}>
-            <button className={styles.cancel} onClick={handleCancel}>
-              キャンセル
-            </button>
-            <button className={styles.save} onClick={handleSave}>
-              保存
-            </button>
+            <div className={styles.buttons}>
+              <button className={styles.addgroup} onClick={() => setIsAddGroupModalOpen(true)}>
+                団体追加
+              </button>
+              <button className={styles.addmusic} onClick={() => setIsAddMusicModalOpen(true)}>
+                楽曲追加
+              </button>
+              <button className={styles.cancel} onClick={handleCancel}>
+                キャンセル
+              </button>
+              <button className={styles.save} onClick={handleSave}>
+                保存
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <AddGroupModal isOpen={isAddGroupModalOpen} onClose={() => setIsAddGroupModalOpen(false)} />
+      <AddMusicModal isOpen={isAddMusicModalOpen} onClose={() => setIsAddMusicModalOpen(false)} />
+    </>
   );
 }
