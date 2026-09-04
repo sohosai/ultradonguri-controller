@@ -148,9 +148,9 @@ export default function DetailMenuModal({
                       className={selectedPerformance?.id === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       {p.title}
-                      <img src={UpSvg} alt="aikon" className={styles.up} />
-                      <img src={DownSvg} alt="aikon" className={styles.up} />
-                      <img src={TrashSvg} alt="aikon" className={styles.up} />
+                      <img src={UpSvg} alt="aikon" className={styles.side} />
+                      <img src={DownSvg} alt="aikon" className={styles.side} />
+                      <img src={TrashSvg} alt="aikon" className={styles.side} />
                     </li>
                   ))}
                 </ul>
@@ -164,9 +164,9 @@ export default function DetailMenuModal({
                       onClick={() => handleMusicSelect(m.id)}>
                       {m.title}
                       {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
-                      <img src={UpSvg} alt="aikon" className={styles.up} />
-                      <img src={DownSvg} alt="aikon" className={styles.up} />
-                      <img src={TrashSvg} alt="aikon" className={styles.up} />
+                      <img src={UpSvg} alt="aikon" className={styles.side} />
+                      <img src={DownSvg} alt="aikon" className={styles.side} />
+                      <img src={TrashSvg} alt="aikon" className={styles.side} />
                     </li>
                   ))}
                 </ul>
