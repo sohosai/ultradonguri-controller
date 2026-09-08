@@ -5,7 +5,6 @@ import Toggle from "../Toggle";
 import styles from "./index.module.css";
 
 type Props = {
-
   isCmMode: boolean;
 
   isPlaying?: boolean;
@@ -13,12 +12,7 @@ type Props = {
   onChange: (isCmMode: boolean) => void;
 };
 
-export default function ConversionToggleItem({
-   isPlaying = false, 
-   isNext = false, 
-   isCmMode, 
-   onChange 
-}: Props) {
+export default function ConversionToggleItem({ isPlaying = false, isNext = false, isCmMode, onChange }: Props) {
   const className = clsx(styles.conversionToggleItem, {
     [styles.playing]: isPlaying,
     [styles.next]: isNext,
@@ -31,7 +25,7 @@ export default function ConversionToggleItem({
         <div className={styles.CMandToggle}>
           <p>CM</p>
           <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
-            <Toggle checked={isCmMode} onChange={onChange}/>
+            <Toggle checked={isCmMode} onChange={onChange} />
           </div>
         </div>
       </div>

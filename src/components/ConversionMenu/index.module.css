@@ -26,6 +26,6 @@
 }
 
 .conversionMenuItem {
-  overflow-y: scroll;
   padding-right: 20px;
+  overflow-y: scroll;
 }

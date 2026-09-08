@@ -49,8 +49,7 @@ export default function ConversionMenu({
     <div className={styles.conversionMenu}>
       <div
         className={styles.conversionMenuItem}
-        onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}
-      >
+        onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
         <ConversionToggleItem
           isPlaying={isPlaying(conversionId)}
           isNext={isNext(conversionId)}
