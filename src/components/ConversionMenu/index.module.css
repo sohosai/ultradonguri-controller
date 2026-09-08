@@ -26,7 +26,6 @@
 }
 
 .conversionMenuItem {
-  display: flex;
-  min-height: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
+  padding-right: 20px;
 }
