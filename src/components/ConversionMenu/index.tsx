@@ -50,10 +50,10 @@ export default function ConversionMenu({
       <div className={styles.conversionMenuItem}>
         <div onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
           <ConversionToggleItem
-          isPlaying={isPlaying(conversionId)}
-          isNext={isNext(conversionId)}
-          isCmMode={isCmMode}
-          onChange={handleCmModeToggle}
+            isPlaying={isPlaying(conversionId)}
+            isNext={isNext(conversionId)}
+            isCmMode={isCmMode}
+            onChange={handleCmModeToggle}
           />
         </div>
       </div>
