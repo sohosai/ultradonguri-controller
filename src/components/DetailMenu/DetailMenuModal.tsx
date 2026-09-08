@@ -147,10 +147,18 @@ export default function DetailMenuModal({
                       key={p.id}
                       className={selectedPerformance?.id === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
-                      {p.title}
-                      <img src={UpSvg} alt="aikon" className={styles.side} />
-                      <img src={DownSvg} alt="aikon" className={styles.side} />
-                      <img src={TrashSvg} alt="aikon" className={styles.side} />
+                      <div className={styles.actions}>
+                        {p.title}
+                        <div className={styles.up}>
+                          <img src={UpSvg} alt="aikon" className={styles.side} />
+                        </div>
+                        <div className={styles.down}>
+                          <img src={DownSvg} alt="aikon" className={styles.side} />
+                        </div>
+                        <div className={styles.trash}>
+                          <img src={TrashSvg} alt="aikon" className={styles.side} />
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -162,11 +170,19 @@ export default function DetailMenuModal({
                       key={m.id}
                       className={selectedMusic?.id === m.id ? styles.selected : ""}
                       onClick={() => handleMusicSelect(m.id)}>
-                      {m.title}
-                      {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
-                      <img src={UpSvg} alt="aikon" className={styles.side} />
-                      <img src={DownSvg} alt="aikon" className={styles.side} />
-                      <img src={TrashSvg} alt="aikon" className={styles.side} />
+                      <div className={styles.actions}>
+                        {m.title}
+                        {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
+                        <div className={styles.up}>
+                          <img src={UpSvg} alt="aikon" className={styles.side} />
+                        </div>
+                        <div className={styles.down}>
+                          <img src={DownSvg} alt="aikon" className={styles.side} />
+                        </div>
+                        <div className={styles.trash}>
+                          <img src={TrashSvg} alt="aikon" className={styles.side} />
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
