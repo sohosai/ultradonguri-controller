@@ -88,20 +88,20 @@
 
 .actions {
   position: relative;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .performancetitle,
 .musictitle {
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.actionbuttons{
+.actionbuttons {
   display: flex;
   gap: 2px;
   justify-content: flex-end;

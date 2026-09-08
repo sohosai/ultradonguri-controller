@@ -148,19 +148,17 @@ export default function DetailMenuModal({
                       className={selectedPerformance?.id === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
-                          <div className= {styles.performancetitle}>
-                            {p.title}
+                        <div className={styles.performancetitle}>{p.title}</div>
+                        <div className={styles.actionbuttons}>
+                          <div className={styles.up}>
+                            <img src={UpSvg} alt="aikon" className={styles.side} />
                           </div>
-                            <div className={styles.actionbuttons}>
-                              <div className={styles.up}>
-                                <img src={UpSvg} alt="aikon" className={styles.side} />
-                              </div>
-                              <div className={styles.down}>
-                                <img src={DownSvg} alt="aikon" className={styles.side} />
-                              </div>
-                              <div className={styles.trash}>
-                                <img src={TrashSvg} alt="aikon" className={styles.side} />
-                            </div>
+                          <div className={styles.down}>
+                            <img src={DownSvg} alt="aikon" className={styles.side} />
+                          </div>
+                          <div className={styles.trash}>
+                            <img src={TrashSvg} alt="aikon" className={styles.side} />
+                          </div>
                         </div>
                       </div>
                     </li>
