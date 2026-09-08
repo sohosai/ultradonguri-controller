@@ -31,7 +31,7 @@ export default function ConversionToggleItem({
         <div className={styles.CMandToggle}>
           <p>CM</p>
           <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
-            <Toggle checked={isCmMode} onChange={onChange} />
+            <Toggle checked={isCmMode} onChange={onChange}/>
           </div>
         </div>
       </div>
