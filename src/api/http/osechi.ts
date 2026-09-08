@@ -12,9 +12,26 @@ export interface MuteState {
 const TIMEOUT_MS = 3000;
 const MAX_RETRIES = 1;
 
-async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+/**
+ * 接続先のベースURLを解決する
+ * mockモードでは相対パス（MSWが処理）、それ以外では VITE_OSECHI_BASE_URL が必須
+ * 本番で相対パスにフォールバックしても意味がないため、未設定なら起動時にエラーにする
+ */
+function resolveBaseURL(): string {
+  const apiMode = import.meta.env.VITE_API_MODE || "mock";
   const baseURL = import.meta.env.VITE_OSECHI_BASE_URL || "";
-  const url = baseURL ? `${baseURL}${path}` : path;
+
+  if (apiMode !== "mock" && !baseURL) {
+    throw new Error('VITE_OSECHI_BASE_URL is required when VITE_API_MODE is not "mock"');
+  }
+
+  return baseURL;
+}
+
+const BASE_URL = resolveBaseURL();
+
+async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+  const url = `${BASE_URL}${path}`;
 
   let lastError: unknown;
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
