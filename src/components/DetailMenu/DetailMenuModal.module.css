@@ -88,15 +88,22 @@
 
 .actions {
   position: relative;
-  width: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.up,
-.down,
-.trash {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
+.performancetitle,
+.musictitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.actionbuttons{
+  display: flex;
+  gap: 2px;
   justify-content: flex-end;
 }
 

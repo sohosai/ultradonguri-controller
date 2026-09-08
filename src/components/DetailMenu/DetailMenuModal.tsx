@@ -148,15 +148,19 @@ export default function DetailMenuModal({
                       className={selectedPerformance?.id === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
-                        {p.title}
-                        <div className={styles.up}>
-                          <img src={UpSvg} alt="aikon" className={styles.side} />
-                        </div>
-                        <div className={styles.down}>
-                          <img src={DownSvg} alt="aikon" className={styles.side} />
-                        </div>
-                        <div className={styles.trash}>
-                          <img src={TrashSvg} alt="aikon" className={styles.side} />
+                          <div className= {styles.performancetitle}>
+                            {p.title}
+                          </div>
+                            <div className={styles.actionbuttons}>
+                              <div className={styles.up}>
+                                <img src={UpSvg} alt="aikon" className={styles.side} />
+                              </div>
+                              <div className={styles.down}>
+                                <img src={DownSvg} alt="aikon" className={styles.side} />
+                              </div>
+                              <div className={styles.trash}>
+                                <img src={TrashSvg} alt="aikon" className={styles.side} />
+                            </div>
                         </div>
                       </div>
                     </li>
@@ -171,16 +175,20 @@ export default function DetailMenuModal({
                       className={selectedMusic?.id === m.id ? styles.selected : ""}
                       onClick={() => handleMusicSelect(m.id)}>
                       <div className={styles.actions}>
-                        {m.title}
-                        {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
-                        <div className={styles.up}>
-                          <img src={UpSvg} alt="aikon" className={styles.side} />
+                        <div className={styles.musictitle}>
+                          {m.title}
+                          {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                         </div>
-                        <div className={styles.down}>
-                          <img src={DownSvg} alt="aikon" className={styles.side} />
-                        </div>
-                        <div className={styles.trash}>
-                          <img src={TrashSvg} alt="aikon" className={styles.side} />
+                        <div className={styles.actionbuttons}>
+                          <div className={styles.up}>
+                            <img src={UpSvg} alt="aikon" className={styles.side} />
+                          </div>
+                          <div className={styles.down}>
+                            <img src={DownSvg} alt="aikon" className={styles.side} />
+                          </div>
+                          <div className={styles.trash}>
+                            <img src={TrashSvg} alt="aikon" className={styles.side} />
+                          </div>
                         </div>
                       </div>
                     </li>
