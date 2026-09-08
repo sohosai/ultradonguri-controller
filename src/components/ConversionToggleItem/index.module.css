@@ -1,0 +1,43 @@
+.conversionToggleItem {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
+  color: var(--color-white);
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.playing {
+  background: var(--color-red);
+}
+
+.next {
+  border-color: var(--color-green);
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+  align-items: center;
+  width: 98%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.conversion {
+  margin-left: 40px;
+  font-size: 36px;
+}
+
+.CMandToggle {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+  margin-left: auto;
+}

@@ -294,7 +294,16 @@ export default function Controller() {
                   onSelectNextTrack={handleSelectNextTrack}
                 />
               )}
-              {selectedConversion && <ConversionMenu isCmMode={isCmMode} onCmModeChange={setIsCmMode} />}
+              {selectedConversion && (
+                <ConversionMenu
+                  isCmMode={isCmMode}
+                  onCmModeChange={setIsCmMode}
+                  conversionId={selectedConversion.id}
+                  currentTrack={currentTrack}
+                  nextTrack={nextTrack}
+                  onSelectNextTrack={handleSelectNextTrack}
+                />
+              )}
             </div>
             <Buttons
               onNext={handleNext}
