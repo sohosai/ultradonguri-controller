@@ -45,17 +45,19 @@ export default function ConversionMenu({
 
   const isNext = (conversionId: string) => nextTrack?.type === "conversion" && nextTrack?.conversionId === conversionId;
 
-  // ConversionToggleItem の isPlying, isNext は機能実装後に書き換える
   return (
-    <div
-      className={styles.conversionMenu}
-      onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
-      <ConversionToggleItem
-        isPlaying={isPlaying(conversionId)}
-        isNext={isNext(conversionId)}
-        isCmMode={isCmMode}
-        onChange={handleCmModeToggle}
-      />
+    <div className={styles.conversionMenu}>
+      <div
+        className={styles.conversionMenuItem}
+        onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}
+      >
+        <ConversionToggleItem
+          isPlaying={isPlaying(conversionId)}
+          isNext={isNext(conversionId)}
+          isCmMode={isCmMode}
+          onChange={handleCmModeToggle}
+        />
+      </div>
     </div>
   );
 }
