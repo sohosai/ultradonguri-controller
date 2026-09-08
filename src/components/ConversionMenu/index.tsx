@@ -47,15 +47,15 @@ export default function ConversionMenu({
 
   return (
     <div className={styles.conversionMenu}>
-      <div
-        className={styles.conversionMenuItem}
-        onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
-        <ConversionToggleItem
+      <div className={styles.conversionMenuItem}>
+        <div onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
+          <ConversionToggleItem
           isPlaying={isPlaying(conversionId)}
           isNext={isNext(conversionId)}
           isCmMode={isCmMode}
           onChange={handleCmModeToggle}
-        />
+          />
+        </div>
       </div>
     </div>
   );
