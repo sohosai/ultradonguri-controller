@@ -149,17 +149,19 @@ export default function DetailMenuModal({
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
                         <div className={styles.performancetitle}>{p.title}</div>
-                        <div className={styles.actionbuttons}>
-                          <div className={styles.up}>
-                            <img src={UpSvg} alt="aikon" className={styles.side} />
+                        {selectedPerformance.id === p.id && (
+                          <div className={styles.actionbuttons}>
+                            <div className={styles.up}>
+                              <img src={UpSvg} alt="aikon" className={styles.side} />
+                            </div>
+                            <div className={styles.down}>
+                              <img src={DownSvg} alt="aikon" className={styles.side} />
+                            </div>
+                            <div className={styles.trash}>
+                              <img src={TrashSvg} alt="aikon" className={styles.side} />
+                            </div>
                           </div>
-                          <div className={styles.down}>
-                            <img src={DownSvg} alt="aikon" className={styles.side} />
-                          </div>
-                          <div className={styles.trash}>
-                            <img src={TrashSvg} alt="aikon" className={styles.side} />
-                          </div>
-                        </div>
+                        )}
                       </div>
                     </li>
                   ))}
@@ -177,17 +179,19 @@ export default function DetailMenuModal({
                           {m.title}
                           {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                         </div>
-                        <div className={styles.actionbuttons}>
-                          <div className={styles.up}>
-                            <img src={UpSvg} alt="aikon" className={styles.side} />
+                        {selectedMusic.id === m.id && (
+                          <div className={styles.actionbuttons}>
+                            <div className={styles.up}>
+                              <img src={UpSvg} alt="aikon" className={styles.side} />
+                            </div>
+                            <div className={styles.down}>
+                              <img src={DownSvg} alt="aikon" className={styles.side} />
+                            </div>
+                            <div className={styles.trash}>
+                              <img src={TrashSvg} alt="aikon" className={styles.side} />
+                            </div>
                           </div>
-                          <div className={styles.down}>
-                            <img src={DownSvg} alt="aikon" className={styles.side} />
-                          </div>
-                          <div className={styles.trash}>
-                            <img src={TrashSvg} alt="aikon" className={styles.side} />
-                          </div>
-                        </div>
+                        )}
                       </div>
                     </li>
                   ))}
