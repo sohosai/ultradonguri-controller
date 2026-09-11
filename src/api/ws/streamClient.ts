@@ -8,8 +8,7 @@ export interface WSEvent {
     | "/performance/music"
     | "/conversion/start"
     | "/conversion/cm-mode"
-    | "/display-copyright"
-    | "/force_mute";
+    | "/display-copyright";
   data: unknown;
   offset: number;
 }

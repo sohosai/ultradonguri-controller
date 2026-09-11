@@ -90,21 +90,12 @@ export const handlers = [
     return new HttpResponse(null, { status: 204 });
   }),
 
-  // POST /force_mute
-  http.post("/force_mute", async ({ request }) => {
-    const body = await request.json();
-    const event = outbox.append({
-      type: "/force_mute",
-      data: body,
-    });
+  // POST /mute - おせちAPIのモック（フロントから直接おせちを叩く想定。どんぐりバックエンドは経由しない）
+  http.post("/mute", async ({ request }) => {
+    const body = (await request.json()) as { is_muted: boolean };
 
-    window.dispatchEvent(
-      new CustomEvent("mock-ws-broadcast", {
-        detail: event,
-      })
-    );
-
-    return new HttpResponse(null, { status: 204 });
+    // 更新後のミュート状態を返す
+    return HttpResponse.json({ is_muted: body.is_muted });
   }),
 
   // POST /display-copyright

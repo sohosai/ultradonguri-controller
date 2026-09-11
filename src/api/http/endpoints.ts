@@ -29,10 +29,6 @@ export interface ConversionCmModeRequest {
   is_cm_mode: boolean;
 }
 
-export interface ForceMuteRequest {
-  is_muted: boolean;
-}
-
 export interface DisplayCopyright {
   is_displayed_copyright: boolean;
 }
@@ -79,16 +75,6 @@ export async function postConversionStart(body: ConversionStartRequest): Promise
  */
 export async function postConversionCmMode(body: ConversionCmModeRequest): Promise<void> {
   return apiFetch("/conversion/cm-mode", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
-}
-
-/**
- * POST /force_mute
- */
-export async function postForceMute(body: ForceMuteRequest): Promise<void> {
-  return apiFetch("/force_mute", {
     method: "POST",
     body: JSON.stringify(body),
   });
