@@ -1,6 +1,7 @@
-import { getPerformances } from "../http/endpoints";
-
-const STORAGE_KEY = "ws_last_offset";
+const OFFSET_STORAGE_KEY = "ws_last_offset";
+const EPOCH_STORAGE_KEY = "ws_epoch";
+const RELAY_PATH = "/burari/ws";
+const RECONNECT_DELAY_MS = 2000;
 
 export interface WSEvent {
   type:
@@ -9,7 +10,11 @@ export interface WSEvent {
     | "/conversion/start"
     | "/conversion/cm-mode"
     | "/display-copyright"
-    | "/force_mute";
+    | "/force_mute"
+    | "/burari/play"
+    | "/burari/stop"
+    | "/burari/ended"
+    | "/relay/hello";
   data: unknown;
   offset: number;
 }
@@ -17,94 +22,92 @@ export interface WSEvent {
 type EventHandler = (data: unknown) => void;
 
 /**
- * WebSocket client for real-time event streaming
- * In mock mode, uses BroadcastChannel for cross-tab communication
+ * Vite サーバー上の WebSocket リレー（/burari/ws）に接続するクライアント。
+ * Controller / Viewer の双方が受信・送信の両方に使う。
  */
 class StreamClient {
   private ws: WebSocket | null = null;
-  private channel: BroadcastChannel | null = null;
   private handlers = new Map<string, Set<EventHandler>>();
-  private wsUrl: string;
-  private isMockMode: boolean;
-
-  constructor() {
-    this.wsUrl = import.meta.env.VITE_WS_URL || "ws://local-mock/stream";
-    this.isMockMode = (import.meta.env.VITE_API_MODE || "mock") === "mock";
-  }
+  private sendQueue: string[] = [];
+  private shouldReconnect = false;
+  private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
 
   /**
-   * Connect to WebSocket server or BroadcastChannel
+   * Connect to the relay server (no-op if already connected)
    */
   connect(): void {
-    if (this.isMockMode) {
-      // Use BroadcastChannel in mock mode
-      if (this.channel) {
-        console.log("[WS] Already connected to BroadcastChannel");
-
-        return;
-      }
-
-      this.channel = new BroadcastChannel("mock-ws-events");
-      this.channel.onmessage = (event) => {
-        console.log("[WS] Received message from BroadcastChannel:", event.data);
-        const wsEvent = event.data as WSEvent;
-        this.handleEvent(wsEvent);
-        this.saveLastOffset(wsEvent.offset);
-      };
-
-      console.log("[WS] Connected to BroadcastChannel");
-    } else {
-      // Use real WebSocket in real mode
-      if (this.ws?.readyState === WebSocket.OPEN) {
-        console.log("[WS] Already connected");
-
-        return;
-      }
-
-      const lastOffset = this.getLastOffset();
-      const url = `${this.wsUrl}?lastOffset=${lastOffset}`;
-
-      console.log("[WS] Connecting to:", url);
-
-      try {
-        this.ws = new WebSocket(url);
-
-        this.ws.onopen = () => {
-          console.log("[WS] Connected successfully");
-        };
-
-        this.ws.onmessage = (event) => {
-          console.log("[WS] Received message:", event.data);
-          try {
-            const wsEvent: WSEvent = JSON.parse(event.data);
-            this.handleEvent(wsEvent);
-            this.saveLastOffset(wsEvent.offset);
-          } catch (error) {
-            console.error("[WS] Failed to parse message:", error);
-          }
-        };
-
-        this.ws.onerror = (error) => {
-          console.error("[WS] Error:", error);
-        };
-
-        this.ws.onclose = () => {
-          console.log("[WS] Disconnected");
-          this.ws = null;
-        };
-      } catch (error) {
-        console.error("[WS] Connection failed:", error);
-      }
+    if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
+      return;
     }
+
+    this.shouldReconnect = true;
+
+    const params = new URLSearchParams({ lastOffset: String(this.getLastOffset()) });
+    const epoch = localStorage.getItem(EPOCH_STORAGE_KEY);
+    if (epoch) {
+      params.set("epoch", epoch);
+    }
+    const protocol = location.protocol === "https:" ? "wss" : "ws";
+    const url = `${protocol}://${location.host}${RELAY_PATH}?${params}`;
+
+    console.log("[WS] Connecting to:", url);
+    this.ws = new WebSocket(url);
+
+    this.ws.onopen = () => {
+      console.log("[WS] Connected successfully");
+      const queued = this.sendQueue;
+      this.sendQueue = [];
+      for (const payload of queued) {
+        this.ws?.send(payload);
+      }
+    };
+
+    this.ws.onmessage = (event) => {
+      let wsEvent: WSEvent;
+      try {
+        wsEvent = JSON.parse(event.data);
+      } catch (error) {
+        console.error("[WS] Failed to parse message:", error);
+
+        return;
+      }
+
+      if (wsEvent.type === "/relay/hello") {
+        const payload = wsEvent.data as { epoch: string };
+        localStorage.setItem(EPOCH_STORAGE_KEY, payload.epoch);
+        this.saveLastOffset(wsEvent.offset);
+
+        return;
+      }
+
+      this.handleEvent(wsEvent);
+      this.saveLastOffset(wsEvent.offset);
+    };
+
+    this.ws.onerror = (error) => {
+      console.error("[WS] Error:", error);
+    };
+
+    this.ws.onclose = () => {
+      console.log("[WS] Disconnected");
+      this.ws = null;
+      if (this.shouldReconnect && this.reconnectTimer === null) {
+        this.reconnectTimer = setTimeout(() => {
+          this.reconnectTimer = null;
+          this.connect();
+        }, RECONNECT_DELAY_MS);
+      }
+    };
   }
 
   /**
-   * Disconnect from WebSocket server or BroadcastChannel
+   * Disconnect and stop reconnecting
    */
   disconnect(): void {
-    if (this.channel) {
-      this.channel.close();
-      this.channel = null;
+    this.shouldReconnect = false;
+    if (this.reconnectTimer !== null) {
+      clearTimeout(this.reconnectTimer);
+      this.reconnectTimer = null;
     }
     if (this.ws) {
       this.ws.close();
@@ -113,10 +116,24 @@ class StreamClient {
   }
 
   /**
+   * Send an event to the relay server.
+   * 未接続の場合は接続を開始し、接続完了までキューイングする。
+   */
+  send(type: WSEvent["type"], data: unknown): void {
+    const payload = JSON.stringify({ type, data });
+    this.connect();
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      this.ws.send(payload);
+    } else {
+      this.sendQueue.push(payload);
+    }
+  }
+
+  /**
    * Register event handler
    * @returns Unsubscribe function
    */
-  on(type: string, handler: EventHandler): () => void {
+  on(type: WSEvent["type"], handler: EventHandler): () => void {
     if (!this.handlers.has(type)) {
       this.handlers.set(type, new Set());
     }
@@ -134,19 +151,6 @@ class StreamClient {
     };
   }
 
-  /**
-   * Catch up on missed events (minimal implementation for mock mode)
-   */
-  async catchUp(): Promise<void> {
-    try {
-      // In mock mode, fetch initial state from GET /performances
-      const data = await getPerformances();
-      console.log("[WS] Catch-up complete:", data);
-    } catch (error) {
-      console.error("[WS] Catch-up failed:", error);
-    }
-  }
-
   private handleEvent(event: WSEvent): void {
     const handlers = this.handlers.get(event.type);
     if (handlers) {
@@ -161,13 +165,13 @@ class StreamClient {
   }
 
   private getLastOffset(): number {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(OFFSET_STORAGE_KEY);
 
     return stored ? parseInt(stored, 10) : 0;
   }
 
   private saveLastOffset(offset: number): void {
-    localStorage.setItem(STORAGE_KEY, String(offset));
+    localStorage.setItem(OFFSET_STORAGE_KEY, String(offset));
   }
 }
 
