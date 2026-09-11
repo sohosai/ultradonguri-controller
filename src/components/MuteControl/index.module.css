@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.copyrightTitle.disabled {
+  color: var(--color-dark-gray);
+}
+
 .modalOverlay {
   position: fixed;
   inset: 0;

@@ -261,7 +261,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header isMuted={isMuted} />
+      <Header isMuted={isMuted} isCmMode={isCmMode} isConversion={isConversion} />
       <main>
         {error && (
           <div className={styles.error}>

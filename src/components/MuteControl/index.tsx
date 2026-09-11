@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState } from "react";
 
 import { postMute } from "../../api/http/osechi";
@@ -17,9 +18,11 @@ export default function MuteControl({ isMuted, onMuteChange, onError, isCmMode, 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // コンバージョン中 & CM-mode のときは、ミュート(isMuted=false)のみ無効化
+  const isCmMute = Boolean(isConversion && isCmMode && !isMuted);
+
   const openModal = () => {
-    // コンバージョン中 & CM-mode のときは、ミュート(isMuted=false)のみ無効化
-    if (isConversion && isCmMode && !isMuted) {
+    if (isCmMute) {
       return;
     }
     setIsModalOpen(true);
@@ -49,8 +52,8 @@ export default function MuteControl({ isMuted, onMuteChange, onError, isCmMode, 
   return (
     <>
       <div className={styles.copyright}>
-        <div className={styles.copyrightTitle}>ミュート</div>
-        <MuteToggle checked={isMuted} onChange={openModal} />
+        <div className={clsx(styles.copyrightTitle, isCmMute && styles.disabled)}>ミュート</div>
+        <MuteToggle checked={isMuted} onChange={openModal} disabled={isCmMute} />
       </div>
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={closeModal}>
