@@ -74,9 +74,21 @@
   outline: 2px solid var(--color-blue);
 }
 
+.videoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
 .filename {
   font-size: 14px;
   word-break: break-all;
+}
+
+.stats {
+  color: var(--color-gray);
+  font-size: 12px;
 }
 
 .deleteButton {

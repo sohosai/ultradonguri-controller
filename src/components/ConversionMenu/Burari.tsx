@@ -7,6 +7,59 @@ import styles from "./Burari.module.css";
 
 import type { BurariVideo } from "../../api/http/burariVideos";
 
+const STATS_STORAGE_KEY = "donguri_burari_stats";
+
+interface VideoStats {
+  playCount: number;
+  lastPlayedAt: string;
+}
+
+function loadStats(): Record<string, VideoStats> {
+  try {
+    const raw = localStorage.getItem(STATS_STORAGE_KEY);
+    if (!raw) return {};
+
+    return JSON.parse(raw) as Record<string, VideoStats>;
+  } catch {
+    return {};
+  }
+}
+
+function saveStats(stats: Record<string, VideoStats>): void {
+  localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats));
+}
+
+function recordPlay(filename: string): void {
+  const stats = loadStats();
+  const existing = stats[filename];
+  stats[filename] = {
+    playCount: (existing?.playCount ?? 0) + 1,
+    lastPlayedAt: new Date().toISOString(),
+  };
+  saveStats(stats);
+}
+
+function timeAgo(isoString: string | undefined): string {
+  if (!isoString) return "未再生";
+  const diffMs = Date.now() - new Date(isoString).getTime();
+  const minutes = Math.floor(diffMs / 60000);
+  if (minutes < 1) return "たった今";
+  if (minutes < 60) return `${minutes}分前`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}時間前`;
+  const days = Math.floor(hours / 24);
+
+  return `${days}日前`;
+}
+
+function formatStats(stats: VideoStats | undefined): string {
+  if (!stats) return "未再生";
+  const count = stats.playCount;
+  const ago = timeAgo(stats.lastPlayedAt);
+
+  return `${count}回・${ago}`;
+}
+
 type Props = {
   isCmMode: boolean;
   isForceMuted: boolean;
@@ -23,6 +76,7 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [stats, setStats] = useState<Record<string, VideoStats>>(() => loadStats());
 
   const fetchVideos = useCallback(async () => {
     setIsLoading(true);
@@ -77,6 +131,8 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
 
   const handlePlay = () => {
     if (!selectedFilename) return;
+    recordPlay(selectedFilename);
+    setStats(loadStats());
     streamClient.send("/burari/play", { filename: selectedFilename });
     setIsPlaying(true);
     setPlayingFilename(selectedFilename);
@@ -143,7 +199,7 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
         {isLoading ? (
           <div className={styles.empty}>読み込み中...</div>
         ) : videos.length === 0 ? (
-          <div className={styles.empty}>videos/ フォルダに mp4 を配置してください</div>
+          <div className={styles.empty}>videos/ フォルダに mp4 を配置するか、アップロードしてください</div>
         ) : (
           videos.map((video) => (
             <div
@@ -151,7 +207,10 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
               className={`${styles.videoItem} ${selectedFilename === video.filename ? styles.selected : ""}`}
               onClick={() => canControl && setSelectedFilename(video.filename)}
             >
-              <span className={styles.filename}>{video.filename}</span>
+              <div className={styles.videoInfo}>
+                <span className={styles.filename}>{video.filename}</span>
+                <span className={styles.stats}>{formatStats(stats[video.filename])}</span>
+              </div>
               <button
                 className={styles.deleteButton}
                 onClick={(e) => {
