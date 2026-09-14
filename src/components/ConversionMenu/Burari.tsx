@@ -76,7 +76,16 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isPreviewEnabled, setIsPreviewEnabled] = useState(true);
+  const previewRef = useRef<HTMLVideoElement>(null);
   const [stats, setStats] = useState<Record<string, VideoStats>>(() => loadStats());
+
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+
+    return `${mins}:${String(secs).padStart(2, "0")}`;
+  };
 
   const fetchVideos = useCallback(async () => {
     setIsLoading(true);
@@ -118,6 +127,44 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
 
     return unsub;
   }, [handleStop]);
+
+  const [isPreviewPlaying, setIsPreviewPlaying] = useState(false);
+  const [previewCurrentTime, setPreviewCurrentTime] = useState(0);
+  const [previewDuration, setPreviewDuration] = useState(0);
+  const isSeekingRef = useRef(false);
+
+  useEffect(() => {
+    const video = previewRef.current;
+    if (!video) return;
+    const onEnded = () => setIsPreviewPlaying(false);
+    const onTimeUpdate = () => {
+      if (!isSeekingRef.current) {
+        setPreviewCurrentTime(video.currentTime);
+      }
+    };
+    const onLoadedMetadata = () => {
+      setPreviewDuration(video.duration);
+      setPreviewCurrentTime(0);
+    };
+
+    video.addEventListener("ended", onEnded);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
+
+    return () => {
+      video.removeEventListener("ended", onEnded);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+    };
+  }, [selectedFilename, isPreviewEnabled]);
+
+  useEffect(() => {
+    const video = previewRef.current;
+    if (!video || !selectedFilename) return;
+    video.pause();
+    video.currentTime = 0;
+    setIsPreviewPlaying(false);
+  }, [selectedFilename]);
 
   const handleDelete = async (filename: string) => {
     if (!window.confirm(`${filename} を削除しますか？`)) return;
@@ -194,6 +241,77 @@ export default function Burari({ isCmMode, isForceMuted, isConversion }: Props) 
       )}
       {isForceMuted && (
         <div className={styles.muteWarning}>ミュートONなので、ぶらり旅の音声は再生されません</div>
+      )}
+      <div className={styles.previewToggleRow}>
+        <button
+          className={styles.previewToggle}
+          onClick={() => setIsPreviewEnabled((v) => !v)}
+        >
+          {isPreviewEnabled ? "👁️ プレビュー表示中" : "👁️ プレビュー非表示"}
+        </button>
+      </div>
+      {isPreviewEnabled && selectedFilename && (
+        <div className={styles.previewArea}>
+          <video
+            ref={previewRef}
+            src={burariVideoUrl(selectedFilename)}
+            className={styles.previewVideo}
+            muted
+            playsInline
+            preload="metadata"
+            onClick={() => {
+              const video = previewRef.current;
+              if (!video) return;
+              if (video.paused) {
+                video.play();
+                setIsPreviewPlaying(true);
+              } else {
+                video.pause();
+                setIsPreviewPlaying(false);
+              }
+            }}
+          />
+          <div className={styles.previewControls}>
+            <button
+              className={styles.previewPlayButton}
+              onClick={() => {
+                const video = previewRef.current;
+                if (!video) return;
+                if (video.paused) {
+                  video.play();
+                  setIsPreviewPlaying(true);
+                } else {
+                  video.pause();
+                  setIsPreviewPlaying(false);
+                }
+              }}
+            >
+              {isPreviewPlaying ? "⏸ 一時停止" : "▶ 再生"}
+            </button>
+            <span className={styles.previewTime}>
+              {formatTime(previewCurrentTime)} / {formatTime(previewDuration)}
+            </span>
+            <input
+              type="range"
+              min={0}
+              max={previewDuration || 1}
+              step={0.1}
+              value={previewCurrentTime}
+              className={styles.previewSeekbar}
+              onMouseDown={() => { isSeekingRef.current = true; }}
+              onMouseUp={() => { isSeekingRef.current = false; }}
+              onTouchStart={() => { isSeekingRef.current = true; }}
+              onTouchEnd={() => { isSeekingRef.current = false; }}
+              onChange={(e) => {
+                const video = previewRef.current;
+                if (!video) return;
+                const newTime = Number(e.target.value);
+                video.currentTime = newTime;
+                setPreviewCurrentTime(newTime);
+              }}
+            />
+          </div>
+        </div>
       )}
       <div className={styles.videoList}>
         {isLoading ? (
