@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { streamClient } from "../api/ws/streamClient";
+import BurariPlayer from "../components/BurariPlayer";
 import ConversionScene from "../components/ConversionScene";
 import PerformanceScene from "../components/PerformanceScene";
 
@@ -17,6 +18,12 @@ export default function Viewer() {
   const [nextPerformances, setNextPerformances] = useState<NextPerformance[]>([]);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
+  const [burariVideo, setBurariVideo] = useState<string | null>(null);
+
+  const handleBurariEnded = useCallback(() => {
+    streamClient.send("/burari/ended", { filename: burariVideo ?? "" });
+    setBurariVideo(null);
+  }, [burariVideo]);
 
   useEffect(() => {
     streamClient.connect();
@@ -54,11 +61,23 @@ export default function Viewer() {
       setIsCopyrightVisible(payload.is_displayed_copyright);
     };
 
+    const handleBurariPlay = (data: unknown) => {
+      const payload = data as { filename: string };
+      setBurariVideo(payload.filename);
+      setCurrentScene("conversion");
+    };
+
+    const handleBurariStop = () => {
+      setBurariVideo(null);
+    };
+
     const unsubPerformance = streamClient.on("/performance/start", handlePerformance);
     const unsubMusic = streamClient.on("/performance/music", handleMusic);
     const unsubConversion = streamClient.on("/conversion/start", handleConversionStart);
     const unsubCmMode = streamClient.on("/conversion/cm-mode", handleCmMode);
     const unsubDisplayCopyright = streamClient.on("/display-copyright", handleDisplayCopyright);
+    const unsubBurariPlay = streamClient.on("/burari/play", handleBurariPlay);
+    const unsubBurariStop = streamClient.on("/burari/stop", handleBurariStop);
 
     return () => {
       unsubPerformance();
@@ -66,9 +85,15 @@ export default function Viewer() {
       unsubConversion();
       unsubCmMode();
       unsubDisplayCopyright();
+      unsubBurariPlay();
+      unsubBurariStop();
       streamClient.disconnect();
     };
   }, []);
+
+  if (burariVideo) {
+    return <BurariPlayer filename={burariVideo} onEnded={handleBurariEnded} />;
+  }
 
   if (currentScene === "performance") {
     return (

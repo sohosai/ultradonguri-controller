@@ -3,6 +3,7 @@ import { useState } from "react";
 import { sendConversionCmMode } from "../../services/performanceService";
 import ConversionToggleItem from "../ConversionToggleItem";
 
+import Burari from "./Burari";
 import styles from "./index.module.css";
 
 import type { TrackRef } from "../../types/tracks";
@@ -14,6 +15,7 @@ type Props = {
   currentTrack?: TrackRef | null;
   nextTrack?: TrackRef | null;
   onSelectNextTrack?: (ref: TrackRef) => void;
+  isForceMuted: boolean;
 };
 
 export default function ConversionMenu({
@@ -23,6 +25,7 @@ export default function ConversionMenu({
   currentTrack,
   nextTrack,
   onSelectNextTrack,
+  isForceMuted,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -56,6 +59,10 @@ export default function ConversionMenu({
             onChange={handleCmModeToggle}
           />
         </div>
+        <Burari isCmMode={isCmMode} isForceMuted={isForceMuted} isConversion={true} />
+
+
+
       </div>
     </div>
   );

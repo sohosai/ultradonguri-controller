@@ -1,0 +1,173 @@
+.burari {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 0;
+  color: var(--color-white);
+}
+
+.burariTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  color: var(--color-red);
+  background: #fee;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.errorClose {
+  padding: 0;
+  margin-left: 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-red);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.muteWarning {
+  color: var(--color-red);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.videoList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.empty {
+  padding: 12px;
+  color: var(--color-gray);
+  font-size: 14px;
+  text-align: center;
+}
+
+.videoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.videoItem:hover {
+  background: #5a6069;
+}
+
+.selected {
+  outline: 2px solid var(--color-blue);
+}
+
+.filename {
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.deleteButton {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  margin-left: 8px;
+  color: var(--color-white);
+  font-size: 12px;
+  background: var(--color-red);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.playButton {
+  padding: 10px 16px;
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--color-green);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.playButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uploadButton {
+  padding: 10px 16px;
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--color-blue);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.uploadButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-modal-background);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 40px 60px;
+  background: var(--color-bg);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgb(0 0 0 / 50%);
+}
+
+.playingTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-white);
+}
+
+.stopButton {
+  padding: 12px 24px;
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--color-red);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
