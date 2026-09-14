@@ -3,13 +3,9 @@ import styles from "./index.module.css";
 
 type Props = {
   isMuted: boolean;
-  isCmMode?: boolean;
-  isConversion?: boolean;
 };
 
-export default function Header({ isMuted, isCmMode = false, isConversion = false }: Props) {
-  const isCMMute = isConversion && isCmMode && !isMuted;
-
+export default function Header({ isMuted }: Props) {
   return (
     <header className={styles.header}>
       <ul className={styles.list}>
@@ -17,7 +13,7 @@ export default function Header({ isMuted, isCmMode = false, isConversion = false
           <Clock />
         </li>
         <li className={styles.logo}>Ultradonguri</li>
-        <li className={styles.mute}>{isCMMute ? "強制ミュート中" : isMuted && "ミュート中"}</li>
+        <li className={styles.mute}>{isMuted && "ミュート中"}</li>
       </ul>
     </header>
   );
