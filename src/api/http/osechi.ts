@@ -30,7 +30,7 @@ function resolveBaseURL(): string {
 
 const BASE_URL = resolveBaseURL();
 
-async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T | undefined> {
   const url = `${BASE_URL}${path}`;
 
   let lastError: unknown;
@@ -49,13 +49,9 @@ async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T> {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      // スキーマ上、空レスポンスは成功ではないためエラーにする
       const text = await response.text();
-      if (!text) {
-        throw new Error(`Empty response body (HTTP ${response.status})`);
-      }
 
-      return JSON.parse(text) as T;
+      return text ? (JSON.parse(text) as T) : undefined;
     } catch (error) {
       lastError = error;
     }
@@ -66,10 +62,17 @@ async function osechiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 
 /**
  * POST {OSECHI_BASE}/mute
+ * 空レスポンスは成功ではないためエラーにする
  */
 export async function postMute(body: MuteState): Promise<MuteState> {
-  return osechiFetch<MuteState>("/mute", {
+  const result = await osechiFetch<MuteState>("/mute", {
     method: "POST",
     body: JSON.stringify(body),
   });
+
+  if (!result) {
+    throw new Error("POST /mute のレスポンスが空です");
+  }
+
+  return result;
 }
