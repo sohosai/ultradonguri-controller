@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { burariVideoUrl } from "../../api/http/burariVideos";
 
@@ -11,6 +11,7 @@ type Props = {
 
 export default function BurariPlayer({ filename, onEnded }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -21,7 +22,10 @@ export default function BurariPlayer({ filename, onEnded }: Props) {
   }, [filename]);
 
   return (
-    <div className={styles.overlay}>
+    <div className={`${styles.overlay} ${isReady ? styles.visible : styles.hidden}`}>
+      {!isReady && (
+        <div className={styles.loading}>動画読み込み中...</div>
+      )}
       <video
         ref={videoRef}
         src={burariVideoUrl(filename)}
@@ -29,6 +33,7 @@ export default function BurariPlayer({ filename, onEnded }: Props) {
         autoPlay
         playsInline
         onEnded={onEnded}
+        onCanPlay={() => setIsReady(true)}
       />
     </div>
   );
