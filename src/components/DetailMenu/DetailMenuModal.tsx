@@ -149,7 +149,7 @@ export default function DetailMenuModal({
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
                         <div className={styles.performancetitle}>{p.title}</div>
-                        {selectedPerformance.id === p.id && (
+                        {selectedPerformance?.id === p.id && (
                           <div className={styles.actionbuttons}>
                             <div className={styles.up}>
                               <img src={UpSvg} alt="aikon" className={styles.side} />
@@ -179,7 +179,7 @@ export default function DetailMenuModal({
                           {m.title}
                           {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
                         </div>
-                        {selectedMusic.id === m.id && (
+                        {selectedMusic?.id === m.id && (
                           <div className={styles.actionbuttons}>
                             <div className={styles.up}>
                               <img src={UpSvg} alt="aikon" className={styles.side} />
