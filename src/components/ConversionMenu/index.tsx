@@ -3,6 +3,8 @@ import { useState } from "react";
 import { sendConversionCmMode } from "../../services/performanceService";
 import ConversionToggleItem from "../ConversionToggleItem";
 
+import ConversionBuraritabi from "../ConversionBuraritabi";
+
 import styles from "./index.module.css";
 
 import type { TrackRef } from "../../types/tracks";
@@ -55,6 +57,9 @@ export default function ConversionMenu({
             isCmMode={isCmMode}
             onChange={handleCmModeToggle}
           />
+        </div>
+        <div>
+          <ConversionBuraritabi/>
         </div>
       </div>
     </div>
