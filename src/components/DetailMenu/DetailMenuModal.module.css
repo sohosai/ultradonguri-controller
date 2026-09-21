@@ -102,9 +102,15 @@
 }
 
 .actionbuttons {
-  display: flex;
-  gap: 2px;
+  display: none;
+  gap: 6px;
+  align-items: center;
   justify-content: flex-end;
+}
+
+.performances li:hover .actionbuttons,
+.musics li:hover .actionbuttons {
+  display: flex;
 }
 
 .up {
@@ -115,8 +121,15 @@
   right: 15%;
 }
 
+.up .side,
+.down .side {
+  width: 18px;
+  height: auto;
+}
+
 .trash {
   right: 4%;
+  margin-left: 2px;
 }
 
 .up:hover,
