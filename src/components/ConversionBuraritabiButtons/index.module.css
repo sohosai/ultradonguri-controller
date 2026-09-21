@@ -1,0 +1,21 @@
+.play_stopButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 30px;
+   
+}
+
+.playButton {
+    background-color: #61CC68;
+    border: 3px solid var(--color-white);
+    border-radius: 50px;
+    padding: 10px 35px;
+}
+
+.stopButton {
+    background-color: #FF515A;
+    border: 3px solid var(--color-white);
+    border-radius: 50px;
+    padding: 10px 35px;
+}

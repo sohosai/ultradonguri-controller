@@ -1,0 +1,36 @@
+.conversionBuraritabi {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  width: 98%;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.buraritabi {
+  margin-top: 40px;
+  font-size: 36px;
+}
+
+.source {
+  width: 100%;
+}
+
+.preview {
+  width: 100%;
+}
+
+.start_stop {
+  width: 100%;
+}
