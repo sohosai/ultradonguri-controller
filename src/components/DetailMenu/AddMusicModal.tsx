@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import styles from "./AddMusicModal.module.css";
+import styles from "./AddGroupModal.module.css";
 
 type AddMusicModalProps = {
   isOpen: boolean;
