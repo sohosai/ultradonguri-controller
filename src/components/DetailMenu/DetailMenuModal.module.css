@@ -218,35 +218,27 @@
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   margin-top: 30px;
   margin-bottom: 60px;
 }
 
 .buttons .addgroup,
-.buttons .addmusic {
-  width: 22%;
+.buttons .addmusic,
+.buttons .cancel,
+.buttons .save {
   height: auto;
-  padding: 14px 20px;
-  font-size: 30px;
+  padding: 20px 50px;
+  font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  white-space: nowrap;
   border: solid 2px var(--color-surface);
-  border-radius: 60px;
+  border-radius: 40px;
 }
 
 .buttons .addgroup {
   margin-left: 30px;
-}
-
-.buttons .cancel,
-.buttons .save {
-  height: auto;
-  padding: 20px 40px;
-  font-size: 20px;
-  font-weight: bold;
-  border: solid 2px var(--color-surface);
-  border-radius: 40px;
 }
 
 .buttons .addgroup:hover,
@@ -263,7 +255,7 @@
 }
 
 .buttons .cancel {
-  margin-left: 16%;
+  margin-left: auto;
 }
 
 .buttons .save {
