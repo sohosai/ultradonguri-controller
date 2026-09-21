@@ -1,5 +1,7 @@
 import styles from "./index.module.css";
 
+import UploadIcon from "../../assets/icons/upload.svg";
+
 
 type Props = {};
 
@@ -12,9 +14,8 @@ export default function ConversionBuraritabiSourcce({ }: Props) {
                 <span>▼</span>
             </div>
             <div className={styles.sourceImage}>
-                <img src="assets/icons/upload.svg" />
+                <img src={UploadIcon} />
             </div>
-            {/* ↑ ここに画像を挿入予定 */}
         </div>
     );
 }
