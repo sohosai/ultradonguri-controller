@@ -199,7 +199,7 @@ export default function DetailMenuModal({
                     <div className={styles.detailsHeader}>
                       <h3 className={styles.detailsTitle}>詳細編集</h3>
                     </div>
-                    <div className={styles.editGroup}>団体</div>
+                    <h4 className={styles.editGroup}>団体</h4>
                     <div className={styles.detailItem}>
                       <label>タイトル</label>
                       <input
@@ -209,7 +209,7 @@ export default function DetailMenuModal({
                         onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
                       />
                     </div>
-                    <div className={styles.editMusic}>楽曲</div>
+                    <h4 className={styles.editMusic}>楽曲</h4>
                     <div className={styles.detailItem}>
                       <label>タイトル</label>
                       <input

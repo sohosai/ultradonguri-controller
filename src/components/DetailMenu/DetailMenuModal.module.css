@@ -157,6 +157,7 @@
 .editGroup,
 .editMusic {
   display: block;
+  margin-top: 0;
   margin-bottom: 12px;
   font-size: 17px;
   font-weight: bold;
