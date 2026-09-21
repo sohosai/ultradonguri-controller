@@ -17,8 +17,8 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
+    <div className={styles.modalOverlay} onClick={handleCancel}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>楽曲追加メニュー</div>
         <div className={styles.modalBody}>
           <div className={styles.items}>
