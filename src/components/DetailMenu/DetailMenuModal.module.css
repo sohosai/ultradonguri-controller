@@ -122,8 +122,9 @@
 }
 
 .up .side,
-.down .side {
-  width: 18px;
+.down .side,
+.trash .side {
+  width: 16px;
   height: auto;
 }
 
