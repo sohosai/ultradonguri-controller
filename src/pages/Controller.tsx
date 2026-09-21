@@ -160,8 +160,7 @@ export default function Controller() {
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
   if (!performances) return <div>データが見つかりません。</div>;
 
-  // コンバージョン中かどうかを判定
-  const isConversion = selectedConversion !== null;
+  const isConversion = currentTrack?.type === "conversion";
 
   const handleSelectNextTrack = (ref: TrackRef) => {
     selectNextTrack(ref);
