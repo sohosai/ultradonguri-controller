@@ -1,7 +1,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,117 +30,16 @@
 .modalBody .items {
   display: grid;
   flex: 1;
-  grid-template-columns: 1fr 1fr 2fr;
-  height: calc(100vh - 350px);
   padding: 20px;
   margin-top: 15px;
   overflow: hidden;
 }
 
-.performances,
-.musics,
 .details {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-}
-
-.performances,
-.musics {
-  border-right: solid 3px var(--color-light-gray);
-}
-
-.performances ul,
-.musics ul {
-  flex: 1;
-  padding: 0;
-  margin: 0 15px;
-  list-style: none;
-}
-
-.performances li,
-.musics li {
-  padding: 12px;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: var(--color-bg);
-  cursor: pointer;
-  border-radius: 15px;
-}
-
-.performances li:hover,
-.musics li:hover {
-  background: var(--color-light-gray);
-}
-
-.performances li.selected,
-.musics li.selected {
-  color: var(--color-bg);
-  background: var(--color-light-gray);
-}
-
-.editedMark {
-  margin-left: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--color-surface);
-}
-
-.actions {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.performancetitle,
-.musictitle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.actionbuttons {
-  display: none;
-  gap: 6px;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.performances li:hover .actionbuttons,
-.musics li:hover .actionbuttons {
-  display: flex;
-}
-
-.up {
-  right: 25%;
-}
-
-.down {
-  right: 15%;
-}
-
-.up .side,
-.down .side,
-.trash .side {
-  width: 16px;
-  height: auto;
-}
-
-.trash {
-  right: 4%;
-  margin-left: 2px;
-}
-
-.up:hover,
-.down:hover,
-.trash:hover {
-  opacity: 0.7;
-}
-
-.details {
   padding: 0 15px;
+  overflow-y: auto;
 }
 
 .detailsTitle {
@@ -152,21 +51,6 @@
 
 .detailItem {
   margin-bottom: 20px;
-  color: var(--color-bg);
-}
-
-.editGroup,
-.editMusic {
-  display: block;
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 17px;
-  font-weight: bold;
-  color: var(--color-bg);
-}
-
-.editMusic {
-  margin-top: 35px;
 }
 
 .detailItem label {
@@ -233,48 +117,36 @@
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
-.buttons .addgroup,
-.buttons .addmusic,
 .buttons .cancel,
 .buttons .save {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: auto;
-  padding: 20px 50px;
+  padding: 20px 40px;
   font-size: 20px;
   font-weight: bold;
-  white-space: nowrap;
   border: solid 2px var(--color-surface);
   border-radius: 40px;
 }
 
-.buttons .addgroup {
-  margin-left: 30px;
-}
-
-.buttons .addgroup:hover,
-.buttons .addmusic:hover,
 .buttons .cancel:hover,
 .buttons .save:hover {
   opacity: 0.7;
 }
 
-.buttons .addgroup,
-.buttons .addmusic,
 .buttons .cancel {
   color: var(--color-surface);
 }
 
-.buttons .cancel {
-  margin-left: auto;
-}
-
 .buttons .save {
-  margin-right: 45px;
+  margin-right: 35px;
   color: var(--color-white);
   background: var(--color-surface);
 }
