@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styles from "./AddMusicModal.module.css";
 
 type AddMusicModalProps = {
@@ -6,12 +8,28 @@ type AddMusicModalProps = {
 };
 
 export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
-  const handleCancel = () => {
+  const [musicTitle, setMusicTitle] = useState("");
+  const [artistName, setArtistName] = useState("");
+
+  const hasEdits = musicTitle !== "" || artistName !== "";
+
+  const closeModal = () => {
+    setMusicTitle("");
+    setArtistName("");
     onClose();
   };
 
+  const handleCancel = () => {
+    if (hasEdits) {
+      if (!confirm("今の変更は保存されていません。変更を破棄しますか？")) {
+        return;
+      }
+    }
+    closeModal();
+  };
+
   const handleSave = () => {
-    onClose();
+    closeModal();
   };
 
   if (!isOpen) return null;
@@ -25,11 +43,21 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
             <div className={styles.details}>
               <div className={styles.detailItem}>
                 <label>楽曲名</label>
-                <input type="text" className={styles.input} />
+                <input
+                  type="text"
+                  className={styles.input}
+                  value={musicTitle}
+                  onChange={(e) => setMusicTitle(e.target.value)}
+                />
               </div>
               <div className={styles.detailItem}>
                 <label>アーティスト名</label>
-                <input type="text" className={styles.input} />
+                <input
+                  type="text"
+                  className={styles.input}
+                  value={artistName}
+                  onChange={(e) => setArtistName(e.target.value)}
+                />
               </div>
             </div>
           </div>

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styles from "./AddGroupModal.module.css";
 
 type AddGroupModalProps = {
@@ -6,12 +8,26 @@ type AddGroupModalProps = {
 };
 
 export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
-  const handleCancel = () => {
+  const [groupName, setGroupName] = useState("");
+
+  const hasEdits = groupName !== "";
+
+  const closeModal = () => {
+    setGroupName("");
     onClose();
   };
 
+  const handleCancel = () => {
+    if (hasEdits) {
+      if (!confirm("今の変更は保存されていません。変更を破棄しますか？")) {
+        return;
+      }
+    }
+    closeModal();
+  };
+
   const handleSave = () => {
-    onClose();
+    closeModal();
   };
 
   if (!isOpen) return null;
@@ -25,7 +41,12 @@ export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
             <div className={styles.details}>
               <div className={styles.detailItem}>
                 <label>団体名</label>
-                <input type="text" className={styles.input} />
+                <input
+                  type="text"
+                  className={styles.input}
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                />
               </div>
             </div>
           </div>
