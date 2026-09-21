@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import styles from "./AddGroupModal.module.css";
+import styles from "./AddModal.module.css";
 
 type AddGroupModalProps = {
   isOpen: boolean;
