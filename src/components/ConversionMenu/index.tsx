@@ -4,6 +4,8 @@ import { sendConversionCmMode } from "../../services/performanceService";
 import ConversionToggleItem from "../ConversionToggleItem";
 
 import Burari from "./Burari";
+import ConversionBuraritabi from "../ConversionBuraritabi";
+
 import styles from "./index.module.css";
 
 import type { TrackRef } from "../../types/tracks";
@@ -63,6 +65,9 @@ export default function ConversionMenu({
 
 
 
+        <div>
+          <ConversionBuraritabi/>
+        </div>
       </div>
     </div>
   );

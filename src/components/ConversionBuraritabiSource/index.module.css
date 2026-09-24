@@ -1,0 +1,27 @@
+.sourceTable {
+    display: flex;
+    flex-direction: row;
+}
+
+.sourceChoice {
+    display: flex;
+    width: 100%;
+    color: var(--color-black);
+    background: var(--color-white);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.sourceChoice span {
+    align-items: flex-end;
+    margin-left: auto;
+}
+
+.sourceImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: auto;
+}
