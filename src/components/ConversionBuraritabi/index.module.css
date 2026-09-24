@@ -5,26 +5,33 @@
   width: 100%;
   padding: 15px 20px;
   color: var(--color-white);
-  cursor: pointer;
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   align-items: flex-start;
   width: 98%;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.buraritabi {
+  margin: 0;
   font-size: 24px;
   font-weight: bold;
 }
 
-.buraritabi {
-  margin-top: 40px;
-  font-size: 36px;
-}
-
 .source {
   width: 100%;
+}
+
+.source > p,
+.preview > p {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .preview {
@@ -33,4 +40,34 @@
 
 .start_stop {
   width: 100%;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  color: var(--color-red);
+  background: #fee;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.errorClose {
+  padding: 0;
+  margin-left: 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--color-red);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.muteWarning {
+  width: 100%;
+  color: var(--color-red);
+  font-size: 14px;
+  font-weight: bold;
 }

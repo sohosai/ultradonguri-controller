@@ -32,6 +32,8 @@ export default function BurariPlayer({ filename, onEnded }: Props) {
         className={styles.video}
         autoPlay
         playsInline
+        disablePictureInPicture
+        disableRemotePlayback
         onEnded={onEnded}
         onCanPlay={() => setIsReady(true)}
       />

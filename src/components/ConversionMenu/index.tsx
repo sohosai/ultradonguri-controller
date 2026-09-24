@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import { sendConversionCmMode } from "../../services/performanceService";
+import ConversionBuraritabi from "../ConversionBuraritabi";
 import ConversionToggleItem from "../ConversionToggleItem";
 
-import Burari from "./Burari";
-import ConversionBuraritabi from "../ConversionBuraritabi";
 
 import styles from "./index.module.css";
 
@@ -48,12 +47,17 @@ export default function ConversionMenu({
   const isPlaying = (conversionId: string) =>
     currentTrack?.type === "conversion" && currentTrack?.conversionId === conversionId;
 
-  const isNext = (conversionId: string) => nextTrack?.type === "conversion" && nextTrack?.conversionId === conversionId;
+  const isNext = (conversionId: string) =>
+    nextTrack?.type === "conversion" && nextTrack?.conversionId === conversionId;
 
   return (
     <div className={styles.conversionMenu}>
       <div className={styles.conversionMenuItem}>
-        <div onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
+        <div
+          onClick={() =>
+            onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })
+          }
+        >
           <ConversionToggleItem
             isPlaying={isPlaying(conversionId)}
             isNext={isNext(conversionId)}
@@ -61,13 +65,7 @@ export default function ConversionMenu({
             onChange={handleCmModeToggle}
           />
         </div>
-        <Burari isCmMode={isCmMode} isForceMuted={isForceMuted} isConversion={true} />
-
-
-
-        <div>
-          <ConversionBuraritabi/>
-        </div>
+        <ConversionBuraritabi isCmMode={isCmMode} isForceMuted={isForceMuted} isConversion={true} />
       </div>
     </div>
   );
