@@ -232,6 +232,16 @@ export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConvers
           />
         </div>
       </div>
+      {/* {isPlaying && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <p className={styles.playingTitle}>再生中: {playingFilename}</p>
+            <button className={styles.modalStopButton} onClick={handleStop}>
+              再生停止
+            </button>
+          </div>
+        </div>
+      )} */}
     </div>
   );
 }

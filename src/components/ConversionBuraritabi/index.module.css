@@ -71,3 +71,42 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-modal-background);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 40px 60px;
+  background: var(--color-bg);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgb(0 0 0 / 50%);
+}
+
+.playingTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-white);
+}
+
+.modalStopButton {
+  padding: 12px 24px;
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--color-red);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
