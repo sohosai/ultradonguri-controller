@@ -17,6 +17,8 @@ type Props = {
   nextTrack?: TrackRef | null;
   onSelectNextTrack?: (ref: TrackRef) => void;
   isForceMuted: boolean;
+  isBurariPlaying: boolean;
+  burariPlayingFilename: string | null;
 };
 
 export default function ConversionMenu({
@@ -27,6 +29,8 @@ export default function ConversionMenu({
   nextTrack,
   onSelectNextTrack,
   isForceMuted,
+  isBurariPlaying,
+  burariPlayingFilename,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -65,7 +69,13 @@ export default function ConversionMenu({
             onChange={handleCmModeToggle}
           />
         </div>
-        <ConversionBuraritabi isCmMode={isCmMode} isForceMuted={isForceMuted} isConversion={true} />
+        <ConversionBuraritabi
+          isCmMode={isCmMode}
+          isForceMuted={isForceMuted}
+          isConversion={true}
+          isPlaying={isBurariPlaying}
+          playingFilename={burariPlayingFilename}
+        />
       </div>
     </div>
   );

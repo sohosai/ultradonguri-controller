@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
 import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import DateTabs from "../components/DateTabs";
@@ -28,6 +29,8 @@ export default function Controller() {
   const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
+  const [isBurariPlaying, setIsBurariPlaying] = useState(false);
+  const [burariPlayingFilename, setBurariPlayingFilename] = useState<string | null>(null);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const initializedDateKeyRef = useRef<string | null>(null);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
@@ -87,6 +90,29 @@ export default function Controller() {
     void initializeForceMute();
     void initializeCopyright();
     void initializeCmMode();
+  }, []);
+
+  useEffect(() => {
+    const unsubPlay = streamClient.on("/burari/play", (data) => {
+      setIsBurariPlaying(true);
+      const payload = data as { filename: string } | undefined;
+      setBurariPlayingFilename(payload?.filename ?? null);
+    });
+    const unsubStop = streamClient.on("/burari/stop", () => {
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+    const unsubEnded = streamClient.on("/burari/ended", () => {
+      streamClient.send("/burari/stop", {});
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+
+    return () => {
+      unsubPlay();
+      unsubStop();
+      unsubEnded();
+    };
   }, []);
 
   // 初回とデータ変化時に日付キーを初期化
@@ -260,7 +286,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header isForceMuted={isForceMuted} />
+      <Header isForceMuted={isForceMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
           <div className={styles.error}>
@@ -303,6 +329,8 @@ export default function Controller() {
                   nextTrack={nextTrack}
                   onSelectNextTrack={handleSelectNextTrack}
                   isForceMuted={isForceMuted}
+                  isBurariPlaying={isBurariPlaying}
+                  burariPlayingFilename={burariPlayingFilename}
                 />
               )}
             </div>

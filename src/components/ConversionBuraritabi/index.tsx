@@ -11,6 +11,7 @@ import styles from "./index.module.css";
 import type { BurariVideo } from "../../api/http/burariVideos";
 
 const STATS_STORAGE_KEY = "donguri_burari_stats";
+const SELECTED_KEY = "donguri_burari_selected";
 
 interface VideoStats {
   playCount: number;
@@ -65,15 +66,23 @@ type Props = {
   isCmMode: boolean;
   isForceMuted: boolean;
   isConversion: boolean;
+  isPlaying: boolean;
+  playingFilename: string | null;
 };
 
-export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConversion }: Props) {
+export default function ConversionBuraritabi({
+  isCmMode,
+  isForceMuted: _isForceMuted,
+  isConversion,
+  isPlaying,
+  playingFilename,
+}: Props) {
   const [videos, setVideos] = useState<BurariVideo[]>([]);
-  const [selectedFilename, setSelectedFilename] = useState<string | null>(null);
+  const [selectedFilename, setSelectedFilename] = useState<string | null>(
+    () => localStorage.getItem(SELECTED_KEY),
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [playingFilename, setPlayingFilename] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -98,10 +107,28 @@ export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConvers
   }, [fetchVideos]);
 
   useEffect(() => {
-    if (selectedFilename && !videos.find((v) => v.filename === selectedFilename)) {
+    if (!selectedFilename || videos.length === 0) return;
+    if (!videos.find((v) => v.filename === selectedFilename)) {
       setSelectedFilename(null);
     }
   }, [videos, selectedFilename]);
+
+  useEffect(() => {
+    if (selectedFilename) {
+      localStorage.setItem(SELECTED_KEY, selectedFilename);
+    } else {
+      localStorage.removeItem(SELECTED_KEY);
+    }
+  }, [selectedFilename]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, []);
 
   const handleStop = useCallback(() => {
     if (timerRef.current) {
@@ -109,25 +136,13 @@ export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConvers
       timerRef.current = null;
     }
     streamClient.send("/burari/stop", {});
-    setIsPlaying(false);
-    setPlayingFilename(null);
   }, []);
-
-  useEffect(() => {
-    const unsub = streamClient.on("/burari/ended", () => {
-      handleStop();
-    });
-
-    return unsub;
-  }, [handleStop]);
 
   const handlePlay = useCallback(() => {
     if (!selectedFilename) return;
     recordPlay(selectedFilename);
     setStats(loadStats());
     streamClient.send("/burari/play", { filename: selectedFilename });
-    setIsPlaying(true);
-    setPlayingFilename(selectedFilename);
 
     const video = document.createElement("video");
     video.preload = "metadata";
@@ -135,13 +150,17 @@ export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConvers
     video.onloadedmetadata = () => {
       const duration = video.duration;
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => handleStop(), (duration + 5) * 1000);
+      timerRef.current = setTimeout(() => {
+        streamClient.send("/burari/stop", {});
+      }, (duration + 5) * 1000);
     };
     video.onerror = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => handleStop(), 5 * 60 * 1000);
+      timerRef.current = setTimeout(() => {
+        streamClient.send("/burari/stop", {});
+      }, 5 * 60 * 1000);
     };
-  }, [selectedFilename, handleStop]);
+  }, [selectedFilename]);
 
   const handleUploadClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -188,9 +207,6 @@ export default function ConversionBuraritabi({ isCmMode, isForceMuted, isConvers
               ✕
             </button>
           </div>
-        )}
-        {isForceMuted && (
-          <div className={styles.muteWarning}>ミュートONなので、ぶらり旅の音声は再生されません</div>
         )}
         <div className={styles.source}>
           <p>ソース</p>
