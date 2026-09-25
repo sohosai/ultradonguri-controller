@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import DownSvg from "../../assets/icons/down.svg";
 import TrashSvg from "../../assets/icons/trash.svg";
 import UpSvg from "../../assets/icons/up.svg";
-import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import AddGroupModal from "./AddGroupModal.tsx";
 import AddMusicModal from "./AddMusicModal.tsx";
@@ -15,8 +14,7 @@ type DetailMenuModalProps = {
   isOpen: boolean;
   onClose: () => void;
   performances: Performance[] | null;
-  originalPerformances: Performance[] | null;
-  onSave?: () => void;
+  onSave: (next: Performance[]) => void;
 };
 
 type MusicEdits = {
@@ -26,13 +24,7 @@ type MusicEdits = {
   should_be_muted: boolean;
 };
 
-export default function DetailMenuModal({
-  isOpen,
-  onClose,
-  performances,
-  originalPerformances,
-  onSave,
-}: DetailMenuModalProps) {
+export default function DetailMenuModal({ isOpen, onClose, performances, onSave }: DetailMenuModalProps) {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
@@ -99,32 +91,17 @@ export default function DetailMenuModal({
   };
 
   const handleSave = () => {
-    // 事前にMusicIDをキーとしたMapを作成
-    const originalMusicMap = new Map<string, Music>();
-    for (const perf of originalPerformances || []) {
-      for (const music of perf.musics) {
-        originalMusicMap.set(music.id, music);
-      }
-    }
+    if (pendingEdits.size > 0 && performances) {
+      onSave(
+        performances.map((p) => ({
+          ...p,
+          musics: p.musics.map((m) => {
+            const edits = pendingEdits.get(m.id);
 
-    // 全ての未保存の編集をlocalStorageに保存
-    pendingEdits.forEach((edits, musicId) => {
-      const originalMusic = originalMusicMap.get(musicId);
-      if (originalMusic) {
-        saveMusicEdit(
-          {
-            id: musicId,
-            title: edits.title,
-            artist: edits.artist,
-            should_be_muted: edits.should_be_muted,
-          },
-          originalMusic
-        );
-      }
-    });
-
-    if (pendingEdits.size > 0) {
-      onSave?.();
+            return edits ? { ...m, ...edits } : m;
+          }),
+        }))
+      );
     }
 
     setPendingEdits(new Map());
@@ -175,7 +152,7 @@ export default function DetailMenuModal({
                       <div className={styles.actions}>
                         <div className={styles.musictitle}>
                           {m.title}
-                          {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
+                          {pendingEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
                         </div>
                         <div className={styles.actionbuttons}>
                           <div className={styles.up}>
