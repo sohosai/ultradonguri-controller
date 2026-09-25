@@ -5,9 +5,10 @@ import styles from "./AddModal.module.css";
 type AddMusicModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  onSave: (title: string, artist: string) => void;
 };
 
-export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
+export default function AddMusicModal({ isOpen, onClose, onSave }: AddMusicModalProps) {
   const [musicTitle, setMusicTitle] = useState("");
   const [artistName, setArtistName] = useState("");
 
@@ -29,6 +30,8 @@ export default function AddMusicModal({ isOpen, onClose }: AddMusicModalProps) {
   };
 
   const handleSave = () => {
+    if (!musicTitle.trim()) return;
+    onSave(musicTitle.trim(), artistName.trim());
     closeModal();
   };
 
