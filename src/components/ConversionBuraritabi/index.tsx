@@ -49,6 +49,7 @@ type Props = {
   isConversion: boolean;
   isPlaying: boolean;
   playingFilename: string | null;
+  isConversionPlaying: boolean;
 };
 
 export default function ConversionBuraritabi({
@@ -57,6 +58,7 @@ export default function ConversionBuraritabi({
   isConversion,
   isPlaying,
   playingFilename,
+  isConversionPlaying,
 }: Props) {
   const [videos, setVideos] = useState<BurariVideo[]>([]);
   const [selectedFilename, setSelectedFilename] = useState<string | null>(
@@ -112,6 +114,7 @@ export default function ConversionBuraritabi({
   }, []);
 
   const handleStop = useCallback(() => {
+    if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
@@ -175,7 +178,7 @@ export default function ConversionBuraritabi({
   };
 
   const canControl = isConversion && !isCmMode && !isPlaying;
-  const canPlay = canControl && !!selectedFilename;
+  const canPlay = canControl && !!selectedFilename && isConversionPlaying;
 
   return (
     <div className={styles.conversionBuraritabi}>
@@ -225,6 +228,8 @@ export default function ConversionBuraritabi({
             canPlay={canPlay}
             isPlaying={isPlaying}
             playingFilename={playingFilename}
+            selectedFilename={selectedFilename}
+            isConversionPlaying={isConversionPlaying}
           />
         </div>
       </div>

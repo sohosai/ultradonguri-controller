@@ -75,6 +75,7 @@ export default function ConversionMenu({
           isConversion={true}
           isPlaying={isBurariPlaying}
           playingFilename={burariPlayingFilename}
+          isConversionPlaying={isPlaying(conversionId)}
         />
       </div>
     </div>

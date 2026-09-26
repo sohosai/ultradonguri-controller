@@ -44,3 +44,9 @@
   font-size: 14px;
   white-space: nowrap;
 }
+
+.cannotPlayLabel {
+  color: var(--color-red);
+  font-size: 14px;
+  white-space: nowrap;
+}
