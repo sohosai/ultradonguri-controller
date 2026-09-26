@@ -46,7 +46,7 @@
 
 .error {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   padding: 8px 12px;
@@ -54,6 +54,10 @@
   background: #fee;
   border-radius: 8px;
   font-size: 14px;
+}
+
+.errorMessage {
+  line-height: 1.4;
 }
 
 .errorClose {

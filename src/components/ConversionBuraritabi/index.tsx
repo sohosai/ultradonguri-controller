@@ -151,19 +151,33 @@ export default function ConversionBuraritabi({
   }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
     setIsUploading(true);
     setError(null);
-    try {
-      await uploadBurariVideo(file);
-      await fetchVideos();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "アップロードに失敗しました");
-    } finally {
-      setIsUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
+
+    const errors: string[] = [];
+
+    for (const file of Array.from(files)) {
+      try {
+        await uploadBurariVideo(file);
+      } catch (err) {
+        errors.push(err instanceof Error ? err.message : `${file.name} のアップロードに失敗しました`);
+      }
     }
+
+    try {
+      await fetchVideos();
+    } catch {
+      // fetchVideos 内でエラー状態は設定されるが、ここでは無視して続行
+    }
+
+    if (errors.length > 0) {
+      setError(errors.join("\n"));
+    }
+
+    setIsUploading(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleDelete = async (filename: string) => {
@@ -186,7 +200,14 @@ export default function ConversionBuraritabi({
         <p className={styles.buraritabi}>ぶらり旅</p>
         {error && (
           <div className={styles.error}>
-            <span>{error}</span>
+            <span className={styles.errorMessage}>
+              {error.split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </span>
             <button className={styles.errorClose} onClick={() => setError(null)} aria-label="閉じる">
               ✕
             </button>
@@ -211,6 +232,7 @@ export default function ConversionBuraritabi({
             accept="video/mp4"
             style={{ display: "none" }}
             onChange={handleFileChange}
+            multiple
           />
         </div>
         <div className={styles.preview}>
