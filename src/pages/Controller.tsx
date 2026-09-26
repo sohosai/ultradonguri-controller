@@ -343,6 +343,7 @@ export default function Controller() {
               onError={setError}
               isCmMode={isCmMode}
               isConversion={isConversion}
+              isBurariPlaying={isBurariPlaying}
             />
           </div>
         </div>
