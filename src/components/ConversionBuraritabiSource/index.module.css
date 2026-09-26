@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  color: var(--color-black);
+  color: var(--color-surface);
   background: var(--color-white);
   border: 2px solid transparent;
   border-radius: 10px;
@@ -28,7 +28,9 @@
 
 .selectTrigger p {
   margin: 0;
+  color: var(--color-surface);
   font-size: 14px;
+  font-weight: bold;
   word-break: break-all;
 }
 
@@ -46,11 +48,12 @@
   flex-direction: column;
   width: 100%;
   max-height: 240px;
+  padding: 4px;
   overflow-y: auto;
-  background: #1e1e1e;
-  border: 1px solid #3a3a3a;
-  border-radius: 10px;
+  background: var(--color-white);
+  border-radius: 16px;
   box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
+  scrollbar-width: thin;
 }
 
 .dropdownItem {
@@ -59,51 +62,107 @@
   justify-content: space-between;
   gap: 8px;
   padding: 10px 12px;
-  color: #e8e8e8;
+  margin: 2px 6px;
+  color: var(--color-surface);
   font-size: 13px;
   cursor: pointer;
-  border-bottom: 1px solid #383838;
+  border-radius: 0;
   transition: background-color 0.15s, color 0.15s;
 }
 
-.dropdownItem:last-child {
-  border-bottom: none;
+.dropdownItem:hover {
+  color: var(--color-surface);
+  background: #ebebeb;
+  border-radius: 8px;
 }
 
-.dropdownItem:hover {
-  color: #fff;
-  background: #2d2d2d;
+.dropdownItem:hover .dropdownDelete {
+  opacity: 1;
 }
 
 .dropdownItemSelected {
-  background: #2a2a4a;
+  background: #d9d9d9;
+  border-radius: 8px;
+}
+
+.dropdownItemSelected:hover {
+  background: #d4d4d4;
+}
+
+.dropdownContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
 }
 
 .dropdownFilename {
   word-break: break-all;
   flex: 1;
   min-width: 0;
+  font-weight: bold;
 }
 
-.dropdownStats {
-  color: var(--color-gray);
+.dropdownAgo {
+  color: var(--color-surface);
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dropdownStatsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.dropdownCount {
+  color: var(--color-surface);
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.dropdownLabel {
+  color: var(--color-surface);
   font-size: 11px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.dropdownEmpty {
+  color: #888;
+  font-size: 12px;
   white-space: nowrap;
 }
 
 .dropdownDelete {
-  padding: 2px 8px;
-  color: var(--color-white);
-  font-size: 11px;
-  background: var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.dropdownDelete img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .dropdownDelete:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
+import TrashCanIcon from "../../assets/icons/trash_can.svg";
 import UploadIcon from "../../assets/icons/upload.svg";
 
 import styles from "./index.module.css";
@@ -9,6 +10,19 @@ import type { BurariVideo } from "../../api/http/burariVideos";
 interface VideoStats {
   playCount: number;
   lastPlayedAt: string;
+}
+
+function timeAgo(isoString: string | undefined): string {
+  if (!isoString) return "";
+  const diffMs = Date.now() - new Date(isoString).getTime();
+  const minutes = Math.floor(diffMs / 60000);
+  if (minutes < 1) return "たった今";
+  if (minutes < 60) return `${minutes}分前`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}時間前`;
+  const days = Math.floor(hours / 24);
+
+  return `${days}日前`;
 }
 
 type Props = {
@@ -21,7 +35,6 @@ type Props = {
   canControl: boolean;
   isLoading: boolean;
   stats: Record<string, VideoStats>;
-  formatStats: (stats?: VideoStats) => string;
 };
 
 export default function ConversionBuraritabiSource({
@@ -34,7 +47,6 @@ export default function ConversionBuraritabiSource({
   canControl,
   isLoading,
   stats,
-  formatStats,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -66,29 +78,48 @@ export default function ConversionBuraritabiSource({
             ) : videos.length === 0 ? (
               <div className={styles.dropdownItem}>動画がありません</div>
             ) : (
-              videos.map((video) => (
-                <div
-                  key={video.filename}
-                  className={`${styles.dropdownItem} ${selectedFilename === video.filename ? styles.dropdownItemSelected : ""}`}
-                  onClick={() => {
-                    onSelect(video.filename);
-                    setIsOpen(false);
-                  }}
-                >
-                  <span className={styles.dropdownFilename}>{video.filename}</span>
-                  <span className={styles.dropdownStats}>{formatStats(stats[video.filename])}</span>
-                  <button
-                    className={styles.dropdownDelete}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (canControl) onDelete(video.filename);
+              videos.map((video) => {
+                const isSelected = selectedFilename === video.filename;
+                const videoStats = stats[video.filename];
+
+                return (
+                  <div
+                    key={video.filename}
+                    className={`${styles.dropdownItem} ${isSelected ? styles.dropdownItemSelected : ""}`}
+                    onClick={() => {
+                      onSelect(video.filename);
+                      setIsOpen(false);
                     }}
-                    disabled={!canControl}
                   >
-                    削除
-                  </button>
-                </div>
-              ))
+                    <div className={styles.dropdownContent}>
+                      <span className={styles.dropdownFilename}>{video.filename}</span>
+                      <span className={styles.dropdownAgo}>
+                        {videoStats ? timeAgo(videoStats.lastPlayedAt) : ""}
+                      </span>
+                      <div className={styles.dropdownStatsColumn}>
+                        {videoStats ? (
+                          <>
+                            <span className={styles.dropdownCount}>{videoStats.playCount}回</span>
+                            <span className={styles.dropdownLabel}>配信</span>
+                          </>
+                        ) : (
+                          <span className={styles.dropdownEmpty}>未配信</span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      className={styles.dropdownDelete}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (canControl) onDelete(video.filename);
+                      }}
+                      disabled={!canControl}
+                    >
+                      <img src={TrashCanIcon} alt="削除" />
+                    </button>
+                  </div>
+                );
+              })
             )}
           </div>
         )}

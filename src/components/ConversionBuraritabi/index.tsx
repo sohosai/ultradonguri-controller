@@ -43,25 +43,6 @@ function recordPlay(filename: string): void {
   saveStats(stats);
 }
 
-function timeAgo(isoString: string | undefined): string {
-  if (!isoString) return "未再生";
-  const diffMs = Date.now() - new Date(isoString).getTime();
-  const minutes = Math.floor(diffMs / 60000);
-  if (minutes < 1) return "たった今";
-  if (minutes < 60) return `${minutes}分前`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}時間前`;
-  const days = Math.floor(hours / 24);
-
-  return `${days}日前`;
-}
-
-function formatStats(stats: VideoStats | undefined): string {
-  if (!stats) return "未再生";
-
-  return `${stats.playCount}回・${timeAgo(stats.lastPlayedAt)}`;
-}
-
 type Props = {
   isCmMode: boolean;
   isForceMuted: boolean;
@@ -220,7 +201,6 @@ export default function ConversionBuraritabi({
             canControl={canControl}
             isLoading={isLoading}
             stats={stats}
-            formatStats={formatStats}
           />
           <input
             ref={fileInputRef}
@@ -248,16 +228,6 @@ export default function ConversionBuraritabi({
           />
         </div>
       </div>
-      {/* {isPlaying && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <p className={styles.playingTitle}>再生中: {playingFilename}</p>
-            <button className={styles.modalStopButton} onClick={handleStop}>
-              再生停止
-            </button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }
