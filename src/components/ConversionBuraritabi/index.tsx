@@ -230,6 +230,7 @@ export default function ConversionBuraritabi({
             playingFilename={playingFilename}
             selectedFilename={selectedFilename}
             isConversionPlaying={isConversionPlaying}
+            isCmMode={isCmMode}
           />
         </div>
       </div>

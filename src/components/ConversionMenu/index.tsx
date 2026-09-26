@@ -67,6 +67,7 @@ export default function ConversionMenu({
             isNext={isNext(conversionId)}
             isCmMode={isCmMode}
             onChange={handleCmModeToggle}
+            disabled={isBurariPlaying}
           />
         </div>
         <ConversionBuraritabi

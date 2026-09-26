@@ -9,10 +9,11 @@ type Props = {
 
   isPlaying?: boolean;
   isNext?: boolean;
+  disabled?: boolean;
   onChange: (isCmMode: boolean) => void;
 };
 
-export default function ConversionToggleItem({ isPlaying = false, isNext = false, isCmMode, onChange }: Props) {
+export default function ConversionToggleItem({ isPlaying = false, isNext = false, isCmMode, disabled = false, onChange }: Props) {
   const className = clsx(styles.conversionToggleItem, {
     [styles.playing]: isPlaying,
     [styles.next]: isNext,
@@ -25,7 +26,7 @@ export default function ConversionToggleItem({ isPlaying = false, isNext = false
         <div className={styles.CMandToggle}>
           <p>CM</p>
           <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
-            <Toggle checked={isCmMode} onChange={onChange} />
+            <Toggle checked={isCmMode} onChange={onChange} disabled={disabled} />
           </div>
         </div>
       </div>
