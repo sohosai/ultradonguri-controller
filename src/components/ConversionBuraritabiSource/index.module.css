@@ -72,7 +72,7 @@
 
 .dropdownItem:hover {
   color: var(--color-surface);
-  background: #ebebeb;
+  background: var(--color-light-gray);
   border-radius: 8px;
 }
 
@@ -81,12 +81,12 @@
 }
 
 .dropdownItemSelected {
-  background: #d9d9d9;
+  background: var(--color-light-gray);
   border-radius: 8px;
 }
 
 .dropdownItemSelected:hover {
-  background: #d4d4d4;
+  background: var(--color-light-gray);
 }
 
 .dropdownContent {
@@ -134,7 +134,7 @@
 }
 
 .dropdownEmpty {
-  color: #888;
+  color: var(--color-gray);
   font-size: 12px;
   white-space: nowrap;
 }

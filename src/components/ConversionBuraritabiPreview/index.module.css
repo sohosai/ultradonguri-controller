@@ -1,6 +1,6 @@
 .preview {
   width: 100%;
-  background: #000;
+  background: var(--color-black);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -48,7 +48,7 @@
 }
 
 .playButton:hover {
-  background: #5a6069;
+  background: var(--color-surface);
 }
 
 .time {
@@ -94,5 +94,5 @@
 }
 
 .toggleButton:hover {
-  background: #5a6069;
+  background: var(--color-surface);
 }

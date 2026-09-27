@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  background: var(--color-black);
 }
 
 .hidden {
@@ -19,7 +19,7 @@
 }
 
 .loading {
-  color: var(--color-white, #f5f5f5);
+  color: var(--color-white);
   font-size: 24px;
 }
 

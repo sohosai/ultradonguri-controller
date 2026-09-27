@@ -47,7 +47,7 @@
 .burariPlaying {
   font-size: 26px;
   font-weight: bold;
-  color: #61cc68;
+  color: var(--color-green);
   -webkit-text-stroke: 7px var(--color-white);
   paint-order: stroke fill;
 }
