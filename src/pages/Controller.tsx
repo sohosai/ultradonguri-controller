@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import { postForceMute, postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { postForceMute, postDisplayCopyright, postConversionCmMode, postBurariScene, postCmScene, postNormalScene } from "../api/http/endpoints";
 import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
@@ -91,6 +91,24 @@ export default function Controller() {
     void initializeCopyright();
     void initializeCmMode();
   }, []);
+
+  useEffect(() => {
+    const switchScene = async () => {
+      try {
+        if (isCmMode) {
+          await postCmScene();
+        } else if (isBurariPlaying) {
+          await postBurariScene();
+        } else {
+          await postNormalScene();
+        }
+      } catch (error) {
+        console.error("[Controller] Failed to switch scene:", error);
+      }
+    };
+
+    void switchScene();
+  }, [isCmMode, isBurariPlaying]);
 
   useEffect(() => {
     const unsubPlay = streamClient.on("/burari/play", (data) => {

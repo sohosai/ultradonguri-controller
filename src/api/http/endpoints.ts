@@ -73,3 +73,15 @@ export async function postForceMute(body: ForceMuteRequest): Promise<void> {
 export async function postDisplayCopyright(body: DisplayCopyright): Promise<void> {
   streamClient.send("/display-copyright", body);
 }
+
+export async function postBurariScene(): Promise<void> {
+  await apiFetch<void>("/burari-scene", { method: "POST" });
+}
+
+export async function postCmScene(): Promise<void> {
+  await apiFetch<void>("/cm-scene", { method: "POST" });
+}
+
+export async function postNormalScene(): Promise<void> {
+  await apiFetch<void>("/normal-scene", { method: "POST" });
+}
