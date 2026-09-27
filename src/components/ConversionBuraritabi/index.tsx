@@ -237,13 +237,15 @@ export default function ConversionBuraritabi({
           <ConversionBuraritabiSource
             videos={videos}
             selectedFilename={selectedFilename}
-            onSelect={(fn) => canControl && setSelectedFilename(fn)}
+            onSelect={setSelectedFilename}
             onUploadClick={handleUploadClick}
             onDelete={handleDelete}
             isUploading={isUploading}
             canControl={canControl}
             isLoading={isLoading}
             stats={stats}
+            isPlaying={isPlaying}
+            playingFilename={playingFilename}
           />
           <input
             ref={fileInputRef}

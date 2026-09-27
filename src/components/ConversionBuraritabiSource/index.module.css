@@ -111,6 +111,14 @@
   flex-shrink: 0;
 }
 
+.dropdownPlaying {
+  color: var(--color-red);
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .dropdownStatsColumn {
   display: flex;
   flex-direction: column;

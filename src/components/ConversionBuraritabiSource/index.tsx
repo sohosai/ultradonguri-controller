@@ -35,6 +35,8 @@ type Props = {
   canControl: boolean;
   isLoading: boolean;
   stats: Record<string, VideoStats>;
+  isPlaying: boolean;
+  playingFilename: string | null;
 };
 
 export default function ConversionBuraritabiSource({
@@ -47,6 +49,8 @@ export default function ConversionBuraritabiSource({
   canControl,
   isLoading,
   stats,
+  isPlaying,
+  playingFilename,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -67,7 +71,7 @@ export default function ConversionBuraritabiSource({
   return (
     <div className={styles.sourceTable}>
       <div className={styles.sourceChoice} ref={dropdownRef}>
-        <div className={styles.selectTrigger} onClick={() => canControl && setIsOpen((v) => !v)}>
+        <div className={styles.selectTrigger} onClick={() => setIsOpen((v) => !v)}>
           <p>{selectedVideo ? selectedVideo.filename : "動画を選択"}</p>
           <span>▼</span>
         </div>
@@ -82,6 +86,8 @@ export default function ConversionBuraritabiSource({
                 const isSelected = selectedFilename === video.filename;
                 const videoStats = stats[video.filename];
 
+                const isThisPlaying = isPlaying && playingFilename === video.filename;
+
                 return (
                   <div
                     key={video.filename}
@@ -93,6 +99,7 @@ export default function ConversionBuraritabiSource({
                   >
                     <div className={styles.dropdownContent}>
                       <span className={styles.dropdownFilename}>{video.filename}</span>
+                      {isThisPlaying && <span className={styles.dropdownPlaying}>再生中</span>}
                       <span className={styles.dropdownAgo}>
                         {videoStats ? timeAgo(videoStats.lastPlayedAt) : ""}
                       </span>
