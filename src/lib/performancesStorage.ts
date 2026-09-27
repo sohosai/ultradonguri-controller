@@ -13,11 +13,16 @@ export async function loadPerformances(): Promise<Performance[]> {
     }
   }
 
-  const response = await fetch("/performances.json");
-  const data = (await response.json()) as Performance[];
-  savePerformances(data);
+  try {
+    const response = await fetch("/performances.json");
+    const data = (await response.json()) as Performance[];
+    savePerformances(data);
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("[performancesStorage] performances.json の読み込みに失敗しました:", error);
+    throw error;
+  }
 }
 
 export function savePerformances(performances: Performance[]): void {
