@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
-import { getBurariVideos, uploadBurariVideo, deleteBurariVideo } from "../../api/http/burariVideos";
+import { getBurariVideos, uploadBurariVideo, deleteBurariVideo, burariVideoUrl } from "../../api/http/burariVideos";
 import { streamClient } from "../../api/ws/streamClient";
 import ConversionBuraritabiButtons from "../ConversionBuraritabiButtons";
 import ConversionBuraritabiPreview from "../ConversionBuraritabiPreview";
@@ -45,7 +45,6 @@ function recordPlay(filename: string): void {
 
 type Props = {
   isCmMode: boolean;
-  isForceMuted: boolean;
   isConversion: boolean;
   isPlaying: boolean;
   playingFilename: string | null;
@@ -54,7 +53,6 @@ type Props = {
 
 export default function ConversionBuraritabi({
   isCmMode,
-  isForceMuted: _isForceMuted,
   isConversion,
   isPlaying,
   playingFilename,
@@ -130,7 +128,7 @@ export default function ConversionBuraritabi({
 
     const video = document.createElement("video");
     video.preload = "metadata";
-    video.src = `/burari/videos/${encodeURIComponent(selectedFilename)}`;
+    video.src = burariVideoUrl(selectedFilename);
     video.onloadedmetadata = () => {
       const duration = video.duration;
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -169,7 +167,9 @@ export default function ConversionBuraritabi({
     try {
       await fetchVideos();
     } catch {
-      // fetchVideos 内でエラー状態は設定されるが、ここでは無視して続行
+      setError((prev) =>
+        prev ? `${prev}\n動画一覧の更新に失敗しました` : "動画一覧の更新に失敗しました",
+      );
     }
 
     if (errors.length > 0) {

@@ -328,7 +328,6 @@ export default function Controller() {
                   currentTrack={currentTrack}
                   nextTrack={nextTrack}
                   onSelectNextTrack={handleSelectNextTrack}
-                  isForceMuted={isForceMuted}
                   isBurariPlaying={isBurariPlaying}
                   burariPlayingFilename={burariPlayingFilename}
                 />
