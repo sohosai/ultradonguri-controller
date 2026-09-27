@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import DownSvg from "../../assets/icons/down.svg";
 import TrashSvg from "../../assets/icons/trash.svg";
 import UpSvg from "../../assets/icons/up.svg";
-import { saveMusicEdit, isMusicEdited } from "../../lib/musicStorage";
 
 import AddGroupModal from "./AddGroupModal.tsx";
 import AddMusicModal from "./AddMusicModal.tsx";
@@ -15,8 +14,7 @@ type DetailMenuModalProps = {
   isOpen: boolean;
   onClose: () => void;
   performances: Performance[] | null;
-  originalPerformances: Performance[] | null;
-  onSave?: () => void;
+  onSave: (next: Performance[]) => void;
 };
 
 type MusicEdits = {
@@ -26,25 +24,34 @@ type MusicEdits = {
   should_be_muted: boolean;
 };
 
-export default function DetailMenuModal({
-  isOpen,
-  onClose,
-  performances,
-  originalPerformances,
-  onSave,
-}: DetailMenuModalProps) {
-  const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
-  const [selectedMusic, setSelectedMusic] = useState<Music | null>(null);
+function moveItem<T>(list: T[], index: number, delta: number): T[] {
+  const target = index + delta;
+  if (index < 0 || target < 0 || target >= list.length) return list;
+  const next = [...list];
+  [next[index], next[target]] = [next[target], next[index]];
+
+  return next;
+}
+
+export default function DetailMenuModal({ isOpen, onClose, performances, onSave }: DetailMenuModalProps) {
+  // 保存するまでの編集中リスト（並び替え・追加・削除はここに反映）
+  const [draft, setDraft] = useState<Performance[]>([]);
+  const [selectedPerformanceId, setSelectedPerformanceId] = useState<string | null>(null);
+  const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
   const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState(false);
   const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
 
   useEffect(() => {
-    if (performances && performances.length > 0) {
-      setSelectedPerformance(performances[0]);
-      setSelectedMusic(performances[0].musics[0] || null);
-    }
+    const list = performances ?? [];
+    setDraft(list);
+    setSelectedPerformanceId(list[0]?.id ?? null);
+    setSelectedMusicId(list[0]?.musics[0]?.id ?? null);
   }, [performances]);
+
+  const selectedPerformance = draft.find((p) => p.id === selectedPerformanceId) ?? null;
+  const selectedMusic = selectedPerformance?.musics.find((m) => m.id === selectedMusicId) ?? null;
+  const hasChanges = pendingEdits.size > 0 || draft !== performances;
 
   // 現在選択中の楽曲の編集内容を取得（未保存の編集 or 元の値）
   const getCurrentEdits = (music: Music): MusicEdits => {
@@ -74,57 +81,105 @@ export default function DetailMenuModal({
   };
 
   const handlePerformanceSelect = (performanceId: string) => {
-    const performance = performances?.find((p) => p.id === performanceId);
+    const performance = draft.find((p) => p.id === performanceId);
     if (performance) {
-      setSelectedPerformance(performance);
-      setSelectedMusic(performance.musics[0] || null);
+      setSelectedPerformanceId(performance.id);
+      setSelectedMusicId(performance.musics[0]?.id ?? null);
     }
   };
 
   const handleMusicSelect = (musicId: string) => {
-    const music = selectedPerformance?.musics.find((m) => m.id === musicId);
-    if (music) {
-      setSelectedMusic(music);
+    setSelectedMusicId(musicId);
+  };
+
+  const movePerformance = (performanceId: string, delta: number) => {
+    setDraft(
+      moveItem(
+        draft,
+        draft.findIndex((p) => p.id === performanceId),
+        delta
+      )
+    );
+  };
+
+  const deletePerformance = (performanceId: string) => {
+    const next = draft.filter((p) => p.id !== performanceId);
+    setDraft(next);
+    if (selectedPerformanceId === performanceId) {
+      setSelectedPerformanceId(next[0]?.id ?? null);
+      setSelectedMusicId(next[0]?.musics[0]?.id ?? null);
     }
   };
 
+  const addPerformance = (title: string) => {
+    const base = selectedPerformance ?? draft[draft.length - 1];
+    const now = new Date().toISOString();
+    const performance: Performance = {
+      id: crypto.randomUUID(),
+      title,
+      performer: "",
+      description: "",
+      starts_at: base?.starts_at ?? now,
+      ends_at: base?.ends_at ?? now,
+      musics: [],
+    };
+    const index = selectedPerformance ? draft.indexOf(selectedPerformance) + 1 : draft.length;
+    setDraft([...draft.slice(0, index), performance, ...draft.slice(index)]);
+    setSelectedPerformanceId(performance.id);
+    setSelectedMusicId(null);
+  };
+
+  // 選択中の団体の楽曲リストを差し替える
+  const updateSelectedMusics = (updater: (musics: Music[]) => Music[]) => {
+    setDraft(draft.map((p) => (p.id === selectedPerformanceId ? { ...p, musics: updater(p.musics) } : p)));
+  };
+
+  const moveMusic = (musicId: string, delta: number) => {
+    updateSelectedMusics((musics) =>
+      moveItem(
+        musics,
+        musics.findIndex((m) => m.id === musicId),
+        delta
+      )
+    );
+  };
+
+  const deleteMusic = (musicId: string) => {
+    updateSelectedMusics((musics) => musics.filter((m) => m.id !== musicId));
+    if (selectedMusicId === musicId) {
+      setSelectedMusicId(null);
+    }
+  };
+
+  const addMusic = (title: string, artist: string) => {
+    const music: Music = { id: crypto.randomUUID(), title, artist, should_be_muted: false, intro: "" };
+    updateSelectedMusics((musics) => [...musics, music]);
+    setSelectedMusicId(music.id);
+  };
+
   const handleCancel = () => {
-    if (pendingEdits.size > 0) {
+    if (hasChanges) {
       if (!confirm("今の変更は保存されていません。変更を破棄しますか？")) {
         return;
       }
     }
     setPendingEdits(new Map());
+    setDraft(performances ?? []);
     onClose();
   };
 
   const handleSave = () => {
-    // 事前にMusicIDをキーとしたMapを作成
-    const originalMusicMap = new Map<string, Music>();
-    for (const perf of originalPerformances || []) {
-      for (const music of perf.musics) {
-        originalMusicMap.set(music.id, music);
-      }
-    }
+    if (hasChanges) {
+      onSave(
+        draft.map((p) => ({
+          ...p,
+          musics: p.musics.map((m) => {
+            const edits = pendingEdits.get(m.id);
 
-    // 全ての未保存の編集をlocalStorageに保存
-    pendingEdits.forEach((edits, musicId) => {
-      const originalMusic = originalMusicMap.get(musicId);
-      if (originalMusic) {
-        saveMusicEdit(
-          {
-            id: musicId,
-            title: edits.title,
-            artist: edits.artist,
-            should_be_muted: edits.should_be_muted,
-          },
-          originalMusic
-        );
-      }
-    });
-
-    if (pendingEdits.size > 0) {
-      onSave?.();
+            return edits ? { ...m, ...edits } : m;
+          }),
+        }))
+      );
     }
 
     setPendingEdits(new Map());
@@ -142,22 +197,22 @@ export default function DetailMenuModal({
             <div className={styles.items}>
               <div className={styles.performances}>
                 <ul>
-                  {performances?.map((p) => (
+                  {draft.map((p) => (
                     <li
                       key={p.id}
-                      className={selectedPerformance?.id === p.id ? styles.selected : ""}
+                      className={selectedPerformanceId === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
                         <div className={styles.performancetitle}>{p.title}</div>
-                        <div className={styles.actionbuttons}>
-                          <div className={styles.up}>
-                            <img src={UpSvg} alt="aikon" className={styles.side} />
+                        <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
+                          <div className={styles.up} onClick={() => movePerformance(p.id, -1)}>
+                            <img src={UpSvg} alt="上へ" className={styles.side} />
                           </div>
-                          <div className={styles.down}>
-                            <img src={DownSvg} alt="aikon" className={styles.side} />
+                          <div className={styles.down} onClick={() => movePerformance(p.id, 1)}>
+                            <img src={DownSvg} alt="下へ" className={styles.side} />
                           </div>
-                          <div className={styles.trash}>
-                            <img src={TrashSvg} alt="aikon" className={styles.side} />
+                          <div className={styles.trash} onClick={() => deletePerformance(p.id)}>
+                            <img src={TrashSvg} alt="削除" className={styles.side} />
                           </div>
                         </div>
                       </div>
@@ -170,22 +225,22 @@ export default function DetailMenuModal({
                   {selectedPerformance?.musics.map((m) => (
                     <li
                       key={m.id}
-                      className={selectedMusic?.id === m.id ? styles.selected : ""}
+                      className={selectedMusicId === m.id ? styles.selected : ""}
                       onClick={() => handleMusicSelect(m.id)}>
                       <div className={styles.actions}>
                         <div className={styles.musictitle}>
                           {m.title}
-                          {isMusicEdited(m.id) && <span className={styles.editedMark}>*</span>}
+                          {pendingEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
                         </div>
-                        <div className={styles.actionbuttons}>
-                          <div className={styles.up}>
-                            <img src={UpSvg} alt="aikon" className={styles.side} />
+                        <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
+                          <div className={styles.up} onClick={() => moveMusic(m.id, -1)}>
+                            <img src={UpSvg} alt="上へ" className={styles.side} />
                           </div>
-                          <div className={styles.down}>
-                            <img src={DownSvg} alt="aikon" className={styles.side} />
+                          <div className={styles.down} onClick={() => moveMusic(m.id, 1)}>
+                            <img src={DownSvg} alt="下へ" className={styles.side} />
                           </div>
-                          <div className={styles.trash}>
-                            <img src={TrashSvg} alt="aikon" className={styles.side} />
+                          <div className={styles.trash} onClick={() => deleteMusic(m.id)}>
+                            <img src={TrashSvg} alt="削除" className={styles.side} />
                           </div>
                         </div>
                       </div>
@@ -261,7 +316,10 @@ export default function DetailMenuModal({
               <button className={styles.addgroup} onClick={() => setIsAddGroupModalOpen(true)}>
                 団体追加
               </button>
-              <button className={styles.addmusic} onClick={() => setIsAddMusicModalOpen(true)}>
+              <button
+                className={styles.addmusic}
+                onClick={() => setIsAddMusicModalOpen(true)}
+                disabled={!selectedPerformance}>
                 楽曲追加
               </button>
               <button className={styles.cancel} onClick={handleCancel}>
@@ -274,8 +332,12 @@ export default function DetailMenuModal({
           </div>
         </div>
       </div>
-      <AddGroupModal isOpen={isAddGroupModalOpen} onClose={() => setIsAddGroupModalOpen(false)} />
-      <AddMusicModal isOpen={isAddMusicModalOpen} onClose={() => setIsAddMusicModalOpen(false)} />
+      <AddGroupModal
+        isOpen={isAddGroupModalOpen}
+        onClose={() => setIsAddGroupModalOpen(false)}
+        onSave={addPerformance}
+      />
+      <AddMusicModal isOpen={isAddMusicModalOpen} onClose={() => setIsAddMusicModalOpen(false)} onSave={addMusic} />
     </>
   );
 }

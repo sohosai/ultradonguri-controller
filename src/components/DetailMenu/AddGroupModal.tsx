@@ -5,9 +5,10 @@ import styles from "./AddModal.module.css";
 type AddGroupModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  onSave: (title: string) => void;
 };
 
-export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
+export default function AddGroupModal({ isOpen, onClose, onSave }: AddGroupModalProps) {
   const [groupName, setGroupName] = useState("");
 
   const hasEdits = groupName !== "";
@@ -27,6 +28,8 @@ export default function AddGroupModal({ isOpen, onClose }: AddGroupModalProps) {
   };
 
   const handleSave = () => {
+    if (!groupName.trim()) return;
+    onSave(groupName.trim());
     closeModal();
   };
 

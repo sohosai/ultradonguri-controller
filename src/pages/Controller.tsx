@@ -22,7 +22,7 @@ import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
 export default function Controller() {
-  const { performances, originalPerformances, isLoading, error: fetchError, refresh } = usePerformances();
+  const { performances, isLoading, error: fetchError, updatePerformances } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -281,7 +281,7 @@ export default function Controller() {
               onSelectPerformance={handleSelectPerformance}
               onSelectConversion={handleSelectConversion}
             />
-            <Menu performances={performances} originalPerformances={originalPerformances} onRefresh={refresh} />
+            <Menu performances={performances} onSave={updatePerformances} />
           </div>
           <div className={styles.rowRight}>
             <div className={styles.musics}>
