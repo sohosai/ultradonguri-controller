@@ -65,6 +65,7 @@ export default function ConversionBuraritabi({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const probeRef = useRef<HTMLVideoElement | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [stats, setStats] = useState<Record<string, VideoStats>>(() => loadStats());
@@ -100,7 +101,21 @@ export default function ConversionBuraritabi({
     } else {
       localStorage.removeItem(SELECTED_KEY);
     }
+    // ファイルが切り替わったら前回のプローブも破棄する
+    disposeProbe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilename]);
+
+  const disposeProbe = useCallback(() => {
+    const probe = probeRef.current;
+    if (probe) {
+      probe.onloadedmetadata = null;
+      probe.onerror = null;
+      probe.src = "";
+      probe.load();
+      probeRef.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -108,8 +123,9 @@ export default function ConversionBuraritabi({
         clearTimeout(timerRef.current);
         timerRef.current = null;
       }
+      disposeProbe();
     };
-  }, []);
+  }, [disposeProbe]);
 
   const handleStop = useCallback(() => {
     if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
@@ -117,16 +133,19 @@ export default function ConversionBuraritabi({
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
+    disposeProbe();
     streamClient.send("/burari/stop", {});
-  }, []);
+  }, [disposeProbe]);
 
   const handlePlay = useCallback(() => {
     if (!selectedFilename) return;
+    disposeProbe();
     recordPlay(selectedFilename);
     setStats(loadStats());
     streamClient.send("/burari/play", { filename: selectedFilename });
 
     const video = document.createElement("video");
+    probeRef.current = video;
     video.preload = "metadata";
     video.src = burariVideoUrl(selectedFilename);
     video.onloadedmetadata = () => {
@@ -142,7 +161,7 @@ export default function ConversionBuraritabi({
         streamClient.send("/burari/stop", {});
       }, 5 * 60 * 1000);
     };
-  }, [selectedFilename]);
+  }, [selectedFilename, disposeProbe]);
 
   const handleUploadClick = useCallback(() => {
     fileInputRef.current?.click();
