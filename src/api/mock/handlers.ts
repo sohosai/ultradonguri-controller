@@ -18,4 +18,12 @@ export const handlers = [
       return HttpResponse.json({ error: "Failed to load mock data" }, { status: 500 });
     }
   }),
+
+  // POST /mute - おせちAPIのモック（フロントから直接おせちを叩く想定。どんぐりバックエンドは経由しない）
+  http.post("/mute", async ({ request }) => {
+    const body = (await request.json()) as { is_muted: boolean };
+
+    // 更新後のミュート状態を返す
+    return HttpResponse.json({ is_muted: body.is_muted });
+  }),
 ];
