@@ -72,3 +72,16 @@
 .switch > input:focus-visible + .slider {
   outline-offset: 2px;
 }
+
+/* CMミュート（強制ミュート）の見た目 */
+.toggleRow.disabled .toggleText {
+  color: var(--color-dark-gray);
+}
+
+.switch > input:disabled + .slider {
+  background: var(--color-dark-gray);
+}
+
+.switch > input:disabled + .slider::after {
+  background: var(--color-mid-gray);
+}
