@@ -1,52 +1,52 @@
 .play_stopButtons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
   gap: 30px;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
 }
 
 .playButton {
   padding: 10px 35px;
-  color: var(--color-white);
   font-size: 16px;
   font-weight: bold;
+  color: var(--color-white);
+  cursor: pointer;
   background: var(--color-green);
   border: 3px solid var(--color-white);
   border-radius: 50px;
-  cursor: pointer;
 }
 
 .playButton:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .stopButton {
   padding: 10px 35px;
-  color: var(--color-white);
   font-size: 16px;
   font-weight: bold;
+  color: var(--color-white);
+  cursor: pointer;
   background: var(--color-red);
   border: 3px solid var(--color-white);
   border-radius: 50px;
-  cursor: pointer;
 }
 
 .stopButton:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .playingLabel {
-  color: var(--color-white);
   font-size: 14px;
+  color: var(--color-white);
   white-space: nowrap;
 }
 
 .cannotPlayLabel {
-  color: var(--color-red);
   font-size: 14px;
+  color: var(--color-red);
   white-space: nowrap;
 }

@@ -50,10 +50,10 @@
   justify-content: space-between;
   width: 100%;
   padding: 8px 12px;
+  font-size: 14px;
   color: var(--color-red);
   background: var(--color-white);
   border-radius: 8px;
-  font-size: 14px;
 }
 
 .errorMessage {

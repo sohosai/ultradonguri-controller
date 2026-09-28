@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
 import { postDisplayCopyright, postConversionCmMode, postBurariScene, postCmScene, postNormalScene } from "../api/http/endpoints";
-import { streamClient } from "../api/ws/streamClient";
 import { postMute } from "../api/http/osechi";
+import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import DateTabs from "../components/DateTabs";

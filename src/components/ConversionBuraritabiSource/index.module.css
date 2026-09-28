@@ -1,21 +1,21 @@
 .sourceTable {
+  position: relative;
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 10px;
-  position: relative;
+  align-items: center;
 }
 
 .sourceChoice {
   position: relative;
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction: column;
+  overflow: visible;
   color: var(--color-surface);
   background: var(--color-white);
   border: 2px solid transparent;
   border-radius: 10px;
-  overflow: visible;
 }
 
 .selectTrigger {
@@ -28,9 +28,9 @@
 
 .selectTrigger p {
   margin: 0;
-  color: var(--color-surface);
   font-size: 14px;
   font-weight: bold;
+  color: var(--color-surface);
   word-break: break-all;
 }
 
@@ -50,21 +50,21 @@
   max-height: 240px;
   padding: 4px;
   overflow-y: auto;
+  scrollbar-width: thin;
   background: var(--color-white);
   border-radius: 16px;
   box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
-  scrollbar-width: thin;
 }
 
 .dropdownItem {
   display: flex;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
   padding: 6px 10px;
   margin: 2px 6px;
-  color: var(--color-surface);
   font-size: 13px;
+  color: var(--color-surface);
   cursor: pointer;
   border-radius: 0;
   transition: background-color 0.15s, color 0.15s;
@@ -91,74 +91,74 @@
 
 .dropdownContent {
   display: flex;
-  align-items: center;
-  gap: 12px;
   flex: 1;
+  gap: 12px;
+  align-items: center;
   min-width: 0;
 }
 
 .dropdownFilename {
-  word-break: break-all;
   flex: 1;
   min-width: 0;
   font-weight: bold;
+  word-break: break-all;
 }
 
 .dropdownAgo {
-  color: var(--color-surface);
-  font-size: 12px;
-  white-space: nowrap;
   flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-surface);
+  white-space: nowrap;
 }
 
 .dropdownPlaying {
-  color: var(--color-red);
+  flex-shrink: 0;
   font-size: 12px;
   font-weight: bold;
+  color: var(--color-red);
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .dropdownStatsColumn {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
   flex-shrink: 0;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
 }
 
 .dropdownCount {
-  color: var(--color-surface);
   font-size: 12px;
-  white-space: nowrap;
   font-weight: bold;
+  color: var(--color-surface);
+  white-space: nowrap;
 }
 
 .dropdownLabel {
-  color: var(--color-surface);
   font-size: 11px;
-  white-space: nowrap;
   font-weight: bold;
+  color: var(--color-surface);
+  white-space: nowrap;
 }
 
 .dropdownEmpty {
-  color: var(--color-gray);
   font-size: 12px;
+  color: var(--color-gray);
   white-space: nowrap;
 }
 
 .dropdownDelete {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
   padding: 0;
+  cursor: pointer;
   background: transparent;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  flex-shrink: 0;
   opacity: 0;
   transition: opacity 0.15s;
 }
@@ -170,18 +170,18 @@
 }
 
 .dropdownDelete:disabled {
-  opacity: 0.3;
   cursor: not-allowed;
+  opacity: 0.3;
 }
 
 .sourceImage {
   display: flex;
-  justify-content: center;
+  flex-shrink: 0;
   align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
 .sourceImage img {
@@ -191,6 +191,6 @@
 }
 
 .uploadingText {
-  color: var(--color-gray);
   font-size: 12px;
+  color: var(--color-gray);
 }
