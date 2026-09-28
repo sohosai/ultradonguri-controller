@@ -31,10 +31,6 @@ export interface ConversionCmModeRequest {
   is_cm_mode: boolean;
 }
 
-export interface ForceMuteRequest {
-  is_muted: boolean;
-}
-
 export interface DisplayCopyright {
   is_displayed_copyright: boolean;
 }
@@ -66,10 +62,10 @@ export async function postConversionCmMode(body: ConversionCmModeRequest): Promi
   streamClient.send("/conversion/cm-mode", body);
 }
 
-export async function postForceMute(body: ForceMuteRequest): Promise<void> {
-  streamClient.send("/force_mute", body);
-}
 
+/**
+ * POST /display-copyright
+ */
 export async function postDisplayCopyright(body: DisplayCopyright): Promise<void> {
   streamClient.send("/display-copyright", body);
 }

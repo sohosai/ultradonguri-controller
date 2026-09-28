@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import { postForceMute, postDisplayCopyright, postConversionCmMode, postBurariScene, postCmScene, postNormalScene } from "../api/http/endpoints";
+import { postDisplayCopyright, postConversionCmMode, postBurariScene, postCmScene, postNormalScene } from "../api/http/endpoints";
 import { streamClient } from "../api/ws/streamClient";
+import { postMute } from "../api/http/osechi";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import DateTabs from "../components/DateTabs";
@@ -22,11 +23,11 @@ import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
 export default function Controller() {
-  const { performances, originalPerformances, isLoading, error: fetchError, refresh } = usePerformances();
+  const { performances, isLoading, error: fetchError, updatePerformances } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isForceMuted, setIsForceMuted] = useState<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const [isBurariPlaying, setIsBurariPlaying] = useState(false);
@@ -60,12 +61,12 @@ export default function Controller() {
   }, [byDate, selectedDateKey]);
 
   useEffect(() => {
-    const initializeForceMute = async () => {
+    const initializeMute = async () => {
       try {
-        await postForceMute({ is_muted: false });
-        setIsForceMuted(false);
+        const state = await postMute({ is_muted: false });
+        setIsMuted(state.is_muted);
       } catch (error) {
-        console.error("[Controller] Failed to initialize force mute:", error);
+        console.error("[Controller] Failed to initialize mute:", error);
       }
     };
 
@@ -87,7 +88,7 @@ export default function Controller() {
       }
     };
 
-    void initializeForceMute();
+    void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
   }, []);
@@ -178,8 +179,8 @@ export default function Controller() {
           if (firstMusic) {
             await sendMusic(firstMusic);
             // 1曲目が配信NGなら自動ミュート
-            await postForceMute({ is_muted: firstMusic.should_be_muted });
-            setIsForceMuted(firstMusic.should_be_muted);
+            const state = await postMute({ is_muted: firstMusic.should_be_muted });
+            setIsMuted(state.is_muted);
           }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
@@ -203,8 +204,7 @@ export default function Controller() {
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
   if (!performances) return <div>データが見つかりません。</div>;
 
-  // コンバージョン中かどうかを判定
-  const isConversion = selectedConversion !== null;
+  const isConversion = currentTrack?.type === "conversion";
 
   const handleSelectNextTrack = (ref: TrackRef) => {
     selectNextTrack(ref);
@@ -276,14 +276,14 @@ export default function Controller() {
         // POST /performance/music
         if (music) {
           await sendMusic(music);
-          if (music.should_be_muted && !isForceMuted) {
+          if (music.should_be_muted && !isMuted) {
             // 配信NGの曲は即時ミュート
-            await postForceMute({ is_muted: true });
-            setIsForceMuted(true);
-          } else if (!music.should_be_muted && isForceMuted) {
+            const state = await postMute({ is_muted: true });
+            setIsMuted(state.is_muted);
+          } else if (!music.should_be_muted && isMuted) {
             // 配信OKの曲が来たら自動でミュート解除
-            await postForceMute({ is_muted: false });
-            setIsForceMuted(false);
+            const state = await postMute({ is_muted: false });
+            setIsMuted(state.is_muted);
           }
         }
 
@@ -304,7 +304,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header isForceMuted={isForceMuted} isBurariPlaying={isBurariPlaying} />
+      <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
           <div className={styles.error}>
@@ -325,7 +325,7 @@ export default function Controller() {
               onSelectPerformance={handleSelectPerformance}
               onSelectConversion={handleSelectConversion}
             />
-            <Menu performances={performances} originalPerformances={originalPerformances} onRefresh={refresh} />
+            <Menu performances={performances} onSave={updatePerformances} />
           </div>
           <div className={styles.rowRight}>
             <div className={styles.musics}>
@@ -353,8 +353,8 @@ export default function Controller() {
             </div>
             <Buttons
               onNext={handleNext}
-              isForceMuted={isForceMuted}
-              onForceMuteChange={setIsForceMuted}
+              isMuted={isMuted}
+              onMuteChange={setIsMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}
