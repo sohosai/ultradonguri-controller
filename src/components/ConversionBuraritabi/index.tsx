@@ -89,11 +89,11 @@ export default function ConversionBuraritabi({
   }, [fetchVideos]);
 
   useEffect(() => {
-    if (!selectedFilename || videos.length === 0) return;
-    if (!videos.find((v) => v.filename === selectedFilename)) {
+    if (isLoading || !selectedFilename) return;
+    if (videos.length === 0 || !videos.find((v) => v.filename === selectedFilename)) {
       setSelectedFilename(null);
     }
-  }, [videos, selectedFilename]);
+  }, [videos, selectedFilename, isLoading]);
 
   useEffect(() => {
     if (selectedFilename) {
