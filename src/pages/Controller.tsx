@@ -19,6 +19,7 @@ import styles from "./Controller.module.css";
 
 import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
+import { SaveConvTimings, SaveSongTimings } from "../lib/songTiming";
 
 export default function Controller() {
   const { performances, originalPerformances, isLoading, error: fetchError, refresh } = usePerformances();
@@ -213,6 +214,11 @@ export default function Controller() {
           }
         }
 
+        // ここで転換パート用のCSVの関数を呼び出す
+        if (conversion) {
+          SaveConvTimings(conversion);
+        }
+
         // API成功後に状態を更新
         skipToNext(list);
         setSelectedConversion(conversion);
@@ -242,6 +248,12 @@ export default function Controller() {
             setIsForceMuted(false);
           }
         }
+
+        // ここで楽曲用のCSVの関数を呼び出す
+        if (music && newPlayingPerf) {
+          SaveSongTimings(music, newPlayingPerf, );
+        }
+        
 
         // API成功後に状態を更新
         skipToNext(list);
