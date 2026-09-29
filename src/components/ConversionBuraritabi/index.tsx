@@ -128,7 +128,9 @@ export default function ConversionBuraritabi({
     };
   }, [disposeProbe]);
 
-  const stopBurari = useCallback(() => {
+  // 手動停止
+  const handleStop = useCallback(() => {
+    if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
@@ -136,12 +138,6 @@ export default function ConversionBuraritabi({
     disposeProbe();
     streamClient.send("/burari/stop", {});
   }, [disposeProbe]);
-
-  // 手動停止
-  const handleStop = useCallback(() => {
-    if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
-    stopBurari();
-  }, [stopBurari]);
 
   const handlePlay = useCallback(() => {
     if (!selectedFilename) return;
