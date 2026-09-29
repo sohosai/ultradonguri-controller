@@ -63,6 +63,7 @@ export default function ConversionBuraritabi({
     () => localStorage.getItem(SELECTED_KEY),
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [hasVideosLoaded, setHasVideosLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const probeRef = useRef<HTMLVideoElement | null>(null);
@@ -76,6 +77,7 @@ export default function ConversionBuraritabi({
     try {
       const list = await getBurariVideos();
       setVideos(list);
+      setHasVideosLoaded(true);
     } catch {
       setError("動画一覧の取得に失敗しました");
     } finally {
@@ -88,11 +90,11 @@ export default function ConversionBuraritabi({
   }, [fetchVideos]);
 
   useEffect(() => {
-    if (isLoading || !selectedFilename) return;
-    if (videos.length === 0 || !videos.find((v) => v.filename === selectedFilename)) {
+    if (!hasVideosLoaded || !selectedFilename) return;
+    if (!videos.find((v) => v.filename === selectedFilename)) {
       setSelectedFilename(null);
     }
-  }, [videos, selectedFilename, isLoading]);
+  }, [videos, selectedFilename, hasVideosLoaded]);
 
   useEffect(() => {
     if (selectedFilename) {
