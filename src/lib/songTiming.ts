@@ -1,3 +1,4 @@
+import { Link, linkOptions } from "@tanstack/react-router";
 import type { Conversion, Music } from "../types/performances";
 
 import type { Performance } from "../types/performances";
@@ -89,4 +90,27 @@ export function SaveConvTimings(conv: Conversion): void {
         console.error("[songTimingStorage] Failed to parse song Timing:", error);
         throw error;
     }
+}
+
+
+// CSVをダウンロードする関数
+function dounloadCsv() {
+
+    const csvDate = localStorage.getItem(STORAGE_KEY);
+
+    if (!csvDate) {
+        return ("CSVデータがありません。");
+    } else {
+        const blob = new Blob ([csvDate], {type: "text/csv;charest=utf-8;",});
+
+        const downloadUrl = URL.createObjectURL(blob);
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = 
+        downloadLink.download
+
+         URL.revokeObjectURL(downloadUrl);
+
+    }
+    
 }
