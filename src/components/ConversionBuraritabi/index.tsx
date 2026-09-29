@@ -128,8 +128,7 @@ export default function ConversionBuraritabi({
     };
   }, [disposeProbe]);
 
-  const handleStop = useCallback(() => {
-    if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
+  const stopBurari = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
@@ -138,8 +137,23 @@ export default function ConversionBuraritabi({
     streamClient.send("/burari/stop", {});
   }, [disposeProbe]);
 
+  // 手動停止
+  const handleStop = useCallback(() => {
+    if (!window.confirm("ぶらり旅の再生を停止しますか？")) return;
+    stopBurari();
+  }, [stopBurari]);
+
+  // 動画再生終了時の自動停止
+  const handleVideoEnded = useCallback(() => {
+    stopBurari();
+  }, [stopBurari]);
+
   const handlePlay = useCallback(() => {
     if (!selectedFilename) return;
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
     disposeProbe();
     recordPlay(selectedFilename);
     setStats(loadStats());
@@ -154,12 +168,14 @@ export default function ConversionBuraritabi({
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
         streamClient.send("/burari/stop", {});
+        timerRef.current = null;
       }, (duration + 5) * 1000);
     };
     video.onerror = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
       timerRef.current = setTimeout(() => {
         streamClient.send("/burari/stop", {});
+        timerRef.current = null;
       }, 5 * 60 * 1000);
     };
   }, [selectedFilename, disposeProbe]);
@@ -260,7 +276,10 @@ export default function ConversionBuraritabi({
         </div>
         <div className={styles.preview}>
           <p>プレビュー</p>
-          <ConversionBuraritabiPreview selectedFilename={selectedFilename} />
+          <ConversionBuraritabiPreview
+            selectedFilename={selectedFilename}
+            onEnded={handleVideoEnded}
+          />
         </div>
         <div className={styles.start_stop}>
           <ConversionBuraritabiButtons
