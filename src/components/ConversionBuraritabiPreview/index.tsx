@@ -6,19 +6,16 @@ import styles from "./index.module.css";
 
 type Props = {
   selectedFilename: string | null;
-  isPreviewEnabled: boolean;
-  onTogglePreview: () => void;
 };
 
 export default function ConversionBuraritabiPreview({
   selectedFilename,
-  isPreviewEnabled,
-  onTogglePreview,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isPreviewEnabled, setIsPreviewEnabled] = useState(true);
   const isSeekingRef = useRef(false);
 
   useEffect(() => {
@@ -51,30 +48,14 @@ export default function ConversionBuraritabiPreview({
     setIsPlaying(false);
   }, [selectedFilename]);
 
-  if (!isPreviewEnabled) {
-    return (
-      <div className={styles.preview}>
-        {!selectedFilename ? (
-          <p className={styles.empty}>動画を選択してください</p>
-        ) : (
-          <div className={styles.hiddenPanel}>
-            <span>非表示です。</span>
-            <button className={styles.toggleButton} onClick={onTogglePreview}>
-              表示
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  if (!selectedFilename) {
-    return (
-      <div className={styles.preview}>
-        <p className={styles.empty}>動画を選択してください</p>
-      </div>
-    );
-  }
+  const handleTogglePreview = () => {
+    const video = videoRef.current;
+    if (isPreviewEnabled && video) {
+      video.pause();
+      setIsPlaying(false);
+    }
+    setIsPreviewEnabled((v) => !v);
+  };
 
   const formatTime = (s: number) => {
     const m = Math.floor(s / 60);
@@ -105,49 +86,66 @@ export default function ConversionBuraritabiPreview({
 
   return (
     <div className={styles.preview}>
-      <video
-        ref={videoRef}
-        src={burariVideoUrl(selectedFilename)}
-        className={styles.video}
-        muted
-        playsInline
-        preload="metadata"
-        disablePictureInPicture
-        disableRemotePlayback
-        onClick={togglePlay}
-      />
-      <div className={styles.controls}>
-        <button className={styles.playButton} onClick={togglePlay}>
-          {isPlaying ? "⏸ 一時停止" : "▶ 再生"}
-        </button>
-        <span className={styles.time}>
-          {formatTime(currentTime)} / {formatTime(duration)}
-        </span>
-        <input
-          type="range"
-          min={0}
-          max={duration || 1}
-          step={0.1}
-          value={currentTime}
-          className={styles.seekbar}
-          onMouseDown={() => {
-            isSeekingRef.current = true;
-          }}
-          onMouseUp={() => {
-            isSeekingRef.current = false;
-          }}
-          onTouchStart={() => {
-            isSeekingRef.current = true;
-          }}
-          onTouchEnd={() => {
-            isSeekingRef.current = false;
-          }}
-          onChange={handleSeek}
-        />
-        <button className={styles.toggleButton} onClick={onTogglePreview}>
-          非表示
-        </button>
-      </div>
+      {!selectedFilename ? (
+        <p className={styles.empty}>動画を選択してください</p>
+      ) : (
+        <>
+          {!isPreviewEnabled && (
+            <div className={styles.hiddenPanel}>
+              <span>非表示です。</span>
+              <button className={styles.toggleButton} onClick={handleTogglePreview}>
+                表示
+              </button>
+            </div>
+          )}
+          <video
+            ref={videoRef}
+            src={burariVideoUrl(selectedFilename)}
+            className={styles.video}
+            style={isPreviewEnabled ? undefined : { display: "none" }}
+            muted
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+            disableRemotePlayback
+            onClick={isPreviewEnabled ? togglePlay : undefined}
+          />
+          {isPreviewEnabled && (
+            <div className={styles.controls}>
+              <button className={styles.playButton} onClick={togglePlay}>
+                {isPlaying ? "⏸ 一時停止" : "▶ 再生"}
+              </button>
+              <span className={styles.time}>
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
+              <input
+                type="range"
+                min={0}
+                max={duration || 1}
+                step={0.1}
+                value={currentTime}
+                className={styles.seekbar}
+                onMouseDown={() => {
+                  isSeekingRef.current = true;
+                }}
+                onMouseUp={() => {
+                  isSeekingRef.current = false;
+                }}
+                onTouchStart={() => {
+                  isSeekingRef.current = true;
+                }}
+                onTouchEnd={() => {
+                  isSeekingRef.current = false;
+                }}
+                onChange={handleSeek}
+              />
+              <button className={styles.toggleButton} onClick={handleTogglePreview}>
+                非表示
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

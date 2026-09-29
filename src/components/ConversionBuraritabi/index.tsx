@@ -69,7 +69,6 @@ export default function ConversionBuraritabi({
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [stats, setStats] = useState<Record<string, VideoStats>>(() => loadStats());
-  const [isPreviewEnabled, setIsPreviewEnabled] = useState(true);
 
   const fetchVideos = useCallback(async () => {
     setIsLoading(true);
@@ -259,11 +258,7 @@ export default function ConversionBuraritabi({
         </div>
         <div className={styles.preview}>
           <p>プレビュー</p>
-          <ConversionBuraritabiPreview
-            selectedFilename={selectedFilename}
-            isPreviewEnabled={isPreviewEnabled}
-            onTogglePreview={() => setIsPreviewEnabled((v) => !v)}
-          />
+          <ConversionBuraritabiPreview selectedFilename={selectedFilename} />
         </div>
         <div className={styles.start_stop}>
           <ConversionBuraritabiButtons
