@@ -211,6 +211,7 @@ export default function ConversionBuraritabi({
   };
 
   const canControl = isConversion && !isCmMode && !isPlaying;
+  const canDelete = isConversion && !isPlaying;
   const canPlay = canControl && !!selectedFilename && isConversionPlaying;
 
   return (
@@ -241,7 +242,7 @@ export default function ConversionBuraritabi({
             onUploadClick={handleUploadClick}
             onDelete={handleDelete}
             isUploading={isUploading}
-            canControl={canControl}
+            canDelete={canDelete}
             isLoading={isLoading}
             stats={stats}
             isPlaying={isPlaying}

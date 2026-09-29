@@ -32,7 +32,7 @@ type Props = {
   onUploadClick: () => void;
   onDelete: (filename: string) => void;
   isUploading: boolean;
-  canControl: boolean;
+  canDelete: boolean;
   isLoading: boolean;
   stats: Record<string, VideoStats>;
   isPlaying: boolean;
@@ -46,7 +46,7 @@ export default function ConversionBuraritabiSource({
   onUploadClick,
   onDelete,
   isUploading,
-  canControl,
+  canDelete,
   isLoading,
   stats,
   isPlaying,
@@ -118,9 +118,9 @@ export default function ConversionBuraritabiSource({
                       className={styles.dropdownDelete}
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (canControl) onDelete(video.filename);
+                        if (canDelete) onDelete(video.filename);
                       }}
-                      disabled={!canControl}
+                      disabled={!canDelete}
                     >
                       <img src={TrashCanIcon} alt="削除" />
                     </button>
