@@ -6,12 +6,10 @@ import styles from "./index.module.css";
 
 type Props = {
   selectedFilename: string | null;
-  onEnded?: () => void;
 };
 
 export default function ConversionBuraritabiPreview({
   selectedFilename,
-  onEnded,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,10 +21,7 @@ export default function ConversionBuraritabiPreview({
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const handleEnded = () => {
-      onEnded?.();
-      setIsPlaying(false);
-    };
+    const onEnded = () => setIsPlaying(false);
     const onTimeUpdate = () => {
       if (!isSeekingRef.current) setCurrentTime(video.currentTime);
     };
@@ -34,16 +29,16 @@ export default function ConversionBuraritabiPreview({
       setDuration(video.duration);
       setCurrentTime(0);
     };
-    video.addEventListener("ended", handleEnded);
+    video.addEventListener("ended", onEnded);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("loadedmetadata", onLoadedMetadata);
 
     return () => {
-      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("ended", onEnded);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
     };
-  }, [selectedFilename, onEnded]);
+  }, [selectedFilename]);
 
   useEffect(() => {
     const video = videoRef.current;

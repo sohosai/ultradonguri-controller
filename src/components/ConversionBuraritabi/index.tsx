@@ -143,11 +143,6 @@ export default function ConversionBuraritabi({
     stopBurari();
   }, [stopBurari]);
 
-  // 動画再生終了時の自動停止
-  const handleVideoEnded = useCallback(() => {
-    stopBurari();
-  }, [stopBurari]);
-
   const handlePlay = useCallback(() => {
     if (!selectedFilename) return;
     if (timerRef.current) {
@@ -276,10 +271,7 @@ export default function ConversionBuraritabi({
         </div>
         <div className={styles.preview}>
           <p>プレビュー</p>
-          <ConversionBuraritabiPreview
-            selectedFilename={selectedFilename}
-            onEnded={handleVideoEnded}
-          />
+          <ConversionBuraritabiPreview selectedFilename={selectedFilename} />
         </div>
         <div className={styles.start_stop}>
           <ConversionBuraritabiButtons
