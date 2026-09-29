@@ -1,4 +1,3 @@
-import { Link, linkOptions } from "@tanstack/react-router";
 import type { Conversion, Music } from "../types/performances";
 
 import type { Performance } from "../types/performances";
@@ -94,22 +93,24 @@ export function SaveConvTimings(conv: Conversion): void {
 
 
 // CSVをダウンロードする関数
-function dounloadCsv() {
+export function downloadCsv() {
 
-    const csvDate = localStorage.getItem(STORAGE_KEY);
+    const csvData = localStorage.getItem(STORAGE_KEY);
 
-    if (!csvDate) {
+    if (!csvData) {
         return ("CSVデータがありません。");
     } else {
-        const blob = new Blob ([csvDate], {type: "text/csv;charest=utf-8;",});
+        const blob = new Blob ([csvData], {type: "text/csv;charest=utf-8;",});
 
         const downloadUrl = URL.createObjectURL(blob);
 
         const downloadLink = document.createElement("a");
-        downloadLink.href = 
-        downloadLink.download
+        downloadLink.href = downloadUrl;
+        downloadLink.download = "songTiming-List";
 
-         URL.revokeObjectURL(downloadUrl);
+        downloadLink.click();
+
+        URL.revokeObjectURL(downloadUrl);
 
     }
     
