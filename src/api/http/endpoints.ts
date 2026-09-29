@@ -73,20 +73,20 @@ export async function postDisplayCopyright(body: DisplayCopyright): Promise<void
 /**
  * シーン切り替え系。
  * これらは配信機器（OBS等）を制御するどんぐりバックエンド用エンドポイントであり、
- * mock モードでは実機が存在しないため HTTP リクエストをスキップする。
+ * mock モードまたは未設定時は実機が存在しないため HTTP リクエストをスキップする。
  */
 
 export async function postBurariScene(): Promise<void> {
-  if (import.meta.env.VITE_API_MODE === "mock") return;
+  if (import.meta.env.VITE_API_MODE !== "real") return;
   await apiFetch<void>("/burari-scene", { method: "POST" });
 }
 
 export async function postCmScene(): Promise<void> {
-  if (import.meta.env.VITE_API_MODE === "mock") return;
+  if (import.meta.env.VITE_API_MODE !== "real") return;
   await apiFetch<void>("/cm-scene", { method: "POST" });
 }
 
 export async function postNormalScene(): Promise<void> {
-  if (import.meta.env.VITE_API_MODE === "mock") return;
+  if (import.meta.env.VITE_API_MODE !== "real") return;
   await apiFetch<void>("/normal-scene", { method: "POST" });
 }
