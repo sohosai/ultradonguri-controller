@@ -1,20 +1,20 @@
 import { useNavigate } from "@tanstack/react-router";
-import { downloadCsv } from "../lib/songTiming";
 import { useEffect } from "react";
 
-export default function csv() {
-    
-    const navigate = useNavigate();
+import { downloadCsv } from "../lib/songTiming";
 
-    useEffect(() => {
-        downloadCsv();
-        navigate({ to: "/", })
-    }, [navigate]);
+export default function Csv() {
+  const navigate = useNavigate();
 
-    return (
-        <div>
-            <div>ダウンロードしました。</div>
-            <button onClick={() => navigate({ to: "/", })}>メインに戻るボタン</button>
-        </div>
-    );
+  useEffect(() => {
+    downloadCsv();
+    navigate({ to: "/" });
+  }, [navigate]);
+
+  return (
+    <div>
+      <div>ダウンロードしました。</div>
+      <button onClick={() => navigate({ to: "/" })}>メインに戻るボタン</button>
+    </div>
+  );
 }
