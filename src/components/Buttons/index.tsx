@@ -13,6 +13,7 @@ type Props = {
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;
+  isBurariPlaying?: boolean;
 };
 
 export default function Buttons({
@@ -24,6 +25,7 @@ export default function Buttons({
   onError,
   isCmMode,
   isConversion,
+  isBurariPlaying,
 }: Props) {
   return (
     <div className={styles.buttons}>
@@ -35,7 +37,7 @@ export default function Buttons({
         isConversion={isConversion}
       />
       <CopyrightToggle isCopyrightVisible={isCopyrightVisible} onChange={onCopyrightVisibleChange} />
-      <NextTrackButton onNext={onNext} />
+      <NextTrackButton onNext={onNext} disabled={isBurariPlaying} />
     </div>
   );
 }

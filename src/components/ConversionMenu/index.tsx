@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 import { sendConversionCmMode } from "../../services/performanceService";
+import ConversionBuraritabi from "../ConversionBuraritabi";
 import ConversionToggleItem from "../ConversionToggleItem";
+
 
 import styles from "./index.module.css";
 
@@ -14,6 +16,8 @@ type Props = {
   currentTrack?: TrackRef | null;
   nextTrack?: TrackRef | null;
   onSelectNextTrack?: (ref: TrackRef) => void;
+  isBurariPlaying: boolean;
+  burariPlayingFilename: string | null;
 };
 
 export default function ConversionMenu({
@@ -23,6 +27,8 @@ export default function ConversionMenu({
   currentTrack,
   nextTrack,
   onSelectNextTrack,
+  isBurariPlaying,
+  burariPlayingFilename,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -43,19 +49,32 @@ export default function ConversionMenu({
   const isPlaying = (conversionId: string) =>
     currentTrack?.type === "conversion" && currentTrack?.conversionId === conversionId;
 
-  const isNext = (conversionId: string) => nextTrack?.type === "conversion" && nextTrack?.conversionId === conversionId;
+  const isNext = (conversionId: string) =>
+    nextTrack?.type === "conversion" && nextTrack?.conversionId === conversionId;
 
   return (
     <div className={styles.conversionMenu}>
       <div className={styles.conversionMenuItem}>
-        <div onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })}>
+        <div
+          onClick={() =>
+            onSelectNextTrack && onSelectNextTrack({ type: "conversion", conversionId: conversionId })
+          }
+        >
           <ConversionToggleItem
             isPlaying={isPlaying(conversionId)}
             isNext={isNext(conversionId)}
             isCmMode={isCmMode}
             onChange={handleCmModeToggle}
+            disabled={isBurariPlaying}
           />
         </div>
+        <ConversionBuraritabi
+          isCmMode={isCmMode}
+          isConversion={true}
+          isPlaying={isBurariPlaying}
+          playingFilename={burariPlayingFilename}
+          isConversionPlaying={isPlaying(conversionId)}
+        />
       </div>
     </div>
   );

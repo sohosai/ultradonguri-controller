@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import { postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { postDisplayCopyright, postConversionCmMode, postBurariScene, postCmScene, postNormalScene } from "../api/http/endpoints";
 import { postMute } from "../api/http/osechi";
+import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
 import DateTabs from "../components/DateTabs";
@@ -29,6 +30,8 @@ export default function Controller() {
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
+  const [isBurariPlaying, setIsBurariPlaying] = useState(false);
+  const [burariPlayingFilename, setBurariPlayingFilename] = useState<string | null>(null);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const initializedDateKeyRef = useRef<string | null>(null);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
@@ -88,6 +91,47 @@ export default function Controller() {
     void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
+  }, []);
+
+  useEffect(() => {
+    const switchScene = async () => {
+      try {
+        if (isCmMode) {
+          await postCmScene();
+        } else if (isBurariPlaying) {
+          await postBurariScene();
+        } else {
+          await postNormalScene();
+        }
+      } catch (error) {
+        console.error("[Controller] Failed to switch scene:", error);
+      }
+    };
+
+    void switchScene();
+  }, [isCmMode, isBurariPlaying]);
+
+  useEffect(() => {
+    const unsubPlay = streamClient.on("/burari/play", (data) => {
+      setIsBurariPlaying(true);
+      const payload = data as { filename: string } | undefined;
+      setBurariPlayingFilename(payload?.filename ?? null);
+    });
+    const unsubStop = streamClient.on("/burari/stop", () => {
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+    const unsubEnded = streamClient.on("/burari/ended", () => {
+      streamClient.send("/burari/stop", {});
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+
+    return () => {
+      unsubPlay();
+      unsubStop();
+      unsubEnded();
+    };
   }, []);
 
   // 初回とデータ変化時に日付キーを初期化
@@ -260,7 +304,7 @@ export default function Controller() {
 
   return (
     <div>
-      <Header isMuted={isMuted} />
+      <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
           <div className={styles.error}>
@@ -302,6 +346,8 @@ export default function Controller() {
                   currentTrack={currentTrack}
                   nextTrack={nextTrack}
                   onSelectNextTrack={handleSelectNextTrack}
+                  isBurariPlaying={isBurariPlaying}
+                  burariPlayingFilename={burariPlayingFilename}
                 />
               )}
             </div>
@@ -314,6 +360,7 @@ export default function Controller() {
               onError={setError}
               isCmMode={isCmMode}
               isConversion={isConversion}
+              isBurariPlaying={isBurariPlaying}
             />
           </div>
         </div>

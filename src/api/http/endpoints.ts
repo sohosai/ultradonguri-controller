@@ -1,3 +1,5 @@
+import { streamClient } from "../ws/streamClient";
+
 import { apiFetch } from "./client";
 
 import type { Performance } from "../../types/performances";
@@ -35,57 +37,56 @@ export interface DisplayCopyright {
 
 /**
  * GET /performances
+ * 楽曲データの取得のみ従来どおり HTTP（バックエンド / mock）で行う
  */
 export async function getPerformances(): Promise<Performance[]> {
   return apiFetch<Performance[]>("/performances");
 }
 
 /**
- * POST /performance/start
+ * 以下の送出系は Vite サーバー上の WebSocket リレー経由で Viewer に届ける
  */
 export async function postPerformanceStart(body: PerformanceStartRequest): Promise<void> {
-  return apiFetch("/performance/start", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  streamClient.send("/performance/start", body);
 }
 
-/**
- * POST /performance/music
- */
 export async function postPerformanceMusic(body: MusicRequest): Promise<void> {
-  return apiFetch("/performance/music", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  streamClient.send("/performance/music", body);
 }
 
-/**
- * POST /conversion/start
- */
 export async function postConversionStart(body: ConversionStartRequest): Promise<void> {
-  return apiFetch("/conversion/start", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  streamClient.send("/conversion/start", body);
 }
 
-/**
- * POST /conversion/cm-mode
- */
 export async function postConversionCmMode(body: ConversionCmModeRequest): Promise<void> {
-  return apiFetch("/conversion/cm-mode", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  streamClient.send("/conversion/cm-mode", body);
 }
+
 
 /**
  * POST /display-copyright
  */
 export async function postDisplayCopyright(body: DisplayCopyright): Promise<void> {
-  return apiFetch("/display-copyright", {
-    method: "POST",
-    body: JSON.stringify(body),
-  });
+  streamClient.send("/display-copyright", body);
+}
+
+/**
+ * シーン切り替え系。
+ * これらは配信機器（OBS等）を制御するどんぐりバックエンド用エンドポイントであり、
+ * mock モードまたは未設定時は実機が存在しないため HTTP リクエストをスキップする。
+ */
+
+export async function postBurariScene(): Promise<void> {
+  if (import.meta.env.VITE_API_MODE !== "real") return;
+  await apiFetch<void>("/burari-scene", { method: "POST" });
+}
+
+export async function postCmScene(): Promise<void> {
+  if (import.meta.env.VITE_API_MODE !== "real") return;
+  await apiFetch<void>("/cm-scene", { method: "POST" });
+}
+
+export async function postNormalScene(): Promise<void> {
+  if (import.meta.env.VITE_API_MODE !== "real") return;
+  await apiFetch<void>("/normal-scene", { method: "POST" });
 }

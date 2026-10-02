@@ -1,0 +1,30 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-black);
+}
+
+.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loading {
+  font-size: 24px;
+  color: var(--color-white);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
