@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 type Props = {
   checked: boolean;
   onChange: (checked: boolean) => void;
+  disabled?: boolean;
 };
 
 export default function Toggle({ checked, onChange }: Props) {
