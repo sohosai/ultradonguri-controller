@@ -245,7 +245,7 @@ export default function Controller() {
 
         // API成功後に状態を更新
         skipToNext(list);
-        if (newPlayingPerf && currentPerformanceId !== newPlayingPerf.id) {
+        if (newPlayingPerf) {
           setSelectedPerformance(newPlayingPerf);
           setSelectedConversion(null);
         }
