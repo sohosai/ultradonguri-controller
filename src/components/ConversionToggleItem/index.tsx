@@ -1,6 +1,5 @@
 import clsx from "clsx";
 
-import isConversion from "../Buttons/index.tsx";
 import Toggle from "../Toggle";
 
 import styles from "./index.module.css";
@@ -10,12 +9,10 @@ type Props = {
 
   isPlaying?: boolean;
   isNext?: boolean;
-  disabled?: boolean;
   onChange: (isCmMode: boolean) => void;
 };
 
 export default function ConversionToggleItem({
-  disabled = false,
   isPlaying = false,
   isNext = false,
   isCmMode,
@@ -31,9 +28,9 @@ export default function ConversionToggleItem({
       <div className={styles.info}>
         <p className={styles.conversion}>転換</p>
         <div className={styles.CMandToggle}>
-          <p>CM</p>
+          <p className={isPlaying ? styles.enabled : styles.disabled}>CM</p>
           <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
-            <Toggle checked={isCmMode} onChange={onChange} disabled={!isConversion && disabled} />
+            <Toggle checked={isCmMode} onChange={onChange} disabled={!isPlaying}/>
           </div>
         </div>
       </div>

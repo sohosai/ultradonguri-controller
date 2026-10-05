@@ -41,3 +41,11 @@
   align-items: center;
   margin-left: auto;
 }
+
+.enabled {
+  color: var(--color-white);
+}
+
+.disabled {
+  color: var(--color-dark-gray);
+}
