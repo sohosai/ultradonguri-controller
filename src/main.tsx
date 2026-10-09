@@ -13,10 +13,8 @@ async function initializeMocks() {
 
   if (apiMode === "mock") {
     const { startMSW } = await import("./api/mock/msw");
-    const { mockWSServer } = await import("./api/mock/wsServer");
 
     await startMSW();
-    mockWSServer.start();
 
     console.log("[Mock] Mock services started");
   } else {

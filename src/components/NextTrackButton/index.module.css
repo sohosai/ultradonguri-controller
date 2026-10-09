@@ -13,3 +13,8 @@
   background: var(--color-green);
   border-radius: 9999px;
 }
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

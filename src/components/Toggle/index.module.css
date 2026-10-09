@@ -69,6 +69,23 @@
   left: calc(100% - var(--circle-size) - var(--switch-padding));
 }
 
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled .switch {
+  cursor: not-allowed;
+}
+
+.disabled .switch > input {
+  cursor: not-allowed;
+}
+
+.sliderDisabled {
+  opacity: 0.5;
+}
+
 .switch > input:focus-visible + .slider {
   outline-offset: 2px;
 }
