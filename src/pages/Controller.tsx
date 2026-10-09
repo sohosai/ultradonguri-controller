@@ -331,7 +331,12 @@ export default function Controller() {
         </div>
       </main>
       {pendingDateKey && (
-        <DateChangeConfirmModal onConfirm={handleConfirmDateChange} onCancel={() => setPendingDateKey(null)} />
+        <DateChangeConfirmModal
+          currentDateKey={selectedDateKey ?? ""}
+          nextDateKey={pendingDateKey}
+          onConfirm={handleConfirmDateChange}
+          onCancel={() => setPendingDateKey(null)}
+        />
       )}
     </div>
   );
