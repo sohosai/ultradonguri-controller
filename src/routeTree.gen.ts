@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewerRouteImport } from './routes/viewer'
+import { Route as CsvRouteImport } from './routes/csv'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ViewerRoute = ViewerRouteImport.update({
   id: '/viewer',
   path: '/viewer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CsvRoute = CsvRouteImport.update({
+  id: '/csv',
+  path: '/csv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/csv': typeof CsvRoute
   '/viewer': typeof ViewerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/csv': typeof CsvRoute
   '/viewer': typeof ViewerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/csv': typeof CsvRoute
   '/viewer': typeof ViewerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/viewer'
+  fullPaths: '/' | '/csv' | '/viewer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/viewer'
-  id: '__root__' | '/' | '/viewer'
+  to: '/' | '/csv' | '/viewer'
+  id: '__root__' | '/' | '/csv' | '/viewer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CsvRoute: typeof CsvRoute
   ViewerRoute: typeof ViewerRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/viewer'
       fullPath: '/viewer'
       preLoaderRoute: typeof ViewerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/csv': {
+      id: '/csv'
+      path: '/csv'
+      fullPath: '/csv'
+      preLoaderRoute: typeof CsvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CsvRoute: CsvRoute,
   ViewerRoute: ViewerRoute,
 }
 export const routeTree = rootRouteImport

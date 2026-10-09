@@ -12,6 +12,7 @@ import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
+import { SaveConvTimings, SaveSongTimings } from "../lib/songTiming";
 import { findNextTrackRef } from "../lib/tracks";
 import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
 import { formatToYmd } from "../utils/dateFormat";
@@ -213,6 +214,11 @@ export default function Controller() {
           }
         }
 
+        // ここで転換パート用のCSVの関数を呼び出す
+        if (conversion) {
+          SaveConvTimings(conversion);
+        }
+
         // API成功後に状態を更新
         skipToNext(list);
         setSelectedConversion(conversion);
@@ -241,6 +247,11 @@ export default function Controller() {
             const state = await postMute({ is_muted: false });
             setIsMuted(state.is_muted);
           }
+        }
+
+        // ここで楽曲用のCSVの関数を呼び出す
+        if (music && newPlayingPerf) {
+          SaveSongTimings(music, newPlayingPerf);
         }
 
         // API成功後に状態を更新
