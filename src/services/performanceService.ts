@@ -16,6 +16,7 @@ export async function sendPerformanceStart(performance: Performance): Promise<vo
       title: performance.title,
       performer: performance.performer,
     });
+    // console.error("仮のエラー");
   } catch (error) {
     console.error("[PerformanceService] Failed to post performance/start:", error);
     throw error;

@@ -6,6 +6,7 @@ const STORAGE_KEY = "song-timing";
 // Dateの部分はStringにするかも？
 export type SongTiming = {
   title: string;
+  id: string;
   performance_title: string;
   should_be_muted: string;
   starts_at: string;
@@ -32,25 +33,24 @@ export function SaveSongTimings(music: Music, perf: Performance): void {
   try {
     const timingToSave: SongTiming = {
       title: music.title != null ? music.title : "",
+      id: music.id != null ? music.id : "",
       performance_title: perf.title != null ? perf.title : "",
-      should_be_muted: music.should_be_muted == false ? "配信○" : "配信×",
+      should_be_muted: music.should_be_muted == false ? "○" : "×",
       starts_at: perf.starts_at,
       timing: new Date(),
     };
-    const dataToAdd =
-      timingToSave.title +
-      "," +
-      timingToSave.performance_title +
-      "," +
-      timingToSave.should_be_muted +
-      "," +
-      timingToSave.starts_at +
-      "," +
-      timingToSave.timing;
-
+    const dataToAdd = [
+      timingToSave.title,
+      timingToSave.id,
+      timingToSave.performance_title,
+      timingToSave.should_be_muted,
+      timingToSave.starts_at,
+      timingToSave.timing,
+    ].map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",");
+      
     const oldData = getSongTimings();
 
-    const columnTitle = "楽曲名,団体名,配信可能/不可能,開始予定時刻,開始時刻";
+    const columnTitle = "楽曲名,ID,団体名,配信可能/不可能,開始予定時刻,開始時刻";
 
     if (!oldData) {
       const newData = columnTitle + "\n" + dataToAdd;
@@ -71,26 +71,25 @@ export function SaveSongTimings(music: Music, perf: Performance): void {
 export function SaveConvTimings(conv: Conversion): void {
   try {
     const timingToSave: SongTiming = {
-      title: conv.title != null ? conv.title : "",
-      performance_title: conv.id,
-      should_be_muted: "なし",
-      starts_at: "なし",
+      title: "（転換パート）",
+      id: conv.id != null ? conv.id : "",
+      performance_title: "",
+      should_be_muted: "",
+      starts_at: "",
       timing: new Date(),
     };
-    const dataToAdd =
-      timingToSave.title +
-      "," +
-      timingToSave.performance_title +
-      "," +
-      timingToSave.should_be_muted +
-      "," +
-      timingToSave.starts_at +
-      "," +
-      timingToSave.timing;
+    const dataToAdd = [
+      timingToSave.title,
+      timingToSave.id,
+      timingToSave.performance_title,
+      timingToSave.should_be_muted,
+      timingToSave.starts_at,
+      timingToSave.timing,
+    ].map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",");
 
     const oldData = getSongTimings();
 
-    const columnTitle = "楽曲名,団体名,配信可能/不可能,開始予定時刻,開始時刻";
+    const columnTitle = "楽曲名,ID,団体名,配信可能/不可能,楽曲開始予定時刻,開始時刻";
 
     if (!oldData) {
       const newData = columnTitle + "\n" + dataToAdd;
@@ -120,7 +119,7 @@ export function downloadCsv() {
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;
-    downloadLink.download = "songTiming-List";
+    downloadLink.download = "Csv.tsx";
 
     downloadLink.click();
 
