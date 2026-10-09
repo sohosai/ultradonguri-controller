@@ -3,9 +3,10 @@ import styles from "./index.module.css";
 
 type Props = {
   isMuted: boolean;
+  isBurariPlaying?: boolean;
 };
 
-export default function Header({ isMuted }: Props) {
+export default function Header({ isMuted, isBurariPlaying }: Props) {
   return (
     <header className={styles.header}>
       <ul className={styles.list}>
@@ -13,7 +14,10 @@ export default function Header({ isMuted }: Props) {
           <Clock />
         </li>
         <li className={styles.logo}>Ultradonguri</li>
-        <li className={styles.mute}>{isMuted && "ミュート中"}</li>
+        <li className={styles.statusBadge}>
+          {isBurariPlaying && <span className={styles.burariPlaying}>ぶらり旅再生中</span>}
+          {isMuted && <span className={styles.mute}>ミュート中</span>}
+        </li>
       </ul>
     </header>
   );

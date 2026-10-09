@@ -12,7 +12,12 @@ type Props = {
   onChange: (isCmMode: boolean) => void;
 };
 
-export default function ConversionToggleItem({ isPlaying = false, isNext = false, isCmMode, onChange }: Props) {
+export default function ConversionToggleItem({
+  isPlaying = false,
+  isNext = false,
+  isCmMode,
+  onChange,
+}: Props) {
   const className = clsx(styles.conversionToggleItem, {
     [styles.playing]: isPlaying,
     [styles.next]: isNext,

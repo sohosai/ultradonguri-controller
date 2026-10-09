@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { sendConversionCmMode } from "../../services/performanceService";
+import ConversionBuraritabi from "../ConversionBuraritabi";
 import ConversionToggleItem from "../ConversionToggleItem";
 
 import styles from "./index.module.css";
@@ -14,6 +15,8 @@ type Props = {
   currentTrack?: TrackRef | null;
   nextTrack?: TrackRef | null;
   onSelectNextTrack?: (ref: TrackRef) => void;
+  isBurariPlaying: boolean;
+  burariPlayingFilename: string | null;
 };
 
 export default function ConversionMenu({
@@ -23,6 +26,8 @@ export default function ConversionMenu({
   currentTrack,
   nextTrack,
   onSelectNextTrack,
+  isBurariPlaying,
+  burariPlayingFilename,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -56,6 +61,13 @@ export default function ConversionMenu({
             onChange={handleCmModeToggle}
           />
         </div>
+        <ConversionBuraritabi
+          isCmMode={isCmMode}
+          isConversion={true}
+          isPlaying={isBurariPlaying}
+          playingFilename={burariPlayingFilename}
+          isConversionPlaying={isPlaying(conversionId)}
+        />
       </div>
     </div>
   );

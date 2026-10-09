@@ -28,3 +28,5 @@ dist-ssr
 .DS_Store
 
 .env
+# ぶらり旅の動画置き場（server/videosMiddleware.ts が配信）
+videos/
