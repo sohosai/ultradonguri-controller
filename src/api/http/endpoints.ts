@@ -62,7 +62,6 @@ export async function postConversionCmMode(body: ConversionCmModeRequest): Promi
   streamClient.send("/conversion/cm-mode", body);
 }
 
-
 /**
  * POST /display-copyright
  */

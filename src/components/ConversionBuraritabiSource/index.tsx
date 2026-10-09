@@ -95,14 +95,11 @@ export default function ConversionBuraritabiSource({
                     onClick={() => {
                       onSelect(video.filename);
                       setIsOpen(false);
-                    }}
-                  >
+                    }}>
                     <div className={styles.dropdownContent}>
                       <span className={styles.dropdownFilename}>{video.filename}</span>
                       {isThisPlaying && <span className={styles.dropdownPlaying}>再生中</span>}
-                      <span className={styles.dropdownAgo}>
-                        {videoStats ? timeAgo(videoStats.lastPlayedAt) : ""}
-                      </span>
+                      <span className={styles.dropdownAgo}>{videoStats ? timeAgo(videoStats.lastPlayedAt) : ""}</span>
                       <div className={styles.dropdownStatsColumn}>
                         {videoStats ? (
                           <>
@@ -120,8 +117,7 @@ export default function ConversionBuraritabiSource({
                         e.stopPropagation();
                         if (canDelete) onDelete(video.filename);
                       }}
-                      disabled={!canDelete}
-                    >
+                      disabled={!canDelete}>
                       <img src={TrashCanIcon} alt="削除" />
                     </button>
                   </div>

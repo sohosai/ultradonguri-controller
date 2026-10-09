@@ -8,9 +8,7 @@ type Props = {
   selectedFilename: string | null;
 };
 
-export default function ConversionBuraritabiPreview({
-  selectedFilename,
-}: Props) {
+export default function ConversionBuraritabiPreview({ selectedFilename }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);

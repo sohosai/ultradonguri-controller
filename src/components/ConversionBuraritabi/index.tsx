@@ -59,9 +59,7 @@ export default function ConversionBuraritabi({
   isConversionPlaying,
 }: Props) {
   const [videos, setVideos] = useState<BurariVideo[]>([]);
-  const [selectedFilename, setSelectedFilename] = useState<string | null>(
-    () => localStorage.getItem(SELECTED_KEY),
-  );
+  const [selectedFilename, setSelectedFilename] = useState<string | null>(() => localStorage.getItem(SELECTED_KEY));
   const [isLoading, setIsLoading] = useState(false);
   const [hasVideosLoaded, setHasVideosLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -157,17 +155,23 @@ export default function ConversionBuraritabi({
     video.onloadedmetadata = () => {
       const duration = video.duration;
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        streamClient.send("/burari/stop", {});
-        timerRef.current = null;
-      }, (duration + 5) * 1000);
+      timerRef.current = setTimeout(
+        () => {
+          streamClient.send("/burari/stop", {});
+          timerRef.current = null;
+        },
+        (duration + 5) * 1000
+      );
     };
     video.onerror = () => {
       if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        streamClient.send("/burari/stop", {});
-        timerRef.current = null;
-      }, 5 * 60 * 1000);
+      timerRef.current = setTimeout(
+        () => {
+          streamClient.send("/burari/stop", {});
+          timerRef.current = null;
+        },
+        5 * 60 * 1000
+      );
     };
   }, [selectedFilename, disposeProbe]);
 
@@ -194,9 +198,7 @@ export default function ConversionBuraritabi({
     try {
       await fetchVideos();
     } catch {
-      setError((prev) =>
-        prev ? `${prev}\n動画一覧の更新に失敗しました` : "動画一覧の更新に失敗しました",
-      );
+      setError((prev) => (prev ? `${prev}\n動画一覧の更新に失敗しました` : "動画一覧の更新に失敗しました"));
     }
 
     if (errors.length > 0) {

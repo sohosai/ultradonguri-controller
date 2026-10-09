@@ -13,8 +13,7 @@ export default function NextTrackButton({ onNext, disabled }: Props) {
         if (!disabled) {
           onNext?.();
         }
-      }}
-    >
+      }}>
       送出
     </div>
   );

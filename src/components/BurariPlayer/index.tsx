@@ -23,9 +23,7 @@ export default function BurariPlayer({ filename, onEnded }: Props) {
 
   return (
     <div className={`${styles.overlay} ${isReady ? styles.visible : styles.hidden}`}>
-      {!isReady && (
-        <div className={styles.loading}>動画読み込み中...</div>
-      )}
+      {!isReady && <div className={styles.loading}>動画読み込み中...</div>}
       <video
         ref={videoRef}
         src={burariVideoUrl(filename)}

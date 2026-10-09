@@ -26,15 +26,9 @@ export default function ConversionBuraritabiButtons({
 
   return (
     <div className={styles.play_stopButtons}>
-      {isPlaying && playingFilename && (
-        <span className={styles.playingLabel}>再生中: {playingFilename}</span>
-      )}
-      {showCannotPlayConversion && (
-        <span className={styles.cannotPlayLabel}>転換が選択されていないため再生不可</span>
-      )}
-      {showCannotPlayCm && (
-        <span className={styles.cannotPlayLabel}>CM中なので再生不可</span>
-      )}
+      {isPlaying && playingFilename && <span className={styles.playingLabel}>再生中: {playingFilename}</span>}
+      {showCannotPlayConversion && <span className={styles.cannotPlayLabel}>転換が選択されていないため再生不可</span>}
+      {showCannotPlayCm && <span className={styles.cannotPlayLabel}>CM中なので再生不可</span>}
       <button className={styles.playButton} onClick={onPlay} disabled={!canPlay}>
         再生
       </button>
