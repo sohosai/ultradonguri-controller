@@ -214,7 +214,7 @@ export default function Controller() {
           }
         }
 
-        // ここで転換パート用のCSVの関数を呼び出す
+        // 転換パート用のCSV保存関数を呼び出す
         if (conversion) {
           SaveConvTimings(conversion);
         }
@@ -249,7 +249,7 @@ export default function Controller() {
           }
         }
 
-        // ここで楽曲用のCSVの関数を呼び出す
+        // 楽曲用のCSV保存関数を呼び出す
         if (music && newPlayingPerf) {
           SaveSongTimings(music, newPlayingPerf);
         }

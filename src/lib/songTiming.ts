@@ -3,7 +3,6 @@ import type { Performance } from "../types/performances";
 
 const STORAGE_KEY = "song-timing";
 
-// Dateの部分はStringにするかも？
 export type SongTiming = {
   title: string;
   id: string;
