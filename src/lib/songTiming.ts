@@ -92,7 +92,7 @@ export function SaveConvTimings(conv: Conversion): void {
 
     const oldData = getSongTimings();
 
-    const columnTitle = "楽曲名,ID,団体名,配信可能/不可能,楽曲開始予定時刻,開始時刻";
+    const columnTitle = "楽曲名,ID,団体名,配信可能/不可能,開始予定時刻,開始時刻";
 
     if (!oldData) {
       const newData = columnTitle + "\n" + dataToAdd;
