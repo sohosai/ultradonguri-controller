@@ -11,6 +11,7 @@ import { postMute } from "../api/http/osechi";
 import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
+import DateChangeConfirmModal from "../components/DateChangeConfirmModal";
 import DateTabs from "../components/DateTabs";
 import Menu from "../components/DetailMenu";
 import Header from "../components/Header";
@@ -41,6 +42,7 @@ export default function Controller() {
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const initializedDateKeyRef = useRef<string | null>(null);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
+  const [pendingDateKey, setPendingDateKey] = useState<string | null>(null);
 
   // グルーピング: 日付 -> performances（差分適用後）
   const { dateKeys, byDate } = useMemo(() => {
@@ -216,6 +218,16 @@ export default function Controller() {
     selectNextTrack(ref);
   };
 
+  const handleDateTabChange = (key: string) => {
+    if (key === selectedDateKey) return;
+    setPendingDateKey(key);
+  };
+
+  const handleConfirmDateChange = () => {
+    if (pendingDateKey) setSelectedDateKey(pendingDateKey);
+    setPendingDateKey(null);
+  };
+
   const handleSelectPerformance = (performance: Performance) => {
     setSelectedPerformance(performance);
     setSelectedConversion(null);
@@ -322,7 +334,7 @@ export default function Controller() {
         )}
         <div className={styles.row}>
           <div className={styles.rowLeft}>
-            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={setSelectedDateKey} />
+            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={handleDateTabChange} />
             <Performances
               items={scopedPerformances || []}
               selectedPerformance={selectedPerformance}
@@ -371,6 +383,14 @@ export default function Controller() {
           </div>
         </div>
       </main>
+      {pendingDateKey && (
+        <DateChangeConfirmModal
+          currentDateKey={selectedDateKey ?? ""}
+          nextDateKey={pendingDateKey}
+          onConfirm={handleConfirmDateChange}
+          onCancel={() => setPendingDateKey(null)}
+        />
+      )}
     </div>
   );
 }
