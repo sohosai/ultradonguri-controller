@@ -45,8 +45,10 @@ export function SaveSongTimings(music: Music, perf: Performance): void {
       timingToSave.should_be_muted,
       timingToSave.starts_at,
       timingToSave.timing,
-    ].map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",");
-      
+    ]
+      .map((value) => `"${String(value ?? "").replace(/"/g, '""')}"`)
+      .join(",");
+
     const oldData = getSongTimings();
 
     const columnTitle = "楽曲名,ID,団体名,配信可能/不可能,開始予定時刻,開始時刻";
@@ -84,7 +86,9 @@ export function SaveConvTimings(conv: Conversion): void {
       timingToSave.should_be_muted,
       timingToSave.starts_at,
       timingToSave.timing,
-    ].map(value => `"${String(value ?? "").replace(/"/g,'""')}"`).join(",");
+    ]
+      .map((value) => `"${String(value ?? "").replace(/"/g, '""')}"`)
+      .join(",");
 
     const oldData = getSongTimings();
 
