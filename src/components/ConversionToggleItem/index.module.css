@@ -22,7 +22,7 @@
 .info {
   display: flex;
   flex-direction: row;
-  gap: 120px;
+  gap: 24px;
   align-items: center;
   width: 98%;
   font-size: 32px;
@@ -32,6 +32,7 @@
 .conversion {
   margin-left: 40px;
   font-size: 36px;
+  white-space: nowrap;
 }
 
 .CMandToggle {
@@ -48,4 +49,14 @@
 
 .disabled {
   color: var(--color-dark-gray);
+}
+
+@media (width < 600px) {
+  .conversion {
+    margin-left: 0;
+  }
+
+  .CMandToggle {
+    gap: 16px;
+  }
 }
