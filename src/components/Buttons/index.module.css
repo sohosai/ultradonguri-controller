@@ -5,3 +5,11 @@
   height: 150px;
   margin: 0 40px;
 }
+
+/* 狭い画面では余白を詰めて3つのボタンを1行に収める */
+@media (width < 800px) {
+  .buttons {
+    gap: 12px;
+    margin: 0;
+  }
+}
