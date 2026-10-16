@@ -6,9 +6,24 @@ body {
   background: var(--color-bg);
 }
 
+/* 倍率を数値として確定させ、子要素には計算済みの値を渡す */
+@property --ui-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+/* 画面幅に合わせて Controller 全体を縮小する。100vh を使う高さ計算は var(--ui-scale) で割り戻す */
+.controller {
+  /* 画面幅 ÷ 1232px（中身 1200px + 左右の余白 16px × 2）。大きい画面では 1 で頭打ち */
+  --ui-scale: min(1, 100vw / 1232px);
+
+  zoom: var(--ui-scale);
+}
+
 main {
   width: 1200px;
-  height: calc(100vh - 60px);
+  height: calc(100vh / var(--ui-scale, 1) - 60px);
   margin: 0 auto;
 }
 

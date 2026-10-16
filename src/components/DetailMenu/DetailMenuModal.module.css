@@ -31,7 +31,7 @@
   display: grid;
   flex: 1;
   grid-template-columns: 1fr 1fr 2fr;
-  height: calc(100vh - 350px);
+  height: calc(100vh / var(--ui-scale, 1) - 350px);
   padding: 20px;
   margin-top: 15px;
   overflow: hidden;

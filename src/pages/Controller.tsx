@@ -321,7 +321,7 @@ export default function Controller() {
   };
 
   return (
-    <div>
+    <div className={styles.controller}>
       <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
