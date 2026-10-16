@@ -15,14 +15,15 @@ body {
 
 /* 画面幅に合わせて Controller 全体を縮小する。100vh を使う高さ計算は var(--ui-scale) で割り戻す */
 .controller {
-  /* 画面幅 ÷ 1232px（中身 1200px + 左右の余白 16px × 2）。大きい画面では 1 で頭打ち */
-  --ui-scale: min(1, 100vw / 1232px);
+  /* 画面幅 ÷ 1232px（中身 1200px + 左右の余白 16px × 2）。1 で頭打ち、800px 未満では縮めず右列を縮める */
+  --ui-scale: clamp(800px / 1232px, 100vw / 1232px, 1);
 
   zoom: var(--ui-scale);
 }
 
 main {
-  width: 1200px;
+  /* 800px 以上では 1200px。800px 未満では縮小後の画面幅に合わせて縮む */
+  width: min(1200px, 100vw / var(--ui-scale, 1) - 32px);
   height: calc(100vh / var(--ui-scale, 1) - 60px);
   margin: 0 auto;
 }
@@ -35,16 +36,20 @@ main {
 
 .rowLeft {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   gap: 20px;
-  width: 340px;
+
+  /* 右列にボタン群の幅（約606px）＋列の間隔 10px を残し、200〜340px の範囲で縮む */
+  width: clamp(200px, 100% - 616px, 340px);
 }
 
 .rowRight {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
-  width: calc(100% - 350px);
+  min-width: 0;
 }
 
 .error {
