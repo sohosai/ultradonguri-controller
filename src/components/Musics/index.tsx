@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import MusicItem from "../MusicItem";
 
@@ -26,7 +26,7 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
   const isNext = (musicId: string) =>
     nextTrack?.type === "music" && nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     nextItemRef.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
   }, [nextTrack, performanceId]);
 
