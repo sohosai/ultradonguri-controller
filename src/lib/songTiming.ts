@@ -34,7 +34,7 @@ export function SaveSongTimings(music: Music, perf: Performance): void {
       title: music.title != null ? music.title : "",
       id: music.id != null ? music.id : "",
       performance_title: perf.title != null ? perf.title : "",
-      should_be_muted: music.should_be_muted == false ? "○" : "×",
+      should_be_muted: music.should_be_muted === false ? "○" : "×",
       starts_at: perf.starts_at,
       timing: new Date(),
     };
@@ -116,13 +116,13 @@ export function downloadCsv() {
   if (!csvData) {
     return "CSVデータがありません。";
   } else {
-    const blob = new Blob([csvData], { type: "text/csv;charest=utf-8;" });
+    const blob = new Blob(["\ufeff" + csvData], { type: "text/csv;charset=utf-8;" });
 
     const downloadUrl = URL.createObjectURL(blob);
 
     const downloadLink = document.createElement("a");
     downloadLink.href = downloadUrl;
-    downloadLink.download = "Csv.tsx";
+    downloadLink.download = "songTiming-List.csv";
 
     downloadLink.click();
 
