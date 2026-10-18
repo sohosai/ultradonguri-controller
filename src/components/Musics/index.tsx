@@ -1,3 +1,5 @@
+import { useLayoutEffect, useRef } from "react";
+
 import MusicItem from "../MusicItem";
 
 import styles from "./index.module.css";
@@ -14,6 +16,8 @@ type Props = {
 };
 
 export default function Musics({ items, performanceId, currentTrack, nextTrack, onSelectNextTrack }: Props) {
+  const nextItemRef = useRef<HTMLDivElement | null>(null);
+
   const isPlaying = (musicId: string) =>
     currentTrack?.type === "music" &&
     currentTrack?.performanceId === performanceId &&
@@ -22,6 +26,10 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
   const isNext = (musicId: string) =>
     nextTrack?.type === "music" && nextTrack?.performanceId === performanceId && nextTrack?.musicId === musicId;
 
+  useLayoutEffect(() => {
+    nextItemRef.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
+  }, [nextTrack, performanceId]);
+
   return (
     <div className={styles.musicWrapper}>
       <ul className={styles.musics}>
@@ -29,7 +37,18 @@ export default function Musics({ items, performanceId, currentTrack, nextTrack, 
           <li
             key={m.id}
             onClick={() => onSelectNextTrack && onSelectNextTrack({ type: "music", performanceId, musicId: m.id })}>
-            <MusicItem music={m} isPlaying={isPlaying(m.id)} isNext={isNext(m.id)} />
+            <MusicItem
+              music={m}
+              isPlaying={isPlaying(m.id)}
+              isNext={isNext(m.id)}
+              nextItemRef={
+                isNext(m.id)
+                  ? (node) => {
+                      nextItemRef.current = node;
+                    }
+                  : undefined
+              }
+            />
           </li>
         ))}
       </ul>

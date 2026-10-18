@@ -8,16 +8,17 @@ type Props = {
   music: Music;
   isPlaying?: boolean;
   isNext?: boolean;
+  nextItemRef?: (node: HTMLDivElement | null) => void;
 };
 
-export default function MusicItem({ music, isPlaying = false, isNext = false }: Props) {
+export default function MusicItem({ music, isPlaying = false, isNext = false, nextItemRef }: Props) {
   const className = clsx(styles.music, {
     [styles.playing]: isPlaying,
     [styles.next]: isNext,
   });
 
   return (
-    <div className={className}>
+    <div ref={isNext ? nextItemRef : undefined} className={className}>
       <div className={styles.should_be_muted}>
         配信
         <br />
