@@ -11,7 +11,7 @@ import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
-import { SaveConvTimings, SaveSongTimings } from "../lib/songTiming";
+import { saveConvTimings, saveSongTimings } from "../lib/songTiming";
 import { findNextTrackRef } from "../lib/tracks";
 import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
 import { formatToYmd } from "../utils/dateFormat";
@@ -216,7 +216,7 @@ export default function Controller() {
 
         // 転換パート用のCSV保存関数を呼び出す
         if (conversion) {
-          SaveConvTimings(conversion);
+          saveConvTimings(conversion);
         }
 
         // API成功後に状態を更新
@@ -251,7 +251,7 @@ export default function Controller() {
 
         // 楽曲用のCSV保存関数を呼び出す
         if (music && newPlayingPerf) {
-          SaveSongTimings(music, newPlayingPerf);
+          saveSongTimings(music, newPlayingPerf);
         }
 
         // API成功後に状態を更新

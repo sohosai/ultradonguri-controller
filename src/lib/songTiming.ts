@@ -28,7 +28,7 @@ function getSongTimings(): string | null {
 
 // データを受け取って保存する関数
 // 楽曲の場合
-export function SaveSongTimings(music: Music, perf: Performance): void {
+export function saveSongTimings(music: Music, perf: Performance): void {
   try {
     const timingToSave: SongTiming = {
       title: music.title != null ? music.title : "",
@@ -63,13 +63,13 @@ export function SaveSongTimings(music: Music, perf: Performance): void {
       localStorage.setItem(STORAGE_KEY, newData);
     }
   } catch (error) {
-    console.error("[songTimingStorage] Failed to parse song Timing:", error);
+    console.error("[songTimingStorage] Failed to save song timing information:", error);
     throw error;
   }
 }
 
 //転換パートの場合
-export function SaveConvTimings(conv: Conversion): void {
+export function saveConvTimings(conv: Conversion): void {
   try {
     const timingToSave: SongTiming = {
       title: "（転換パート）",
@@ -104,7 +104,7 @@ export function SaveConvTimings(conv: Conversion): void {
       localStorage.setItem(STORAGE_KEY, newData);
     }
   } catch (error) {
-    console.error("[songTimingStorage] Failed to parse song Timing:", error);
+    console.error("[songTimingStorage] Failed to save song timing information:", error);
     throw error;
   }
 }
@@ -114,7 +114,7 @@ export function downloadCsv() {
   const csvData = localStorage.getItem(STORAGE_KEY);
 
   if (!csvData) {
-    return "CSVデータがありません。";
+    return alert("CSVデータがありません。");
   } else {
     const blob = new Blob(["\ufeff" + csvData], { type: "text/csv;charset=utf-8;" });
 

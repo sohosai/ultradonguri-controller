@@ -3,18 +3,12 @@ import { useEffect } from "react";
 
 import { downloadCsv } from "../lib/songTiming";
 
-const STORAGE_KEY = "song-timing";
-
 export default function Csv() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      alert("CSVのデータが存在しません。");
-    } else {
-      downloadCsv();
-      navigate({ to: "/" });
-    }
+    downloadCsv();
+    navigate({ to: "/" });
   }, [navigate]);
 
   return (
