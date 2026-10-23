@@ -12,6 +12,7 @@ type UsePlaybackResult = {
   skipToNext: (performances: Performance[] | null) => void;
   reset: () => void;
   initializeFromFirst: (performances: Performance[] | null) => void;
+  restore: (current: TrackRef, next: TrackRef | null) => void;
 };
 
 export default function usePlayback(): UsePlaybackResult {
@@ -59,5 +60,10 @@ export default function usePlayback(): UsePlaybackResult {
     [reset]
   );
 
-  return { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst };
+  const restore = useCallback((current: TrackRef, next: TrackRef | null) => {
+    setCurrentTrack(current);
+    setNextTrack(next);
+  }, []);
+
+  return { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst, restore };
 }

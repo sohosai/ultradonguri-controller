@@ -20,7 +20,8 @@ import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
-import { findNextTrackRef } from "../lib/tracks";
+import { loadPlaybackState, savePlaybackState } from "../lib/playbackStateStorage";
+import { containsTrack, findNextTrackRef } from "../lib/tracks";
 import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
 import { formatToYmd } from "../utils/dateFormat";
 
@@ -34,12 +35,15 @@ export default function Controller() {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savedState] = useState(loadPlaybackState);
+  const restorePendingRef = useRef(savedState !== null);
+  const [isPlaybackReady, setIsPlaybackReady] = useState(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
-  const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
+  const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(savedState?.isCopyrightVisible ?? true);
   const [isBurariPlaying, setIsBurariPlaying] = useState(false);
   const [burariPlayingFilename, setBurariPlayingFilename] = useState<string | null>(null);
-  const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
+  const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst, restore } = usePlayback();
   const initializedDateKeyRef = useRef<string | null>(null);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
   const [pendingDateKey, setPendingDateKey] = useState<string | null>(null);
@@ -79,15 +83,18 @@ export default function Controller() {
     };
 
     const initializeCopyright = async () => {
+      const isVisible = savedState?.isCopyrightVisible ?? true;
       try {
-        await postDisplayCopyright({ is_displayed_copyright: true });
-        setIsCopyrightVisible(true);
+        await postDisplayCopyright({ is_displayed_copyright: isVisible });
+        setIsCopyrightVisible(isVisible);
       } catch (error) {
         console.error("[Controller] Failed to initialize copyright:", error);
       }
     };
 
     const initializeCmMode = async () => {
+      // 転換中に CM のまま閉じた場合は、転換情報を送った後に復元側で CM を送る（先に送ると Viewer の CM 画面が次の団体なしで描かれてしまう）
+      if (savedState?.currentTrack?.type === "conversion" && savedState.isCmMode) return;
       try {
         await postConversionCmMode({ is_cm_mode: false });
         setIsCmMode(false);
@@ -99,7 +106,7 @@ export default function Controller() {
     void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
-  }, []);
+  }, [savedState]);
 
   useEffect(() => {
     const switchScene = async () => {
@@ -154,11 +161,12 @@ export default function Controller() {
 
       return;
     }
-    // リロード時は最初の日付
+    // リロード時は前回の日付（データに無ければ最初の日付）
     if (!selectedDateKey) {
-      setSelectedDateKey(dateKeys[0] || null);
+      const savedDateKey = savedState?.dateKey;
+      setSelectedDateKey(savedDateKey && dateKeys.includes(savedDateKey) ? savedDateKey : dateKeys[0] || null);
     }
-  }, [performances, dateKeys, reset, selectedDateKey]);
+  }, [performances, dateKeys, reset, selectedDateKey, savedState]);
 
   // 日付選択の変更やスコープ変更時の初期化
   useEffect(() => {
@@ -168,11 +176,68 @@ export default function Controller() {
       setSelectedConversion(null);
       reset();
       initializedDateKeyRef.current = selectedDateKey;
+      setIsPlaybackReady(true);
 
       return;
     }
 
     const needInit = initializedDateKeyRef.current !== selectedDateKey;
+
+    // 開いた直後だけ、前回の再生位置から再開する（日付タブで日付を変えたときは最初の曲から）
+    if (needInit && restorePendingRef.current) {
+      restorePendingRef.current = false;
+      const saved = savedState?.dateKey === selectedDateKey ? savedState.currentTrack : null;
+
+      if (saved && containsTrack(scopedPerformances, saved)) {
+        const savedNext = savedState?.nextTrack;
+        const next =
+          savedNext && containsTrack(scopedPerformances, savedNext)
+            ? savedNext
+            : findNextTrackRef(scopedPerformances, saved);
+        restore(saved, next);
+        initializedDateKeyRef.current = selectedDateKey;
+        setIsPlaybackReady(true);
+
+        // 再生中のトラックを配信側に送り直し、テロップとシーンを元に戻す
+        const resend = async () => {
+          try {
+            if (saved.type === "music") {
+              const performance = scopedPerformances.find((p) => p.id === saved.performanceId);
+              const music = performance?.musics.find((m) => m.id === saved.musicId);
+              if (!performance || !music) return;
+
+              setSelectedPerformance(performance);
+              setSelectedConversion(null);
+              await sendPerformanceStart(performance);
+              await sendMusic(music);
+              // ミュートは曲の配信可否に従う
+              const state = await postMute({ is_muted: music.should_be_muted });
+              setIsMuted(state.is_muted);
+            } else {
+              setSelectedConversion(getConversionById(saved.conversionId));
+              setSelectedPerformance(null);
+              // 転換の後に続く団体（最大5つ）を送る
+              const nextAfterConversion = findNextTrackRef(scopedPerformances, saved);
+              if (nextAfterConversion?.type === "music") {
+                const index = scopedPerformances.findIndex((p) => p.id === nextAfterConversion.performanceId);
+                if (index >= 0) await sendConversionStart(scopedPerformances.slice(index, index + 5));
+              }
+              if (savedState?.isCmMode) {
+                await postConversionCmMode({ is_cm_mode: true });
+                setIsCmMode(true);
+              }
+            }
+          } catch (error) {
+            console.error("[Controller] Failed to resend restored data:", error);
+            setError("前回の状態の復元に失敗しました");
+          }
+        };
+        void resend();
+
+        return;
+      }
+    }
+
     if (needInit) {
       const firstPerformance = scopedPerformances[0];
       const firstMusic = firstPerformance.musics[0];
@@ -197,6 +262,7 @@ export default function Controller() {
       };
       void init();
       initializedDateKeyRef.current = selectedDateKey;
+      setIsPlaybackReady(true);
 
       return;
     }
@@ -206,7 +272,13 @@ export default function Controller() {
       const updated = scopedPerformances.find((p) => p.id === selectedPerformance.id);
       if (updated) setSelectedPerformance(updated);
     }
-  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance]);
+  }, [scopedPerformances, initializeFromFirst, reset, restore, savedState, selectedDateKey, selectedPerformance]);
+
+  // 開き直したときに続きから再開できるよう、再生状態を保存する
+  useEffect(() => {
+    if (!isPlaybackReady || !selectedDateKey) return;
+    savePlaybackState({ dateKey: selectedDateKey, currentTrack, nextTrack, isCopyrightVisible, isCmMode });
+  }, [isPlaybackReady, selectedDateKey, currentTrack, nextTrack, isCopyrightVisible, isCmMode]);
 
   if (isLoading) return <div>読み込み中...</div>;
   if (fetchError) return <div>エラー: {fetchError.message}</div>;

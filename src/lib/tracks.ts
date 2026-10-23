@@ -37,3 +37,15 @@ export const findNextTrackRef = (list: Performance[], current: TrackRef | null):
 
   return flattened[idx + 1] ?? null;
 };
+
+export const containsTrack = (list: Performance[], ref: TrackRef): boolean =>
+  flattenTracks(list).some((r) => {
+    if (r.type === "music" && ref.type === "music") {
+      return r.performanceId === ref.performanceId && r.musicId === ref.musicId;
+    }
+    if (r.type === "conversion" && ref.type === "conversion") {
+      return r.conversionId === ref.conversionId;
+    }
+
+    return false;
+  });
