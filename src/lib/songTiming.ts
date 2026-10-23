@@ -114,7 +114,9 @@ export function downloadCsv() {
   const csvData = localStorage.getItem(STORAGE_KEY);
 
   if (!csvData) {
-    return alert("CSVデータがありません。");
+    alert("CSVデータがありません。");
+
+    return;
   } else {
     const blob = new Blob(["\ufeff" + csvData], { type: "text/csv;charset=utf-8;" });
 
