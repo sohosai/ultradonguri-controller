@@ -322,12 +322,14 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                 disabled={!selectedPerformance}>
                 楽曲追加
               </button>
-              <button className={styles.cancel} onClick={handleCancel}>
-                キャンセル
-              </button>
-              <button className={styles.save} onClick={handleSave}>
-                保存
-              </button>
+              <div className={styles.footerRight}>
+                <button className={styles.cancel} onClick={handleCancel}>
+                  キャンセル
+                </button>
+                <button className={styles.save} onClick={handleSave}>
+                  保存
+                </button>
+              </div>
             </div>
           </div>
         </div>

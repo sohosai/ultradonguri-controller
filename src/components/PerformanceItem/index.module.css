@@ -19,16 +19,23 @@
 
 .itemHeader {
   display: flex;
+  gap: 8px;
   justify-content: space-between;
   font-size: 14px;
 }
 
 .time {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 22px;
+  white-space: nowrap;
 }
 
 .isPlaying {
+  flex-shrink: 0;
   line-height: 22px;
+  white-space: nowrap;
 }
 
 .title {

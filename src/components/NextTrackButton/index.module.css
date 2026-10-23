@@ -1,8 +1,9 @@
 .nextTrackButton {
   display: flex;
+  flex: 0 1 180px;
   align-items: center;
   justify-content: space-around;
-  width: 180px;
+  min-width: 100px;
   height: 90px;
   font-size: 24px;
   font-weight: bold;
