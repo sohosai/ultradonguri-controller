@@ -108,7 +108,7 @@ npm run eslint && npm run stylelint && npm run format
 ## 備考
 
 - 開発時は `src/App.tsx` と `src/components/**` を中心に編集します。
-- 団体・楽曲のマスターデータは `public/performances.json` です。初回起動時に localStorage（キー `performances`）へコピーされ、以降はそちらが正データになります。マスターを更新したときは devtools で `localStorage.removeItem("performances")` を実行してください。
+- 団体・楽曲のマスターデータは `public/performances.json` です。マスターの内容が変わると自動的に新しいデータが採用され、変更がない場合は localStorage（キー `performances` / `performances-version`）の編集内容が維持されます。
 
 ## API モック
 
