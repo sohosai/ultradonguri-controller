@@ -31,7 +31,7 @@
   display: grid;
   flex: 1;
   grid-template-columns: 1fr 1fr 2fr;
-  height: calc(100vh - 350px);
+  height: calc(100vh / var(--ui-scale, 1) - 350px);
   padding: 20px;
   margin-top: 15px;
   overflow: hidden;
@@ -232,11 +232,24 @@
 }
 
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
+  align-items: center;
+  padding: 0 20px;
   margin-top: 30px;
   margin-bottom: 60px;
+}
+
+.buttons .addmusic:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.footerRight {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  padding-right: 15px;
 }
 
 .buttons .addgroup,
@@ -252,8 +265,13 @@
   border-radius: 40px;
 }
 
-.buttons .addgroup {
-  margin-left: 30px;
+.buttons .addgroup,
+.buttons .addmusic {
+  min-width: 0;
+  padding-right: 0;
+  padding-left: 0;
+  margin: 0 15px;
+  text-align: center;
 }
 
 .buttons .addgroup:hover,
@@ -269,14 +287,21 @@
   color: var(--color-surface);
 }
 
-.buttons .cancel {
-  margin-left: auto;
-}
-
 .buttons .save {
-  margin-right: 45px;
   color: var(--color-white);
   background: var(--color-surface);
+}
+
+@media (width < 700px) {
+  .footerRight {
+    gap: 10px;
+  }
+
+  .buttons .cancel,
+  .buttons .save {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
 }
 
 .detailsHeader {

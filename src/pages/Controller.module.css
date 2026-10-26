@@ -6,9 +6,21 @@ body {
   background: var(--color-bg);
 }
 
+@property --ui-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+.controller {
+  --ui-scale: clamp(800px / 1232px, 100vw / 1232px, 1);
+
+  zoom: var(--ui-scale);
+}
+
 main {
-  width: 1200px;
-  height: calc(100vh - 60px);
+  width: min(1200px, 100vw / var(--ui-scale, 1) - 32px);
+  height: calc(100vh / var(--ui-scale, 1) - 60px);
   margin: 0 auto;
 }
 
@@ -20,16 +32,18 @@ main {
 
 .rowLeft {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   gap: 20px;
-  width: 340px;
+  width: clamp(200px, 100% - 616px, 340px);
 }
 
 .rowRight {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
-  width: calc(100% - 350px);
+  min-width: 0;
 }
 
 .error {

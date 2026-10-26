@@ -21,6 +21,7 @@ import { getConversionById } from "../data/conversions";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 import { loadPlaybackState, savePlaybackState } from "../lib/playbackStateStorage";
+import { saveConvTimings, saveSongTimings } from "../lib/songTiming";
 import { containsTrack, findNextTrackRef } from "../lib/tracks";
 import { sendConversionStart, sendMusic, sendPerformanceStart } from "../services/performanceService";
 import { formatToYmd } from "../utils/dateFormat";
@@ -347,6 +348,11 @@ export default function Controller() {
           }
         }
 
+        // 転換パート用のCSV保存関数を呼び出す
+        if (conversion) {
+          saveConvTimings(conversion);
+        }
+
         // API成功後に状態を更新
         skipToNext(list);
         setSelectedConversion(conversion);
@@ -377,6 +383,11 @@ export default function Controller() {
           }
         }
 
+        // 楽曲用のCSV保存関数を呼び出す
+        if (music && newPlayingPerf) {
+          saveSongTimings(music, newPlayingPerf);
+        }
+
         // API成功後に状態を更新
         skipToNext(list);
         if (newPlayingPerf) {
@@ -393,7 +404,7 @@ export default function Controller() {
   };
 
   return (
-    <div>
+    <div className={styles.controller}>
       <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
