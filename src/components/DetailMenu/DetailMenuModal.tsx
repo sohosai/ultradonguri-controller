@@ -73,9 +73,15 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     setPendingMusicEdits((prev) => {
       const newMap = new Map(prev);
       const current = selectedMusic ? getCurrentMusicEdits(selectedMusic) : null;
-      if (!current) return prev;
+      if (!selectedMusic || !current) return prev;
 
-      newMap.set(musicId, { ...current, ...updates });
+      const next = { ...current, ...updates };
+      const isOriginal =
+        next.title === selectedMusic.title &&
+        next.artist === selectedMusic.artist &&
+        next.should_be_muted === selectedMusic.should_be_muted;
+      if (isOriginal) newMap.delete(musicId);
+      else newMap.set(musicId, next);
 
       return newMap;
     });
@@ -130,8 +136,14 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     setSelectedMusicId(null);
   };
 
-  const updatePendingPerformanceTitle = (performanceId: string, title: string) => {
-    setPendingPerformanceTitles((prev) => new Map(prev).set(performanceId, title));
+  const updatePendingPerformanceTitle = (performance: Performance, title: string) => {
+    setPendingPerformanceTitles((prev) => {
+      const newMap = new Map(prev);
+      if (title === performance.title) newMap.delete(performance.id);
+      else newMap.set(performance.id, title);
+
+      return newMap;
+    });
   };
 
   // 選択中の団体の楽曲リストを差し替える
@@ -268,7 +280,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                         type="text"
                         className={styles.input}
                         value={pendingPerformanceTitles.get(selectedPerformance.id) ?? selectedPerformance.title}
-                        onChange={(e) => updatePendingPerformanceTitle(selectedPerformance.id, e.target.value)}
+                        onChange={(e) => updatePendingPerformanceTitle(selectedPerformance, e.target.value)}
                       />
                     </div>
                     {selectedMusic && (
