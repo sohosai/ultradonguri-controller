@@ -11,21 +11,26 @@ export interface MuteState {
 
 const TIMEOUT_MS = 3000;
 const MAX_RETRIES = 1;
+const DEFAULT_OSECHI_BASE_URL = "http://localhost:7878";
 
 /**
  * 接続先のベースURLを解決する
- * mockモードでは相対パス（MSWが処理）、それ以外では VITE_OSECHI_BASE_URL が必須
- * 本番で相対パスにフォールバックしても意味がないため、未設定なら起動時にエラーにする
+ * mockモードでは相対パス（MSWが処理）、それ以外では VITE_OSECHI_BASE_URL を使う
+ * 未設定の場合は既定のURLにフォールバックする
  */
 function resolveBaseURL(): string {
   const apiMode = import.meta.env.VITE_API_MODE || "mock";
   const baseURL = import.meta.env.VITE_OSECHI_BASE_URL || "";
 
-  if (apiMode !== "mock" && !baseURL) {
-    throw new Error('VITE_OSECHI_BASE_URL is required when VITE_API_MODE is not "mock"');
+  if (apiMode === "mock") {
+    return baseURL;
   }
 
-  return baseURL;
+  if (!baseURL) {
+    console.warn(`[osechi] VITE_OSECHI_BASE_URL is not set. Using ${DEFAULT_OSECHI_BASE_URL}.`);
+  }
+
+  return baseURL || DEFAULT_OSECHI_BASE_URL;
 }
 
 const BASE_URL = resolveBaseURL();
