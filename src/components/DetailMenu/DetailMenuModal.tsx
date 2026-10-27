@@ -39,6 +39,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
   const [selectedPerformanceId, setSelectedPerformanceId] = useState<string | null>(null);
   const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null);
   const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
+  const [pendingTitles, setPendingTitles] = useState<Map<string, string>>(new Map());
   const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState(false);
   const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
 
@@ -51,7 +52,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
 
   const selectedPerformance = draft.find((p) => p.id === selectedPerformanceId) ?? null;
   const selectedMusic = selectedPerformance?.musics.find((m) => m.id === selectedMusicId) ?? null;
-  const hasChanges = pendingEdits.size > 0 || draft !== performances;
+  const hasChanges = pendingEdits.size > 0 || pendingTitles.size > 0 || draft !== performances;
 
   // 現在選択中の楽曲の編集内容を取得（未保存の編集 or 元の値）
   const getCurrentEdits = (music: Music): MusicEdits => {
@@ -129,14 +130,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     setSelectedMusicId(null);
   };
 
-  const updatePerformanceTitle = (title: string) => {
-    setDraft(draft.map((p) => (p.id === selectedPerformanceId ? { ...p, title } : p)));
-  };
-
-  const isPerformanceTitleEdited = (performance: Performance) => {
-    const original = performances?.find((p) => p.id === performance.id);
-
-    return original !== undefined && original.title !== performance.title;
+  const updatePerformanceTitle = (performanceId: string, title: string) => {
+    setPendingTitles((prev) => new Map(prev).set(performanceId, title));
   };
 
   // 選択中の団体の楽曲リストを差し替える
@@ -174,6 +169,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
       }
     }
     setPendingEdits(new Map());
+    setPendingTitles(new Map());
     setDraft(performances ?? []);
     onClose();
   };
@@ -183,6 +179,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
       onSave(
         draft.map((p) => ({
           ...p,
+          title: pendingTitles.get(p.id) ?? p.title,
           musics: p.musics.map((m) => {
             const edits = pendingEdits.get(m.id);
 
@@ -193,6 +190,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     }
 
     setPendingEdits(new Map());
+    setPendingTitles(new Map());
     onClose();
   };
 
@@ -213,10 +211,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       className={selectedPerformanceId === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
-                        <div className={styles.performancetitle}>
-                          {p.title}
-                          {isPerformanceTitleEdited(p) && <span className={styles.editedMark}>*</span>}
-                        </div>
+                        <div className={styles.performancetitle}>{p.title}</div>
+                        {pendingTitles.has(p.id) && <span className={styles.editedMark}>*</span>}
                         <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
                           <div className={styles.up} onClick={() => movePerformance(p.id, -1)}>
                             <img src={UpSvg} alt="上へ" className={styles.side} />
@@ -241,10 +237,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       className={selectedMusicId === m.id ? styles.selected : ""}
                       onClick={() => handleMusicSelect(m.id)}>
                       <div className={styles.actions}>
-                        <div className={styles.musictitle}>
-                          {m.title}
-                          {pendingEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
-                        </div>
+                        <div className={styles.musictitle}>{m.title}</div>
+                        {pendingEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
                         <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
                           <div className={styles.up} onClick={() => moveMusic(m.id, -1)}>
                             <img src={UpSvg} alt="上へ" className={styles.side} />
@@ -273,8 +267,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       <input
                         type="text"
                         className={styles.input}
-                        value={selectedPerformance.title}
-                        onChange={(e) => updatePerformanceTitle(e.target.value)}
+                        value={pendingTitles.get(selectedPerformance.id) ?? selectedPerformance.title}
+                        onChange={(e) => updatePerformanceTitle(selectedPerformance.id, e.target.value)}
                       />
                     </div>
                     {selectedMusic && (
