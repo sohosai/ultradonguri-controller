@@ -2,7 +2,7 @@ FROM node:22-alpine AS builder
 
 ENV VITE_API_MODE=real
 ENV VITE_API_BASE_URL=http://localhost:8080
-ENV VITE_WS_URL=ws://localhost:8080/ws
+ENV VITE_OSECHI_BASE_URL=http://localhost:7878
 
 WORKDIR /app
 
@@ -16,10 +16,17 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-RUN npm install -g serve
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/index.html ./
+COPY --from=builder /app/src ./src
+COPY --from=builder /app/vite.config.ts ./
+COPY --from=builder /app/tsconfig*.json ./
+COPY --from=builder /app/server ./server
 
-COPY --from=builder /app/dist /app/dist
+RUN mkdir -p /app/videos
 
 EXPOSE 5173
 
-CMD ["serve", "-s", "dist", "-l", "5173"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]
