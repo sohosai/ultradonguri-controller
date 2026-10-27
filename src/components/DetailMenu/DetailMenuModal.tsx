@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 import DownSvg from "../../assets/icons/down.svg";
 import TrashSvg from "../../assets/icons/trash.svg";
@@ -129,6 +129,16 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     setSelectedMusicId(null);
   };
 
+  const updatePerformanceTitle = (title: string) => {
+    setDraft(draft.map((p) => (p.id === selectedPerformanceId ? { ...p, title } : p)));
+  };
+
+  const isPerformanceTitleEdited = (performance: Performance) => {
+    const original = performances?.find((p) => p.id === performance.id);
+
+    return original !== undefined && original.title !== performance.title;
+  };
+
   // 選択中の団体の楽曲リストを差し替える
   const updateSelectedMusics = (updater: (musics: Music[]) => Music[]) => {
     setDraft(draft.map((p) => (p.id === selectedPerformanceId ? { ...p, musics: updater(p.musics) } : p)));
@@ -203,7 +213,10 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       className={selectedPerformanceId === p.id ? styles.selected : ""}
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
-                        <div className={styles.performancetitle}>{p.title}</div>
+                        <div className={styles.performancetitle}>
+                          {p.title}
+                          {isPerformanceTitleEdited(p) && <span className={styles.editedMark}>*</span>}
+                        </div>
                         <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
                           <div className={styles.up} onClick={() => movePerformance(p.id, -1)}>
                             <img src={UpSvg} alt="上へ" className={styles.side} />
@@ -249,8 +262,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                 </ul>
               </div>
               <div className={styles.details}>
-                {selectedMusic && (
-                  <div key={selectedMusic.id}>
+                {selectedPerformance && (
+                  <div>
                     <div className={styles.detailsHeader}>
                       <h3 className={styles.detailsTitle}>詳細編集</h3>
                     </div>
@@ -260,54 +273,59 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       <input
                         type="text"
                         className={styles.input}
-                        value={currentEdits?.title || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
+                        value={selectedPerformance.title}
+                        onChange={(e) => updatePerformanceTitle(e.target.value)}
                       />
                     </div>
-                    <h4 className={styles.editMusic}>楽曲</h4>
-                    <div className={styles.detailItem}>
-                      <label>タイトル</label>
-                      <input
-                        type="text"
-                        className={styles.input}
-                        value={currentEdits?.title || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
-                      />
-                    </div>
-                    <div className={styles.detailItem}>
-                      <label>アーティスト</label>
-                      <input
-                        type="text"
-                        className={styles.input}
-                        value={currentEdits?.artist || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
-                      />
-                    </div>
-                    <div className={styles.detailItem}>
-                      <label>ミュート設定</label>
-                      <div className={styles.radioGroup}>
-                        <label className={styles.radioLabel}>
+                    {/* 楽曲の欄は楽曲を選んでいるときだけ。団体と同じ箱に並べて、欄の間の余白を以前と同じにする */}
+                    {selectedMusic && (
+                      <Fragment key={selectedMusic.id}>
+                        <h4 className={styles.editMusic}>楽曲</h4>
+                        <div className={styles.detailItem}>
+                          <label>タイトル</label>
                           <input
-                            type="radio"
-                            name="mute"
-                            value="false"
-                            checked={!currentEdits?.should_be_muted}
-                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
+                            type="text"
+                            className={styles.input}
+                            value={currentEdits?.title || ""}
+                            onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
                           />
-                          配信OK
-                        </label>
-                        <label className={styles.radioLabel}>
+                        </div>
+                        <div className={styles.detailItem}>
+                          <label>アーティスト</label>
                           <input
-                            type="radio"
-                            name="mute"
-                            value="true"
-                            checked={currentEdits?.should_be_muted}
-                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
+                            type="text"
+                            className={styles.input}
+                            value={currentEdits?.artist || ""}
+                            onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
                           />
-                          配信不可
-                        </label>
-                      </div>
-                    </div>
+                        </div>
+                        <div className={styles.detailItem}>
+                          <label>ミュート設定</label>
+                          <div className={styles.radioGroup}>
+                            <label className={styles.radioLabel}>
+                              <input
+                                type="radio"
+                                name="mute"
+                                value="false"
+                                checked={!currentEdits?.should_be_muted}
+                                onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
+                              />
+                              配信OK
+                            </label>
+                            <label className={styles.radioLabel}>
+                              <input
+                                type="radio"
+                                name="mute"
+                                value="true"
+                                checked={currentEdits?.should_be_muted}
+                                onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
+                              />
+                              配信不可
+                            </label>
+                          </div>
+                        </div>
+                      </Fragment>
+                    )}
                   </div>
                 )}
               </div>
