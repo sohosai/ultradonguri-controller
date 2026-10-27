@@ -105,10 +105,10 @@ export default function Controller() {
   useEffect(() => {
     const switchScene = async () => {
       try {
-        if (isCmMode) {
-          await postCmScene();
-        } else if (isBurariPlaying) {
+        if (isBurariPlaying) {
           await postBurariScene();
+        } else if (isCmMode) {
+          await postCmScene();
         } else {
           await postNormalScene();
         }
