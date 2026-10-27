@@ -32,12 +32,17 @@ jobs:
         id: tag
         run: |
           if [[ "${GITHUB_REF_NAME}" == "main" ]]; then
-            echo "tag=production" >> $GITHUB_OUTPUT
+            tag="production"
           elif [[ "${GITHUB_REF_NAME}" == "develop" ]]; then
-            echo "tag=develop" >> $GITHUB_OUTPUT
+            tag="develop"
           else
-            echo "tag=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+            tag="${GITHUB_REF_NAME//\//-}"
+            tag="${tag//[^A-Za-z0-9_.-]/-}"
+            tag="${tag#[-.]}"
+            tag="${tag:0:128}"
+            tag="${tag:-branch}"
           fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
