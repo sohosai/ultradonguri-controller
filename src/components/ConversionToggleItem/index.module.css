@@ -51,6 +51,10 @@
   color: var(--color-dark-gray);
 }
 
+.cmDisabled {
+  cursor: not-allowed;
+}
+
 @media (width < 600px) {
   .conversion {
     margin-left: 0;

@@ -32,7 +32,7 @@ export default function ConversionMenu({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCmModeToggle = async (checked: boolean) => {
-    if (isSubmitting) return;
+    if (isSubmitting || isBurariPlaying) return;
 
     setIsSubmitting(true);
     try {
@@ -57,6 +57,7 @@ export default function ConversionMenu({
           <ConversionToggleItem
             isPlaying={isPlaying(conversionId)}
             isNext={isNext(conversionId)}
+            isBurariPlaying={isBurariPlaying}
             isCmMode={isCmMode}
             onChange={handleCmModeToggle}
           />

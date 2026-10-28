@@ -14,7 +14,7 @@ export default function Toggle({ checked, onChange, disabled = false }: Props) {
       <div className={styles.toggleButton}>
         <label className={styles.switch}>
           <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} disabled={disabled} />
-          <span className={`${styles.slider} ${disabled ? styles.sliderDisabled : ""}`} aria-hidden="true" />
+          <span className={styles.slider} aria-hidden="true" />
         </label>
       </div>
 

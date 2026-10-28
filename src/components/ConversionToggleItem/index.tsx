@@ -9,23 +9,33 @@ type Props = {
 
   isPlaying?: boolean;
   isNext?: boolean;
+  isBurariPlaying?: boolean;
   onChange: (isCmMode: boolean) => void;
 };
 
-export default function ConversionToggleItem({ isPlaying = false, isNext = false, isCmMode, onChange }: Props) {
+export default function ConversionToggleItem({
+  isPlaying = false,
+  isNext = false,
+  isBurariPlaying = false,
+  isCmMode,
+  onChange,
+}: Props) {
   const className = clsx(styles.conversionToggleItem, {
     [styles.playing]: isPlaying,
     [styles.next]: isNext,
   });
+  const isCmToggleDisabled = !isPlaying || isBurariPlaying;
 
   return (
     <div className={className}>
       <div className={styles.info}>
         <p className={styles.conversion}>転換</p>
-        <div className={styles.CMandToggle}>
-          <p className={isPlaying ? styles.enabled : styles.disabled}>CM</p>
+        <div
+          className={clsx(styles.CMandToggle, isCmToggleDisabled && styles.cmDisabled)}
+          title={isBurariPlaying ? "ぶらり旅再生中はCMに切り替えられません" : undefined}>
+          <p className={isCmToggleDisabled ? styles.disabled : styles.enabled}>CM</p>
           <div className={styles.toggle} onClick={(event) => event.stopPropagation()}>
-            <Toggle checked={isCmMode} onChange={onChange} disabled={!isPlaying} />
+            <Toggle checked={isCmMode} onChange={onChange} disabled={isCmToggleDisabled} />
           </div>
         </div>
       </div>
