@@ -2,8 +2,6 @@ import { streamClient } from "../ws/streamClient";
 
 import { apiFetch } from "./client";
 
-import type { Performance } from "../../types/performances";
-
 /**
  * Type definitions for API requests/responses
  */
@@ -33,14 +31,6 @@ export interface ConversionCmModeRequest {
 
 export interface DisplayCopyright {
   is_displayed_copyright: boolean;
-}
-
-/**
- * GET /performances
- * 楽曲データの取得のみ従来どおり HTTP（バックエンド / mock）で行う
- */
-export async function getPerformances(): Promise<Performance[]> {
-  return apiFetch<Performance[]>("/performances");
 }
 
 /**

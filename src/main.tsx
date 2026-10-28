@@ -7,26 +7,8 @@ import "./styles/colors.css";
 import "./styles/typography.css";
 import "./styles/reset.css";
 
-// Initialize mock services if in mock mode
-async function initializeMocks() {
-  const apiMode = import.meta.env.VITE_API_MODE || "mock";
-
-  if (apiMode === "mock") {
-    const { startMSW } = await import("./api/mock/msw");
-
-    await startMSW();
-
-    console.log("[Mock] Mock services started");
-  } else {
-    console.log("[Mock] Running in real mode");
-  }
-}
-
-// Start the application
-initializeMocks().then(() => {
-  createRoot(document.getElementById("root")!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-});
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

@@ -32,7 +32,7 @@ Viewer は OBS ブラウザソース（Controller を開くブラウザとは別
 - `configureServer`（dev）と `configurePreviewServer`（preview）の両方に同じミドルウェアを組み込み、`npm run dev` と `npm run preview` の双方で動作する
 - Controller ↔ Viewer のリアルタイム通信は、Vite サーバー上の **WebSocket リレー `/burari/ws`** で行う
 - リレーは受信した JSON イベントを、送信元を含む全接続クライアントへブロードキャストする
-- 既存の送出系イベント（`/performance/start`、`/performance/music`、`/conversion/start`、`/conversion/cm-mode`、`/display-copyright`、`/force_mute`）も、本リレー経由で送信する
+- 既存の送出系イベント（`/performance/start`、`/performance/music`、`/conversion/start`、`/conversion/cm-mode`、`/display-copyright`）も、本リレー経由で送信する
 - OBS が Vite サーバーへ HTTP / WebSocket で到達できれば、同一マシンでも別マシンでも動作する
 
 ### 2.2 動画の保存方式
@@ -120,7 +120,7 @@ Viewer は OBS ブラウザソース（Controller を開くブラウザとは別
 
 既存イベント:
 
-- `/performance/start`、`/performance/music`、`/conversion/start`、`/conversion/cm-mode`、`/display-copyright`、`/force_mute`
+- `/performance/start`、`/performance/music`、`/conversion/start`、`/conversion/cm-mode`、`/display-copyright`
 
 新規イベント:
 
