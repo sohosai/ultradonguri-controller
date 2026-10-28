@@ -7,7 +7,6 @@ import {
   postCmScene,
   postNormalScene,
 } from "../api/http/endpoints";
-import { postMute } from "../api/http/osechi";
 import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
@@ -18,6 +17,7 @@ import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
+import useObsMute from "../hooks/useObsMute";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 import { saveConvTimings, saveSongTimings } from "../lib/songTiming";
@@ -35,7 +35,7 @@ export default function Controller() {
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const { isMuted, connectionStatus: obsConnectionStatus, setMuted } = useObsMute();
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const [isBurariPlaying, setIsBurariPlaying] = useState(false);
@@ -70,15 +70,6 @@ export default function Controller() {
   }, [byDate, selectedDateKey]);
 
   useEffect(() => {
-    const initializeMute = async () => {
-      try {
-        const state = await postMute({ is_muted: false });
-        setIsMuted(state.is_muted);
-      } catch (error) {
-        console.error("[Controller] Failed to initialize mute:", error);
-      }
-    };
-
     const initializeCopyright = async () => {
       try {
         await postDisplayCopyright({ is_displayed_copyright: true });
@@ -97,7 +88,6 @@ export default function Controller() {
       }
     };
 
-    void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
   }, []);
@@ -188,8 +178,7 @@ export default function Controller() {
           if (firstMusic) {
             await sendMusic(firstMusic);
             // 1曲目が配信NGなら自動ミュート
-            const state = await postMute({ is_muted: firstMusic.should_be_muted });
-            setIsMuted(state.is_muted);
+            await setMuted(firstMusic.should_be_muted);
           }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
@@ -207,7 +196,7 @@ export default function Controller() {
       const updated = scopedPerformances.find((p) => p.id === selectedPerformance.id);
       if (updated) setSelectedPerformance(updated);
     }
-  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance]);
+  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance, setMuted]);
 
   if (isLoading) return <div>読み込み中...</div>;
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
@@ -302,12 +291,10 @@ export default function Controller() {
           await sendMusic(music);
           if (music.should_be_muted && !isMuted) {
             // 配信NGの曲は即時ミュート
-            const state = await postMute({ is_muted: true });
-            setIsMuted(state.is_muted);
+            await setMuted(true);
           } else if (!music.should_be_muted && isMuted) {
             // 配信OKの曲が来たら自動でミュート解除
-            const state = await postMute({ is_muted: false });
-            setIsMuted(state.is_muted);
+            await setMuted(false);
           }
         }
 
@@ -333,7 +320,7 @@ export default function Controller() {
 
   return (
     <div className={styles.controller}>
-      <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
+      <Header isMuted={isMuted} obsConnectionStatus={obsConnectionStatus} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
           <div className={styles.error}>
@@ -383,7 +370,7 @@ export default function Controller() {
             <Buttons
               onNext={handleNext}
               isMuted={isMuted}
-              onMuteChange={setIsMuted}
+              onMuteChange={setMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}

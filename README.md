@@ -22,6 +22,19 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
    - `npm run dev`
    - ターミナルに表示される URL にアクセス
 
+### 環境変数
+
+`.env.example` を `.env` にコピーして使います。
+
+| 環境変数                 | 内容                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------- |
+| `VITE_API_MODE`          | `mock`（既定）は MSW でモックし、ultradonguri-server と OBS に接続しない。`real` は両方に接続する |
+| `VITE_API_BASE_URL`      | ultradonguri-server の URL（`real` のとき）                                                       |
+| `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先（既定は `ws://localhost:4455`）                           |
+| `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード                                                                        |
+
+`VITE_*` はビルド時に埋め込まれます。`OBS_*` は controller の起動時に読むので、本番イメージでもコンテナの環境変数で指定できます。
+
 ### Docker を使用する場合
 
 1. リポジトリのクローン
@@ -109,6 +122,12 @@ npm run eslint && npm run stylelint && npm run format
 
 - 開発時は `src/App.tsx` と `src/components/**` を中心に編集します。
 - 団体・楽曲のマスターデータは `public/performances.json` です。マスターの内容が変わると自動的に新しいデータが採用され、変更がない場合は localStorage（キー `performances` / `performances-version`）の編集内容が維持されます。
+
+## ミュート
+
+配信NG曲のミュートは、controller が OBS WebSocket に直接接続し、OBS の音声を持つ入力すべてに掛けます。OBS 30.1 以降が必要です。OBS の音声ミキサーのミュートボタンは controller が操作するので、手で使わないでください。
+
+仕様と動作確認の手順は [docs/obs-mute.md](./docs/obs-mute.md) を参照してください。
 
 ## API モック
 

@@ -1,14 +1,13 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import { postMute } from "../../api/http/osechi";
 import MuteToggle from "../MuteToggle";
 
 import styles from "./index.module.css";
 
 type Props = {
   isMuted: boolean;
-  onMuteChange: (isMuted: boolean) => void;
+  onMuteChange: (isMuted: boolean) => Promise<void>;
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;
@@ -37,8 +36,7 @@ export default function MuteControl({ isMuted, onMuteChange, onError, isCmMode, 
 
     setIsSubmitting(true);
     try {
-      const state = await postMute({ is_muted: !isMuted });
-      onMuteChange(state.is_muted);
+      await onMuteChange(!isMuted);
       closeModal();
     } catch (error) {
       console.error("[MuteControl] Failed to toggle mute:", error);

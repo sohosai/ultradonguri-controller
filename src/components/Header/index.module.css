@@ -44,6 +44,14 @@
   align-items: center;
 }
 
+.obsDisconnected {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-yellow);
+  -webkit-text-stroke: 7px var(--color-surface);
+  paint-order: stroke fill;
+}
+
 .burariPlaying {
   font-size: 26px;
   font-weight: bold;
