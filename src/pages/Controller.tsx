@@ -30,6 +30,9 @@ import styles from "./Controller.module.css";
 import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
+const OBS_DISCONNECTED_ERROR = "OBS に接続できません（OBS の起動と OBS_WEBSOCKET_URL を確認してください）";
+const OBS_AUTH_FAILED_ERROR = "OBS の認証に失敗しました（OBS_WEBSOCKET_PASSWORD を確認してください）";
+
 export default function Controller() {
   const { performances, isLoading, error: fetchError, updatePerformances } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
@@ -68,6 +71,20 @@ export default function Controller() {
 
     return byDate.get(selectedDateKey) ?? [];
   }, [byDate, selectedDateKey]);
+
+  // 再接続を繰り返す間に同じエラーを出し直さないよう、未接続になったら1回だけ出す
+  const hasReportedObsDisconnectRef = useRef(false);
+  useEffect(() => {
+    if (obsConnectionStatus === "connected") {
+      hasReportedObsDisconnectRef.current = false;
+      setError((prev) => (prev === OBS_DISCONNECTED_ERROR || prev === OBS_AUTH_FAILED_ERROR ? null : prev));
+    } else if (obsConnectionStatus === "authFailed") {
+      setError(OBS_AUTH_FAILED_ERROR);
+    } else if (obsConnectionStatus === "disconnected" && !hasReportedObsDisconnectRef.current) {
+      hasReportedObsDisconnectRef.current = true;
+      setError(OBS_DISCONNECTED_ERROR);
+    }
+  }, [obsConnectionStatus]);
 
   useEffect(() => {
     const initializeCopyright = async () => {
@@ -320,7 +337,7 @@ export default function Controller() {
 
   return (
     <div className={styles.controller}>
-      <Header isMuted={isMuted} obsConnectionStatus={obsConnectionStatus} isBurariPlaying={isBurariPlaying} />
+      <Header isMuted={isMuted} isBurariPlaying={isBurariPlaying} />
       <main>
         {error && (
           <div className={styles.error}>

@@ -47,11 +47,11 @@ class ObsClient {
   private obs: OBSWebSocket | null = null;
   private config: ObsConfig | null = null;
   private started = false;
-  private connectionStatus: ConnectionStatus = "disconnected";
+  private connectionStatus: ConnectionStatus = "connecting";
   private desiredMuted = localStorage.getItem(MUTED_STORAGE_KEY) === "true";
   // 音声を持つ入力の UUID → ミュート状態
   private audioInputs = new Map<string, boolean>();
-  private snapshot: ObsMuteSnapshot = { connectionStatus: "disconnected", isMuted: false };
+  private snapshot: ObsMuteSnapshot = { connectionStatus: "connecting", isMuted: false };
   private listeners = new Set<() => void>();
 
   start(): void {
@@ -75,7 +75,10 @@ class ObsClient {
           this.config = config;
           this.connect();
         },
-        (error) => console.error("[OBS] Failed to load config:", error)
+        (error) => {
+          console.error("[OBS] Failed to load config:", error);
+          this.setConnectionStatus("disconnected");
+        }
       );
   }
 
