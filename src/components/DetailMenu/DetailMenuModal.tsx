@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 import DownSvg from "../../assets/icons/down.svg";
 import TrashSvg from "../../assets/icons/trash.svg";
@@ -38,7 +38,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
   const [draft, setDraft] = useState<Performance[]>([]);
   const [selectedPerformanceId, setSelectedPerformanceId] = useState<string | null>(null);
   const [selectedMusicId, setSelectedMusicId] = useState<string | null>(null);
-  const [pendingEdits, setPendingEdits] = useState<Map<string, MusicEdits>>(new Map());
+  const [pendingMusicEdits, setPendingMusicEdits] = useState<Map<string, MusicEdits>>(new Map());
+  const [pendingPerformanceTitles, setPendingPerformanceTitles] = useState<Map<string, string>>(new Map());
   const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState(false);
   const [isAddMusicModalOpen, setIsAddMusicModalOpen] = useState(false);
 
@@ -51,11 +52,11 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
 
   const selectedPerformance = draft.find((p) => p.id === selectedPerformanceId) ?? null;
   const selectedMusic = selectedPerformance?.musics.find((m) => m.id === selectedMusicId) ?? null;
-  const hasChanges = pendingEdits.size > 0 || draft !== performances;
+  const hasChanges = pendingMusicEdits.size > 0 || pendingPerformanceTitles.size > 0 || draft !== performances;
 
   // 現在選択中の楽曲の編集内容を取得（未保存の編集 or 元の値）
-  const getCurrentEdits = (music: Music): MusicEdits => {
-    const pending = pendingEdits.get(music.id);
+  const getCurrentMusicEdits = (music: Music): MusicEdits => {
+    const pending = pendingMusicEdits.get(music.id);
     if (pending) return pending;
 
     return {
@@ -65,16 +66,22 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     };
   };
 
-  const currentEdits = selectedMusic ? getCurrentEdits(selectedMusic) : null;
+  const currentMusicEdits = selectedMusic ? getCurrentMusicEdits(selectedMusic) : null;
 
   // 編集内容を更新
-  const updateEdits = (musicId: string, updates: Partial<MusicEdits>) => {
-    setPendingEdits((prev) => {
+  const updateMusicEdits = (musicId: string, updates: Partial<MusicEdits>) => {
+    setPendingMusicEdits((prev) => {
       const newMap = new Map(prev);
-      const current = selectedMusic ? getCurrentEdits(selectedMusic) : null;
-      if (!current) return prev;
+      const current = selectedMusic ? getCurrentMusicEdits(selectedMusic) : null;
+      if (!selectedMusic || !current) return prev;
 
-      newMap.set(musicId, { ...current, ...updates });
+      const next = { ...current, ...updates };
+      const isOriginal =
+        next.title === selectedMusic.title &&
+        next.artist === selectedMusic.artist &&
+        next.should_be_muted === selectedMusic.should_be_muted;
+      if (isOriginal) newMap.delete(musicId);
+      else newMap.set(musicId, next);
 
       return newMap;
     });
@@ -129,6 +136,16 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
     setSelectedMusicId(null);
   };
 
+  const updatePendingPerformanceTitle = (performance: Performance, title: string) => {
+    setPendingPerformanceTitles((prev) => {
+      const newMap = new Map(prev);
+      if (title === performance.title) newMap.delete(performance.id);
+      else newMap.set(performance.id, title);
+
+      return newMap;
+    });
+  };
+
   // 選択中の団体の楽曲リストを差し替える
   const updateSelectedMusics = (updater: (musics: Music[]) => Music[]) => {
     setDraft(draft.map((p) => (p.id === selectedPerformanceId ? { ...p, musics: updater(p.musics) } : p)));
@@ -163,7 +180,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
         return;
       }
     }
-    setPendingEdits(new Map());
+    setPendingMusicEdits(new Map());
+    setPendingPerformanceTitles(new Map());
     setDraft(performances ?? []);
     onClose();
   };
@@ -173,8 +191,9 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
       onSave(
         draft.map((p) => ({
           ...p,
+          title: pendingPerformanceTitles.get(p.id) ?? p.title,
           musics: p.musics.map((m) => {
-            const edits = pendingEdits.get(m.id);
+            const edits = pendingMusicEdits.get(m.id);
 
             return edits ? { ...m, ...edits } : m;
           }),
@@ -182,7 +201,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
       );
     }
 
-    setPendingEdits(new Map());
+    setPendingMusicEdits(new Map());
+    setPendingPerformanceTitles(new Map());
     onClose();
   };
 
@@ -204,6 +224,7 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       onClick={() => handlePerformanceSelect(p.id)}>
                       <div className={styles.actions}>
                         <div className={styles.performancetitle}>{p.title}</div>
+                        {pendingPerformanceTitles.has(p.id) && <span className={styles.editedMark}>*</span>}
                         <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
                           <div className={styles.up} onClick={() => movePerformance(p.id, -1)}>
                             <img src={UpSvg} alt="上へ" className={styles.side} />
@@ -228,10 +249,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       className={selectedMusicId === m.id ? styles.selected : ""}
                       onClick={() => handleMusicSelect(m.id)}>
                       <div className={styles.actions}>
-                        <div className={styles.musictitle}>
-                          {m.title}
-                          {pendingEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
-                        </div>
+                        <div className={styles.musictitle}>{m.title}</div>
+                        {pendingMusicEdits.has(m.id) && <span className={styles.editedMark}>*</span>}
                         <div className={styles.actionbuttons} onClick={(e) => e.stopPropagation()}>
                           <div className={styles.up} onClick={() => moveMusic(m.id, -1)}>
                             <img src={UpSvg} alt="上へ" className={styles.side} />
@@ -249,8 +268,8 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                 </ul>
               </div>
               <div className={styles.details}>
-                {selectedMusic && (
-                  <div key={selectedMusic.id}>
+                {selectedPerformance && (
+                  <div>
                     <div className={styles.detailsHeader}>
                       <h3 className={styles.detailsTitle}>詳細編集</h3>
                     </div>
@@ -260,54 +279,58 @@ export default function DetailMenuModal({ isOpen, onClose, performances, onSave 
                       <input
                         type="text"
                         className={styles.input}
-                        value={currentEdits?.title || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
+                        value={pendingPerformanceTitles.get(selectedPerformance.id) ?? selectedPerformance.title}
+                        onChange={(e) => updatePendingPerformanceTitle(selectedPerformance, e.target.value)}
                       />
                     </div>
-                    <h4 className={styles.editMusic}>楽曲</h4>
-                    <div className={styles.detailItem}>
-                      <label>タイトル</label>
-                      <input
-                        type="text"
-                        className={styles.input}
-                        value={currentEdits?.title || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { title: e.target.value })}
-                      />
-                    </div>
-                    <div className={styles.detailItem}>
-                      <label>アーティスト</label>
-                      <input
-                        type="text"
-                        className={styles.input}
-                        value={currentEdits?.artist || ""}
-                        onChange={(e) => updateEdits(selectedMusic.id, { artist: e.target.value })}
-                      />
-                    </div>
-                    <div className={styles.detailItem}>
-                      <label>ミュート設定</label>
-                      <div className={styles.radioGroup}>
-                        <label className={styles.radioLabel}>
+                    {selectedMusic && (
+                      <Fragment key={selectedMusic.id}>
+                        <h4 className={styles.editMusic}>楽曲</h4>
+                        <div className={styles.detailItem}>
+                          <label>タイトル</label>
                           <input
-                            type="radio"
-                            name="mute"
-                            value="false"
-                            checked={!currentEdits?.should_be_muted}
-                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: false })}
+                            type="text"
+                            className={styles.input}
+                            value={currentMusicEdits?.title || ""}
+                            onChange={(e) => updateMusicEdits(selectedMusic.id, { title: e.target.value })}
                           />
-                          配信OK
-                        </label>
-                        <label className={styles.radioLabel}>
+                        </div>
+                        <div className={styles.detailItem}>
+                          <label>アーティスト</label>
                           <input
-                            type="radio"
-                            name="mute"
-                            value="true"
-                            checked={currentEdits?.should_be_muted}
-                            onChange={() => updateEdits(selectedMusic.id, { should_be_muted: true })}
+                            type="text"
+                            className={styles.input}
+                            value={currentMusicEdits?.artist || ""}
+                            onChange={(e) => updateMusicEdits(selectedMusic.id, { artist: e.target.value })}
                           />
-                          配信不可
-                        </label>
-                      </div>
-                    </div>
+                        </div>
+                        <div className={styles.detailItem}>
+                          <label>ミュート設定</label>
+                          <div className={styles.radioGroup}>
+                            <label className={styles.radioLabel}>
+                              <input
+                                type="radio"
+                                name="mute"
+                                value="false"
+                                checked={!currentMusicEdits?.should_be_muted}
+                                onChange={() => updateMusicEdits(selectedMusic.id, { should_be_muted: false })}
+                              />
+                              配信OK
+                            </label>
+                            <label className={styles.radioLabel}>
+                              <input
+                                type="radio"
+                                name="mute"
+                                value="true"
+                                checked={currentMusicEdits?.should_be_muted}
+                                onChange={() => updateMusicEdits(selectedMusic.id, { should_be_muted: true })}
+                              />
+                              配信不可
+                            </label>
+                          </div>
+                        </div>
+                      </Fragment>
+                    )}
                   </div>
                 )}
               </div>

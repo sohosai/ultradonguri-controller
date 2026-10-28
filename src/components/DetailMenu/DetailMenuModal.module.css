@@ -80,6 +80,7 @@
 }
 
 .editedMark {
+  flex-shrink: 0;
   margin-left: 8px;
   font-size: 18px;
   font-weight: bold;
@@ -90,12 +91,12 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
 }
 
 .performancetitle,
 .musictitle {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -106,6 +107,7 @@
   gap: 6px;
   align-items: center;
   justify-content: flex-end;
+  margin-left: auto;
 }
 
 .performances li:hover .actionbuttons,
