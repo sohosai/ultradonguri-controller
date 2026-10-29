@@ -11,7 +11,7 @@ export default function Csv() {
     if (executed.current) return;
 
     executed.current = true;
-    
+
     downloadCsv();
     navigate({ to: "/" });
   }, [navigate]);
