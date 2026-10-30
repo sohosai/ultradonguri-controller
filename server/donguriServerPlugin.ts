@@ -1,13 +1,16 @@
 import path from "node:path";
 
+import { loadEnv } from "vite";
 import { WebSocketServer, WebSocket } from "ws";
 
 import { createVideosMiddleware } from "./videosMiddleware";
 
-import type { Server } from "node:http";
+import type { IncomingMessage, Server, ServerResponse } from "node:http";
 import type { Plugin } from "vite";
 
 export const RELAY_PATH = "/burari/ws";
+export const OBS_CONFIG_PATH = "/obs/config";
+const DEFAULT_OBS_WEBSOCKET_URL = "ws://localhost:4455";
 
 // サーバー再起動をまたいだ古い lastOffset での誤った差分受信を防ぐため、
 // 起動ごとに epoch を発行してクライアントと照合する
@@ -77,24 +80,52 @@ function setupRelay(httpServer: Server): void {
 }
 
 /**
+ * OBS WebSocket の接続先とパスワードを返す。
+ * VITE_* はビルド時に埋め込まれ、本番イメージは公開ビルドなので、実行時の環境変数から配る。
+ */
+function createObsConfigMiddleware(env: Record<string, string>) {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
+    if (req.method !== "GET" || req.url !== OBS_CONFIG_PATH) {
+      next();
+
+      return;
+    }
+
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Cache-Control", "no-store");
+    res.end(
+      JSON.stringify({
+        url: env.OBS_WEBSOCKET_URL || DEFAULT_OBS_WEBSOCKET_URL,
+        password: env.OBS_WEBSOCKET_PASSWORD ?? "",
+      })
+    );
+  };
+}
+
+/**
  * Controller ↔ Viewer 間の通信を中継する Vite プラグイン。
- * dev / preview の両サーバーに WebSocket リレー（/burari/ws）を追加する。
+ * dev / preview の両サーバーに WebSocket リレー（/burari/ws）と OBS の接続情報（/obs/config）を追加する。
  */
 export function donguriServerPlugin(): Plugin {
   let videosDir = path.resolve(process.cwd(), "videos");
+  // .env と process.env の OBS_* を読む（process.env が優先）
+  let obsEnv: Record<string, string> = {};
 
   return {
     name: "donguri-server",
     configResolved(config) {
       videosDir = path.resolve(config.root, "videos");
+      obsEnv = loadEnv(config.mode, config.envDir, "OBS_");
     },
     configureServer(server) {
       if (server.httpServer) setupRelay(server.httpServer as Server);
       server.middlewares.use(createVideosMiddleware(videosDir));
+      server.middlewares.use(createObsConfigMiddleware(obsEnv));
     },
     configurePreviewServer(server) {
       setupRelay(server.httpServer as Server);
       server.middlewares.use(createVideosMiddleware(videosDir));
+      server.middlewares.use(createObsConfigMiddleware(obsEnv));
     },
   };
 }

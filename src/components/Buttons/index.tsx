@@ -9,7 +9,7 @@ type Props = {
   onCopyrightVisibleChange: (v: boolean) => void;
   onNext?: () => void;
   isMuted: boolean;
-  onMuteChange: (isMuted: boolean) => void;
+  onMuteChange: (isMuted: boolean) => Promise<void>;
   onError?: (errorMessage: string) => void;
   isCmMode?: boolean;
   isConversion?: boolean;

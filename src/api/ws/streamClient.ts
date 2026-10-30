@@ -10,7 +10,6 @@ export interface WSEvent {
     | "/conversion/start"
     | "/conversion/cm-mode"
     | "/display-copyright"
-    | "/force_mute"
     | "/burari/play"
     | "/burari/stop"
     | "/burari/ended"

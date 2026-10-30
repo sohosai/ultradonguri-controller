@@ -7,7 +7,6 @@ import {
   postCmScene,
   postNormalScene,
 } from "../api/http/endpoints";
-import { postMute } from "../api/http/osechi";
 import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
@@ -18,6 +17,7 @@ import Header from "../components/Header";
 import Musics from "../components/Musics";
 import Performances from "../components/Performances";
 import { getConversionById } from "../data/conversions";
+import useObsMute from "../hooks/useObsMute";
 import usePerformances from "../hooks/usePerformances";
 import usePlayback from "../hooks/usePlayback";
 import { saveConvTimings, saveSongTimings } from "../lib/songTiming";
@@ -30,12 +30,15 @@ import styles from "./Controller.module.css";
 import type { Conversion, Performance } from "../types/performances";
 import type { TrackRef } from "../types/tracks";
 
+const OBS_DISCONNECTED_ERROR = "OBS に接続できません（OBS の起動と OBS_WEBSOCKET_URL を確認してください）";
+const OBS_AUTH_FAILED_ERROR = "OBS の認証に失敗しました（OBS_WEBSOCKET_PASSWORD を確認してください）";
+
 export default function Controller() {
   const { performances, isLoading, error: fetchError, updatePerformances } = usePerformances();
   const [selectedPerformance, setSelectedPerformance] = useState<Performance | null>(null);
   const [selectedConversion, setSelectedConversion] = useState<Conversion | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const { isMuted, connectionStatus: obsConnectionStatus, setMuted } = useObsMute();
   const [isCmMode, setIsCmMode] = useState<boolean>(false);
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const [isBurariPlaying, setIsBurariPlaying] = useState(false);
@@ -69,16 +72,33 @@ export default function Controller() {
     return byDate.get(selectedDateKey) ?? [];
   }, [byDate, selectedDateKey]);
 
+  // 再接続を繰り返す間に同じエラーを出し直さないよう、未接続になったら1回だけ出す
+  const hasReportedObsDisconnectRef = useRef(false);
   useEffect(() => {
-    const initializeMute = async () => {
-      try {
-        const state = await postMute({ is_muted: false });
-        setIsMuted(state.is_muted);
-      } catch (error) {
-        console.error("[Controller] Failed to initialize mute:", error);
-      }
-    };
+    if (obsConnectionStatus === "connected") {
+      hasReportedObsDisconnectRef.current = false;
+      setError((prev) => (prev === OBS_DISCONNECTED_ERROR || prev === OBS_AUTH_FAILED_ERROR ? null : prev));
+    } else if (obsConnectionStatus === "authFailed") {
+      setError(OBS_AUTH_FAILED_ERROR);
+    } else if (obsConnectionStatus === "disconnected" && !hasReportedObsDisconnectRef.current) {
+      hasReportedObsDisconnectRef.current = true;
+      setError(OBS_DISCONNECTED_ERROR);
+    }
+  }, [obsConnectionStatus]);
 
+  // 1曲目のミュート指示。ページを開いた直後は OBS への接続が済んでいないので、接続してから掛ける
+  const [pendingInitialMute, setPendingInitialMute] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (pendingInitialMute === null || obsConnectionStatus !== "connected") return;
+
+    setPendingInitialMute(null);
+    setMuted(pendingInitialMute).catch((error) => {
+      console.error("[Controller] Failed to apply initial mute:", error);
+      setError("1曲目のミュートの切り替えに失敗しました");
+    });
+  }, [pendingInitialMute, obsConnectionStatus, setMuted]);
+
+  useEffect(() => {
     const initializeCopyright = async () => {
       try {
         await postDisplayCopyright({ is_displayed_copyright: true });
@@ -97,7 +117,6 @@ export default function Controller() {
       }
     };
 
-    void initializeMute();
     void initializeCopyright();
     void initializeCmMode();
   }, []);
@@ -188,8 +207,7 @@ export default function Controller() {
           if (firstMusic) {
             await sendMusic(firstMusic);
             // 1曲目が配信NGなら自動ミュート
-            const state = await postMute({ is_muted: firstMusic.should_be_muted });
-            setIsMuted(state.is_muted);
+            setPendingInitialMute(firstMusic.should_be_muted);
           }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
@@ -302,12 +320,10 @@ export default function Controller() {
           await sendMusic(music);
           if (music.should_be_muted && !isMuted) {
             // 配信NGの曲は即時ミュート
-            const state = await postMute({ is_muted: true });
-            setIsMuted(state.is_muted);
+            await setMuted(true);
           } else if (!music.should_be_muted && isMuted) {
             // 配信OKの曲が来たら自動でミュート解除
-            const state = await postMute({ is_muted: false });
-            setIsMuted(state.is_muted);
+            await setMuted(false);
           }
         }
 
@@ -383,7 +399,7 @@ export default function Controller() {
             <Buttons
               onNext={handleNext}
               isMuted={isMuted}
-              onMuteChange={setIsMuted}
+              onMuteChange={setMuted}
               isCopyrightVisible={isCopyrightVisible}
               onCopyrightVisibleChange={handleCopyrightVisibleChange}
               onError={setError}
