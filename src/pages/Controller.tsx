@@ -361,7 +361,12 @@ export default function Controller() {
         )}
         <div className={styles.row}>
           <div className={styles.rowLeft}>
-            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={handleDateTabChange} disabled={isCmMode} />
+            <DateTabs
+              dateKeys={dateKeys}
+              selected={selectedDateKey}
+              onChange={handleDateTabChange}
+              disabled={isCmMode}
+            />
             <Performances
               items={scopedPerformances || []}
               selectedPerformance={selectedPerformance}
