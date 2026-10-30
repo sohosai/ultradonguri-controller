@@ -4,9 +4,10 @@ type Props = {
   dateKeys: string[]; // YYYY-MM-DD の昇順
   selected: string | null;
   onChange: (key: string) => void;
+  disabled?: boolean;
 };
 
-export default function DateTabs({ dateKeys, selected, onChange }: Props) {
+export default function DateTabs({ dateKeys, selected, onChange, disabled }: Props) {
   return (
     <div className={styles.tabs} role="tablist" aria-label="日付タブ">
       {dateKeys.map((key) => {
@@ -19,6 +20,7 @@ export default function DateTabs({ dateKeys, selected, onChange }: Props) {
             aria-selected={selected === key}
             className={styles.tab}
             data-selected={selected === key}
+            disabled={disabled}
             onClick={() => onChange(key)}>
             {label}
           </button>

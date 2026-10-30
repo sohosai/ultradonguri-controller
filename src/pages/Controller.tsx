@@ -238,7 +238,7 @@ export default function Controller() {
   };
 
   const handleDateTabChange = (key: string) => {
-    if (key === selectedDateKey) return;
+    if (isCmMode || key === selectedDateKey) return;
     setPendingDateKey(key);
   };
 
@@ -361,7 +361,7 @@ export default function Controller() {
         )}
         <div className={styles.row}>
           <div className={styles.rowLeft}>
-            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={handleDateTabChange} />
+            <DateTabs dateKeys={dateKeys} selected={selectedDateKey} onChange={handleDateTabChange} disabled={isCmMode} />
             <Performances
               items={scopedPerformances || []}
               selectedPerformance={selectedPerformance}
