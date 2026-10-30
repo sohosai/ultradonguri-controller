@@ -24,8 +24,13 @@ export default function PerformanceScene({
         </div>
       )}
       {isCopyrightVisible && musicTitle && (
-        <div key={musicTitle} className={styles.musicTitle}>
-          ♫ {musicTitle} {musicArtist && `/ ${musicArtist}`}
+        <div key={musicTitle} className={styles.music}>
+          <span>♫</span>
+          <div>
+            {/* 全角英数は幅を取るので、表示時だけ半角にする */}
+            <div>{musicTitle.normalize("NFKC")}</div>
+            {musicArtist && <div className={styles.musicArtist}>{musicArtist.normalize("NFKC")}</div>}
+          </div>
         </div>
       )}
       {isCopyrightVisible && shouldBeMuted === true && (
