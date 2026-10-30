@@ -54,10 +54,14 @@
   }
 }
 
-.musicTitle {
+/* 右下の .shouldBeMuted と重ならない幅に収める */
+.music {
   position: absolute;
   bottom: 30px;
   left: 30px;
+  display: flex;
+  gap: 0.4em;
+  max-width: calc(100% - 380px);
   font-size: 20px;
   color: var(--color-black);
   text-shadow:
@@ -82,4 +86,8 @@
     0 0 10px var(--color-white),
     0 0 10px var(--color-white);
   animation: fadeIn 0.5s ease-out;
+}
+
+.musicArtist {
+  font-size: 16px;
 }

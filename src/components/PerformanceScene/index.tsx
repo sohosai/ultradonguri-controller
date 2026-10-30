@@ -24,8 +24,12 @@ export default function PerformanceScene({
         </div>
       )}
       {isCopyrightVisible && musicTitle && (
-        <div key={musicTitle} className={styles.musicTitle}>
-          ♫ {musicTitle} {musicArtist && `/ ${musicArtist}`}
+        <div key={musicTitle} className={styles.music}>
+          <span>♫</span>
+          <div>
+            <div>{musicTitle}</div>
+            {musicArtist && <div className={styles.musicArtist}>{musicArtist}</div>}
+          </div>
         </div>
       )}
       {isCopyrightVisible && shouldBeMuted === true && (
