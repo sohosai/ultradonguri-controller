@@ -86,6 +86,18 @@ export default function Controller() {
     }
   }, [obsConnectionStatus]);
 
+  // 1曲目のミュート指示。ページを開いた直後は OBS への接続が済んでいないので、接続してから掛ける
+  const [pendingInitialMute, setPendingInitialMute] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (pendingInitialMute === null || obsConnectionStatus !== "connected") return;
+
+    setPendingInitialMute(null);
+    setMuted(pendingInitialMute).catch((error) => {
+      console.error("[Controller] Failed to apply initial mute:", error);
+      setError("1曲目のミュートの切り替えに失敗しました");
+    });
+  }, [pendingInitialMute, obsConnectionStatus, setMuted]);
+
   useEffect(() => {
     const initializeCopyright = async () => {
       try {
@@ -195,7 +207,7 @@ export default function Controller() {
           if (firstMusic) {
             await sendMusic(firstMusic);
             // 1曲目が配信NGなら自動ミュート
-            await setMuted(firstMusic.should_be_muted);
+            setPendingInitialMute(firstMusic.should_be_muted);
           }
         } catch (error) {
           console.error("[Controller] Failed to send initial data:", error);
@@ -213,7 +225,7 @@ export default function Controller() {
       const updated = scopedPerformances.find((p) => p.id === selectedPerformance.id);
       if (updated) setSelectedPerformance(updated);
     }
-  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance, setMuted]);
+  }, [scopedPerformances, initializeFromFirst, reset, selectedDateKey, selectedPerformance]);
 
   if (isLoading) return <div>読み込み中...</div>;
   if (fetchError) return <div>エラー: {fetchError.message}</div>;
