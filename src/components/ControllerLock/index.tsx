@@ -83,7 +83,7 @@ export default function ControllerLock({ children }: Props) {
   if (lockState === "released") {
     return (
       <div className={styles.message}>
-        <p>別のタブが閉じられました。</p>
+        <p>別のタブが閉じられたか、再読み込みされました。</p>
         <p>このタブで操作すると、1曲目の送出から始め直します。</p>
         <button
           className={styles.takeOverButton}
