@@ -37,7 +37,7 @@ export default function Buttons({
         isConversion={isConversion}
       />
       <CopyrightToggle isCopyrightVisible={isCopyrightVisible} onChange={onCopyrightVisibleChange} />
-      <NextTrackButton onNext={onNext} disabled={isBurariPlaying} />
+      <NextTrackButton onNext={onNext} disabled={isBurariPlaying || isCmMode} />
     </div>
   );
 }
