@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 
 const LOCK_NAME = "ultradonguri-controller";
 
-type LockState = "pending" | "waiting" | "acquired";
+type LockState = "pending" | "waiting" | "released" | "acquired";
 
 type Props = {
   children: ReactNode;
@@ -16,18 +16,33 @@ type Props = {
  * controller を1つのタブでだけ表示する
  *
  * 2つ目のタブが Controller を表示すると、開いた直後の初期化（1曲目の送出やシーン切替）で送出中の状態を巻き戻し、
- * OBS のミュートもタブ同士でかけ直し合う。ロックを取れたタブだけが表示し、ほかのタブはロックが空くまで待つ。
- * ロックはタブを閉じるとブラウザが外す。
+ * OBS のミュートもタブ同士でかけ直し合う。ロックを取れたタブだけが表示し、ほかのタブは待機の表示にする。
+ * ロックはタブを閉じるとブラウザが外す。外れても待機中のタブは自動では引き継がない。
+ * 引き継ぐと初期化が走り、操作中のタブをリロードしただけで送出が巻き戻るため、ボタンを押したときだけ取りにいく。
  */
 export default function ControllerLock({ children }: Props) {
   const [lockState, setLockState] = useState<LockState>("pending");
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     const abortController = new AbortController();
+    const { signal } = abortController;
     let release = () => {};
 
     navigator.locks
-      .request(LOCK_NAME, { signal: abortController.signal }, () => {
+      .request(LOCK_NAME, { ifAvailable: true }, (lock) => {
+        // ifAvailable は signal と併用できないので、アンマウント済みかはここで見る
+        if (signal.aborted) return;
+
+        if (!lock) {
+          setLockState("waiting");
+
+          // 共有モードの要求は排他ロックが外れるまで待たされるので、外れたことを知るのに使う。取れたらすぐ返して外す
+          return navigator.locks.request(LOCK_NAME, { mode: "shared", signal }, () => {
+            if (!signal.aborted) setLockState("released");
+          });
+        }
+
         setLockState("acquired");
 
         return new Promise<void>((resolve) => {
@@ -40,18 +55,11 @@ export default function ControllerLock({ children }: Props) {
         console.error("[ControllerLock] Failed to acquire lock:", error);
       });
 
-    // 別のタブがロックを持っているときだけ待機の表示にする。ロックを取るまでの一瞬に表示を出さないため
-    void navigator.locks.query().then(({ held }) => {
-      if (held?.some((lock) => lock.name === LOCK_NAME)) {
-        setLockState((prev) => (prev === "pending" ? "waiting" : prev));
-      }
-    });
-
     return () => {
       abortController.abort();
       release();
     };
-  }, []);
+  }, [attempt]);
 
   if (lockState === "pending") return null;
 
@@ -60,6 +68,23 @@ export default function ControllerLock({ children }: Props) {
       <div className={styles.message}>
         <p>コントローラーは別のタブで開かれています。</p>
         <p>そのタブを閉じると、このタブで操作できるようになります。</p>
+      </div>
+    );
+  }
+
+  if (lockState === "released") {
+    return (
+      <div className={styles.message}>
+        <p>別のタブが閉じられました。</p>
+        <p>このタブで操作すると、1曲目の送出から始め直します。</p>
+        <button
+          className={styles.takeOverButton}
+          onClick={() => {
+            setLockState("pending");
+            setAttempt((prev) => prev + 1);
+          }}>
+          このタブで操作する
+        </button>
       </div>
     );
   }
