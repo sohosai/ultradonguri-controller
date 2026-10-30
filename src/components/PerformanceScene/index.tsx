@@ -1,5 +1,10 @@
 import styles from "./index.module.css";
 
+// 全角英数は幅を取るので、表示時だけ半角にする。記号は全角のまま残す
+function toHalfWidthAlnum(text: string) {
+  return text.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
+}
+
 type PerformanceSceneProps = {
   performer: string | null;
   musicTitle: string | null;
@@ -27,9 +32,8 @@ export default function PerformanceScene({
         <div key={musicTitle} className={styles.music}>
           <span>♫</span>
           <div>
-            {/* 全角英数は幅を取るので、表示時だけ半角にする */}
-            <div>{musicTitle.normalize("NFKC")}</div>
-            {musicArtist && <div className={styles.musicArtist}>{musicArtist.normalize("NFKC")}</div>}
+            <div>{toHalfWidthAlnum(musicTitle)}</div>
+            {musicArtist && <div className={styles.musicArtist}>{toHalfWidthAlnum(musicArtist)}</div>}
           </div>
         </div>
       )}
