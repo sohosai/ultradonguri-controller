@@ -1,8 +1,11 @@
 .container {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   font-weight: bold;
   color: var(--color-black);
+  background: var(--color-pure-white);
 }
 
 .top {
@@ -26,8 +29,8 @@
   display: flex;
   justify-content: center;
   height: 11vh;
-  padding-top: 2vh;
-  font-size: 50px;
+  padding-top: 1vh;
+  font-size: 47px;
 }
 
 .nextGuide {
@@ -36,7 +39,7 @@
   padding: 0 1vw;
   margin-left: 2vw;
   border: 5px solid var(--color-blue);
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 .nextGuideTime {
@@ -113,4 +116,26 @@
 .laterGuidePerformer {
   font-size: 30px;
   text-align: left;
+}
+
+.sopoImage {
+  position: fixed;
+  top: 50vh;
+  left: 4.5vw;
+  z-index: -1;
+  width: 15vw;
+}
+
+.nextImage {
+  position: fixed;
+  top: 15.7vh;
+  left: 3.7vw;
+  width: 8vw;
+}
+
+.upcomingImage {
+  position: fixed;
+  top: 85.5vh;
+  left: 5.5vw;
+  width: 14vw;
 }

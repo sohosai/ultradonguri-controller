@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import nextImage from "../../assets/viewer/next.webp";
+import sopoImage from "../../assets/viewer/sopo.webp";
+import upcomingImage from "../../assets/viewer/upcoming.png";
 import { formatToHourMinute } from "../../utils/dateFormat";
 
 import CmClock from "./CmClock";
@@ -30,6 +33,9 @@ export default function CmMode({ nextPerformances }: CmModeProps) {
 
   return (
     <div className={styles.container}>
+      <img src={sopoImage} alt="そぽたん" className={styles.sopoImage} />
+      <img src={nextImage} alt="NEXT" className={styles.nextImage} />
+      <img src={upcomingImage} alt="今後の予定" className={styles.upcomingImage} />
       <div className={styles.top}>
         <div className={styles.topGuides}>
           <div className={styles.clock}>

@@ -1,1 +1,7 @@
-/* empty */
+/* 1280×720 の参考画像で左上 (45, 50)、幅 190px の位置 */
+.live {
+  position: fixed;
+  top: 6.9vh;
+  left: 3.5vw;
+  width: 14.8vw;
+}
