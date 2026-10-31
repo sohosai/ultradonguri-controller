@@ -19,7 +19,8 @@
 | Controller       | 通常のブラウザ（Chrome 等）で `http://<host>:5173/` を開く                             |
 | Viewer           | **OBS のブラウザソース**で `http://<host>:5173/viewer` を開く                          |
 | 起動方法         | `npm run dev`（開発）/ `npm run build` → `npm run preview`（本番運用）                 |
-| 楽曲データ       | 従来どおり `GET /performances` で取得。**変更しない**                                  |
+| 楽曲データ       | `GET /performances.json` で取得する（README の「備考」）。ぶらり旅の機能では変更しない |
+| OBS のシーン     | 再生中は OBS の番組シーンをぶらり旅のシーンにする（docs/obs-scene.md）                 |
 | 動画フォーマット | **mp4 のみ**対応                                                                       |
 | 動画保存先       | リポジトリ直下の `videos/` ディレクトリ（`.gitignore` 対象、ブラウザリロード後も残る） |
 
