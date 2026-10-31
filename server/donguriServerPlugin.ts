@@ -108,7 +108,7 @@ function createPerformancesMiddleware(filePath: string) {
 
 /**
  * OBS WebSocket の接続先・パスワードとシーン名を返す。
- * VITE_* はビルド時に埋め込まれ、本番イメージは公開ビルドなので、実行時の環境変数から配る。
+ * VITE_* はビルド時に埋め込まれて変えるたびにビルドし直すことになるので、起動時の環境変数から配る。
  */
 function createObsConfigMiddleware(env: Record<string, string>) {
   return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
