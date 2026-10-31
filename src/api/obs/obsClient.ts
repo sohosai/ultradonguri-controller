@@ -5,7 +5,8 @@ import OBSWebSocket, { EventSubscription, OBSWebSocketError } from "obs-websocke
  *
  * OBS の音声を持つ入力すべてのミュートを「ミュート指示」に合わせる。
  * OBS のミュートボタンは donguri 専用として扱い、接続時と入力の変化のたびに指示どおりへかけ直す。
- * 詳細は docs/obs-mute.md を参照。
+ * 番組シーンは「シーン指示」に合わせ、指示が変わったときと接続時に切り替える。
+ * 詳細は docs/obs-mute.md と docs/obs-scene.md を参照。
  */
 
 export type ConnectionStatus = "connecting" | "connected" | "disconnected" | "authFailed";
@@ -15,9 +16,12 @@ export interface ObsMuteSnapshot {
   isMuted: boolean;
 }
 
+export type ObsScene = "normal" | "cm" | "burari";
+
 interface ObsConfig {
   url: string;
   password: string;
+  scenes: Record<ObsScene, string>;
 }
 
 // 接続先とパスワードは、controller のサーバーが実行時の環境変数から返す（server/donguriServerPlugin.ts）
@@ -49,6 +53,7 @@ class ObsClient {
   private started = false;
   private connectionStatus: ConnectionStatus = "connecting";
   private desiredMuted = localStorage.getItem(MUTED_STORAGE_KEY) === "true";
+  private desiredScene: ObsScene | null = null;
   // 音声を持つ入力の UUID → ミュート状態
   private audioInputs = new Map<string, boolean>();
   private snapshot: ObsMuteSnapshot = { connectionStatus: "connecting", isMuted: false };
@@ -110,6 +115,18 @@ class ObsClient {
     await this.applyMute([...this.audioInputs.keys()]);
   }
 
+  /**
+   * シーン指示を変え、接続中なら番組シーンを切り替える
+   * 未接続のときは指示だけを持っておき、接続したときに切り替える
+   */
+  async setScene(scene: ObsScene): Promise<void> {
+    this.desiredScene = scene;
+
+    if (isMockMode || !this.obs || this.connectionStatus !== "connected") return;
+
+    await this.applyScene(this.obs);
+  }
+
   private connect(): void {
     if (!this.config) return;
 
@@ -142,6 +159,7 @@ class ObsClient {
         if (obs !== this.obs) return;
         this.setConnectionStatus("connected");
         this.syncAllInputs(obs).catch((error) => console.error("[OBS] Failed to sync inputs:", error));
+        this.applyScene(obs).catch((error) => console.error("[OBS] Failed to apply scene:", error));
       },
       (error) => {
         // 接続の失敗は ConnectionClosed でも通知されるので、再接続はそちらで予約する
@@ -170,6 +188,12 @@ class ObsClient {
 
     this.setConnectionStatus("disconnected");
     setTimeout(() => this.connect(), RECONNECT_DELAY_MS);
+  }
+
+  private async applyScene(obs: OBSWebSocket): Promise<void> {
+    if (!this.config || this.desiredScene === null) return;
+
+    await withTimeout(obs.call("SetCurrentProgramScene", { sceneName: this.config.scenes[this.desiredScene] }));
   }
 
   /**

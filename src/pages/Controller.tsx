@@ -1,12 +1,7 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 
-import {
-  postDisplayCopyright,
-  postConversionCmMode,
-  postBurariScene,
-  postCmScene,
-  postNormalScene,
-} from "../api/http/endpoints";
+import { postDisplayCopyright, postConversionCmMode } from "../api/http/endpoints";
+import { obsClient } from "../api/obs/obsClient";
 import { streamClient } from "../api/ws/streamClient";
 import Buttons from "../components/Buttons";
 import ConversionMenu from "../components/ConversionMenu";
@@ -122,21 +117,10 @@ export default function Controller() {
   }, []);
 
   useEffect(() => {
-    const switchScene = async () => {
-      try {
-        if (isBurariPlaying) {
-          await postBurariScene();
-        } else if (isCmMode) {
-          await postCmScene();
-        } else {
-          await postNormalScene();
-        }
-      } catch (error) {
-        console.error("[Controller] Failed to switch scene:", error);
-      }
-    };
-
-    void switchScene();
+    const scene = isBurariPlaying ? "burari" : isCmMode ? "cm" : "normal";
+    obsClient.setScene(scene).catch((error) => {
+      console.error("[Controller] Failed to switch scene:", error);
+    });
   }, [isCmMode, isBurariPlaying]);
 
   useEffect(() => {

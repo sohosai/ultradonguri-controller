@@ -26,12 +26,14 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
 
 `.env.example` を `.env` にコピーして使います。
 
-| 環境変数                 | 内容                                                                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `VITE_API_MODE`          | `mock`（既定）は ultradonguri-server と OBS に接続せず、シーン切替を送らない。ミュートは画面の表示だけが切り替わる。`real` は両方に接続する |
-| `VITE_API_BASE_URL`      | ultradonguri-server の URL（`real` のとき）                                                                                                 |
-| `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先（既定は `ws://localhost:4455`）                                                                     |
-| `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード                                                                                                                  |
+| 環境変数                 | 内容                                                                                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `VITE_API_MODE`          | `mock`（既定）は OBS に接続せず、シーンを切り替えない。ミュートは画面の表示だけが切り替わる。`real` は OBS に接続する |
+| `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先（既定は `ws://localhost:4455`）                                               |
+| `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード                                                                                            |
+| `OBS_NORMAL_SCENE_NAME`  | 通常時のシーン名（既定は `Normal_Scene`）                                                                             |
+| `OBS_CM_SCENE_NAME`      | CM のシーン名（既定は `CM_Scene`）                                                                                    |
+| `OBS_BURARI_SCENE_NAME`  | ぶらり旅のシーン名（既定は `Burari_Scene`）                                                                           |
 
 `VITE_*` はビルド時に埋め込まれます。`OBS_*` は controller の起動時に読むので、本番イメージでもコンテナの環境変数で指定できます。
 
@@ -121,10 +123,16 @@ npm run eslint && npm run stylelint && npm run format
 ## 備考
 
 - 開発時は `src/App.tsx` と `src/components/**` を中心に編集します。
-- 団体・楽曲のマスターデータは `public/performances.json` です。マスターの内容が変わると自動的に新しいデータが採用され、変更がない場合は localStorage（キー `performances` / `performances-version`）の編集内容が維持されます。
+- 団体・楽曲のマスターデータは、リポジトリ直下に `performances.json` があればそれを、なければ `public/performances.json` を使います。直下のファイルは起動したまま差し替えられ、ページを再読み込みすると読み直します。マスターの内容が変わると自動的に新しいデータが採用され、変更がない場合は localStorage（キー `performances` / `performances-version`）の編集内容が維持されます。
 
 ## ミュート
 
 配信NG曲のミュートは、controller が OBS WebSocket に直接接続し、OBS の音声を持つ入力すべてに掛けます。OBS 30.1 以降が必要です。OBS の音声ミキサーのミュートボタンは controller が操作するので、手で使わないでください。
 
 仕様と動作確認の手順は [docs/obs-mute.md](./docs/obs-mute.md) を参照してください。
+
+## シーン切替
+
+番組シーンも controller が OBS WebSocket で切り替えます。ぶらり旅の再生中はぶらり旅のシーン、CM モードのときは CM のシーン、それ以外は通常時のシーンにします。OBS に接続し直したときも、そのときの状態のシーンに戻します。
+
+仕様と動作確認の手順は [docs/obs-scene.md](./docs/obs-scene.md) を参照してください。
