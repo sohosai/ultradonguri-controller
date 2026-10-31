@@ -13,7 +13,8 @@ export interface WSEvent {
     | "/burari/play"
     | "/burari/stop"
     | "/burari/ended"
-    | "/relay/hello";
+    | "/relay/hello"
+    | "/relay/synced";
   data: unknown;
   offset: number;
 }
@@ -75,6 +76,12 @@ class StreamClient {
         const payload = wsEvent.data as { epoch: string };
         localStorage.setItem(EPOCH_STORAGE_KEY, payload.epoch);
         this.saveLastOffset(wsEvent.offset);
+
+        return;
+      }
+
+      if (wsEvent.type === "/relay/synced") {
+        this.handleEvent(wsEvent);
 
         return;
       }

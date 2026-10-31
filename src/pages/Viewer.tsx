@@ -84,6 +84,8 @@ export default function Viewer() {
     const unsubDisplayCopyright = streamClient.on("/display-copyright", handleDisplayCopyright);
     const unsubBurariPlay = streamClient.on("/burari/play", handleBurariPlay);
     const unsubBurariStop = streamClient.on("/burari/stop", handleBurariStop);
+    // 読み込み直してログを受け取り直したとき、再生し終えた動画をもう一度流さない
+    const unsubBurariEnded = streamClient.on("/burari/ended", handleBurariStop);
 
     return () => {
       unsubPerformance();
@@ -93,6 +95,7 @@ export default function Viewer() {
       unsubDisplayCopyright();
       unsubBurariPlay();
       unsubBurariStop();
+      unsubBurariEnded();
       streamClient.disconnect();
     };
   }, []);

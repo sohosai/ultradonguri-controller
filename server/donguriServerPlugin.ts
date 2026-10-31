@@ -54,6 +54,8 @@ function setupRelay(httpServer: Server): void {
         ws.send(JSON.stringify(event));
       }
     }
+    // 再送が済んだことを知らせ、クライアントが過去のイベントから状態を作り終えたと判断できるようにする
+    ws.send(JSON.stringify({ type: "/relay/synced", data: {}, offset: nextOffset - 1 }));
 
     ws.on("message", (raw) => {
       let message: unknown;
