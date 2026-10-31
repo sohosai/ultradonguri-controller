@@ -26,6 +26,9 @@ export default function Viewer() {
   }, [burariVideo]);
 
   useEffect(() => {
+    // 読み込み直した直後は表示の状態が空なので、受信位置を引き継がずに過去のイベントから作り直す。
+    // OBS のブラウザソースは再起動しても localStorage を残すため、引き継ぐと転換シーンの公演一覧が届かない
+    streamClient.resetOffset();
     streamClient.connect();
 
     const handlePerformance = (data: unknown) => {

@@ -100,6 +100,13 @@ class StreamClient {
   }
 
   /**
+   * 保存した受信位置を捨て、次の接続でリレーに残っているイベントをすべて受け取り直す
+   */
+  resetOffset(): void {
+    localStorage.removeItem(OFFSET_STORAGE_KEY);
+  }
+
+  /**
    * Disconnect and stop reconnecting
    */
   disconnect(): void {
