@@ -25,16 +25,15 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
 
 `.env.example` を `.env` にコピーして使います。
 
-| 環境変数                 | 内容                                                                                                                  |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| `VITE_API_MODE`          | `mock`（既定）は OBS に接続せず、シーンを切り替えない。ミュートは画面の表示だけが切り替わる。`real` は OBS に接続する |
-| `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先（既定は `ws://localhost:4455`）                                               |
-| `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード                                                                                            |
-| `OBS_NORMAL_SCENE_NAME`  | 通常時のシーン名（既定は `Normal_Scene`）                                                                             |
-| `OBS_CM_SCENE_NAME`      | CM のシーン名（既定は `CM_Scene`）                                                                                    |
-| `OBS_BURARI_SCENE_NAME`  | ぶらり旅のシーン名（既定は `Burari_Scene`）                                                                           |
+| 環境変数                 | 内容                                                                    |
+| ------------------------ | ----------------------------------------------------------------------- |
+| `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先（既定は `ws://localhost:4455`） |
+| `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード                                              |
+| `OBS_NORMAL_SCENE_NAME`  | 通常時のシーン名（既定は `Normal_Scene`）                               |
+| `OBS_CM_SCENE_NAME`      | CM のシーン名（既定は `CM_Scene`）                                      |
+| `OBS_BURARI_SCENE_NAME`  | ぶらり旅のシーン名（既定は `Burari_Scene`）                             |
 
-`VITE_*` はビルド時に埋め込まれるので、変えたら `npm run build` からやり直します。`OBS_*` は controller の起動時に読みます。
+環境変数は controller の起動時に読みます。値を変えたら controller を再起動してください。
 
 ### 本番での起動
 
@@ -43,7 +42,7 @@ OBS と同じ PC で controller を動かします。
 1. OBS の「ツール → WebSocket サーバー設定」で WebSocket サーバーを有効にし、パスワードを設定する（OBS 30.1 以降）。
 2. OBS に通常時・CM・ぶらり旅のシーンを作る。
 3. リポジトリをクローンし、`npm ci` を実行する。
-4. `.env.example` を `.env` にコピーし、`VITE_API_MODE=real` と `OBS_WEBSOCKET_PASSWORD` を書く。シーン名が既定と違えば `OBS_*_SCENE_NAME` も書く。
+4. `.env.example` を `.env` にコピーし、`OBS_WEBSOCKET_PASSWORD` を書く。シーン名が既定と違えば `OBS_*_SCENE_NAME` も書く。
 5. 公演データを、リポジトリ直下に `performances.json` として置く。
 6. `npm run build` でビルドし、`npm run preview` で起動する。
 7. controller を `http://localhost:5173/` で開く。

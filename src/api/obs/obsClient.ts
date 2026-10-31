@@ -35,8 +35,6 @@ const STATUS_RESOURCE_NOT_FOUND = 600;
 // 音声を持たない入力に GetInputMute / SetInputMute を送ると返る
 const STATUS_INVALID_RESOURCE_STATE = 604;
 
-const isMockMode = (import.meta.env.VITE_API_MODE || "mock") === "mock";
-
 // obs-websocket-js のリクエストにはタイムアウトがなく、切断すると応答待ちの Promise が永久に解決しない
 function withTimeout<T>(promise: Promise<T>): Promise<T> {
   return Promise.race([
@@ -62,12 +60,6 @@ class ObsClient {
   start(): void {
     if (this.started) return;
     this.started = true;
-
-    if (isMockMode) {
-      this.setConnectionStatus("connected");
-
-      return;
-    }
 
     fetch(CONFIG_PATH)
       .then((response) => {
@@ -102,15 +94,13 @@ class ObsClient {
    * 未接続のときは待たずにエラーにする（接続後に古い指示が反映されるのを防ぐため）
    */
   async setMuted(isMuted: boolean): Promise<void> {
-    if (!isMockMode && this.connectionStatus !== "connected") {
+    if (this.connectionStatus !== "connected") {
       throw new Error("OBS に接続していません");
     }
 
     this.desiredMuted = isMuted;
     localStorage.setItem(MUTED_STORAGE_KEY, String(isMuted));
     this.notify();
-
-    if (isMockMode) return;
 
     await this.applyMute([...this.audioInputs.keys()]);
   }
@@ -122,7 +112,7 @@ class ObsClient {
   async setScene(scene: ObsScene): Promise<void> {
     this.desiredScene = scene;
 
-    if (isMockMode || !this.obs || this.connectionStatus !== "connected") return;
+    if (!this.obs || this.connectionStatus !== "connected") return;
 
     await this.applyScene(this.obs);
   }
@@ -286,9 +276,7 @@ class ObsClient {
 
   private notify(): void {
     const states = [...this.audioInputs.values()];
-    const isMuted = isMockMode
-      ? this.desiredMuted
-      : this.connectionStatus === "connected" && states.length > 0 && states.every(Boolean);
+    const isMuted = this.connectionStatus === "connected" && states.length > 0 && states.every(Boolean);
 
     if (this.snapshot.connectionStatus === this.connectionStatus && this.snapshot.isMuted === isMuted) return;
 

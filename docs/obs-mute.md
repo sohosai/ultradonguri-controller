@@ -133,7 +133,7 @@ controller の `isMuted` は、音声入力が1つ以上あり、そのすべて
 
 ### 4.3 接続情報（`server/donguriServerPlugin.ts`）
 
-接続先とパスワードは環境変数で指定する。`VITE_*` はビルド時に埋め込まれ、本番イメージは公開ビルドなので使わない。代わりに、controller の Node サーバー（dev / preview）が実行時の環境変数を読み、`GET /obs/config` で `{ url, password, scenes: { normal, cm, burari } }` を返す。
+接続先とパスワードは環境変数で指定する。ビルドし直さずに変えられるよう、ビルド時に埋め込まれる `VITE_*` は使わない。代わりに、controller の Node サーバー（dev / preview）が実行時の環境変数を読み、`GET /obs/config` で `{ url, password, scenes: { normal, cm, burari } }` を返す。
 
 | 環境変数                 | 内容                                    | 未設定のとき          |
 | ------------------------ | --------------------------------------- | --------------------- |
@@ -156,10 +156,6 @@ OBS に接続できないことは、ほかの操作の失敗と同じエラー�
 | 未接続   | 「OBS に接続できません」。再接続を繰り返す間は出し直さず、未接続になったときに1回だけ出す |
 | 認証失敗 | 「OBS の認証に失敗しました」                                                              |
 | 接続完了 | 出ていた上の2つのエラーを消す                                                             |
-
-### 4.5 モックモード
-
-`VITE_API_MODE=mock` のときは、OBS に接続しない。接続状態を常に `connected` とし、`isMuted` をミュート指示そのものとする。
 
 ## 5. 決めた値
 
@@ -185,7 +181,6 @@ OBS に接続できないことは、ほかの操作の失敗と同じエラー�
 2. controller の `.env` に次を書き、`npm run dev` で起動する。
 
    ```env
-   VITE_API_MODE=real
    OBS_WEBSOCKET_PASSWORD=（OBS で設定したパスワード）
    ```
 
