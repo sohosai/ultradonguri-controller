@@ -29,8 +29,8 @@
   display: flex;
   justify-content: center;
   height: 11vh;
-  padding-top: 2vh;
-  font-size: 50px;
+  padding-top: 1vh;
+  font-size: 47px;
 }
 
 .nextGuide {
@@ -121,21 +121,21 @@
 .sopoImage {
   position: fixed;
   top: 50vh;
-  left: 2.5vw;
+  left: 4.5vw;
   z-index: -1;
-  width: 20vw;
+  width: 15vw;
 }
 
 .nextImage {
   position: fixed;
-  top: 15.5vh;
+  top: 15.7vh;
   left: 3.7vw;
-  width: 10vw;
+  width: 8vw;
 }
 
 .upcomingImage {
   position: fixed;
-  top: 88.9vh;
-  left: 3.5vw;
-  width: 12.5vw;
+  top: 85.5vh;
+  left: 5.5vw;
+  width: 14vw;
 }
