@@ -30,3 +30,5 @@ dist-ssr
 .env
 # ぶらり旅の動画置き場（server/videosMiddleware.ts が配信）
 videos/
+# 本番の公演データ（server/donguriServerPlugin.ts が配信）
+/performances.json
