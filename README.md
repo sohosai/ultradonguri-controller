@@ -4,9 +4,8 @@ React + TypeScript + Vite で構築されたコントローラ用フロントエ
 
 ## 必要環境
 
-- Node.js
+- Node.js 22 以降
 - npm
-- または Docker
 
 Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等で切り替えてください。
 
@@ -35,15 +34,22 @@ Node のバージョンは `node -v` で確認し、必要に応じて `nvm` 等
 | `OBS_CM_SCENE_NAME`      | CM のシーン名（既定は `CM_Scene`）                                                                                    |
 | `OBS_BURARI_SCENE_NAME`  | ぶらり旅のシーン名（既定は `Burari_Scene`）                                                                           |
 
-`VITE_*` はビルド時に埋め込まれます。`OBS_*` は controller の起動時に読むので、本番イメージでもコンテナの環境変数で指定できます。
+`VITE_*` はビルド時に埋め込まれるので、変えたら `npm run build` からやり直します。`OBS_*` は controller の起動時に読みます。
 
-### Docker を使用する場合
+### 本番での起動
 
-1. リポジトリのクローン
-   - `git clone https://github.com/sohosai/ultradonguri-controller.git`
-2. Docker Compose で起動
-   - `docker compose up`
-   - ターミナルに表示される URL にアクセス
+OBS と同じ PC で controller を動かします。
+
+1. OBS の「ツール → WebSocket サーバー設定」で WebSocket サーバーを有効にし、パスワードを設定する（OBS 30.1 以降）。
+2. OBS に通常時・CM・ぶらり旅のシーンを作る。
+3. リポジトリをクローンし、`npm ci` を実行する。
+4. `.env.example` を `.env` にコピーし、`VITE_API_MODE=real` と `OBS_WEBSOCKET_PASSWORD` を書く。シーン名が既定と違えば `OBS_*_SCENE_NAME` も書く。
+5. 公演データを、リポジトリ直下に `performances.json` として置く。
+6. `npm run build` でビルドし、`npm run preview` で起動する。
+7. controller を `http://localhost:5173/` で開く。
+8. OBS のブラウザソースで `http://localhost:5173/viewer` を開く。プロパティで「OBS経由で音声を制御」を有効にする。
+
+`performances.json` は起動したまま差し替えられ、controller を再読み込みすると読み直します。ぶらり旅の動画は、controller から上げるとリポジトリ直下の `videos/` に保存されます。
 
 ## 開発コマンド
 
