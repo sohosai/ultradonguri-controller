@@ -1,9 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { streamClient } from "../api/ws/streamClient";
+import liveImage from "../assets/viewer/live.webp";
 import BurariPlayer from "../components/BurariPlayer";
 import ConversionScene from "../components/ConversionScene";
 import PerformanceScene from "../components/PerformanceScene";
+
+import styles from "./Viewer.module.css";
 
 import type { Performance, Music, NextPerformance } from "../types/performances";
 
@@ -95,20 +98,30 @@ export default function Viewer() {
     return <BurariPlayer filename={burariVideo} onEnded={handleBurariEnded} />;
   }
 
+  const live = <img src={liveImage} alt="LIVE" className={styles.live} />;
+
   if (currentScene === "performance") {
     return (
-      <PerformanceScene
-        performer={performerTitle}
-        musicTitle={musicTitle}
-        musicArtist={musicArtist}
-        shouldBeMuted={shouldBeMuted}
-        isCopyrightVisible={isCopyrightVisible}
-      />
+      <>
+        <PerformanceScene
+          performer={performerTitle}
+          musicTitle={musicTitle}
+          musicArtist={musicArtist}
+          shouldBeMuted={shouldBeMuted}
+          isCopyrightVisible={isCopyrightVisible}
+        />
+        {live}
+      </>
     );
   }
 
   if (currentScene === "conversion") {
-    return <ConversionScene nextPerformances={nextPerformances} isCmMode={isCmMode} />;
+    return (
+      <>
+        <ConversionScene nextPerformances={nextPerformances} isCmMode={isCmMode} />
+        {!isCmMode && live}
+      </>
+    );
   }
 
   return <div>待機中...</div>;

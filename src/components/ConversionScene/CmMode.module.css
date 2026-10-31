@@ -114,3 +114,25 @@
   font-size: 30px;
   text-align: left;
 }
+
+.sopoImage {
+  position: fixed;
+  top: 50vh;
+  left: 2.5vw;
+  z-index: -1;
+  width: 20vw;
+}
+
+.nextImage {
+  position: fixed;
+  top: 15.5vh;
+  left: 3.7vw;
+  width: 10vw;
+}
+
+.upcomingImage {
+  position: fixed;
+  top: 88.9vh;
+  left: 3.5vw;
+  width: 12.5vw;
+}
