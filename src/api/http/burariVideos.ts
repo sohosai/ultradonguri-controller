@@ -1,7 +1,6 @@
 /**
  * ぶらり旅動画の管理 API クライアント。
- * バックエンドではなく Vite サーバー（server/videosMiddleware.ts）に対して通信するため、
- * VITE_API_BASE_URL は使わず常に同一オリジンへリクエストする
+ * Vite サーバー（server/videosMiddleware.ts）と通信する
  */
 
 export interface BurariVideo {

@@ -1,3 +1,4 @@
+import fs from "node:fs/promises";
 import path from "node:path";
 
 import { loadEnv } from "vite";
@@ -10,7 +11,9 @@ import type { Plugin } from "vite";
 
 export const RELAY_PATH = "/burari/ws";
 export const OBS_CONFIG_PATH = "/obs/config";
+const PERFORMANCES_PATH = "/performances.json";
 const DEFAULT_OBS_WEBSOCKET_URL = "ws://localhost:4455";
+const DEFAULT_SCENE_NAMES = { normal: "Normal_Scene", cm: "CM_Scene", burari: "Burari_Scene" };
 
 // サーバー再起動をまたいだ古い lastOffset での誤った差分受信を防ぐため、
 // 起動ごとに epoch を発行してクライアントと照合する
@@ -80,8 +83,32 @@ function setupRelay(httpServer: Server): void {
 }
 
 /**
- * OBS WebSocket の接続先とパスワードを返す。
- * VITE_* はビルド時に埋め込まれ、本番イメージは公開ビルドなので、実行時の環境変数から配る。
+ * リポジトリ直下の performances.json があれば /performances.json として返す。
+ * 起動後に差し替えても、ページの再読み込みで反映される。無いときは public/ の performances.json に任せる。
+ */
+function createPerformancesMiddleware(filePath: string) {
+  return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
+    const pathname = new URL(req.url ?? "", "http://localhost").pathname;
+    if (req.method !== "GET" || pathname !== PERFORMANCES_PATH) {
+      next();
+
+      return;
+    }
+
+    fs.readFile(filePath).then(
+      (data) => {
+        res.setHeader("Content-Type", "application/json");
+        res.setHeader("Cache-Control", "no-store");
+        res.end(data);
+      },
+      () => next()
+    );
+  };
+}
+
+/**
+ * OBS WebSocket の接続先・パスワードとシーン名を返す。
+ * VITE_* はビルド時に埋め込まれて変えるたびにビルドし直すことになるので、起動時の環境変数から配る。
  */
 function createObsConfigMiddleware(env: Record<string, string>) {
   return (req: IncomingMessage, res: ServerResponse, next: () => void): void => {
@@ -97,6 +124,11 @@ function createObsConfigMiddleware(env: Record<string, string>) {
       JSON.stringify({
         url: env.OBS_WEBSOCKET_URL || DEFAULT_OBS_WEBSOCKET_URL,
         password: env.OBS_WEBSOCKET_PASSWORD ?? "",
+        scenes: {
+          normal: env.OBS_NORMAL_SCENE_NAME || DEFAULT_SCENE_NAMES.normal,
+          cm: env.OBS_CM_SCENE_NAME || DEFAULT_SCENE_NAMES.cm,
+          burari: env.OBS_BURARI_SCENE_NAME || DEFAULT_SCENE_NAMES.burari,
+        },
       })
     );
   };
@@ -104,10 +136,12 @@ function createObsConfigMiddleware(env: Record<string, string>) {
 
 /**
  * Controller ↔ Viewer 間の通信を中継する Vite プラグイン。
- * dev / preview の両サーバーに WebSocket リレー（/burari/ws）と OBS の接続情報（/obs/config）を追加する。
+ * dev / preview の両サーバーに WebSocket リレー（/burari/ws）、OBS の接続情報（/obs/config）、
+ * 公演データ（/performances.json）を追加する。
  */
 export function donguriServerPlugin(): Plugin {
   let videosDir = path.resolve(process.cwd(), "videos");
+  let performancesFile = path.resolve(process.cwd(), "performances.json");
   // .env と process.env の OBS_* を読む（process.env が優先）
   let obsEnv: Record<string, string> = {};
 
@@ -115,17 +149,20 @@ export function donguriServerPlugin(): Plugin {
     name: "donguri-server",
     configResolved(config) {
       videosDir = path.resolve(config.root, "videos");
+      performancesFile = path.resolve(config.root, "performances.json");
       obsEnv = loadEnv(config.mode, config.envDir, "OBS_");
     },
     configureServer(server) {
       if (server.httpServer) setupRelay(server.httpServer as Server);
       server.middlewares.use(createVideosMiddleware(videosDir));
       server.middlewares.use(createObsConfigMiddleware(obsEnv));
+      server.middlewares.use(createPerformancesMiddleware(performancesFile));
     },
     configurePreviewServer(server) {
       setupRelay(server.httpServer as Server);
       server.middlewares.use(createVideosMiddleware(videosDir));
       server.middlewares.use(createObsConfigMiddleware(obsEnv));
+      server.middlewares.use(createPerformancesMiddleware(performancesFile));
     },
   };
 }

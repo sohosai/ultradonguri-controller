@@ -8,10 +8,11 @@ controller（ブラウザ）は OBS WebSocket に直接接続し、OBS の音声
 
 ```
 controller（ブラウザ） ──OBS WebSocket（ws://<OBS の PC>:4455）──> OBS
-        └──HTTP──> ultradonguri-server ──goobs──> OBS（シーン切替）
 ```
 
-本番では OBS と docker compose が同じ PC で動き、controller は `http://localhost:5173` で開く。OBS WebSocket の接続先は `ws://localhost:4455` になる。
+同じ接続で番組シーンも切り替える（docs/obs-scene.md）。
+
+本番では OBS と controller が同じ PC で動き、controller は `http://localhost:5173` で開く。OBS WebSocket の接続先は `ws://localhost:4455` になる。
 
 ### 1.2 OBS のバージョン
 
@@ -132,12 +133,15 @@ controller の `isMuted` は、音声入力が1つ以上あり、そのすべて
 
 ### 4.3 接続情報（`server/donguriServerPlugin.ts`）
 
-接続先とパスワードは環境変数で指定する。`VITE_*` はビルド時に埋め込まれ、本番イメージは公開ビルドなので使わない。代わりに、controller の Node サーバー（dev / preview）が実行時の環境変数を読み、`GET /obs/config` で `{ url, password }` を返す。
+接続先とパスワードは環境変数で指定する。ビルドし直さずに変えられるよう、ビルド時に埋め込まれる `VITE_*` は使わない。代わりに、controller の Node サーバー（dev / preview）が実行時の環境変数を読み、`GET /obs/config` で `{ url, password, scenes: { normal, cm, burari } }` を返す。
 
 | 環境変数                 | 内容                                    | 未設定のとき          |
 | ------------------------ | --------------------------------------- | --------------------- |
 | `OBS_WEBSOCKET_URL`      | ブラウザから見た OBS WebSocket の接続先 | `ws://localhost:4455` |
 | `OBS_WEBSOCKET_PASSWORD` | OBS WebSocket のパスワード              | 空（認証なし）        |
+| `OBS_NORMAL_SCENE_NAME`  | 通常時のシーン名（`scenes.normal`）     | `Normal_Scene`        |
+| `OBS_CM_SCENE_NAME`      | CM のシーン名（`scenes.cm`）            | `CM_Scene`            |
+| `OBS_BURARI_SCENE_NAME`  | ぶらり旅のシーン名（`scenes.burari`）   | `Burari_Scene`        |
 
 環境変数は Vite の `loadEnv` で読むので、dev では `.env` にも書ける。実行中の環境変数が `.env` より優先される。値を変えたら、controller を再起動してからページを再読み込みする。
 
@@ -152,10 +156,6 @@ OBS に接続できないことは、ほかの操作の失敗と同じエラー�
 | 未接続   | 「OBS に接続できません」。再接続を繰り返す間は出し直さず、未接続になったときに1回だけ出す |
 | 認証失敗 | 「OBS の認証に失敗しました」                                                              |
 | 接続完了 | 出ていた上の2つのエラーを消す                                                             |
-
-### 4.5 モックモード
-
-`VITE_API_MODE=mock` のときは、OBS に接続しない。接続状態を常に `connected` とし、`isMuted` をミュート指示そのものとする。
 
 ## 5. 決めた値
 
@@ -181,12 +181,10 @@ OBS に接続できないことは、ほかの操作の失敗と同じエラー�
 2. controller の `.env` に次を書き、`npm run dev` で起動する。
 
    ```env
-   VITE_API_MODE=real
-   VITE_API_BASE_URL=http://localhost:8080
    OBS_WEBSOCKET_PASSWORD=（OBS で設定したパスワード）
    ```
 
-3. `http://localhost:5173/` を開く。ultradonguri-server を起動していなくても、ミュートは確かめられる（シーン切替のエラーがコンソールに出る）。
+3. `http://localhost:5173/` を開く。
 
 ### 6.2 確認項目
 
