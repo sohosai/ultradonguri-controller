@@ -38,6 +38,7 @@ export default function Controller() {
   const [isCopyrightVisible, setIsCopyrightVisible] = useState<boolean>(true);
   const [isBurariPlaying, setIsBurariPlaying] = useState(false);
   const [burariPlayingFilename, setBurariPlayingFilename] = useState<string | null>(null);
+  const [isRelaySynced, setIsRelaySynced] = useState(false);
   const { currentTrack, nextTrack, selectNextTrack, skipToNext, reset, initializeFromFirst } = usePlayback();
   const initializedDateKeyRef = useRef<string | null>(null);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
@@ -93,6 +94,37 @@ export default function Controller() {
     });
   }, [pendingInitialMute, obsConnectionStatus, setMuted]);
 
+  // 読み込み直した直後はぶらり旅の再生状態が分からないので、受信位置を引き継がずに過去のイベントから作り直す。
+  // 初期化で送るイベントより先に接続するため、送信する effect より前に置く
+  useEffect(() => {
+    const unsubPlay = streamClient.on("/burari/play", (data) => {
+      setIsBurariPlaying(true);
+      const payload = data as { filename: string } | undefined;
+      setBurariPlayingFilename(payload?.filename ?? null);
+    });
+    const unsubStop = streamClient.on("/burari/stop", () => {
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+    const unsubEnded = streamClient.on("/burari/ended", () => {
+      setIsBurariPlaying(false);
+      setBurariPlayingFilename(null);
+    });
+    const unsubSynced = streamClient.on("/relay/synced", () => {
+      setIsRelaySynced(true);
+    });
+
+    streamClient.resetOffset();
+    streamClient.connect();
+
+    return () => {
+      unsubPlay();
+      unsubStop();
+      unsubEnded();
+      unsubSynced();
+    };
+  }, []);
+
   useEffect(() => {
     const initializeCopyright = async () => {
       try {
@@ -116,35 +148,15 @@ export default function Controller() {
     void initializeCmMode();
   }, []);
 
+  // 再生状態を作り直す前に決めると、ぶらり旅の再生中でも一瞬通常時のシーンに切り替わってしまう
   useEffect(() => {
+    if (!isRelaySynced) return;
+
     const scene = isBurariPlaying ? "burari" : isCmMode ? "cm" : "normal";
     obsClient.setScene(scene).catch((error) => {
       console.error("[Controller] Failed to switch scene:", error);
     });
-  }, [isCmMode, isBurariPlaying]);
-
-  useEffect(() => {
-    const unsubPlay = streamClient.on("/burari/play", (data) => {
-      setIsBurariPlaying(true);
-      const payload = data as { filename: string } | undefined;
-      setBurariPlayingFilename(payload?.filename ?? null);
-    });
-    const unsubStop = streamClient.on("/burari/stop", () => {
-      setIsBurariPlaying(false);
-      setBurariPlayingFilename(null);
-    });
-    const unsubEnded = streamClient.on("/burari/ended", () => {
-      streamClient.send("/burari/stop", {});
-      setIsBurariPlaying(false);
-      setBurariPlayingFilename(null);
-    });
-
-    return () => {
-      unsubPlay();
-      unsubStop();
-      unsubEnded();
-    };
-  }, []);
+  }, [isRelaySynced, isCmMode, isBurariPlaying]);
 
   // 初回とデータ変化時に日付キーを初期化
   useEffect(() => {

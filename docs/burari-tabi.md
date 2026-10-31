@@ -75,6 +75,7 @@ Viewer は OBS ブラウザソース（Controller を開くブラウザとは別
 - 再生開始後、Controller は「ぶらり旅再生中」状態となり、画面上部にバッジを表示する
 - 再生中は「再生中: {filename}」と停止ボタンを表示する
 - Viewer から再生終了イベント（`/burari/ended`）を受信したら、自動的に再生中状態を解除する
+- 再生中状態はリレーのイベントログから作る。Controller を読み込み直したときは受信位置を引き継がずにログをすべて受け取り直すので、再生中にリロードしても再生中状態と停止ボタンが戻る
 - **保険**: Controller 側でも動画のメタデータから duration を取得し、`duration + マージン（数秒）` のタイマーを持つ。終了イベントが届かなくてもタイマー満了で `/burari/stop` を送信し、操作不能に陥らないようにする
 
 #### 3.1.4 操作可能条件
@@ -131,9 +132,11 @@ Viewer は OBS ブラウザソース（Controller を開くブラウザとは別
 | `/burari/stop`  | Controller → Viewer     | `{}`                   |
 | `/burari/ended` | Viewer → Controller     | `{ filename: string }` |
 | `/relay/hello`  | サーバー → クライアント | `{ epoch: string }`    |
+| `/relay/synced` | サーバー → クライアント | `{}`                   |
 
 - リレーサーバーはイベントに `offset` を採番し、メモリ上に直近のイベントログを保持する
-- クライアントは接続時に `lastOffset` と `epoch` を渡し、未受信分の再送を受ける（Viewer の OBS 内リロード・再接続時に転換シーン状態を復元するため）
+- クライアントは接続時に `lastOffset` と `epoch` を渡し、未受信分の再送を受ける（Viewer の OBS 内リロード・再接続時に転換シーン状態を、Controller のリロード時にぶらり旅の再生中状態を復元するため）
+- 再送が済むと、リレーサーバーは `/relay/synced` を送る
 - サーバー再起動時は `epoch` が変わるため、クライアントは古い `lastOffset` を破棄して全イベントを受信し直す
 
 ## 4. 制限事項・非対応
